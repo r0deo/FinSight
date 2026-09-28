@@ -1,0 +1,20 @@
+## .NET build output
+[Bb]in/
+[Oo]bj/
+
+## Visual Studio
+.vs/
+*.user
+*.suo
+
+## JetBrains Rider
+.idea/
+*.sln.iml
+
+## Test output
+[Tt]est[Rr]esult*/
+coverage/
+
+## OS files
+.DS_Store
+Thumbs.db
