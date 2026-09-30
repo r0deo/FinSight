@@ -89,9 +89,17 @@ public class PreviewPricingSimulationHandlerTests
 
             return Task.FromResult(product);
         }
+
+        public Task AddAsync(
+            Product product,
+            CancellationToken cancellationToken = default)
+        {
+            throw new NotSupportedException();
+        }
     }
 
     private sealed record StubCurrentUserContext(
         Guid UserId,
-        Guid BusinessId) : ICurrentUserContext;
+        Guid BusinessId,
+        string Role = "Owner") : ICurrentUserContext;
 }

@@ -27,5 +27,10 @@ public sealed class ProductConfiguration : IEntityTypeConfiguration<Product>
             .IsRequired();
 
         builder.HasIndex(product => product.BusinessId);
+
+        builder.HasOne<Business>()
+            .WithMany()
+            .HasForeignKey(product => product.BusinessId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

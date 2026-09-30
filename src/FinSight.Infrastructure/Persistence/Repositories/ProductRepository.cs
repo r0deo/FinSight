@@ -19,4 +19,12 @@ public sealed class ProductRepository(FinSightDbContext dbContext)
                     && product.BusinessId == businessId,
                 cancellationToken);
     }
+
+    public async Task AddAsync(
+        Product product,
+        CancellationToken cancellationToken = default)
+    {
+        dbContext.Products.Add(product);
+        await dbContext.SaveChangesAsync(cancellationToken);
+    }
 }
