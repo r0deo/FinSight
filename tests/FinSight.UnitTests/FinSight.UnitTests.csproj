@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\FinSight.Api\FinSight.Api.csproj" />
     <ProjectReference Include="..\..\src\FinSight.Domain\FinSight.Domain.csproj" />
     <ProjectReference Include="..\..\src\FinSight.Application\FinSight.Application.csproj" />
     <ProjectReference Include="..\..\src\FinSight.Infrastructure\FinSight.Infrastructure.csproj" />

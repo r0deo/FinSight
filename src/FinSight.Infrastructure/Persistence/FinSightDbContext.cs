@@ -14,6 +14,8 @@ public sealed class FinSightDbContext(
 
     public DbSet<Product> Products => Set<Product>();
 
+    public DbSet<PricingSimulation> PricingSimulations => Set<PricingSimulation>();
+
     public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

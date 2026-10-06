@@ -9,8 +9,11 @@ public sealed class CreateProductValidator : AbstractValidator<CreateProductComm
     {
         RuleFor(command => command.Name)
             .NotEmpty()
+            .Must(name => !string.IsNullOrWhiteSpace(name))
             .MaximumLength(Product.MaxNameLength);
-        RuleFor(command => command.Category).NotEmpty();
+        RuleFor(command => command.Category)
+            .NotEmpty()
+            .Must(category => !string.IsNullOrWhiteSpace(category));
         RuleFor(command => command.SellingPrice).GreaterThanOrEqualTo(0);
         RuleFor(command => command.UnitCost).GreaterThanOrEqualTo(0);
     }

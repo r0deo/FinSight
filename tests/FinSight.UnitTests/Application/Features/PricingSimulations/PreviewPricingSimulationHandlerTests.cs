@@ -1,5 +1,6 @@
 using FinSight.Application.Common.Exceptions;
 using FinSight.Application.Common.Interfaces;
+using FinSight.Application.Common.Models;
 using FinSight.Application.Features.PricingSimulations.Queries.PreviewPricingSimulation;
 using FinSight.Domain.Entities;
 using FinSight.Domain.Enums;
@@ -93,6 +94,37 @@ public class PreviewPricingSimulationHandlerTests
         public Task AddAsync(
             Product product,
             CancellationToken cancellationToken = default)
+        {
+            throw new NotSupportedException();
+        }
+
+        public Task<Product?> GetByIdForUpdateAsync(
+            Guid productId,
+            Guid businessId,
+            CancellationToken cancellationToken = default)
+        {
+            throw new NotSupportedException();
+        }
+
+        public Task<Product?> GetActiveByIdAsync(
+            Guid productId,
+            Guid businessId,
+            CancellationToken cancellationToken = default)
+        {
+            throw new NotSupportedException();
+        }
+
+        public Task<PagedResult<Product>> GetPagedAsync(
+            Guid businessId,
+            int page,
+            int pageSize,
+            bool includeInactive,
+            CancellationToken cancellationToken = default)
+        {
+            throw new NotSupportedException();
+        }
+
+        public Task SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             throw new NotSupportedException();
         }

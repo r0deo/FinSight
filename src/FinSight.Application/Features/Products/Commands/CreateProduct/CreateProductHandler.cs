@@ -23,6 +23,7 @@ public sealed class CreateProductHandler(
             request.UnitCost);
 
         await productRepository.AddAsync(product, cancellationToken);
+        await productRepository.SaveChangesAsync(cancellationToken);
 
         return new CreateProductResponse(
             product.Id,

@@ -35,6 +35,10 @@ public sealed class FinSightApiFactory : WebApplicationFactory<Program>, IAsyncL
         });
         builder.ConfigureServices(services =>
         {
+            services.RemoveAll<DbContextOptions<FinSightDbContext>>();
+            services.RemoveAll<FinSightDbContext>();
+            services.AddDbContext<FinSightDbContext>(options =>
+                options.UseNpgsql(_database.GetConnectionString()));
             services.RemoveAll<IEmailSender>();
             services.AddSingleton(EmailSender);
             services.AddSingleton<IEmailSender>(EmailSender);
