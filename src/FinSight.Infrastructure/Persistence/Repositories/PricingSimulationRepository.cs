@@ -1,5 +1,6 @@
 using FinSight.Application.Common.Interfaces;
 using FinSight.Application.Common.Models;
+using FinSight.Application.Common.Exceptions;
 using FinSight.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,7 +25,8 @@ public sealed class PricingSimulationRepository(FinSightDbContext dbContext)
             .AsNoTracking()
             .SingleOrDefaultAsync(
                 simulation => simulation.Id == simulationId
-                    && simulation.BusinessId == businessId,
+                    && simulation.BusinessId == businessId
+                    && simulation.DeletedAtUtc == null,
                 cancellationToken);
     }
 
@@ -43,11 +45,18 @@ public sealed class PricingSimulationRepository(FinSightDbContext dbContext)
         Guid businessId,
         int page,
         int pageSize,
+        bool includeArchived,
         CancellationToken cancellationToken = default)
     {
         var query = dbContext.PricingSimulations
             .AsNoTracking()
-            .Where(simulation => simulation.BusinessId == businessId);
+            .Where(simulation => simulation.BusinessId == businessId
+                && simulation.DeletedAtUtc == null);
+
+        if (!includeArchived)
+        {
+            query = query.Where(simulation => simulation.ArchivedAtUtc == null);
+        }
         var totalCount = await query.CountAsync(cancellationToken);
         var items = await query
             .OrderByDescending(simulation => simulation.CreatedAtUtc)
@@ -61,6 +70,13 @@ public sealed class PricingSimulationRepository(FinSightDbContext dbContext)
 
     public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
     {
-        await dbContext.SaveChangesAsync(cancellationToken);
+        try
+        {
+            await dbContext.SaveChangesAsync(cancellationToken);
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            throw new ConcurrencyConflictException();
+        }
     }
 }

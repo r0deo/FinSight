@@ -16,6 +16,7 @@ public sealed class GetSimulationsHandler(
             currentUserContext.BusinessId,
             request.Page,
             request.PageSize,
+            request.IncludeArchived,
             cancellationToken);
         var items = result.Items
             .Select(PricingSimulationResponse.FromSimulation)

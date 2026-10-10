@@ -1,6 +1,10 @@
 using FinSight.Api.Contracts.PricingSimulations;
 using FinSight.Application.Common.Authorization;
+using FinSight.Application.Features.PricingSimulations.Commands.ArchiveSimulation;
 using FinSight.Application.Features.PricingSimulations.Commands.CreateSimulation;
+using FinSight.Application.Features.PricingSimulations.Commands.DeleteSimulation;
+using FinSight.Application.Features.PricingSimulations.Commands.RestoreSimulation;
+using FinSight.Application.Features.PricingSimulations.Commands.UnarchiveSimulation;
 using FinSight.Application.Features.PricingSimulations.Commands.UpdateSimulation;
 using FinSight.Application.Features.PricingSimulations.Queries.GetSimulationById;
 using FinSight.Application.Features.PricingSimulations.Queries.GetSimulations;
@@ -48,10 +52,11 @@ public sealed class PricingSimulationsController(ISender sender) : ControllerBas
     public async Task<ActionResult<PagedPricingSimulationsResponse>> GetAll(
         [FromQuery] int page = 1,
         [FromQuery] int pageSize = 20,
+        [FromQuery] bool includeArchived = false,
         CancellationToken cancellationToken = default)
     {
         var result = await sender.Send(
-            new GetSimulationsQuery(page, pageSize),
+            new GetSimulationsQuery(page, pageSize, includeArchived),
             cancellationToken);
         return Ok(new PagedPricingSimulationsResponse(
             result.Items.Select(ToResponse).ToArray(),
@@ -62,17 +67,67 @@ public sealed class PricingSimulationsController(ISender sender) : ControllerBas
     }
 
     [HttpPut("{id:guid}")]
-    public async Task<IActionResult> Update(
+    public async Task<ActionResult<PricingSimulationVersionResponse>> Update(
         Guid id,
         UpdatePricingSimulationRequest request,
         CancellationToken cancellationToken)
     {
-        await sender.Send(new UpdateSimulationCommand(
+        var result = await sender.Send(new UpdateSimulationCommand(
             id,
             request.ProposedPrice,
             request.CurrentSalesQuantity,
-            request.ExpectedSalesQuantity), cancellationToken);
-        return NoContent();
+            request.ExpectedSalesQuantity,
+            request.Version), cancellationToken);
+        return Ok(new PricingSimulationVersionResponse(result.Version));
+    }
+
+    [HttpPatch("{id:guid}/archive")]
+    public async Task<ActionResult<PricingSimulationVersionResponse>> Archive(
+        Guid id,
+        PricingSimulationVersionRequest request,
+        CancellationToken cancellationToken)
+    {
+        var result = await sender.Send(
+            new ArchiveSimulationCommand(id, request.Version),
+            cancellationToken);
+        return Ok(new PricingSimulationVersionResponse(result.Version));
+    }
+
+    [HttpPatch("{id:guid}/unarchive")]
+    public async Task<ActionResult<PricingSimulationVersionResponse>> Unarchive(
+        Guid id,
+        PricingSimulationVersionRequest request,
+        CancellationToken cancellationToken)
+    {
+        var result = await sender.Send(
+            new UnarchiveSimulationCommand(id, request.Version),
+            cancellationToken);
+        return Ok(new PricingSimulationVersionResponse(result.Version));
+    }
+
+    [HttpDelete("{id:guid}")]
+    public async Task<ActionResult<PricingSimulationVersionResponse>> Delete(
+        Guid id,
+        PricingSimulationVersionRequest request,
+        CancellationToken cancellationToken)
+    {
+        var result = await sender.Send(
+            new DeleteSimulationCommand(id, request.Version),
+            cancellationToken);
+        return Ok(new PricingSimulationVersionResponse(result.Version));
+    }
+
+    [Authorize(Roles = AppRoles.Owner)]
+    [HttpPatch("{id:guid}/restore")]
+    public async Task<ActionResult<PricingSimulationVersionResponse>> Restore(
+        Guid id,
+        PricingSimulationVersionRequest request,
+        CancellationToken cancellationToken)
+    {
+        var result = await sender.Send(
+            new RestoreSimulationCommand(id, request.Version),
+            cancellationToken);
+        return Ok(new PricingSimulationVersionResponse(result.Version));
     }
 
     [HttpPost("preview")]
@@ -108,5 +163,8 @@ public sealed class PricingSimulationsController(ISender sender) : ControllerBas
         simulation.IsProposedPriceBelowCost,
         simulation.Recommendation,
         simulation.CreatedAtUtc,
-        simulation.UpdatedAtUtc);
+        simulation.UpdatedAtUtc,
+        simulation.IsArchived,
+        simulation.ArchivedAtUtc,
+        simulation.Version);
 }

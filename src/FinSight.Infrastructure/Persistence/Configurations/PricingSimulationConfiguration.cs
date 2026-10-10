@@ -21,6 +21,10 @@ public sealed class PricingSimulationConfiguration
         builder.Property(simulation => simulation.Recommendation)
             .HasConversion<string>()
             .HasMaxLength(32);
+        builder.Property(simulation => simulation.Version)
+            .IsConcurrencyToken();
+        builder.Ignore(simulation => simulation.IsArchived);
+        builder.Ignore(simulation => simulation.IsDeleted);
 
         builder.HasIndex(simulation => new
         {

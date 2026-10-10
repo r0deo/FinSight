@@ -1,10 +1,13 @@
 using FinSight.Domain.Enums;
+using FinSight.Domain.Exceptions;
 using FinSight.Domain.Services;
 
 namespace FinSight.Domain.Entities;
 
 public sealed class PricingSimulation
 {
+    public static readonly TimeSpan RestoreWindow = TimeSpan.FromDays(30);
+
     public Guid Id { get; private set; }
 
     public Guid BusinessId { get; private set; }
@@ -37,6 +40,24 @@ public sealed class PricingSimulation
 
     public DateTime UpdatedAtUtc { get; private set; }
 
+    public DateTime? ArchivedAtUtc { get; private set; }
+
+    public DateTime? DeletedAtUtc { get; private set; }
+
+    public long Version { get; private set; }
+
+    public bool IsArchived => ArchivedAtUtc.HasValue;
+
+    public bool IsDeleted => DeletedAtUtc.HasValue;
+
+    public bool IsEligibleForPermanentDeletion(DateTime utcNow)
+    {
+        EnsureUtc(utcNow, nameof(utcNow));
+
+        return DeletedAtUtc.HasValue
+            && utcNow > DeletedAtUtc.Value.Add(RestoreWindow);
+    }
+
     private PricingSimulation() { }
 
     public PricingSimulation(
@@ -66,6 +87,7 @@ public sealed class PricingSimulation
         CurrentPrice = currentPrice;
         UnitCost = unitCost;
         CreatedAtUtc = createdAtUtc;
+        Version = 1;
 
         Recalculate(
             proposedPrice,
@@ -80,17 +102,13 @@ public sealed class PricingSimulation
         int currentSalesQuantity,
         int expectedSalesQuantity,
         DateTime updatedAtUtc,
-        PricingSimulationCalculator calculator)
+        PricingSimulationCalculator calculator,
+        long expectedVersion)
     {
-        EnsureUtc(updatedAtUtc, nameof(updatedAtUtc));
+        EnsureExpectedVersion(expectedVersion);
+        EnsureMutable();
+        EnsureValidUpdateTimestamp(updatedAtUtc);
         ArgumentNullException.ThrowIfNull(calculator);
-
-        if (updatedAtUtc < CreatedAtUtc)
-        {
-            throw new ArgumentOutOfRangeException(
-                nameof(updatedAtUtc),
-                "Updated timestamp cannot be before the creation timestamp.");
-        }
 
         Recalculate(
             proposedPrice,
@@ -98,6 +116,76 @@ public sealed class PricingSimulation
             expectedSalesQuantity,
             updatedAtUtc,
             calculator);
+        Version++;
+    }
+
+    public void Archive(DateTime archivedAtUtc, long expectedVersion)
+    {
+        EnsureExpectedVersion(expectedVersion);
+        EnsureNotDeleted();
+
+        if (IsArchived)
+        {
+            throw new PricingSimulationConflictException(
+                "The pricing simulation is already archived.");
+        }
+
+        EnsureValidUpdateTimestamp(archivedAtUtc);
+        ArchivedAtUtc = archivedAtUtc;
+        Touch(archivedAtUtc);
+    }
+
+    public void Unarchive(DateTime updatedAtUtc, long expectedVersion)
+    {
+        EnsureExpectedVersion(expectedVersion);
+        EnsureNotDeleted();
+
+        if (!IsArchived)
+        {
+            throw new PricingSimulationConflictException(
+                "The pricing simulation is not archived.");
+        }
+
+        EnsureValidUpdateTimestamp(updatedAtUtc);
+        ArchivedAtUtc = null;
+        Touch(updatedAtUtc);
+    }
+
+    public void Delete(DateTime deletedAtUtc, long expectedVersion)
+    {
+        EnsureExpectedVersion(expectedVersion);
+
+        if (IsDeleted)
+        {
+            throw new PricingSimulationConflictException(
+                "The pricing simulation is already deleted.");
+        }
+
+        EnsureValidUpdateTimestamp(deletedAtUtc);
+        DeletedAtUtc = deletedAtUtc;
+        Touch(deletedAtUtc);
+    }
+
+    public void Restore(DateTime restoredAtUtc, long expectedVersion)
+    {
+        EnsureExpectedVersion(expectedVersion);
+
+        if (!DeletedAtUtc.HasValue)
+        {
+            throw new PricingSimulationConflictException(
+                "The pricing simulation is not deleted.");
+        }
+
+        EnsureValidUpdateTimestamp(restoredAtUtc);
+
+        if (restoredAtUtc > DeletedAtUtc.Value.Add(RestoreWindow))
+        {
+            throw new PricingSimulationConflictException(
+                "The 30-day restoration window has expired.");
+        }
+
+        DeletedAtUtc = null;
+        Touch(restoredAtUtc);
     }
 
     private void Recalculate(
@@ -130,6 +218,55 @@ public sealed class PricingSimulation
         if (value == Guid.Empty)
         {
             throw new ArgumentException("ID cannot be empty.", parameterName);
+        }
+    }
+
+    private void EnsureExpectedVersion(long expectedVersion)
+    {
+        if (expectedVersion != Version)
+        {
+            throw new PricingSimulationConflictException(
+                "The pricing simulation was changed by another request.");
+        }
+    }
+
+    private void EnsureMutable()
+    {
+        EnsureNotDeleted();
+
+        if (IsArchived)
+        {
+            throw new PricingSimulationConflictException(
+                "An archived pricing simulation cannot be edited.");
+        }
+    }
+
+    private void EnsureNotDeleted()
+    {
+        if (IsDeleted)
+        {
+            throw new PricingSimulationConflictException(
+                "A deleted pricing simulation cannot be changed by this operation.");
+        }
+    }
+
+    private void Touch(DateTime updatedAtUtc)
+    {
+        EnsureValidUpdateTimestamp(updatedAtUtc);
+
+        UpdatedAtUtc = updatedAtUtc;
+        Version++;
+    }
+
+    private void EnsureValidUpdateTimestamp(DateTime updatedAtUtc)
+    {
+        EnsureUtc(updatedAtUtc, nameof(updatedAtUtc));
+
+        if (updatedAtUtc < CreatedAtUtc)
+        {
+            throw new ArgumentOutOfRangeException(
+                nameof(updatedAtUtc),
+                "Updated timestamp cannot be before the creation timestamp.");
         }
     }
 

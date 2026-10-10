@@ -10,5 +10,6 @@ public sealed class UpdateSimulationValidator : AbstractValidator<UpdateSimulati
         RuleFor(command => command.ProposedPrice).GreaterThanOrEqualTo(0);
         RuleFor(command => command.CurrentSalesQuantity).GreaterThanOrEqualTo(0);
         RuleFor(command => command.ExpectedSalesQuantity).GreaterThanOrEqualTo(0);
+        RuleFor(command => command.Version).GreaterThan(0);
     }
 }

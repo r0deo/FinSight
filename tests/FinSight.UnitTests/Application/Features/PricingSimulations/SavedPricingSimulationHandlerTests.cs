@@ -1,4 +1,5 @@
 using FinSight.Application.Common.Exceptions;
+using FinSight.Application.Features.PricingSimulations.Commands.ArchiveSimulation;
 using FinSight.Application.Features.PricingSimulations.Commands.CreateSimulation;
 using FinSight.Application.Features.PricingSimulations.Commands.UpdateSimulation;
 using FinSight.Application.Features.PricingSimulations.Queries.GetSimulationById;
@@ -61,7 +62,7 @@ public class SavedPricingSimulationHandlerTests
 
         // Act
         await handler.Handle(
-            new UpdateSimulationCommand(simulation.Id, 5m, 5, 6),
+            new UpdateSimulationCommand(simulation.Id, 5m, 5, 6, simulation.Version),
             CancellationToken.None);
 
         // Assert
@@ -92,6 +93,33 @@ public class SavedPricingSimulationHandlerTests
         // Assert
         await Assert.ThrowsAsync<NotFoundException>(act);
         Assert.Equal(businessId, repository.RequestedBusinessId);
+    }
+
+    [Fact]
+    public async Task Archive_ChangesStateForAuthenticatedBusinessAndReturnsNewVersion()
+    {
+        // Arrange
+        var businessId = Guid.NewGuid();
+        var simulation = CreateSimulation(businessId);
+        var repository = new StubPricingSimulationRepository
+        {
+            TrackedSimulation = simulation
+        };
+        var handler = new ArchiveSimulationHandler(
+            repository,
+            new StubCurrentUserContext(Guid.NewGuid(), businessId),
+            new FixedTimeProvider(new DateTimeOffset(2026, 10, 5, 9, 0, 0, TimeSpan.Zero)));
+
+        // Act
+        var result = await handler.Handle(
+            new ArchiveSimulationCommand(simulation.Id, simulation.Version),
+            CancellationToken.None);
+
+        // Assert
+        Assert.True(simulation.IsArchived);
+        Assert.Equal(2, result.Version);
+        Assert.Equal(businessId, repository.RequestedBusinessId);
+        Assert.Equal(1, repository.SaveChangesCount);
     }
 
     private static PricingSimulation CreateSimulation(Guid businessId) => new(

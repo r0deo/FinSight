@@ -17,6 +17,8 @@ public sealed class FinSightApiFactory : WebApplicationFactory<Program>, IAsyncL
 
     public FakeEmailSender EmailSender { get; } = new();
 
+    public MutableTimeProvider TimeProvider { get; } = new();
+
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseEnvironment("Development");
@@ -40,8 +42,10 @@ public sealed class FinSightApiFactory : WebApplicationFactory<Program>, IAsyncL
             services.AddDbContext<FinSightDbContext>(options =>
                 options.UseNpgsql(_database.GetConnectionString()));
             services.RemoveAll<IEmailSender>();
+            services.RemoveAll<TimeProvider>();
             services.AddSingleton(EmailSender);
             services.AddSingleton<IEmailSender>(EmailSender);
+            services.AddSingleton<TimeProvider>(TimeProvider);
         });
     }
 

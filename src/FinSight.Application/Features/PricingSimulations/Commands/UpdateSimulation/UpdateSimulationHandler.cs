@@ -11,9 +11,9 @@ public sealed class UpdateSimulationHandler(
     ICurrentUserContext currentUserContext,
     PricingSimulationCalculator calculator,
     TimeProvider timeProvider)
-    : IRequestHandler<UpdateSimulationCommand>
+    : IRequestHandler<UpdateSimulationCommand, PricingSimulationVersionResponse>
 {
-    public async Task Handle(
+    public async Task<PricingSimulationVersionResponse> Handle(
         UpdateSimulationCommand request,
         CancellationToken cancellationToken)
     {
@@ -32,7 +32,10 @@ public sealed class UpdateSimulationHandler(
             request.CurrentSalesQuantity,
             request.ExpectedSalesQuantity,
             timeProvider.GetUtcNow().UtcDateTime,
-            calculator);
+            calculator,
+            request.Version);
         await simulationRepository.SaveChangesAsync(cancellationToken);
+
+        return new PricingSimulationVersionResponse(simulation.Version);
     }
 }

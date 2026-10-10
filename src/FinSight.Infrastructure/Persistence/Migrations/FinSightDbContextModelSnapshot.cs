@@ -60,6 +60,9 @@ namespace FinSight.Infrastructure.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<DateTime?>("ArchivedAtUtc")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<Guid>("BusinessId")
                         .HasColumnType("uuid");
 
@@ -79,6 +82,9 @@ namespace FinSight.Infrastructure.Persistence.Migrations
 
                     b.Property<int>("CurrentSalesQuantity")
                         .HasColumnType("integer");
+
+                    b.Property<DateTime?>("DeletedAtUtc")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<decimal>("Difference")
                         .HasPrecision(18, 2)
@@ -112,6 +118,10 @@ namespace FinSight.Infrastructure.Persistence.Migrations
 
                     b.Property<DateTime>("UpdatedAtUtc")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<long>("Version")
+                        .IsConcurrencyToken()
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 

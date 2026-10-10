@@ -1,4 +1,5 @@
 using FinSight.Application.Common.Exceptions;
+using FinSight.Domain.Exceptions;
 using FluentValidation;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
@@ -38,6 +39,11 @@ public sealed class GlobalExceptionHandler(
             NotFoundException => (
                 StatusCodes.Status404NotFound,
                 "Not found",
+                exception.Message,
+                null),
+            ConcurrencyConflictException or PricingSimulationConflictException => (
+                StatusCodes.Status409Conflict,
+                "Conflict",
                 exception.Message,
                 null),
             _ => (

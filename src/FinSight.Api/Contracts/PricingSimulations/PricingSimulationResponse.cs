@@ -17,4 +17,7 @@ public sealed record PricingSimulationResponse(
     bool IsProposedPriceBelowCost,
     Recommendation Recommendation,
     DateTime CreatedAtUtc,
-    DateTime UpdatedAtUtc);
+    DateTime UpdatedAtUtc,
+    bool IsArchived,
+    DateTime? ArchivedAtUtc,
+    long Version);

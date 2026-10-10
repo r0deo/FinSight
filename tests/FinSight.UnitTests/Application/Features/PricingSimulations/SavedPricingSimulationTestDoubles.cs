@@ -52,6 +52,7 @@ internal sealed class StubPricingSimulationRepository : IPricingSimulationReposi
         Guid businessId,
         int page,
         int pageSize,
+        bool includeArchived,
         CancellationToken cancellationToken = default)
     {
         RequestedBusinessId = businessId;

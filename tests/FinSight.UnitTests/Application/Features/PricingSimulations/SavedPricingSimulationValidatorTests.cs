@@ -18,13 +18,13 @@ public class SavedPricingSimulationValidatorTests
         var createResult = await createValidator.ValidateAsync(
             new CreateSimulationCommand(Guid.Empty, -1m, -1, -1));
         var updateResult = await updateValidator.ValidateAsync(
-            new UpdateSimulationCommand(Guid.Empty, -1m, -1, -1));
+            new UpdateSimulationCommand(Guid.Empty, -1m, -1, -1, 0));
 
         // Assert
         Assert.False(createResult.IsValid);
         Assert.False(updateResult.IsValid);
         Assert.Equal(4, createResult.Errors.Select(error => error.PropertyName).Distinct().Count());
-        Assert.Equal(4, updateResult.Errors.Select(error => error.PropertyName).Distinct().Count());
+        Assert.Equal(5, updateResult.Errors.Select(error => error.PropertyName).Distinct().Count());
     }
 
     [Theory]

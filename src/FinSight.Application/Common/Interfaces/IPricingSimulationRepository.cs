@@ -23,6 +23,7 @@ public interface IPricingSimulationRepository
         Guid businessId,
         int page,
         int pageSize,
+        bool includeArchived,
         CancellationToken cancellationToken = default);
 
     Task SaveChangesAsync(CancellationToken cancellationToken = default);

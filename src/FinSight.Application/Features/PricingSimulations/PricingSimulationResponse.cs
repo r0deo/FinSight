@@ -18,7 +18,10 @@ public sealed record PricingSimulationResponse(
     bool IsProposedPriceBelowCost,
     Recommendation Recommendation,
     DateTime CreatedAtUtc,
-    DateTime UpdatedAtUtc)
+    DateTime UpdatedAtUtc,
+    bool IsArchived,
+    DateTime? ArchivedAtUtc,
+    long Version)
 {
     public static PricingSimulationResponse FromSimulation(PricingSimulation simulation) => new(
         simulation.Id,
@@ -35,5 +38,8 @@ public sealed record PricingSimulationResponse(
         simulation.IsProposedPriceBelowCost,
         simulation.Recommendation,
         simulation.CreatedAtUtc,
-        simulation.UpdatedAtUtc);
+        simulation.UpdatedAtUtc,
+        simulation.IsArchived,
+        simulation.ArchivedAtUtc,
+        simulation.Version);
 }

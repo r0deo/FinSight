@@ -6,4 +6,5 @@ public sealed record UpdateSimulationCommand(
     Guid SimulationId,
     decimal ProposedPrice,
     int CurrentSalesQuantity,
-    int ExpectedSalesQuantity) : IRequest;
+    int ExpectedSalesQuantity,
+    long Version) : IRequest<PricingSimulationVersionResponse>;
