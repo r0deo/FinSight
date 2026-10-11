@@ -52,6 +52,38 @@ pooling. Schema migrations use a direct connection.
 
 ## 2. Explicit migrations BEFORE launch
 
+### If Neon provides `DATABASE_URL` / `DATABASE_URL_POOLED`
+
+Use the direct `DATABASE_URL` with the local masked helper. Run these commands in
+your own interactive PowerShell window, not a recorded shared terminal:
+
+```powershell
+dotnet build tools/FinSight.NeonMigrate/FinSight.NeonMigrate.csproj
+dotnet tools/FinSight.NeonMigrate/bin/Debug/net10.0/FinSight.NeonMigrate.dll
+```
+
+Paste only the URL into its masked prompt (not into chat or the command line).
+The helper rejects pooled/non-Neon hosts, URL-decodes credentials exactly once,
+quotes Npgsql values safely, and enforces `VerifyFull` TLS with channel binding.
+The driver validates the certificate and hostname while opening the connection;
+GSS negotiation is disabled to require TLS. Do not use `pg_stat_ssl` to verify this
+client connection: behind Neon's proxy it describes a different, backend connection.
+It displays only the target host/database for your local confirmation; type `APPLY`
+only after checking the intended branch/database in Neon. It applies existing
+migrations, verifies persisted migration history and the DataProtectionKeys table,
+then writes a credential-free `migration-result.json` beside its executable under
+the ignored `bin` directory. It does not store the URL in environment variables or
+files, change development settings, seed data, create migrations or start the website.
+Credentials necessarily exist in process memory while connecting; close the helper
+when finished. Do not share memory dumps or record credential entry.
+
+If the helper fails, its report contains only a safe category/SQLSTATE, never raw
+provider exceptions. Re-run against the same confirmed target to reconcile history;
+do not assume a failed verification means no migration was applied. This helper is
+for migrations only; Render runtime configuration still uses the pooled Npgsql string.
+
+### If you already have an Npgsql key/value connection string
+
 Run from `D:\FinSight` in a dedicated PowerShell window with .NET 10 SDK:
 
 ```powershell
