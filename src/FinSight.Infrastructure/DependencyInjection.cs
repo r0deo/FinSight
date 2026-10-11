@@ -7,6 +7,7 @@ using FinSight.Infrastructure.Persistence;
 using FinSight.Infrastructure.Persistence.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,10 +20,9 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(
         this IServiceCollection services,
-        IConfiguration configuration)
+        IConfiguration configuration, bool requireVerifiedTls = false)
     {
-        var connectionString = configuration.GetConnectionString("DefaultConnection");
-        ArgumentException.ThrowIfNullOrWhiteSpace(connectionString);
+        var connectionString = PostgresConfiguration.ConnectionString(configuration, requireVerifiedTls);
 
         services.AddDbContext<FinSightDbContext>(options =>
             options.UseNpgsql(connectionString));
@@ -36,6 +36,7 @@ public static class DependencyInjection
             .AddRoles<IdentityRole<Guid>>()
             .AddEntityFrameworkStores<FinSightDbContext>()
             .AddDefaultTokenProviders()
+            .AddClaimsPrincipalFactory<WebsiteClaimsPrincipalFactory>()
             .AddSignInManager();
 
         services.AddOptions<JwtOptions>()
@@ -54,16 +55,38 @@ public static class DependencyInjection
 
         services.AddOptions<EmailOptions>()
             .Bind(configuration.GetSection(EmailOptions.SectionName))
-            .Validate(options => !string.IsNullOrWhiteSpace(options.Host),
+            .Validate(options => !options.Enabled || !string.IsNullOrWhiteSpace(options.Host),
                 "Email host is required.")
-            .Validate(options => options.Port > 0,
+            .Validate(options => !options.Enabled || options.Port > 0,
                 "Email port must be greater than zero.")
-            .Validate(options => !string.IsNullOrWhiteSpace(options.FromAddress),
+            .Validate(options => !options.Enabled || !string.IsNullOrWhiteSpace(options.FromAddress),
                 "Email sender address is required.")
+            .Validate(options => Uri.TryCreate(options.WebsiteBaseUrl, UriKind.Absolute, out var uri)
+                && uri.Scheme == Uri.UriSchemeHttps,
+                "Email website base URL must be an absolute HTTPS URL.")
             .ValidateOnStart();
 
-        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer();
+        services.AddAuthentication("FinSight")
+            .AddPolicyScheme("FinSight", "Website or API", options =>
+                options.ForwardDefaultSelector = context =>
+                    context.Request.Path.StartsWithSegments("/api")
+                    || context.Request.Path.StartsWithSegments("/openapi")
+                        ? JwtBearerDefaults.AuthenticationScheme
+                        : IdentityConstants.ApplicationScheme)
+            .AddJwtBearer()
+            .AddCookie(IdentityConstants.ApplicationScheme, options =>
+            {
+                options.Cookie.Name = "__Host-FinSight.Auth";
+                options.Cookie.HttpOnly = true;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                options.Cookie.SameSite = SameSiteMode.Lax;
+                options.Cookie.Path = "/";
+                options.LoginPath = "/account/login";
+                options.AccessDeniedPath = "/account/access-denied";
+                options.ExpireTimeSpan = TimeSpan.FromHours(8);
+                options.SlidingExpiration = true;
+                options.Events.OnValidatePrincipal = SecurityStampValidator.ValidatePrincipalAsync;
+            });
 
         services.AddOptions<Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions>(
                 JwtBearerDefaults.AuthenticationScheme)
@@ -88,8 +111,14 @@ public static class DependencyInjection
             });
 
         services.AddAuthorization();
+        services.Configure<DataProtectionTokenProviderOptions>(options => options.TokenLifespan = TimeSpan.FromHours(24));
+        services.AddSingleton<IValidateOptions<EmailOptions>, EmailOptionsValidator>();
+        services.AddFinSightGoogle(configuration);
         services.AddSingleton(TimeProvider.System);
+        services.AddScoped<IEmailConfirmationService, EmailConfirmationService>();
+        services.AddScoped<IGoogleSignInService, GoogleSignInService>();
         services.AddScoped<IAuthenticationService, AuthenticationService>();
+        services.AddScoped<IWebsiteAuthenticationService, WebsiteAuthenticationService>();
         services.AddScoped<IEmailSender, SmtpEmailSender>();
         services.AddScoped<ICurrentUserContext, CurrentUserContext>();
         services.AddScoped<IProductRepository, ProductRepository>();

@@ -1,0 +1,5 @@
+@inject Microsoft.Extensions.Options.IOptions<FinSight.Infrastructure.Identity.EmailOptions> EmailOptions
+@if (!EmailOptions.Value.Enabled)
+{
+    <p role="status">Email delivery is not configured for this pilot. New password accounts cannot sign in until their email is confirmed. Use Google sign-in if available; existing confirmed accounts can still use their password.</p>
+}

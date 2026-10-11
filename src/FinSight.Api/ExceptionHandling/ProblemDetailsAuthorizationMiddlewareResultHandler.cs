@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authorization.Policy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 
 namespace FinSight.Api.ExceptionHandling;
 
@@ -15,6 +16,12 @@ public sealed class ProblemDetailsAuthorizationMiddlewareResultHandler
         AuthorizationPolicy policy,
         PolicyAuthorizationResult authorizeResult)
     {
+        if (policy.AuthenticationSchemes.Contains(IdentityConstants.ApplicationScheme)
+            || !context.Request.Path.StartsWithSegments("/api"))
+        {
+            return _defaultHandler.HandleAsync(next, context, policy, authorizeResult);
+        }
+
         if (authorizeResult.Challenged)
         {
             return WriteProblemDetailsAsync(

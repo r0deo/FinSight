@@ -321,7 +321,7 @@ public class SavedPricingSimulationTests(FinSightApiFactory factory)
         var userId = registrationJson.GetProperty("userId").GetGuid();
         var confirmationEmail = factory.EmailSender.Messages.Last(message =>
             message.Recipient == email && message.Subject.Contains("Confirm"));
-        var confirmationToken = confirmationEmail.Body.Split("Confirmation token: ")[1];
+        var confirmationToken = confirmationEmail.ConfirmationToken;
         var confirmation = await client.PostAsJsonAsync("/api/auth/confirm-email", new
         {
             UserId = userId,

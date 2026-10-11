@@ -10,7 +10,7 @@ using Testcontainers.PostgreSql;
 
 namespace FinSight.IntegrationTests.Infrastructure;
 
-public sealed class FinSightApiFactory : WebApplicationFactory<Program>, IAsyncLifetime
+public class FinSightApiFactory : WebApplicationFactory<Program>, IAsyncLifetime
 {
     private readonly PostgreSqlContainer _database = new PostgreSqlBuilder("postgres:17-alpine")
         .Build();

@@ -21,6 +21,7 @@ public sealed class AuthenticationService(
     RoleManager<IdentityRole<Guid>> roleManager,
     IEmailSender emailSender,
     IOptions<JwtOptions> jwtOptions,
+    IEmailConfirmationService confirmation,
     TimeProvider timeProvider) : IAuthenticationService
 {
     public async Task<RegistrationResult> RegisterOwnerAsync(
@@ -36,7 +37,7 @@ public sealed class AuthenticationService(
         await dbContext.SaveChangesAsync(cancellationToken);
         var user = await CreateUserAsync(business.Id, email, password, AppRoles.Owner, cancellationToken);
         await transaction.CommitAsync(cancellationToken);
-        await SendConfirmationEmailAsync(user, cancellationToken);
+        await confirmation.SendAsync(user.Id, cancellationToken);
 
         return new RegistrationResult(user.Id, business.Id, AppRoles.Owner, true);
     }
@@ -61,7 +62,7 @@ public sealed class AuthenticationService(
             password,
             AppRoles.Manager,
             cancellationToken);
-        await SendConfirmationEmailAsync(user, cancellationToken);
+        await confirmation.SendAsync(user.Id, cancellationToken);
 
         return new RegistrationResult(user.Id, businessId, AppRoles.Manager, true);
     }
@@ -103,6 +104,9 @@ public sealed class AuthenticationService(
 
         var user = await userManager.FindByIdAsync(storedToken.UserId.ToString())
             ?? throw new UnauthorizedAccessException("The refresh token is invalid.");
+
+        if (!user.EmailConfirmed)
+            throw new UnauthorizedAccessException("The account email must be confirmed.");
 
         storedToken.Revoke(now);
         return await IssueTokensAsync(user, await GetSupportedRoleAsync(user), cancellationToken);
@@ -194,30 +198,8 @@ public sealed class AuthenticationService(
         return user;
     }
 
-    private async Task SendConfirmationEmailAsync(
-        ApplicationUser user,
-        CancellationToken cancellationToken)
-    {
-        var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
-        await emailSender.SendAsync(
-            user.Email!,
-            "Confirm your FinSight email",
-            $"User ID: {user.Id}\nConfirmation token: {token}",
-            cancellationToken);
-    }
-
-    private async Task EnsureRolesExistAsync(CancellationToken cancellationToken)
-    {
-        cancellationToken.ThrowIfCancellationRequested();
-
-        foreach (var role in AppRoles.All)
-        {
-            if (!await roleManager.RoleExistsAsync(role))
-            {
-                ThrowIfFailed(await roleManager.CreateAsync(new IdentityRole<Guid>(role)));
-            }
-        }
-    }
+    private Task EnsureRolesExistAsync(CancellationToken cancellationToken) =>
+        IdentityRoleProvisioner.EnsureAsync(dbContext, roleManager, cancellationToken);
 
     private async Task<string> GetSupportedRoleAsync(ApplicationUser user)
     {

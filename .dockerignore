@@ -1,0 +1,22 @@
+# Allow only build inputs. Certificates, local data, tests and repository metadata
+# never enter the Docker build context, including intermediate build stages.
+**
+!Dockerfile
+!src/
+!src/**/
+!src/**/*.cs
+!src/**/*.csproj
+!src/**/*.cshtml
+!src/FinSight.Api/appsettings.json
+!src/FinSight.Api/appsettings.Production.json
+!src/FinSight.Api/wwwroot/**
+**/bin/**
+**/obj/**
+**/*.pfx
+**/*.p12
+**/*.pem
+**/*.key
+**/.env*
+**/secrets.json
+**/appsettings.Development.json
+**/appsettings.*.local.json

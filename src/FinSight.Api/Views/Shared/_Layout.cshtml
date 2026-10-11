@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] · FinSight</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="/" aria-label="FinSight home"><span class="brand-mark" aria-hidden="true">f.</span>FinSight</a>
+            <nav aria-label="Main navigation">
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <a href="/products">Products</a>
+                    @if (Context.RequestServices.GetRequiredService<Microsoft.Extensions.Options.IOptions<FinSight.Infrastructure.Identity.GoogleSignInOptions>>().Value.Enabled)
+                    { <a href="/account/google/link">Link Google</a> }
+                    <form asp-controller="Account" asp-action="Logout" method="post">
+                        <button class="button button-quiet" type="submit">Log out</button>
+                    </form>
+                }
+                else
+                {
+                    <a href="/account/login">Log in</a>
+                    <a class="button button-small" href="/account/register">Get started</a>
+                }
+            </nav>
+        </div>
+    </header>
+    <main id="main" class="container main-content">
+        @if (TempData["Success"] is string message)
+        {
+            <div class="notice notice-success" role="status">@message</div>
+        }
+        @RenderBody()
+    </main>
+    <footer class="container site-footer"><span>FinSight</span><span>A clearer view of your menu.</span></footer>
+</body>
+</html>

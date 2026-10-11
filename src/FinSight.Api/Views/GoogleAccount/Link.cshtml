@@ -1,0 +1,5 @@
+@{ ViewData["Title"] = "Link Google"; }
+<section class="panel message-panel"><h1>Link Google to this account.</h1>
+    <p class="lead">You're signed in as @User.Identity?.Name. Connect a Google account as another way to sign in. Your business and role will stay the same.</p>
+    <form asp-action="StartLink" method="post"><button class="button" type="submit">Link Google</button></form>
+</section>

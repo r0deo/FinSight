@@ -12,6 +12,7 @@ using FinSight.Application.Features.Authentication.Commands.RevokeToken;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.RateLimiting;
 
 namespace FinSight.Api.Controllers;
@@ -55,7 +56,7 @@ public sealed class AuthController(ISender sender) : ControllerBase
         return Ok(ToResponse(result));
     }
 
-    [Authorize]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [HttpPost("revoke")]
     public async Task<IActionResult> Revoke(
         RefreshTokenRequest request,
@@ -96,7 +97,7 @@ public sealed class AuthController(ISender sender) : ControllerBase
         return NoContent();
     }
 
-    [Authorize(Roles = AppRoles.Owner)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = AppRoles.Owner)]
     [HttpPost("managers")]
     public async Task<ActionResult<RegistrationResponse>> CreateManager(
         CreateManagerRequest request,

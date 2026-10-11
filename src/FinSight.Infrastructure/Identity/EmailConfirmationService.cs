@@ -1,0 +1,41 @@
+using System.Net.Mail;
+using FinSight.Application.Common.Interfaces;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+
+namespace FinSight.Infrastructure.Identity;
+
+public sealed class EmailConfirmationService(
+    UserManager<ApplicationUser> users,
+    IEmailSender sender,
+    IOptions<EmailOptions> options,
+    ILogger<EmailConfirmationService> logger) : IEmailConfirmationService
+{
+    public async Task ResendAsync(string email, CancellationToken cancellationToken = default)
+    {
+        var user = await users.FindByEmailAsync(email.Trim());
+        if (user is not null && !user.EmailConfirmed)
+            await SendAsync(user.Id, cancellationToken);
+        // Callers always return the same response for missing, confirmed, and unconfirmed accounts.
+    }
+
+    public async Task SendAsync(Guid userId, CancellationToken cancellationToken = default)
+    {
+        var user = await users.FindByIdAsync(userId.ToString());
+        if (user is null || user.EmailConfirmed) return;
+        var token = await users.GenerateEmailConfirmationTokenAsync(user);
+        var url = $"{options.Value.WebsiteBaseUrl.TrimEnd('/')}/account/confirm-email"
+            + $"?userId={user.Id}&token={Uri.EscapeDataString(token)}";
+        try
+        {
+            await sender.SendAsync(user.Email!, "Confirm your FinSight email",
+                $"Confirm your email to start using FinSight:\n{url}\n\nThis link expires in 24 hours. If you did not request this, ignore this email.", cancellationToken);
+        }
+        catch (Exception exception) when (exception is SmtpException or IOException or TimeoutException)
+        {
+            // The account is already committed. Do not log SMTP replies, recipients, links, or tokens.
+            logger.LogWarning("Confirmation email delivery failed. The account is retained and can request a resend.");
+        }
+    }
+}

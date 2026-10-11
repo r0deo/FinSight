@@ -1,0 +1,26 @@
+@model RegisterViewModel
+@{ ViewData["Title"] = "Create your business"; }
+<section class="auth-layout register-layout">
+    <div class="auth-intro"><p class="eyebrow">MAKE ROOM FOR CLARITY</p><h1>Your menu.<br />Your workspace.</h1><p class="lead">Start with your business details. After confirming your email, you'll add your first product.</p><p class="muted">You'll be the Owner of this business. Existing Owners and Managers can use the login page.</p></div>
+    <div class="panel auth-panel">
+        <h2>Create your business</h2><p class="muted">All fields are required.</p>
+        <partial name="_GoogleButton" />
+        <partial name="_EmailAvailability" />
+        <form asp-action="Register" method="post">
+            <div asp-validation-summary="All" class="validation-summary" role="alert"></div>
+            <fieldset><legend>Business details</legend>
+                <div class="field"><label asp-for="BusinessName"></label><input asp-for="BusinessName" maxlength="100" autocomplete="organization" placeholder="e.g. Olive & Bean Café" /><span asp-validation-for="BusinessName"></span></div>
+                <div class="field"><label asp-for="Location"></label><input asp-for="Location" maxlength="200" autocomplete="street-address" placeholder="City or address" /><span asp-validation-for="Location"></span></div>
+                <div class="field"><label asp-for="Currency"></label><input asp-for="Currency" minlength="3" maxlength="3" aria-describedby="currency-hint" /><small id="currency-hint">Three-letter currency code, such as IQD, USD, or EUR.</small><span asp-validation-for="Currency"></span></div>
+                <div class="field"><label asp-for="ContactInformation"></label><input asp-for="ContactInformation" maxlength="200" placeholder="Business phone number or email" /><span asp-validation-for="ContactInformation"></span></div>
+            </fieldset>
+            <fieldset><legend>Your Owner account</legend>
+                <div class="field"><label asp-for="Email"></label><input asp-for="Email" autocomplete="username" inputmode="email" /><span asp-validation-for="Email"></span></div>
+                <div class="field"><label asp-for="Password"></label><input asp-for="Password" autocomplete="new-password" minlength="8" aria-describedby="password-hint" /><small id="password-hint">At least 8 characters, including uppercase, lowercase, a number, and a symbol.</small><span asp-validation-for="Password"></span></div>
+                <div class="field"><label asp-for="ConfirmPassword"></label><input asp-for="ConfirmPassword" autocomplete="new-password" /><span asp-validation-for="ConfirmPassword"></span></div>
+            </fieldset>
+            <button class="button full-width" type="submit">Create business <span aria-hidden="true">→</span></button>
+        </form>
+        <p class="form-footer">Already registered? <a href="/account/login">Log in</a></p>
+    </div>
+</section>

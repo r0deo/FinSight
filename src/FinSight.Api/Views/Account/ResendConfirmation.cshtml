@@ -1,0 +1,10 @@
+@model ResendConfirmationViewModel
+@{ ViewData["Title"] = "Resend confirmation"; }
+<section class="panel message-panel"><h1>Need a new link?</h1>
+    <p class="lead">Enter your account email. If it needs confirmation, we'll send a new link. You can try up to three times every 15 minutes.</p>
+    <form asp-action="ResendConfirmation" method="post">
+        <div asp-validation-summary="All" class="validation-summary" role="alert"></div>
+        <div class="field"><label asp-for="Email"></label><input asp-for="Email" autocomplete="email" /><span asp-validation-for="Email"></span></div>
+        <button class="button" type="submit">Send confirmation email</button>
+    </form>
+</section>

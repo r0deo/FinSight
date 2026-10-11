@@ -3,13 +3,16 @@ using FinSight.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
 
 namespace FinSight.Infrastructure.Persistence;
 
 public sealed class FinSightDbContext(
     DbContextOptions<FinSightDbContext> options)
-    : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>(options)
+    : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>(options), IDataProtectionKeyContext
 {
+    public DbSet<DataProtectionKey> DataProtectionKeys { get; set; } = null!;
+
     public DbSet<Business> Businesses => Set<Business>();
 
     public DbSet<Product> Products => Set<Product>();

@@ -18,3 +18,13 @@ coverage/
 ## OS files
 .DS_Store
 Thumbs.db
+
+## Authentication deployment secrets (keep key rings outside the repository)
+*.pfx
+*.p12
+*.pfx.b64
+*.pem
+*.key
+.env
+.env.*
+DataProtection-Keys/

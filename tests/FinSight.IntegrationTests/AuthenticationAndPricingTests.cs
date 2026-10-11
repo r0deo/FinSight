@@ -29,7 +29,7 @@ public class AuthenticationAndPricingTests(FinSightApiFactory factory)
         var userId = registrationJson.GetProperty("userId").GetGuid();
         var confirmationEmail = factory.EmailSender.Messages.Last(message =>
             message.Recipient == email && message.Subject.Contains("Confirm"));
-        var confirmationToken = confirmationEmail.Body.Split("Confirmation token: ")[1];
+        var confirmationToken = confirmationEmail.ConfirmationToken;
 
         var confirmation = await client.PostAsJsonAsync("/api/auth/confirm-email", new
         {
@@ -85,7 +85,7 @@ public class AuthenticationAndPricingTests(FinSightApiFactory factory)
         var managerId = managerJson.GetProperty("userId").GetGuid();
         var managerEmailMessage = factory.EmailSender.Messages.Last(message =>
             message.Recipient == managerEmail && message.Subject.Contains("Confirm"));
-        var managerConfirmationToken = managerEmailMessage.Body.Split("Confirmation token: ")[1];
+        var managerConfirmationToken = managerEmailMessage.ConfirmationToken;
         var managerConfirmation = await client.PostAsJsonAsync("/api/auth/confirm-email", new
         {
             UserId = managerId,
@@ -169,7 +169,7 @@ public class AuthenticationAndPricingTests(FinSightApiFactory factory)
         var userId = registrationJson.GetProperty("userId").GetGuid();
         var confirmationMessage = factory.EmailSender.Messages.Last(message =>
             message.Recipient == email && message.Subject.Contains("Confirm"));
-        var confirmationToken = confirmationMessage.Body.Split("Confirmation token: ")[1];
+        var confirmationToken = confirmationMessage.ConfirmationToken;
         var confirmation = await client.PostAsJsonAsync("/api/auth/confirm-email", new
         {
             UserId = userId,

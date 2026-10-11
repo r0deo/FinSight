@@ -1,0 +1,22 @@
+@model ProductFormViewModel
+@{ var id = ViewData["ProductId"] as Guid?; var editing = id.HasValue; ViewData["Title"] = editing ? "Edit product" : "Add product"; }
+<a class="back-link" href="/products">← Back to products</a>
+<div class="page-heading"><div><p class="eyebrow">@(editing ? "KEEP YOUR MENU UP TO DATE" : "BUILD YOUR PRODUCT LIST")</p><h1>@ViewData["Title"]</h1><p class="muted">Start with the details. Prices and costs use your business currency.</p></div></div>
+<div class="form-layout">
+    <section class="panel">
+        <form asp-action="@(editing ? "Edit" : "Create")" asp-route-id="@id" method="post">
+            <div asp-validation-summary="All" class="validation-summary" role="alert"></div>
+            <div class="field"><label asp-for="Name">Product name</label><input asp-for="Name" maxlength="60" placeholder="e.g. Cappuccino" /><span asp-validation-for="Name"></span></div>
+            <div class="field-grid">
+                <div class="field"><label asp-for="Category"></label><input asp-for="Category" placeholder="e.g. Coffee" /><span asp-validation-for="Category"></span></div>
+                <div class="field"><label asp-for="Size">Size <span class="optional">(optional)</span></label><input asp-for="Size" placeholder="e.g. Regular" /><span asp-validation-for="Size"></span></div>
+            </div>
+            <div class="field-grid">
+                <div class="field"><label asp-for="SellingPrice"></label><input asp-for="SellingPrice" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" /><span asp-validation-for="SellingPrice"></span></div>
+                <div class="field"><label asp-for="UnitCost"></label><input asp-for="UnitCost" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" /><span asp-validation-for="UnitCost"></span></div>
+            </div>
+            <div class="form-actions"><button class="button" type="submit">@(editing ? "Save changes" : "Add product")</button><a href="/products">Cancel</a></div>
+        </form>
+    </section>
+    <aside class="form-guidance"><h2>A little detail goes a long way.</h2><p><strong>Selling price</strong> is what a customer pays for one unit.</p><p><strong>Unit cost</strong> is what it costs your business to make or buy that unit.</p><p class="muted">All fields except size are required. New products are active automatically.</p></aside>
+</div>

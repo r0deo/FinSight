@@ -9,11 +9,12 @@ using FinSight.Application.Features.Products.Queries.GetProducts;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace FinSight.Api.Controllers;
 
 [ApiController]
-[Authorize(Roles = $"{AppRoles.Owner},{AppRoles.Manager}")]
+[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = $"{AppRoles.Owner},{AppRoles.Manager}")]
 [Route("api/products")]
 public sealed class ProductsController(ISender sender) : ControllerBase
 {

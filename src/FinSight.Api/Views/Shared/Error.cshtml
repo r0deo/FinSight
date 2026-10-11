@@ -1,0 +1,3 @@
+@model WebsiteErrorViewModel
+@{ ViewData["Title"] = Model.Title; }
+<section class="panel message-panel"><p class="eyebrow">@Model.StatusCode</p><h1>@Model.Title</h1><p class="lead">@Model.Message</p><div class="actions"><a class="button" href="/products">Go to products</a><a href="/account/login">Log in</a></div></section>
