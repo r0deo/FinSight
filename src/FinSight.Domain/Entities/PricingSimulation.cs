@@ -50,14 +50,6 @@ public sealed class PricingSimulation
 
     public bool IsDeleted => DeletedAtUtc.HasValue;
 
-    public bool IsEligibleForPermanentDeletion(DateTime utcNow)
-    {
-        EnsureUtc(utcNow, nameof(utcNow));
-
-        return DeletedAtUtc.HasValue
-            && utcNow > DeletedAtUtc.Value.Add(RestoreWindow);
-    }
-
     private PricingSimulation() { }
 
     public PricingSimulation(
@@ -186,6 +178,19 @@ public sealed class PricingSimulation
 
         DeletedAtUtc = null;
         Touch(restoredAtUtc);
+    }
+
+    public bool IsEligibleForPermanentDeletion(DateTime utcNow)
+    {
+        EnsureUtc(utcNow, nameof(utcNow));
+
+        if (!DeletedAtUtc.HasValue)
+        {
+            return false;
+        }
+
+        // Restoration is still allowed at exactly 30 days after deletion.
+        return utcNow > DeletedAtUtc.Value.Add(RestoreWindow);
     }
 
     private void Recalculate(
