@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
+using FinSight.Infrastructure.Identity;
+using Microsoft.Extensions.Options;
 
 namespace FinSight.Api.Website.Controllers;
 
@@ -19,14 +21,23 @@ public sealed class AccountController(
     ISender sender,
     IWebsiteAuthenticationService authentication,
     IValidator<LoginCommand> loginValidator,
-    ConfirmationTicketStore confirmationTickets) : WebsiteController
+    ConfirmationTicketStore confirmationTickets,
+    IOptions<EmailOptions> emailOptions,
+    IAccountConnections connections) : WebsiteController
 {
     [AllowAnonymous, HttpGet("register")]
-    public IActionResult Register() => View(new RegisterViewModel());
+    public IActionResult Register() => User.Identity?.IsAuthenticated == true
+        ? LocalRedirect(PostAuthenticationDestination.Home) : View(new RegisterViewModel());
 
     [AllowAnonymous, HttpPost("register"), EnableRateLimiting("authentication")]
     public async Task<IActionResult> Register(RegisterViewModel model, CancellationToken cancellationToken)
     {
+        if (User.Identity?.IsAuthenticated == true) return LocalRedirect(PostAuthenticationDestination.Home);
+        if (!emailOptions.Value.Enabled)
+        {
+            ModelState.AddModelError(string.Empty, "Email registration is temporarily unavailable. Please use Google registration.");
+            return InvalidForm("Register", model);
+        }
         if (!ModelState.IsValid) return InvalidForm("Register", model);
         try
         {
@@ -81,6 +92,7 @@ public sealed class AccountController(
     [AllowAnonymous, HttpPost("resend-confirmation"), EnableRateLimiting("confirmation-resend")]
     public async Task<IActionResult> ResendConfirmation(ResendConfirmationViewModel model, CancellationToken cancellationToken)
     {
+        if (!emailOptions.Value.Enabled) return View("ResendConfirmation", model);
         if (!ModelState.IsValid) return InvalidForm("ResendConfirmation", model);
         try { await sender.Send(new ResendConfirmationCommand(model.Email), cancellationToken); }
         catch (ValidationException exception) { AddValidationErrors(exception); return InvalidForm("ResendConfirmation", model); }
@@ -98,17 +110,20 @@ public sealed class AccountController(
     }
 
     [AllowAnonymous, HttpGet("login")]
-    public IActionResult Login(string? returnUrl = null) => View(new LoginViewModel { ReturnUrl = returnUrl });
+    public IActionResult Login(string? returnUrl = null) => User.Identity?.IsAuthenticated == true
+        ? LocalRedirect(PostAuthenticationDestination.Home)
+        : View(new LoginViewModel { ReturnUrl = PostAuthenticationDestination.Resolve(false, returnUrl) });
 
     [AllowAnonymous, HttpPost("login"), EnableRateLimiting("authentication")]
     public async Task<IActionResult> Login(LoginViewModel model, CancellationToken cancellationToken)
     {
+        if (User.Identity?.IsAuthenticated == true) return LocalRedirect(PostAuthenticationDestination.Home);
         if (!ModelState.IsValid) return InvalidForm("Login", model);
         try
         {
             await loginValidator.ValidateAndThrowAsync(new LoginCommand(model.Email, model.Password), cancellationToken);
             await authentication.SignInAsync(model.Email, model.Password, cancellationToken);
-            return LocalRedirect(Url.IsLocalUrl(model.ReturnUrl) ? model.ReturnUrl! : "/products");
+            return LocalRedirect(PostAuthenticationDestination.Resolve(false, model.ReturnUrl));
         }
         catch (ValidationException exception)
         {
@@ -127,6 +142,10 @@ public sealed class AccountController(
         await authentication.SignOutAsync();
         return RedirectToAction(nameof(Login));
     }
+
+    [Authorize(Policy = "Website", Roles = "Owner,Manager"), HttpGet("settings")]
+    public async Task<IActionResult> Settings(CancellationToken cancellationToken) =>
+        View(await connections.IsGoogleConnectedAsync(cancellationToken));
 
     [AllowAnonymous, HttpGet("access-denied")]
     public IActionResult AccessDenied()

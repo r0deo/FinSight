@@ -602,6 +602,8 @@ legend {
     .header-inner {
         min-height:76px;
         gap:12px;
+        flex-wrap:wrap;
+        padding-block:14px;
     }
     .brand {
         font-size:21px;
@@ -614,6 +616,7 @@ legend {
     .site-header nav {
         gap:12px;
         font-size:13px;
+        flex-wrap:wrap;
     }
     .site-header .button {
         padding:8px 12px;

@@ -1,0 +1,27 @@
+@model PreviewSimulationViewModel
+@{ ViewData["Title"] = "Preview a price change"; }
+<section class="panel message-panel">
+    <p class="eyebrow">EXPLORE BEFORE YOU CHANGE</p><h1>Preview a price change</h1>
+    <h2>@Model.ProductName</h2>
+    <p>Compare sales over the same period. This preview never saves a simulation or changes your product.</p>
+    <form method="post" asp-action="Preview">
+        <div asp-validation-summary="All" role="alert"></div>
+        <input asp-for="ProductId" type="hidden" />
+        <div class="field"><label asp-for="ProposedPrice"></label><input asp-for="ProposedPrice" type="number" min="0" step="0.01" required /><span asp-validation-for="ProposedPrice"></span></div>
+        <div class="field"><label asp-for="CurrentSalesQuantity"></label><input asp-for="CurrentSalesQuantity" type="number" min="0" required /><span asp-validation-for="CurrentSalesQuantity"></span></div>
+        <div class="field"><label asp-for="ExpectedSalesQuantity"></label><input asp-for="ExpectedSalesQuantity" type="number" min="0" required /><span asp-validation-for="ExpectedSalesQuantity"></span></div>
+        <button class="button" type="submit">Calculate preview</button>
+    </form>
+    @if (Model.Result is { } result)
+    {
+        <section aria-label="Calculation result" role="status">
+            <h2>Preview result</h2>
+            <dl><dt>Current contribution</dt><dd>@result.CurrentContribution.ToString("N2")</dd>
+                <dt>Proposed contribution</dt><dd>@result.ProposedContribution.ToString("N2")</dd>
+                <dt>Difference</dt><dd>@result.Difference.ToString("N2")</dd>
+                <dt>Recommendation</dt><dd>@(result.Recommendation == FinSight.Domain.Enums.Recommendation.Recommended ? "Recommended" : "Not recommended")</dd></dl>
+            @if (result.IsProposedPriceBelowCost) { <p role="alert">Warning: the proposed price is below unit cost.</p> }
+        </section>
+    }
+    <p><a href="/products">Choose another product</a></p>
+</section>

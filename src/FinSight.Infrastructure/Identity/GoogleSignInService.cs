@@ -153,7 +153,10 @@ public sealed class GoogleSignInService(
             return GoogleSignInOutcome.NeedsConfirmation;
         }
         if (user.BusinessId == Guid.Empty || !(await users.GetRolesAsync(user)).Any(AppRoles.All.Contains))
+        {
+            await ClearExternalAsync();
             return GoogleSignInOutcome.Failed;
+        }
         var result = await signIn.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey,
             isPersistent: false, bypassTwoFactor: false);
         await ClearExternalAsync();

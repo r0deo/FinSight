@@ -122,9 +122,24 @@ public class WebsiteTests(FinSightApiFactory factory) : IClassFixture<FinSightAp
         var emailB = await RegisterAndConfirm(b);
         await Login(a, emailA);
         await Login(b, emailB);
+        Assert.Contains("Add your first product", await a.GetStringAsync("/home"));
         var name = $"TenantA-{Guid.NewGuid():N}";
         await Submit(a, "/products/create", ProductFields(name));
         var product = await FindProduct(name);
+
+        Assert.Contains("Manage products", await a.GetStringAsync("/home"));
+        Assert.Contains("Add your first product", await b.GetStringAsync("/home"));
+        Assert.DoesNotContain("Manage products", await b.GetStringAsync("/home"));
+        Assert.Equal(HttpStatusCode.NotFound, (await b.GetAsync($"/simulations/preview?productId={product.Id}")).StatusCode);
+        var preview = await Submit(a, "/simulations/preview", new()
+        {
+            ["ProductId"] = product.Id.ToString(), ["ProposedPrice"] = "15", ["CurrentSalesQuantity"] = "10",
+            ["ExpectedSalesQuantity"] = "10"
+        }, $"/simulations/preview?productId={product.Id}");
+        Assert.Equal(HttpStatusCode.OK, preview.StatusCode);
+        Assert.Contains("Preview result", await preview.Content.ReadAsStringAsync());
+        using (var scope = factory.Services.CreateScope())
+            Assert.False(await scope.ServiceProvider.GetRequiredService<FinSightDbContext>().PricingSimulations.AnyAsync(s => s.ProductId == product.Id));
 
         Assert.DoesNotContain(name, await b.GetStringAsync("/products?includeInactive=true"));
         Assert.Equal(HttpStatusCode.NotFound, (await b.GetAsync($"/products/{product.Id}/edit")).StatusCode);

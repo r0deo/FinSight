@@ -1,11 +1,14 @@
 @model RegisterViewModel
+@inject Microsoft.Extensions.Options.IOptions<FinSight.Infrastructure.Identity.EmailOptions> EmailOptions
 @{ ViewData["Title"] = "Create your business"; }
 <section class="auth-layout register-layout">
-    <div class="auth-intro"><p class="eyebrow">MAKE ROOM FOR CLARITY</p><h1>Your menu.<br />Your workspace.</h1><p class="lead">Start with your business details. After confirming your email, you'll add your first product.</p><p class="muted">You'll be the Owner of this business. Existing Owners and Managers can use the login page.</p></div>
+    <div class="auth-intro"><p class="eyebrow">MAKE ROOM FOR CLARITY</p><h1>Your menu.<br />Your workspace.</h1><p class="lead">Sign in with Google and tell us about your business. Email registration also requires email confirmation when available.</p><p class="muted">You'll be the Owner of this business. Existing Owners and Managers can use the login page.</p></div>
     <div class="panel auth-panel">
-        <h2>Create your business</h2><p class="muted">All fields are required.</p>
+        <h2>Create your business</h2>
         <partial name="_GoogleButton" />
         <partial name="_EmailAvailability" />
+        @if (EmailOptions.Value.Enabled)
+        {
         <form asp-action="Register" method="post">
             <div asp-validation-summary="All" class="validation-summary" role="alert"></div>
             <fieldset><legend>Business details</legend>
@@ -21,6 +24,7 @@
             </fieldset>
             <button class="button full-width" type="submit">Create business <span aria-hidden="true">→</span></button>
         </form>
+        }
         <p class="form-footer">Already registered? <a href="/account/login">Log in</a></p>
     </div>
 </section>

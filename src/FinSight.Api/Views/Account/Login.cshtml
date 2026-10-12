@@ -3,7 +3,9 @@
 <section class="auth-layout">
     <div class="auth-intro"><p class="eyebrow">YOUR BUSINESS, IN FOCUS</p><h1>Welcome<br />back.</h1><p class="lead">Pick up where you left off. Your menu is ready when you are.</p></div>
     <div class="panel auth-panel">
-        <h2>Log in to FinSight</h2><p class="muted">Use your confirmed business account.</p>
+        <h2>Log in to Rebaz</h2><p class="muted">Use your confirmed business account.</p>
+        @if (!string.IsNullOrEmpty(Context.Request.Query["returnUrl"]))
+        { <p role="status">Sign in to continue. Your previous session may have expired.</p> }
         <partial name="_GoogleButton" />
         <partial name="_EmailAvailability" />
         <form asp-action="Login" method="post">
@@ -13,7 +15,7 @@
             <div class="field"><label asp-for="Password"></label><input asp-for="Password" autocomplete="current-password" /><span asp-validation-for="Password"></span></div>
             <button class="button full-width" type="submit">Log in <span aria-hidden="true">→</span></button>
         </form>
-        <p class="form-footer">New to FinSight? <a href="/account/register">Create your business</a></p>
+        <p class="form-footer">New to Rebaz? <a href="/account/register">Create your business</a></p>
         <p><a href="/account/resend-confirmation">Resend confirmation email</a></p>
     </div>
 </section>

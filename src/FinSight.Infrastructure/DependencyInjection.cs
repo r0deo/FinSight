@@ -117,6 +117,7 @@ public static class DependencyInjection
         services.AddSingleton(TimeProvider.System);
         services.AddScoped<IEmailConfirmationService, EmailConfirmationService>();
         services.AddScoped<IGoogleSignInService, GoogleSignInService>();
+        services.AddScoped<IAccountConnections, AccountConnections>();
         services.AddScoped<IAuthenticationService, AuthenticationService>();
         services.AddScoped<IWebsiteAuthenticationService, WebsiteAuthenticationService>();
         services.AddScoped<IEmailSender, SmtpEmailSender>();

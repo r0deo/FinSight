@@ -20,8 +20,8 @@ public sealed class GoogleAccountController(IGoogleSignInService google, ISender
     public async Task<IActionResult> Start(string? returnUrl)
     {
         if (!options.Value.Enabled) return View("Unavailable");
-        if (User.Identity?.IsAuthenticated == true) return RedirectToAction(nameof(Link));
-        var target = Url.IsLocalUrl(returnUrl) ? returnUrl! : "/products";
+        if (User.Identity?.IsAuthenticated == true) return LocalRedirect(PostAuthenticationDestination.Home);
+        var target = PostAuthenticationDestination.Resolve(false, returnUrl);
         await google.BeginAsync("/account/google/callback?returnUrl=" + Uri.EscapeDataString(target));
         return new EmptyResult();
     }
@@ -29,15 +29,17 @@ public sealed class GoogleAccountController(IGoogleSignInService google, ISender
     [AllowAnonymous, HttpGet("callback")]
     public async Task<IActionResult> Callback(string? returnUrl, CancellationToken cancellationToken)
     {
+        if (User.Identity?.IsAuthenticated == true) return LocalRedirect(PostAuthenticationDestination.Home);
         var result = await google.CompleteSignInAsync(cancellationToken);
         if (result == GoogleSignInOutcome.SignedIn)
-            return LocalRedirect(Url.IsLocalUrl(returnUrl) ? returnUrl! : "/products");
+            return LocalRedirect(PostAuthenticationDestination.Resolve(false, returnUrl));
         return Outcome(result);
     }
 
     [AllowAnonymous, HttpGet("business")]
     public async Task<IActionResult> Business()
     {
+        if (User.Identity?.IsAuthenticated == true) return LocalRedirect(PostAuthenticationDestination.Home);
         var identity = await google.GetPendingIdentityAsync();
         if (identity is null) return RedirectToAction(nameof(Error));
         ViewData["GoogleEmail"] = identity.Email;
@@ -47,6 +49,7 @@ public sealed class GoogleAccountController(IGoogleSignInService google, ISender
     [AllowAnonymous, HttpPost("business"), EnableRateLimiting("authentication")]
     public async Task<IActionResult> Business(GoogleBusinessViewModel model, CancellationToken cancellationToken)
     {
+        if (User.Identity?.IsAuthenticated == true) return LocalRedirect(PostAuthenticationDestination.Home);
         var identity = await google.GetPendingIdentityAsync();
         if (identity is null) return RedirectToAction(nameof(Error));
         ViewData["GoogleEmail"] = identity.Email;
@@ -55,7 +58,7 @@ public sealed class GoogleAccountController(IGoogleSignInService google, ISender
         {
             var result = await sender.Send(new GoogleOnboardingCommand(model.BusinessName, model.Location,
                 model.Currency, model.ContactInformation), cancellationToken);
-            if (result == GoogleSignInOutcome.SignedIn) return LocalRedirect("/products/create");
+            if (result == GoogleSignInOutcome.SignedIn) return LocalRedirect(PostAuthenticationDestination.Resolve(false));
             return Outcome(result);
         }
         catch (Exception exception) when (exception is ValidationException or RequestValidationException)
@@ -65,10 +68,11 @@ public sealed class GoogleAccountController(IGoogleSignInService google, ISender
         }
     }
 
-    [Authorize(Policy = "Website"), HttpGet("link")]
+    [Authorize(Policy = "Website", Roles = "Owner,Manager"), HttpGet("link")]
+    // Old bookmarks remain useful, but the connection action lives only in settings.
     public IActionResult Link() => View();
 
-    [Authorize(Policy = "Website"), HttpPost("link"), EnableRateLimiting("authentication")]
+    [Authorize(Policy = "Website", Roles = "Owner,Manager"), HttpPost("link"), EnableRateLimiting("authentication")]
     public async Task<IActionResult> StartLink()
     {
         if (!options.Value.Enabled) return View("Unavailable");
@@ -76,12 +80,12 @@ public sealed class GoogleAccountController(IGoogleSignInService google, ISender
         return new EmptyResult();
     }
 
-    [Authorize(Policy = "Website"), HttpGet("link-callback")]
+    [Authorize(Policy = "Website", Roles = "Owner,Manager"), HttpGet("link-callback")]
     public async Task<IActionResult> LinkCallback(CancellationToken cancellationToken)
     {
         if (!await google.LinkToCurrentUserAsync(cancellationToken)) return RedirectToAction(nameof(Error));
         TempData["Success"] = "Google sign-in linked to your existing account. Your business and role have not changed.";
-        return RedirectToAction(nameof(Link));
+        return RedirectToAction("Settings", "Account");
     }
 
     [AllowAnonymous, HttpGet("error")]
@@ -92,7 +96,7 @@ public sealed class GoogleAccountController(IGoogleSignInService google, ISender
 
     private IActionResult Outcome(GoogleSignInOutcome outcome) => outcome switch
     {
-        GoogleSignInOutcome.NeedsBusiness => RedirectToAction(nameof(Business)),
+        GoogleSignInOutcome.NeedsBusiness => LocalRedirect(PostAuthenticationDestination.Resolve(true)),
         GoogleSignInOutcome.NeedsConfirmation => RedirectToAction("CheckEmail", "Account"),
         GoogleSignInOutcome.NeedsLocalSignIn => RedirectToAction(nameof(ExistingAccount)),
         _ => RedirectToAction(nameof(Error))

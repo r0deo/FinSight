@@ -44,6 +44,8 @@
                         <td data-label="Status"><span class="badge @(product.IsActive ? "badge-active" : "badge-inactive")">@(product.IsActive ? "Active" : "Inactive")</span></td>
                         <td data-label="Actions"><div class="row-actions">
                             <a asp-action="Edit" asp-route-id="@product.Id" aria-label="Edit @product.Name">Edit</a>
+                            @if (product.IsActive)
+                            { <a href="/simulations/preview?productId=@product.Id">Preview price change</a> }
                             <form asp-action="@(product.IsActive ? "Deactivate" : "Reactivate")" asp-route-id="@product.Id" method="post">
                                 <button class="text-button" type="submit" aria-label="@(product.IsActive ? "Deactivate" : "Reactivate") @product.Name">@(product.IsActive ? "Deactivate" : "Reactivate")</button>
                             </form>

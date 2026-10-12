@@ -3,20 +3,21 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>@ViewData["Title"] · FinSight</title>
+    <title>@ViewData["Title"] · Rebaz</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
         <div class="container header-inner">
-            <a class="brand" href="/" aria-label="FinSight home"><span class="brand-mark" aria-hidden="true">f.</span>FinSight</a>
+            <a class="brand" href="/" aria-label="Rebaz home"><span class="brand-mark" aria-hidden="true">r.</span>Rebaz</a>
             <nav aria-label="Main navigation">
                 @if (User.Identity?.IsAuthenticated == true)
                 {
+                    <a href="/home">Home</a>
                     <a href="/products">Products</a>
-                    @if (Context.RequestServices.GetRequiredService<Microsoft.Extensions.Options.IOptions<FinSight.Infrastructure.Identity.GoogleSignInOptions>>().Value.Enabled)
-                    { <a href="/account/google/link">Link Google</a> }
+                    <a href="/simulations/preview">Simulations</a>
+                    <a href="/account/settings">Account</a>
                     <form asp-controller="Account" asp-action="Logout" method="post">
                         <button class="button button-quiet" type="submit">Log out</button>
                     </form>
@@ -36,6 +37,6 @@
         }
         @RenderBody()
     </main>
-    <footer class="container site-footer"><span>FinSight</span><span>A clearer view of your menu.</span></footer>
+    <footer class="container site-footer"><span>Rebaz</span><span>A clearer view of your menu.</span></footer>
 </body>
 </html>

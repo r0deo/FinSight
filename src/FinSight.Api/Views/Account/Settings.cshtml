@@ -1,0 +1,24 @@
+@model bool
+@inject Microsoft.Extensions.Options.IOptions<FinSight.Infrastructure.Identity.GoogleSignInOptions> GoogleOptions
+@{ ViewData["Title"] = "Account settings"; }
+<section class="panel message-panel">
+    <p class="eyebrow">YOUR ACCOUNT</p><h1>Account settings</h1>
+    @if (Model)
+    {
+        <h2>Google connected</h2>
+        <p>You can sign in with your connected Google account. Your business and role stay the same.</p>
+    }
+    else if (GoogleOptions.Value.Enabled)
+    {
+        <h2>Connect Google</h2>
+        <p>Optionally use Google to sign in to this account. This does not create another business or change your role.</p>
+        <form asp-controller="GoogleAccount" asp-action="StartLink" method="post">
+            <button class="button" type="submit">Connect Google</button>
+        </form>
+    }
+    else
+    {
+        <p>Google is not connected. Connecting Google is currently unavailable.</p>
+    }
+    <p><a href="/home">Back to home</a></p>
+</section>

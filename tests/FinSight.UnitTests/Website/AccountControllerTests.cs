@@ -5,14 +5,19 @@ using FinSight.Application.Features.Authentication.Commands.Login;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.Extensions.Options;
+using FinSight.Infrastructure.Identity;
+using System.Security.Claims;
 
 namespace FinSight.UnitTests.Website;
 
 public class AccountControllerTests
 {
     [Theory]
-    [InlineData("https://attacker.example", "/products")]
-    [InlineData("//attacker.example", "/products")]
+    [InlineData("https://attacker.example", "/home")]
+    [InlineData("//attacker.example", "/home")]
+    [InlineData("/account/login", "/home")]
+    [InlineData("/account/google/business", "/home")]
     [InlineData("/products/create", "/products/create")]
     public async Task Login_OnlyRedirectsToLocalUrls(string returnUrl, string expectedUrl)
     {
@@ -58,9 +63,29 @@ public class AccountControllerTests
         Assert.False(controller.ModelState.IsValid);
     }
 
-    private static AccountController CreateController(WebsiteAuthenticationStub authentication)
+    [Fact]
+    public async Task DisabledEmail_RejectsRegistrationBeforeCallingApplication()
     {
-        var controller = new AccountController(null!, authentication, new LoginValidator(), null!)
+        var controller = CreateController(new WebsiteAuthenticationStub(), emailEnabled: false);
+        var result = await controller.Register(new RegisterViewModel(), CancellationToken.None);
+        Assert.Equal(400, Assert.IsType<ViewResult>(result).StatusCode);
+        Assert.Contains(controller.ModelState.Values.SelectMany(v => v.Errors),
+            e => e.ErrorMessage.Contains("temporarily unavailable"));
+    }
+
+    [Fact]
+    public void SignedInUser_LoginAndRegistrationRedirectHome()
+    {
+        var controller = CreateController(new WebsiteAuthenticationStub());
+        controller.HttpContext.User = new ClaimsPrincipal(new ClaimsIdentity([new Claim("sub", Guid.NewGuid().ToString())], "test"));
+        Assert.Equal("/home", Assert.IsType<LocalRedirectResult>(controller.Login("/account/google/business")).Url);
+        Assert.Equal("/home", Assert.IsType<LocalRedirectResult>(controller.Register()).Url);
+    }
+
+    private static AccountController CreateController(WebsiteAuthenticationStub authentication, bool emailEnabled = true)
+    {
+        var controller = new AccountController(null!, authentication, new LoginValidator(), null!,
+            Options.Create(new EmailOptions { Enabled = emailEnabled }), null!)
         {
             ControllerContext = new ControllerContext
             {

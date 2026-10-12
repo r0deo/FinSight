@@ -29,8 +29,8 @@ public sealed class EmailConfirmationService(
             + $"?userId={user.Id}&token={Uri.EscapeDataString(token)}";
         try
         {
-            await sender.SendAsync(user.Email!, "Confirm your FinSight email",
-                $"Confirm your email to start using FinSight:\n{url}\n\nThis link expires in 24 hours. If you did not request this, ignore this email.", cancellationToken);
+            await sender.SendAsync(user.Email!, "Confirm your Rebaz email",
+                $"Confirm your email to start using Rebaz:\n{url}\n\nThis link expires in 24 hours. If you did not request this, ignore this email.", cancellationToken);
         }
         catch (Exception exception) when (exception is SmtpException or IOException or TimeoutException)
         {

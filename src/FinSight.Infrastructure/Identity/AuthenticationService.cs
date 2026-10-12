@@ -22,6 +22,7 @@ public sealed class AuthenticationService(
     IEmailSender emailSender,
     IOptions<JwtOptions> jwtOptions,
     IEmailConfirmationService confirmation,
+    IOptions<EmailOptions> emailOptions,
     TimeProvider timeProvider) : IAuthenticationService
 {
     public async Task<RegistrationResult> RegisterOwnerAsync(
@@ -30,6 +31,10 @@ public sealed class AuthenticationService(
         string password,
         CancellationToken cancellationToken = default)
     {
+        if (!emailOptions.Value.Enabled)
+            throw new RequestValidationException(new Dictionary<string, string[]>
+            { ["Email"] = ["Email registration is temporarily unavailable. Please use Google registration."] });
+
         await EnsureRolesExistAsync(cancellationToken);
         await using var transaction = await dbContext.Database.BeginTransactionAsync(cancellationToken);
 

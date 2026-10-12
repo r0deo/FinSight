@@ -1,0 +1,24 @@
+@model FinSight.Application.Features.Products.Queries.GetProducts.GetProductsResponse
+@{ ViewData["Title"] = "Home"; }
+<section class="hero">
+    <div>
+        <p class="eyebrow">YOUR BUSINESS WORKSPACE</p><h1>Welcome to <span class="accent">Rebaz.</span></h1>
+        @if (Model.TotalCount == 0)
+        {
+            <p class="lead">Start with one product. Enter its selling price and unit cost, then test how a price change could affect your contribution.</p>
+            <div class="actions"><a class="button" href="/products/create">Add your first product</a></div>
+        }
+        else
+        {
+            <p class="lead">Keep your menu up to date and explore your next price change.</p>
+            <div class="actions"><a class="button" href="/products">Manage products</a><a class="button button-secondary" href="/simulations/preview">Run a pricing simulation</a></div>
+        }
+    </div>
+    <aside class="getting-started"><h2>From cost to confidence</h2>
+        <ol class="steps">
+            <li><span>Know your costs</span><p>Record the unit cost and selling price of each product.</p></li>
+            <li><span>Explore a change</span><p>Compare contribution at a proposed price and expected sales quantity.</p></li>
+            <li><span>Decide with context</span><p>A preview is an estimate, not a guarantee of future sales. It never changes your product or saves a simulation.</p></li>
+        </ol>
+    </aside>
+</section>
