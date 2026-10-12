@@ -4,13 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewData["Title"] · Rebaz</title>
+    <link rel="icon" href="~/favicon.ico" sizes="16x16 32x32 48x48 64x64 256x256" asp-append-version="true" />
+    <link rel="icon" type="image/png" sizes="256x256" href="~/images/branding/rebaz-symbol.png" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
         <div class="container header-inner">
-            <a class="brand" href="/" aria-label="Rebaz home"><span class="brand-mark" aria-hidden="true">r.</span>Rebaz</a>
+            <a class="brand" href="/" aria-label="Rebaz home"><img class="brand-logo" src="~/images/branding/rebaz-logo.png" asp-append-version="true" width="1178" height="339" alt="Rebaz" /></a>
             <nav aria-label="Main navigation">
                 @if (User.Identity?.IsAuthenticated == true)
                 {
@@ -37,6 +39,6 @@
         }
         @RenderBody()
     </main>
-    <footer class="container site-footer"><span>Rebaz</span><span>A clearer view of your menu.</span></footer>
+    <footer class="container site-footer"><a class="brand" href="/" aria-label="Rebaz home"><img class="brand-logo" src="~/images/branding/rebaz-logo.png" asp-append-version="true" width="1178" height="339" alt="Rebaz" /></a><span>A clearer view of your menu.</span></footer>
 </body>
 </html>

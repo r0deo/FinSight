@@ -79,22 +79,15 @@ a,button,input,select {
 .brand {
     display:flex;
     align-items:center;
-    gap:10px;
+    flex-shrink:0;
+    max-width:100%;
     text-decoration:none;
-    font-size:25px;
-    font-weight:750;
-    letter-spacing:-1px;
 }
-.brand-mark {
-    display:grid;
-    place-items:center;
-    width:36px;
-    height:40px;
-    background:var(--accent);
-    color:var(--on-accent);
-    border-radius:10px;
-    font-family:Georgia,serif;
-    font-size:32px;
+.brand-logo {
+    display:block;
+    width:178px;
+    max-width:100%;
+    height:auto;
 }
 .site-header nav {
     display:flex;
@@ -116,14 +109,16 @@ a,button,input,select {
 .site-footer {
     display:flex;
     justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
     gap:16px;
     padding-block:24px;
     border-top:1px solid var(--border);
     color:var(--text-secondary);
     font-size:13px;
 }
-.site-footer span:first-child {
-    font-weight:700;
+.site-footer .brand-logo {
+    width:132px;
 }
 h1,h2,h3,p {
     margin-top:0;
@@ -668,13 +663,8 @@ legend {
         flex-wrap:wrap;
         padding-block:14px;
     }
-    .brand {
-        font-size:21px;
-    }
-    .brand-mark {
-        width:30px;
-        height:34px;
-        font-size:28px;
+    .brand-logo {
+        width:150px;
     }
     .site-header nav {
         gap:12px;
