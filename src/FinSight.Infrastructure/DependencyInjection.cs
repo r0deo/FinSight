@@ -125,6 +125,7 @@ public static class DependencyInjection
         services.AddScoped<IProductRepository, ProductRepository>();
         services.AddScoped<IBusinessCurrencyReader, BusinessCurrencyReader>();
         services.AddScoped<IPricingSimulationRepository, PricingSimulationRepository>();
+        services.AddScoped<IWhatIfSimulationRepository, WhatIfSimulationRepository>();
 
         return services;
     }

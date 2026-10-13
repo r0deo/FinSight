@@ -337,4 +337,83 @@
   <data name="This simulation changed" xml:space="preserve"><value>تغيّرت هذه المحاكاة</value></data>
   <data name="Recalculate the preview, then save it again." xml:space="preserve"><value>احسب المعاينة من جديد، ثم احفظها مرة أخرى.</value></data>
   <data name="Please check the supplied values and try again." xml:space="preserve"><value>راجع القيم التي أدخلتها وحاول مرة أخرى.</value></data>
+  <data name="What if?" xml:space="preserve"><value>ماذا لو؟</value></data>
+  <data name="Explore what if?" xml:space="preserve"><value>استكشف «ماذا لو؟»</value></data>
+  <data name="EXPLORE A SHOCK" xml:space="preserve"><value>اختبر تغيّراً مفاجئاً</value></data>
+  <data name="Choose an active product to explore a cost or sales shock." xml:space="preserve"><value>اختر منتجاً نشطاً لاختبار ارتفاع التكلفة أو انخفاض الوحدات المباعة.</value></data>
+  <data name="No active products on this page" xml:space="preserve"><value>لا توجد منتجات نشطة في هذه الصفحة</value></data>
+  <data name="Add a product or move to another page to start." xml:space="preserve"><value>أضف منتجاً أو انتقل إلى صفحة أخرى للبدء.</value></data>
+  <data name="These are assumptions you choose, not forecasts." xml:space="preserve"><value>هذه افتراضات تختارها أنت، وليست توقعات.</value></data>
+  <data name="Current units sold" xml:space="preserve"><value>الوحدات المباعة حالياً</value></data>
+  <data name="Expected units sold" xml:space="preserve"><value>الوحدات المتوقع بيعها</value></data>
+  <data name="Example: 33 units sold in one selected period." xml:space="preserve"><value>مثال: بيع ٣٣ وحدة خلال الفترة المختارة.</value></data>
+  <data name="Period" xml:space="preserve"><value>الفترة</value></data>
+  <data name="Sales decline (%)" xml:space="preserve"><value>انخفاض الوحدات المباعة (%)</value></data>
+  <data name="How will unit cost change?" xml:space="preserve"><value>كيف ستتغير تكلفة الوحدة؟</value></data>
+  <data name="Cost increase percentage" xml:space="preserve"><value>نسبة زيادة التكلفة</value></data>
+  <data name="Resulting new unit cost" xml:space="preserve"><value>تكلفة الوحدة الجديدة الناتجة</value></data>
+  <data name="Cost increase (%)" xml:space="preserve"><value>زيادة التكلفة (%)</value></data>
+  <data name="New total unit cost" xml:space="preserve"><value>تكلفة الوحدة الإجمالية الجديدة</value></data>
+  <data name="If exchange rates affect only part of your cost, enter the resulting total unit cost. Rebaz does not apply an exchange-rate change to every cost." xml:space="preserve"><value>إذا أثّر سعر الصرف على جزء من التكلفة فقط، فأدخل تكلفة الوحدة الإجمالية الناتجة. لا يطبّق ريباز تغيّر سعر الصرف على جميع التكاليف.</value></data>
+  <data name="Possible responses (optional)" xml:space="preserve"><value>خيارات ممكنة (اختيارية)</value></data>
+  <data name="Try a different selling price" xml:space="preserve"><value>جرّب سعر بيع مختلفاً</value></data>
+  <data name="Alternative selling price" xml:space="preserve"><value>سعر البيع البديل</value></data>
+  <data name="Assumed units sold at this price" xml:space="preserve"><value>الوحدات المفترض بيعها بهذا السعر</value></data>
+  <data name="A higher price may change demand. Rebaz does not predict it; edit the assumed quantity if needed." xml:space="preserve"><value>قد يغيّر رفع السعر الطلب. ريباز لا يتوقع ذلك؛ عدّل الكمية المفترضة عند الحاجة.</value></data>
+  <data name="Try an alternative supplier" xml:space="preserve"><value>جرّب مورّداً بديلاً</value></data>
+  <data name="Alternative total unit cost" xml:space="preserve"><value>تكلفة الوحدة الإجمالية لدى المورّد البديل</value></data>
+  <data name="Assumed units sold with this supplier" xml:space="preserve"><value>الوحدات المفترض بيعها مع هذا المورّد</value></data>
+  <data name="Enter the complete alternative unit cost. The original increase is not added again; quality and reliability are not evaluated." xml:space="preserve"><value>أدخل تكلفة الوحدة البديلة كاملة. لا تُضاف الزيادة الأصلية مرة ثانية؛ ولا تُقيّم الجودة أو موثوقية المورّد.</value></data>
+  <data name="Compare responses" xml:space="preserve"><value>قارن الخيارات</value></data>
+  <data name="Saved what-if result" xml:space="preserve"><value>نتيجة «ماذا لو؟» المحفوظة</value></data>
+  <data name="What-if comparison" xml:space="preserve"><value>مقارنة «ماذا لو؟»</value></data>
+  <data name="If you keep the current price" xml:space="preserve"><value>إذا أبقيت السعر الحالي</value></data>
+  <data name="left after unit costs per {0}" xml:space="preserve"><value>متبقٍّ بعد تكاليف الوحدات لكل {0}</value></data>
+  <data name="Compared with the original situation" xml:space="preserve"><value>مقارنة بالوضع الأصلي</value></data>
+  <data name="Unit cost becomes {0} {1}; units sold become {2} per {3}." xml:space="preserve"><value>تصبح تكلفة الوحدة {0} {1}، والوحدات المباعة {2} لكل {3}.</value></data>
+  <data name="These are assumptions you choose, not forecasts. Contribution is sales revenue minus the unit costs entered here; rent, wages, and other business expenses are excluded." xml:space="preserve"><value>هذه افتراضات وليست توقعات. المبلغ المتبقي بعد تكاليف الوحدات يساوي إيراد البيع ناقص تكاليف الوحدات المدخلة؛ ولا يشمل الإيجار والرواتب والمصاريف الأخرى.</value></data>
+  <data name="Sales quantities are whole units. Percentage declines are rounded down to the next whole unit." xml:space="preserve"><value>كميات البيع وحدات كاملة. يُقرّب الانخفاض النسبي إلى أسفل لأقرب وحدة كاملة.</value></data>
+  <data name="Original situation" xml:space="preserve"><value>الوضع الأصلي</value></data>
+  <data name="Units sold per {0}" xml:space="preserve"><value>الوحدات المباعة لكل {0}</value></data>
+  <data name="Total unit costs" xml:space="preserve"><value>مجموع تكاليف الوحدات</value></data>
+  <data name="Left after unit costs" xml:space="preserve"><value>المتبقي بعد تكاليف الوحدات</value></data>
+  <data name="Keep current price under this scenario" xml:space="preserve"><value>الإبقاء على السعر الحالي في هذا السيناريو</value></data>
+  <data name="Change selling price" xml:space="preserve"><value>تغيير سعر البيع</value></data>
+  <data name="Alternative supplier" xml:space="preserve"><value>مورّد بديل</value></data>
+  <data name="Change from original" xml:space="preserve"><value>الفرق عن الوضع الأصلي</value></data>
+  <data name="Change from no action" xml:space="preserve"><value>الفرق عن عدم اتخاذ إجراء</value></data>
+  <data name="Warning: selling price is below unit cost." xml:space="preserve"><value>تنبيه: سعر البيع أقل من تكلفة الوحدة.</value></data>
+  <data name="At least {0} units per {1} are needed to maintain the original contribution." xml:space="preserve"><value>تحتاج إلى {0} وحدة على الأقل لكل {1} للحفاظ على المبلغ الأصلي المتبقي بعد تكاليف الوحدات.</value></data>
+  <data name="No maintenance threshold: the original contribution is zero or negative." xml:space="preserve"><value>لا حدّ للمحافظة على المساهمة: المبلغ الأصلي المتبقي صفر أو سالب.</value></data>
+  <data name="No maintenance threshold: this option has no positive contribution per unit." xml:space="preserve"><value>لا حدّ للمحافظة على المساهمة: هذا الخيار لا يترك مبلغاً موجباً لكل وحدة.</value></data>
+  <data name="The units needed exceed the supported quantity range." xml:space="preserve"><value>عدد الوحدات المطلوب يتجاوز النطاق المدعوم.</value></data>
+  <data name="Higher or lower contribution under these assumptions is not a guarantee or net profit. The maintenance threshold is not business break-even." xml:space="preserve"><value>ارتفاع أو انخفاض المبلغ المتبقي وفق هذه الافتراضات ليس ضماناً ولا ربحاً صافياً. حدّ المحافظة على المساهمة ليس نقطة تعادل النشاط.</value></data>
+  <data name="Save this what-if scenario" xml:space="preserve"><value>احفظ سيناريو «ماذا لو؟»</value></data>
+  <data name="Saved what-if history" xml:space="preserve"><value>سجل سيناريوهات «ماذا لو؟» المحفوظة</value></data>
+  <data name="Back to what-if history" xml:space="preserve"><value>العودة إلى سجل «ماذا لو؟»</value></data>
+  <data name="Explore another scenario" xml:space="preserve"><value>استكشف سيناريو آخر</value></data>
+  <data name="Explore a new scenario" xml:space="preserve"><value>استكشف سيناريو جديداً</value></data>
+  <data name="No saved what-if scenarios yet" xml:space="preserve"><value>لا توجد سيناريوهات «ماذا لو؟» محفوظة بعد</value></data>
+  <data name="Compare assumptions, then save explicitly to keep a snapshot here." xml:space="preserve"><value>قارن الافتراضات ثم احفظ السيناريو صراحةً لتحتفظ بنسخة ثابتة هنا.</value></data>
+  <data name="This result uses saved inputs and answers, not the product&apos;s current price or cost." xml:space="preserve"><value>تستخدم هذه النتيجة المدخلات والنتائج المحفوظة، لا سعر المنتج أو تكلفته الحالية.</value></data>
+  <data name="Minimum units sold to maintain your current contribution" xml:space="preserve"><value>أقل عدد من الوحدات المباعة للحفاظ على مساهمتك الحالية</value></data>
+  <data name="units each {0}" xml:space="preserve"><value>وحدة مباعة لكل {0}</value></data>
+  <data name="At this price, you need at least {0} units sold per {1} to maintain your current contribution." xml:space="preserve"><value>بهذا السعر، تحتاج إلى بيع {0} وحدة على الأقل لكل {1} للحفاظ على مساهمتك الحالية.</value></data>
+  <data name="units sold (period not specified)" xml:space="preserve"><value>وحدة مباعة (الفترة غير محددة)</value></data>
+  <data name="At this price, you need at least {0} units sold to maintain your current contribution. The period was not saved." xml:space="preserve"><value>بهذا السعر، تحتاج إلى بيع {0} وحدة على الأقل للحفاظ على مساهمتك الحالية. لم تُحفظ الفترة.</value></data>
+  <data name="At the {0} units sold you entered, contribution is higher by {1} {2} per {3}." xml:space="preserve"><value>عند بيع {0} وحدة كما أدخلت، يرتفع المبلغ المتبقي بعد تكاليف الوحدات بمقدار {1} {2} لكل {3}.</value></data>
+  <data name="At the {0} units sold you entered, contribution is lower by {1} {2} per {3}." xml:space="preserve"><value>عند بيع {0} وحدة كما أدخلت، ينخفض المبلغ المتبقي بعد تكاليف الوحدات بمقدار {1} {2} لكل {3}.</value></data>
+  <data name="At the {0} units sold you entered, contribution is higher by {1} {2}. The period was not saved." xml:space="preserve"><value>عند بيع {0} وحدة كما أدخلت، يرتفع المبلغ المتبقي بعد تكاليف الوحدات بمقدار {1} {2}. لم تُحفظ الفترة.</value></data>
+  <data name="At the {0} units sold you entered, contribution is lower by {1} {2}. The period was not saved." xml:space="preserve"><value>عند بيع {0} وحدة كما أدخلت، ينخفض المبلغ المتبقي بعد تكاليف الوحدات بمقدار {1} {2}. لم تُحفظ الفترة.</value></data>
+  <data name="At the {0} units sold you entered, contribution is unchanged." xml:space="preserve"><value>عند بيع {0} وحدة كما أدخلت، يبقى المبلغ المتبقي بعد تكاليف الوحدات دون تغيير.</value></data>
+  <data name="The decline scenario is an illustration, not a demand prediction. Fractional units are rounded down." xml:space="preserve"><value>سيناريو الانخفاض للتوضيح وليس توقعاً للطلب. تُقرّب أجزاء الوحدة إلى أسفل.</value></data>
+  <data name="Units sold" xml:space="preserve"><value>الوحدات المباعة</value></data>
+  <data name="What-if scenario saved." xml:space="preserve"><value>حُفظ سيناريو «ماذا لو؟».</value></data>
+  <data name="Enter a cost increase percentage." xml:space="preserve"><value>أدخل نسبة زيادة التكلفة.</value></data>
+  <data name="Enter the resulting new unit cost." xml:space="preserve"><value>أدخل تكلفة الوحدة الجديدة الناتجة.</value></data>
+  <data name="Enter an alternative selling price." xml:space="preserve"><value>أدخل سعر بيع بديلاً.</value></data>
+  <data name="Enter an alternative total unit cost." xml:space="preserve"><value>أدخل تكلفة الوحدة الإجمالية البديلة.</value></data>
+  <data name="Higher contribution under these assumptions" xml:space="preserve"><value>مبلغ متبقٍّ أعلى وفق هذه الافتراضات</value></data>
+  <data name="Lower contribution under these assumptions" xml:space="preserve"><value>مبلغ متبقٍّ أقل وفق هذه الافتراضات</value></data>
+  <data name="Same contribution under these assumptions" xml:space="preserve"><value>المبلغ المتبقي نفسه وفق هذه الافتراضات</value></data>
 </root>

@@ -30,6 +30,90 @@ public class WebsiteTests(FinSightApiFactory factory) : IClassFixture<FinSightAp
     });
 
     [Fact]
+    public async Task WhatIf_PreviewSaveAndReopen_UsesSnapshotsAndIsTenantSafe()
+    {
+        using var owner = Browser();
+        await Login(owner, await RegisterAndConfirm(owner));
+        var name = $"WhatIf-{Guid.NewGuid():N}";
+        var productFields = ProductFields(name, "4000");
+        productFields["UnitCost"] = "1000";
+        Assert.Equal(HttpStatusCode.Redirect,
+            (await Submit(owner, "/products/create", productFields)).StatusCode);
+        var product = await FindProduct(name);
+        var formUrl = $"/what-if?productId={product.Id}";
+        var fields = new Dictionary<string, string>
+        {
+            ["ProductId"] = product.Id.ToString(), ["CurrentQuantity"] = "100",
+            ["Period"] = "Week", ["CostInputMode"] = "Percentage",
+            ["CostIncreasePercent"] = "20", ["SalesDeclinePercent"] = "10",
+            ["UsePriceResponse"] = "true", ["AlternativePrice"] = "4500",
+            ["AlternativePriceQuantity"] = "90", ["UseSupplierResponse"] = "true",
+            ["AlternativeSupplierCost"] = "1100", ["AlternativeSupplierQuantity"] = "90"
+        };
+        var preview = await Submit(owner, "/what-if/preview", fields, formUrl);
+        Assert.Equal(HttpStatusCode.OK, preview.StatusCode);
+        var html = WebUtility.HtmlDecode(await preview.Content.ReadAsStringAsync());
+        Assert.Contains("300,000.00", html);
+        Assert.Contains("252,000.00", html);
+        Assert.Contains("297,000.00", html);
+        Assert.Contains("261,000.00", html);
+        Assert.Contains("91 units", html);
+        using (var scope = factory.Services.CreateScope())
+            Assert.Empty(await scope.ServiceProvider.GetRequiredService<FinSightDbContext>()
+                .WhatIfSimulations.Where(x => x.ProductId == product.Id).ToListAsync());
+
+        var proofInput = Regex.Match(html, "<input[^>]*name=\"PreviewProof\"[^>]*>").Value;
+        var proof = Regex.Match(proofInput, "value=\"([^\"]+)\"").Groups[1].Value;
+        Assert.NotEmpty(proof);
+        var saveFields = new Dictionary<string, string>(fields)
+        {
+            ["PreviewPrice"] = "4000", ["PreviewCost"] = "1000", ["PreviewProof"] = proof
+        };
+        var changedWithoutPreview = new Dictionary<string, string>(saveFields)
+        {
+            ["SalesDeclinePercent"] = "11"
+        };
+        Assert.Equal(HttpStatusCode.Conflict,
+            (await Submit(owner, "/what-if/save", changedWithoutPreview, formUrl)).StatusCode);
+        var saved = await Submit(owner, "/what-if/save", saveFields, formUrl);
+        Assert.Equal(HttpStatusCode.Redirect, saved.StatusCode);
+        var savedUrl = saved.Headers.Location!.OriginalString;
+        Assert.Contains("/what-if/", savedUrl);
+        using (var scope = factory.Services.CreateScope())
+        {
+            var snapshot = await scope.ServiceProvider.GetRequiredService<FinSightDbContext>()
+                .WhatIfSimulations.AsNoTracking().SingleAsync(x => x.ProductId == product.Id);
+            Assert.Equal(4000, snapshot.Inputs.CurrentPrice);
+            Assert.Equal(1000, snapshot.Inputs.CurrentUnitCost);
+            Assert.Equal(252000, snapshot.Result.NoActionContribution);
+        }
+
+        productFields["SellingPrice"] = "6000";
+        productFields["UnitCost"] = "700";
+        Assert.Equal(HttpStatusCode.Redirect,
+            (await Submit(owner, $"/products/{product.Id}/edit", productFields)).StatusCode);
+        var detail = WebUtility.HtmlDecode(await owner.GetStringAsync(savedUrl));
+        Assert.Contains("252,000.00", detail);
+        Assert.Contains("1,000.00", detail);
+        Assert.Contains(name, await owner.GetStringAsync("/what-if/history"));
+
+        await Submit(owner, "/culture", new() { ["culture"] = "ar-IQ", ["returnUrl"] = savedUrl }, savedUrl);
+        var arabic = WebUtility.HtmlDecode(await owner.GetStringAsync(savedUrl));
+        Assert.Contains("<html lang=\"ar-IQ\" dir=\"rtl\">", arabic);
+        Assert.Contains("المتبقي بعد تكاليف الوحدات", arabic);
+        await Submit(owner, "/culture", new() { ["culture"] = "ku-Arab-IQ", ["returnUrl"] = savedUrl }, savedUrl);
+        var badini = WebUtility.HtmlDecode(await owner.GetStringAsync(savedUrl));
+        Assert.Contains("<html lang=\"ku-Arab-IQ\" dir=\"rtl\">", badini);
+        Assert.Contains("پارەیێ پشتی تێچوونا دانەیان دمینیت", badini);
+
+        using var otherBusiness = Browser();
+        await Login(otherBusiness, await RegisterAndConfirm(otherBusiness));
+        Assert.Equal(HttpStatusCode.NotFound, (await otherBusiness.GetAsync(savedUrl)).StatusCode);
+        Assert.Equal(HttpStatusCode.NotFound, (await otherBusiness.GetAsync(formUrl)).StatusCode);
+        Assert.DoesNotContain(name, await otherBusiness.GetStringAsync("/what-if/history"));
+    }
+
+    [Fact]
     public async Task DecisionPreview_SaveHistory_UsesSnapshotsAndRemainsTenantSafe()
     {
         using var owner = Browser();
@@ -46,12 +130,16 @@ public class WebsiteTests(FinSightApiFactory factory) : IClassFixture<FinSightAp
         {
             ["ProductId"] = product.Id.ToString(), ["ProposedPrice"] = "5000",
             ["CurrentSalesQuantity"] = "33", ["UnknownExpectedSales"] = "true",
+            ["ExpectedSalesQuantity"] = "not-a-number",
             ["ComparisonPeriod"] = "Week", ["DeclinePercentage"] = "10"
         }, previewUrl);
         Assert.Equal(HttpStatusCode.OK, preview.StatusCode);
         var previewHtml = WebUtility.HtmlDecode(await preview.Content.ReadAsStringAsync());
-        Assert.Contains("Minimum sales to maintain your current contribution", previewHtml);
+        Assert.Contains("Minimum units sold to maintain your current contribution", previewHtml);
         Assert.Contains("25", previewHtml);
+        Assert.Contains("24.2%", previewHtml);
+        Assert.DoesNotContain("ToString(\"N1\")", previewHtml);
+        Assert.Contains("data-expected-field hidden", previewHtml);
         Assert.Contains("No expected sales were entered", previewHtml);
 
         var saved = await Submit(owner, "/simulations/preview/save", new()

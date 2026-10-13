@@ -1,0 +1,11 @@
+@model FinSight.Application.Features.WhatIf.WhatIfResponse
+@{ ViewData["Title"] = T["Saved what-if result"].Value; }
+<section class="panel simulation-panel">
+    <p class="eyebrow">@T["SAVED SNAPSHOT"]</p>
+    <h1>@T["Saved what-if result"]</h1>
+    <h2><bdi>@Model.ProductName</bdi></h2>
+    <p>@T["Saved on {0}", Model.CreatedAtUtc.ToString("d")] UTC · @T["This result uses saved inputs and answers, not the product's current price or cost."]</p>
+    <partial name="_WhatIfResult" model="@(new WhatIfDisplayViewModel(Model.ProductName,
+        Model.Currency, Model.Period, Model.Inputs, Model.Result, true))" />
+    <p><a href="/what-if/history">@T["Back to what-if history"]</a> · <a href="/what-if">@T["Explore another scenario"]</a></p>
+</section>

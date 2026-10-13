@@ -33,6 +33,7 @@ builder.Services.AddSingleton<
     ProblemDetailsAuthorizationMiddlewareResultHandler>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<WebsiteExceptionFilter>();
+builder.Services.AddScoped<WhatIfPreviewProofService>();
 builder.Services.AddScoped<ConfirmationTicketStore>();
 builder.Services.AddFinSightDataProtection(builder.Configuration, builder.Environment);
 builder.Services.AddAntiforgery(options =>

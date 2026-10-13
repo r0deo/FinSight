@@ -32,17 +32,7 @@ public sealed class PricingDecisionCalculator(PricingSimulationCalculator calcul
         }
         var currentContribution = baseline.CurrentContribution;
         var proposedUnitContribution = proposedPrice - unitCost;
-        var status = MaintenanceThresholdStatus.Available;
-        int? minimum = null;
-
-        if (currentContribution <= 0)
-            status = MaintenanceThresholdStatus.NoPositiveBaseline;
-        else if (proposedUnitContribution <= 0)
-            status = MaintenanceThresholdStatus.ImpossibleAtPrice;
-        else if (currentContribution / int.MaxValue > proposedUnitContribution)
-            status = MaintenanceThresholdStatus.OutsideSupportedQuantity;
-        else
-            minimum = (int)decimal.Ceiling(currentContribution / proposedUnitContribution);
+        var (status, minimum) = MaintenanceThreshold(currentContribution, proposedUnitContribution);
 
         var scenarios = new List<PricingScenarioResult>(3);
         AddScenario(PricingScenarioKind.SameSales, currentSalesQuantity);
@@ -78,5 +68,19 @@ public sealed class PricingDecisionCalculator(PricingSimulationCalculator calcul
                     "Values exceed the supported calculation range.");
             }
         }
+    }
+
+    public static (MaintenanceThresholdStatus Status, int? MinimumUnits) MaintenanceThreshold(
+        decimal baselineContribution, decimal optionUnitContribution,
+        int maximumQuantity = int.MaxValue)
+    {
+        if (baselineContribution <= 0)
+            return (MaintenanceThresholdStatus.NoPositiveBaseline, null);
+        if (optionUnitContribution <= 0)
+            return (MaintenanceThresholdStatus.ImpossibleAtPrice, null);
+        if (baselineContribution / maximumQuantity > optionUnitContribution)
+            return (MaintenanceThresholdStatus.OutsideSupportedQuantity, null);
+        return (MaintenanceThresholdStatus.Available,
+            (int)decimal.Ceiling(baselineContribution / optionUnitContribution));
     }
 }

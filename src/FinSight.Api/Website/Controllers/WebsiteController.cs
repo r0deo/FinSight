@@ -50,7 +50,9 @@ public abstract class WebsiteController : Controller
 
     private string LocalizedValidation(ValidationFailure error)
     {
-        var label = Text(error.PropertyName switch
+        var propertyName = error.PropertyName.StartsWith("Request.", StringComparison.Ordinal)
+            ? error.PropertyName["Request.".Length..] : error.PropertyName;
+        var label = Text(propertyName switch
         {
             "BusinessName" => "Business name", "ContactInformation" => "Business contact information",
             "SellingPrice" => "Selling price", "UnitCost" => "Unit cost",
@@ -58,7 +60,13 @@ public abstract class WebsiteController : Controller
             "ExpectedSalesQuantity" => "Expected sales quantity", "Name" => "Product name",
             "DeclinePercentage" => "Illustrative sales decline (%)",
             "ComparisonPeriod" => "Comparison period",
-            _ => error.PropertyName
+            "CurrentQuantity" => "Current units sold", "SalesDeclinePercent" => "Sales decline (%)",
+            "CostIncreasePercent" => "Cost increase (%)", "NewUnitCost" => "New total unit cost",
+            "AlternativePrice" => "Alternative selling price",
+            "AlternativePriceQuantity" => "Assumed units sold at this price",
+            "AlternativeSupplierCost" => "Alternative total unit cost",
+            "AlternativeSupplierQuantity" => "Assumed units sold with this supplier",
+            _ => propertyName
         });
         var values = error.FormattedMessagePlaceholderValues;
         object Get(string name) => values is not null && values.TryGetValue(name, out var value) ? value : "";

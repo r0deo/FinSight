@@ -1,0 +1,70 @@
+@model WhatIfDisplayViewModel
+@using FinSight.Domain.Enums
+@{
+    var period = Model.Period switch { SalesPeriod.Day => T["day"].Value,
+        SalesPeriod.Week => T["week"].Value, _ => T["month"].Value };
+    var result = Model.Result;
+}
+<section class="decision-results" aria-label="@T["Calculation result"]" role="status">
+    <h2>@(Model.IsHistorical ? T["Saved what-if result"] : T["What-if comparison"])</h2>
+    <div class="decision-answer">
+        <p class="eyebrow">@T["If you keep the current price"]</p>
+        <h3><bdi dir="ltr">@result.NoActionContribution.ToString("N2") @Model.Currency</bdi> @T["left after unit costs per {0}", period]</h3>
+        <p>@T["Compared with the original situation"]: <bdi dir="ltr">@((result.DifferenceFromBaseline > 0 ? "+" : "") + result.DifferenceFromBaseline.ToString("N2")) @Model.Currency</bdi></p>
+        <p>@T["Unit cost becomes {0} {1}; units sold become {2} per {3}.",
+            result.ShockedUnitCost.ToString("N2"), Model.Currency,
+            result.ShockedQuantity.ToString("N0"), period]</p>
+    </div>
+    <p class="form-guidance">@T["These are assumptions you choose, not forecasts. Contribution is sales revenue minus the unit costs entered here; rent, wages, and other business expenses are excluded."]</p>
+    <p class="muted">@T["Sales quantities are whole units. Percentage declines are rounded down to the next whole unit."]</p>
+    <div class="what-if-cards">
+        <article class="what-if-card what-if-baseline">
+            <h3>@T["Original situation"]</h3>
+            <dl>
+                <div><dt>@T["Selling price"]</dt><dd><bdi dir="ltr">@Model.Inputs.CurrentPrice.ToString("N2") @Model.Currency</bdi></dd></div>
+                <div><dt>@T["Unit cost"]</dt><dd><bdi dir="ltr">@Model.Inputs.CurrentUnitCost.ToString("N2") @Model.Currency</bdi></dd></div>
+                <div><dt>@T["Units sold per {0}", period]</dt><dd><bdi dir="ltr">@Model.Inputs.CurrentQuantity.ToString("N0")</bdi></dd></div>
+                <div><dt>@T["Revenue"]</dt><dd><bdi dir="ltr">@((Model.Inputs.CurrentPrice * Model.Inputs.CurrentQuantity).ToString("N2")) @Model.Currency</bdi></dd></div>
+                <div><dt>@T["Total unit costs"]</dt><dd><bdi dir="ltr">@((Model.Inputs.CurrentUnitCost * Model.Inputs.CurrentQuantity).ToString("N2")) @Model.Currency</bdi></dd></div>
+                <div class="what-if-total"><dt>@T["Left after unit costs"]</dt><dd><bdi dir="ltr">@result.BaselineContribution.ToString("N2") @Model.Currency</bdi></dd></div>
+            </dl>
+        </article>
+        @foreach (var option in result.Options)
+        {
+            var label = option.Kind switch { WhatIfOptionKind.KeepCurrentPrice => T["Keep current price under this scenario"].Value,
+                WhatIfOptionKind.ChangeSellingPrice => T["Change selling price"].Value,
+                _ => T["Alternative supplier"].Value };
+            <article class="what-if-card">
+                <h3>@label</h3>
+                @if (option.Kind != WhatIfOptionKind.KeepCurrentPrice)
+                {
+                    <p class="muted">@(option.DifferenceFromNoAction > 0
+                        ? T["Higher contribution under these assumptions"]
+                        : option.DifferenceFromNoAction < 0
+                            ? T["Lower contribution under these assumptions"]
+                            : T["Same contribution under these assumptions"])</p>
+                }
+                <dl>
+                    <div><dt>@T["Selling price"]</dt><dd><bdi dir="ltr">@option.SellingPrice.ToString("N2") @Model.Currency</bdi></dd></div>
+                    <div><dt>@T["Unit cost"]</dt><dd><bdi dir="ltr">@option.UnitCost.ToString("N2") @Model.Currency</bdi></dd></div>
+                    <div><dt>@T["Units sold per {0}", period]</dt><dd><bdi dir="ltr">@option.Quantity.ToString("N0")</bdi></dd></div>
+                    <div><dt>@T["Revenue"]</dt><dd><bdi dir="ltr">@option.Revenue.ToString("N2") @Model.Currency</bdi></dd></div>
+                    <div><dt>@T["Total unit costs"]</dt><dd><bdi dir="ltr">@option.TotalUnitCosts.ToString("N2") @Model.Currency</bdi></dd></div>
+                    <div class="what-if-total"><dt>@T["Left after unit costs"]</dt><dd><bdi dir="ltr">@option.Contribution.ToString("N2") @Model.Currency</bdi></dd></div>
+                    <div><dt>@T["Change from original"]</dt><dd><bdi dir="ltr">@((option.DifferenceFromBaseline > 0 ? "+" : "") + option.DifferenceFromBaseline.ToString("N2")) @Model.Currency</bdi></dd></div>
+                    <div><dt>@T["Change from no action"]</dt><dd><bdi dir="ltr">@((option.DifferenceFromNoAction > 0 ? "+" : "") + option.DifferenceFromNoAction.ToString("N2")) @Model.Currency</bdi></dd></div>
+                </dl>
+                @if (option.IsBelowCost) { <p class="notice notice-warning">@T["Warning: selling price is below unit cost."]</p> }
+                @if (option.ThresholdStatus == MaintenanceThresholdStatus.Available)
+                { <p>@T["At least {0} units per {1} are needed to maintain the original contribution.", option.MinimumUnitsToMaintainBaseline!.Value.ToString("N0"), period]</p> }
+                else if (option.ThresholdStatus == MaintenanceThresholdStatus.NoPositiveBaseline)
+                { <p>@T["No maintenance threshold: the original contribution is zero or negative."]</p> }
+                else if (option.ThresholdStatus == MaintenanceThresholdStatus.ImpossibleAtPrice)
+                { <p>@T["No maintenance threshold: this option has no positive contribution per unit."]</p> }
+                else
+                { <p>@T["The units needed exceed the supported quantity range."]</p> }
+            </article>
+        }
+    </div>
+    <p class="footnote">@T["Higher or lower contribution under these assumptions is not a guarantee or net profit. The maintenance threshold is not business break-even."]</p>
+</section>

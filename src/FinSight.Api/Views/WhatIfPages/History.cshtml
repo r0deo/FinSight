@@ -1,0 +1,24 @@
+@model FinSight.Application.Features.WhatIf.WhatIfHistoryResponse
+@using FinSight.Domain.Enums
+@{ ViewData["Title"] = T["Saved what-if history"].Value; }
+<section class="panel simulation-panel">
+    <div class="page-heading"><div><p class="eyebrow">@T["YOUR DECISIONS"]</p><h1>@T["Saved what-if history"]</h1></div><a class="button button-quiet" href="/what-if">@T["Explore a new scenario"]</a></div>
+    @if (Model.Items.Count == 0)
+    { <div class="empty-state"><h2>@T["No saved what-if scenarios yet"]</h2><p>@T["Compare assumptions, then save explicitly to keep a snapshot here."]</p><a class="button" href="/what-if">@T["Choose a product"]</a></div> }
+    else
+    {
+        <div class="saved-simulation-list">
+            @foreach (var item in Model.Items)
+            {
+                var period = item.Period switch { SalesPeriod.Day => T["day"].Value,
+                    SalesPeriod.Week => T["week"].Value, _ => T["month"].Value };
+                <article class="saved-simulation-card"><div><h2><a href="/what-if/@item.Id"><bdi>@item.ProductName</bdi></a></h2><p>@T["Left after unit costs"]: <bdi dir="ltr">@item.Result.NoActionContribution.ToString("N2") @item.Currency</bdi> · @period</p></div><time datetime="@item.CreatedAtUtc.ToString("O")">@item.CreatedAtUtc.ToString("d") UTC</time></article>
+            }
+        </div>
+        <nav class="pagination" aria-label="@T["Pagination"]">
+            @if (Model.Page > 1) { <a href="/what-if/history?page=@(Model.Page - 1)">@T["Previous"]</a> }
+            <span>@T["Page {0} of {1}", Model.Page, Model.TotalPages]</span>
+            @if (Model.Page < Model.TotalPages) { <a href="/what-if/history?page=@(Model.Page + 1)">@T["Next"]</a> }
+        </nav>
+    }
+</section>

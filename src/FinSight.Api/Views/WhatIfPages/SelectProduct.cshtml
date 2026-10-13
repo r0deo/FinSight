@@ -1,0 +1,36 @@
+@using FinSight.Application.Features.Products.Queries.GetProducts
+@{
+    ViewData["Title"] = T["What if?"].Value;
+    var products = (GetProductsResponse)ViewData["ProductPage"]!;
+}
+<section class="panel simulation-panel">
+    <p class="eyebrow">@T["EXPLORE A SHOCK"]</p>
+    <h1>@T["What if?"]</h1>
+    <p>@T["Choose an active product to explore a cost or sales shock."]</p>
+    @if (products.Items.Count == 0)
+    {
+        <div class="empty-state"><h2>@T["No active products on this page"]</h2>
+            <p>@T["Add a product or move to another page to start."]</p>
+            <a class="button" href="/products/create">@T["Add product"]</a></div>
+    }
+    else
+    {
+        <div class="what-if-product-list">
+            @foreach (var product in products.Items)
+            {
+                <a class="saved-simulation-card" href="/what-if?productId=@product.Id">
+                    <strong><bdi>@product.Name</bdi></strong>
+                    <span>@T["Current selling price"] <bdi dir="ltr">@product.SellingPrice.ToString("N2")</bdi></span>
+                </a>
+            }
+        </div>
+    }
+    @if (products.TotalPages > 1)
+    {
+        <nav class="pagination" aria-label="@T["Product pagination"]">
+            @if (products.Page > 1) { <a href="/what-if?page=@(products.Page - 1)">@T["Previous"]</a> }
+            <span>@T["Page {0} of {1}", products.Page, products.TotalPages]</span>
+            @if (products.Page < products.TotalPages) { <a href="/what-if?page=@(products.Page + 1)">@T["Next"]</a> }
+        </nav>
+    }
+</section>

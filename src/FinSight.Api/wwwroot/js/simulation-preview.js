@@ -3,11 +3,14 @@
     if (!form) return;
     const unknown = form.querySelector('[name="UnknownExpectedSales"][type="checkbox"]');
     const expected = form.querySelector('[name="ExpectedSalesQuantity"]');
+    const expectedField = form.querySelector('[data-expected-field]');
     const results = document.querySelector('[data-decision-results]');
     const save = document.querySelector('[data-decision-save]');
     const syncExpected = () => {
         expected.disabled = unknown.checked;
         expected.required = !unknown.checked;
+        expectedField.hidden = unknown.checked;
+        if (unknown.checked) expected.value = '';
     };
     syncExpected();
     form.addEventListener('input', event => {

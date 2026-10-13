@@ -337,4 +337,83 @@
   <data name="This simulation changed" xml:space="preserve"><value>ئەڤ هەژمارتنە هاتە گوهۆڕین</value></data>
   <data name="Recalculate the preview, then save it again." xml:space="preserve"><value>پێشاندانا ئەنجامێ دوبارە هەژمار بکە، پاشی هەلگرە.</value></data>
   <data name="Please check the supplied values and try again." xml:space="preserve"><value>بهایێن تە نڤیسی بپشکنە و جارەکا دی هەول بدە.</value></data>
+  <data name="What if?" xml:space="preserve"><value>چی دبیت ئەگەر؟</value></data>
+  <data name="Explore what if?" xml:space="preserve"><value>چی دبیت ئەگەر؟ تاقی بکە</value></data>
+  <data name="EXPLORE A SHOCK" xml:space="preserve"><value>گوهۆڕینەکا ژ نشکەڤە تاقی بکە</value></data>
+  <data name="Choose an active product to explore a cost or sales shock." xml:space="preserve"><value>بەرهەمەکێ چالاک هەلبژێرە دا زێدەبوونا تێچوونێ یان کێمبوونا فرۆتنێ تاقی بکەی.</value></data>
+  <data name="No active products on this page" xml:space="preserve"><value>ل ڤێ لاپەڕێ بەرهەمێن چالاک نینن</value></data>
+  <data name="Add a product or move to another page to start." xml:space="preserve"><value>بەرهەمەکێ زێدە بکە یان بچۆ لاپەڕەکا دی دا دەست پێ بکەی.</value></data>
+  <data name="These are assumptions you choose, not forecasts." xml:space="preserve"><value>ئەڤە گریمانەیێن تە نە، نە پێشبینی.</value></data>
+  <data name="Current units sold" xml:space="preserve"><value>دانەیێن نوکە هاتینە فرۆتن</value></data>
+  <data name="Expected units sold" xml:space="preserve"><value>دانەیێن چاڤەڕێکری بفرۆشن</value></data>
+  <data name="Example: 33 units sold in one selected period." xml:space="preserve"><value>نموونە: ٣٣ دانە د ماوەیا هەلبژارتی دا هاتینە فرۆتن.</value></data>
+  <data name="Period" xml:space="preserve"><value>ماوە</value></data>
+  <data name="Sales decline (%)" xml:space="preserve"><value>کێمبوونا فرۆتنا دانەیان (%)</value></data>
+  <data name="How will unit cost change?" xml:space="preserve"><value>تێچوونا هەر دانەیەکێ چەوا دگوهۆڕیت؟</value></data>
+  <data name="Cost increase percentage" xml:space="preserve"><value>ڕێژەیا زێدەبوونا تێچوونێ</value></data>
+  <data name="Resulting new unit cost" xml:space="preserve"><value>تێچوونا نووی یا هەر دانەیەکێ</value></data>
+  <data name="Cost increase (%)" xml:space="preserve"><value>زێدەبوونا تێچوونێ (%)</value></data>
+  <data name="New total unit cost" xml:space="preserve"><value>تێچوونا گشتی یا نووی بۆ هەر دانەیەکێ</value></data>
+  <data name="If exchange rates affect only part of your cost, enter the resulting total unit cost. Rebaz does not apply an exchange-rate change to every cost." xml:space="preserve"><value>ئەگەر نرخێ گوهۆڕینا دراڤی بتنێ کار ل بەشەکێ تێچوونێ بکەت، تێچوونا گشتی یا نوی بنڤیسە. ڕێباز ئەو گوهۆڕینێ ل سەر هەمی تێچوونان ناهەژمێریت.</value></data>
+  <data name="Possible responses (optional)" xml:space="preserve"><value>ڕێکێن بەرسڤدانێ (ئارەزوومەندانە)</value></data>
+  <data name="Try a different selling price" xml:space="preserve"><value>نرخەکێ دی یێ فرۆتنێ تاقی بکە</value></data>
+  <data name="Alternative selling price" xml:space="preserve"><value>نرخێ فرۆتنا دی</value></data>
+  <data name="Assumed units sold at this price" xml:space="preserve"><value>دانەیێن گریمانەکری ل ڤی نرخی بفرۆشن</value></data>
+  <data name="A higher price may change demand. Rebaz does not predict it; edit the assumed quantity if needed." xml:space="preserve"><value>بلندکرنا نرخی دشێت داخوازیێ بگوهۆڕیت. ڕێباز ئەوێ پێشبینی ناکەت؛ ئەگەر پێدڤی بوو ژمارا گریمانەکری بگوهۆڕە.</value></data>
+  <data name="Try an alternative supplier" xml:space="preserve"><value>دابینکەرەکێ دی تاقی بکە</value></data>
+  <data name="Alternative total unit cost" xml:space="preserve"><value>تێچوونا گشتی یا هەر دانەیەکێ ل دابینکەرێ دی</value></data>
+  <data name="Assumed units sold with this supplier" xml:space="preserve"><value>دانەیێن گریمانەکری ل گەل ڤی دابینکەری بفرۆشن</value></data>
+  <data name="Enter the complete alternative unit cost. The original increase is not added again; quality and reliability are not evaluated." xml:space="preserve"><value>تێچوونا تەمام یا دانەیێ ل دابینکەرێ دی بنڤیسە. زێدەبوونا پێشین دووبارە ناهێتە زێدەکرن؛ کوالیتی و باوەرییا دابینکەری ناهێنە هەلسەنگاندن.</value></data>
+  <data name="Compare responses" xml:space="preserve"><value>بەرسڤان بەراورد بکە</value></data>
+  <data name="Saved what-if result" xml:space="preserve"><value>ئەنجامێ هەڵگرتی یێ چی دبیت ئەگەر؟</value></data>
+  <data name="What-if comparison" xml:space="preserve"><value>بەراوردکرنا چی دبیت ئەگەر؟</value></data>
+  <data name="If you keep the current price" xml:space="preserve"><value>ئەگەر نرخێ نوکە بهێلیت</value></data>
+  <data name="left after unit costs per {0}" xml:space="preserve"><value>پشتی تێچوونا دانەیان بۆ هەر {0} دمینیت</value></data>
+  <data name="Compared with the original situation" xml:space="preserve"><value>بەراورد ل گەل بارێ سەرەتایی</value></data>
+  <data name="Unit cost becomes {0} {1}; units sold become {2} per {3}." xml:space="preserve"><value>تێچوونا دانەیێ دبیتە {0} {1}، و دانەیێن فرۆشتی دبنە {2} بۆ هەر {3}.</value></data>
+  <data name="These are assumptions you choose, not forecasts. Contribution is sales revenue minus the unit costs entered here; rent, wages, and other business expenses are excluded." xml:space="preserve"><value>ئەڤ گریمانەیێن تە نە، نە پێشبینی. پارەیێ پشتی تێچوونا دانەیان دەمینیت بریتییە ژ داهاتێ فرۆتنێ کێمکرنا تێچوونا دانەیێن نڤیسی؛ کرێ، مووچە و خەرجیێن دی تێدا نینن.</value></data>
+  <data name="Sales quantities are whole units. Percentage declines are rounded down to the next whole unit." xml:space="preserve"><value>ژمارا فرۆتنێ دانەیێن تەمامە. کێمبوونا ب ڕێژە بۆ دانەیا تەمام یا خوارتر دهێتە گردکرن.</value></data>
+  <data name="Original situation" xml:space="preserve"><value>بارێ سەرەتایی</value></data>
+  <data name="Units sold per {0}" xml:space="preserve"><value>دانەیێن فرۆشتی بۆ هەر {0}</value></data>
+  <data name="Total unit costs" xml:space="preserve"><value>کۆی تێچوونا دانەیان</value></data>
+  <data name="Left after unit costs" xml:space="preserve"><value>پارەیێ پشتی تێچوونا دانەیان دمینیت</value></data>
+  <data name="Keep current price under this scenario" xml:space="preserve"><value>نرخێ نوکە د ڤی بارودۆخی دا بهێلە</value></data>
+  <data name="Change selling price" xml:space="preserve"><value>نرخێ فرۆتنێ بگوهۆڕە</value></data>
+  <data name="Alternative supplier" xml:space="preserve"><value>دابینکەرەکێ دی</value></data>
+  <data name="Change from original" xml:space="preserve"><value>جیاوازی ل گەل بارێ سەرەتایی</value></data>
+  <data name="Change from no action" xml:space="preserve"><value>جیاوازی ل گەل نەکرنا هیچ کارەکی</value></data>
+  <data name="Warning: selling price is below unit cost." xml:space="preserve"><value>ئاگەهداری: نرخێ فرۆتنێ ژ تێچوونا دانەیێ کێمترە.</value></data>
+  <data name="At least {0} units per {1} are needed to maintain the original contribution." xml:space="preserve"><value>کێمترین {0} دانە بۆ هەر {1} پێدڤینە دا پارەیێ سەرەتایی یێ پشتی تێچوونێ بمینیت.</value></data>
+  <data name="No maintenance threshold: the original contribution is zero or negative." xml:space="preserve"><value>سنوورەک بۆ پاراستنێ نینە: پارەیێ سەرەتایی صفرە یان نەرێنییە.</value></data>
+  <data name="No maintenance threshold: this option has no positive contribution per unit." xml:space="preserve"><value>سنوورەک بۆ پاراستنێ نینە: ئەڤ هەلبژاردەیە بۆ هەر دانەیەکێ پارەیەکێ ئەرێنی ناهێلیت.</value></data>
+  <data name="The units needed exceed the supported quantity range." xml:space="preserve"><value>ژمارا دانەیێن پێدڤی ژ سنوورێ پشتگیریکری زێدەترە.</value></data>
+  <data name="Higher or lower contribution under these assumptions is not a guarantee or net profit. The maintenance threshold is not business break-even." xml:space="preserve"><value>پارەیێ زێدەتر یان کێمتر ل سەر ڤان گریمانەیان گەرەنتی یان قازانجا خالص نینە. سنوورێ پاراستنێ خاڵا هاوسەنگییا کاروباری نینە.</value></data>
+  <data name="Save this what-if scenario" xml:space="preserve"><value>ڤی بارودۆخێ چی دبیت ئەگەر؟ هەڵگرە</value></data>
+  <data name="Saved what-if history" xml:space="preserve"><value>مێژوویا بارودۆخێن چی دبیت ئەگەر؟ یێن هەڵگرتی</value></data>
+  <data name="Back to what-if history" xml:space="preserve"><value>بزڤڕە مێژوویا چی دبیت ئەگەر؟</value></data>
+  <data name="Explore another scenario" xml:space="preserve"><value>بارودۆخەکێ دی تاقی بکە</value></data>
+  <data name="Explore a new scenario" xml:space="preserve"><value>بارودۆخەکێ نوی تاقی بکە</value></data>
+  <data name="No saved what-if scenarios yet" xml:space="preserve"><value>هێشتا بارودۆخێن چی دبیت ئەگەر؟ نەهاتینە هەڵگرتن</value></data>
+  <data name="Compare assumptions, then save explicitly to keep a snapshot here." xml:space="preserve"><value>گریمانەیان بەراورد بکە، پاشی ب ئاشکرایی هەڵگرە دا وێنەیەکا جێگیر ل ڤێرە بمینیت.</value></data>
+  <data name="This result uses saved inputs and answers, not the product&apos;s current price or cost." xml:space="preserve"><value>ئەڤ ئەنجامە داتایێن و ئەنجامێن هەڵگرتی بکار دهینیت، نە نرخ و تێچوونا نوکە یا بەرهەمی.</value></data>
+  <data name="Minimum units sold to maintain your current contribution" xml:space="preserve"><value>کێمترین دانەیێن فرۆشتی بۆ پاراستنا بەشدارییا نوکە</value></data>
+  <data name="units each {0}" xml:space="preserve"><value>دانەیێن فرۆشتی بۆ هەر {0}</value></data>
+  <data name="At this price, you need at least {0} units sold per {1} to maintain your current contribution." xml:space="preserve"><value>ب ڤی نرخی پێدڤیە کێمترین {0} دانە بۆ هەر {1} بفرۆشی دا بەشدارییا نوکە بمینیت.</value></data>
+  <data name="units sold (period not specified)" xml:space="preserve"><value>دانەیێن فرۆشتی (ماوە نەهاتیە دیارکرن)</value></data>
+  <data name="At this price, you need at least {0} units sold to maintain your current contribution. The period was not saved." xml:space="preserve"><value>ب ڤی نرخی پێدڤیە کێمترین {0} دانە بفرۆشی دا بەشدارییا نوکە بمینیت. ماوە نەهاتیە هەڵگرتن.</value></data>
+  <data name="At the {0} units sold you entered, contribution is higher by {1} {2} per {3}." xml:space="preserve"><value>ل گەل {0} دانەیێن تە نڤیسی، پارەیێ پشتی تێچوونێ ب {1} {2} بۆ هەر {3} زێدە دبیت.</value></data>
+  <data name="At the {0} units sold you entered, contribution is lower by {1} {2} per {3}." xml:space="preserve"><value>ل گەل {0} دانەیێن تە نڤیسی، پارەیێ پشتی تێچوونێ ب {1} {2} بۆ هەر {3} کێم دبیت.</value></data>
+  <data name="At the {0} units sold you entered, contribution is higher by {1} {2}. The period was not saved." xml:space="preserve"><value>ل گەل {0} دانەیێن تە نڤیسی، پارەیێ پشتی تێچوونێ ب {1} {2} زێدە دبیت. ماوە نەهاتیە هەڵگرتن.</value></data>
+  <data name="At the {0} units sold you entered, contribution is lower by {1} {2}. The period was not saved." xml:space="preserve"><value>ل گەل {0} دانەیێن تە نڤیسی، پارەیێ پشتی تێچوونێ ب {1} {2} کێم دبیت. ماوە نەهاتیە هەڵگرتن.</value></data>
+  <data name="At the {0} units sold you entered, contribution is unchanged." xml:space="preserve"><value>ل گەل {0} دانەیێن تە نڤیسی، پارەیێ پشتی تێچوونێ ناگوهۆڕیت.</value></data>
+  <data name="The decline scenario is an illustration, not a demand prediction. Fractional units are rounded down." xml:space="preserve"><value>بارودۆخێ کێمبوونێ بتنێ نموونەیە، نە پێشبینییا داخوازیێ. پارچەیێن دانەیێ بۆ خوارێ دهێنە گردکرن.</value></data>
+  <data name="Units sold" xml:space="preserve"><value>دانەیێن فرۆشتی</value></data>
+  <data name="What-if scenario saved." xml:space="preserve"><value>بارودۆخێ چی دبیت ئەگەر؟ هاتە هەڵگرتن.</value></data>
+  <data name="Enter a cost increase percentage." xml:space="preserve"><value>ڕێژەیا زێدەبوونا تێچوونێ بنڤیسە.</value></data>
+  <data name="Enter the resulting new unit cost." xml:space="preserve"><value>تێچوونا نووی یا هەر دانەیەکێ بنڤیسە.</value></data>
+  <data name="Enter an alternative selling price." xml:space="preserve"><value>نرخەکێ دی یێ فرۆتنێ بنڤیسە.</value></data>
+  <data name="Enter an alternative total unit cost." xml:space="preserve"><value>تێچوونا گشتی یا دی بۆ هەر دانەیەکێ بنڤیسە.</value></data>
+  <data name="Higher contribution under these assumptions" xml:space="preserve"><value>ل سەر ڤان گریمانەیان پارەیەکێ زێدەتر دمینیت</value></data>
+  <data name="Lower contribution under these assumptions" xml:space="preserve"><value>ل سەر ڤان گریمانەیان پارەیەکێ کێمتر دمینیت</value></data>
+  <data name="Same contribution under these assumptions" xml:space="preserve"><value>ل سەر ڤان گریمانەیان هەمان پارە دمینیت</value></data>
 </root>

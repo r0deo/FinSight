@@ -480,6 +480,22 @@ legend {
 .decision-answer p:last-child { margin-bottom:0; }
 .decision-summary { font-weight:650; font-size:17px; margin-block:25px; }
 .table-scroll { overflow-x:auto; }
+.what-if-fieldset { border:1px solid var(--border); border-radius:12px; padding:18px; margin-block:20px; }
+.what-if-fieldset legend { padding-inline:8px; font-weight:700; }
+.what-if-fieldset small { display:block; color:var(--text-secondary); }
+.what-if-fieldset [hidden], [data-expected-field][hidden] { display:none !important; }
+.what-if-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr)); gap:16px; margin-block:22px; }
+.what-if-card { border:1px solid var(--border); border-radius:12px; background:var(--background); padding:18px; min-width:0; }
+.what-if-card h3 { font-size:19px; margin-block:0 16px; }
+.what-if-card dl { margin:0; }
+.what-if-card dl>div { display:flex; justify-content:space-between; align-items:baseline; gap:14px; border-block-end:1px solid var(--border); padding-block:9px; }
+.what-if-card dt { color:var(--text-secondary); }
+.what-if-card dd { margin:0; text-align:end; overflow-wrap:anywhere; }
+.what-if-card .what-if-total { color:var(--accent); font-weight:700; }
+.what-if-card .what-if-total dt { color:inherit; }
+.what-if-product-list { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr)); gap:12px; }
+.what-if-product-list a { display:flex; flex-direction:column; color:var(--text); border:1px solid var(--border); border-radius:10px; padding:18px; }
+.what-if-product-list a:hover,.what-if-product-list a:focus-visible { border-color:var(--accent); }
 .scenario-table { width:100%; border-collapse:collapse; font-size:13px; }
 .scenario-table th,.scenario-table td { padding:12px 9px; border-bottom:1px solid var(--border); text-align:start; }
 .scenario-table thead { color:var(--text-secondary); }
@@ -719,6 +735,14 @@ legend {
     border:0;
 }
 @media(max-width:900px) {
+    .table-scroll { overflow-x:visible; }
+    .scenario-table thead { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
+    .scenario-table,.scenario-table tbody,.scenario-table tr,.scenario-table td { display:block; width:100%; }
+    .scenario-table tr { padding:14px; margin-block:12px; border:1px solid var(--border); border-radius:10px; }
+    .scenario-table th { display:block; border:0; padding:4px 0 12px; }
+    .scenario-table td { display:flex; justify-content:space-between; gap:12px; text-align:end; padding:6px 0; }
+    .scenario-table td::before { content:attr(data-label); color:var(--text-secondary); text-align:start; }
+    .scenario-table bdi { white-space:normal; overflow-wrap:anywhere; }
     .hero {
         gap:32px;
     }

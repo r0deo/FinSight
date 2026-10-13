@@ -30,6 +30,7 @@ public sealed class CultureController : WebsiteController
         var path = returnUrl.Split('?', '#')[0];
         if (path.Contains('%')) return "/";
         if (path is "/" or "/home" or "/products" or "/products/create" or
+            "/what-if" or "/what-if/history" or
             "/simulations/preview" or "/simulations" or "/account/login" or "/account/register" or
             "/account/check-email" or "/account/confirm-email" or
             "/account/confirmation-success" or "/account/resend-confirmation" or
@@ -40,6 +41,8 @@ public sealed class CultureController : WebsiteController
         if (segments.Length == 4 && segments[1] == "products"
             && Guid.TryParse(segments[2], out _) && segments[3] == "edit") return returnUrl;
         if (segments.Length == 3 && segments[1] == "simulations"
+            && Guid.TryParse(segments[2], out _)) return returnUrl;
+        if (segments.Length == 3 && segments[1] == "what-if"
             && Guid.TryParse(segments[2], out _)) return returnUrl;
         return "/";
     }

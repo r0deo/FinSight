@@ -337,4 +337,83 @@
   <data name="This simulation changed" xml:space="preserve"><value>This simulation changed</value></data>
   <data name="Recalculate the preview, then save it again." xml:space="preserve"><value>Recalculate the preview, then save it again.</value></data>
   <data name="Please check the supplied values and try again." xml:space="preserve"><value>Please check the supplied values and try again.</value></data>
+  <data name="What if?" xml:space="preserve"><value>What if?</value></data>
+  <data name="Explore what if?" xml:space="preserve"><value>Explore what if?</value></data>
+  <data name="EXPLORE A SHOCK" xml:space="preserve"><value>EXPLORE A SHOCK</value></data>
+  <data name="Choose an active product to explore a cost or sales shock." xml:space="preserve"><value>Choose an active product to explore a cost or sales shock.</value></data>
+  <data name="No active products on this page" xml:space="preserve"><value>No active products on this page</value></data>
+  <data name="Add a product or move to another page to start." xml:space="preserve"><value>Add a product or move to another page to start.</value></data>
+  <data name="These are assumptions you choose, not forecasts." xml:space="preserve"><value>These are assumptions you choose, not forecasts.</value></data>
+  <data name="Current units sold" xml:space="preserve"><value>Current units sold</value></data>
+  <data name="Expected units sold" xml:space="preserve"><value>Expected units sold</value></data>
+  <data name="Example: 33 units sold in one selected period." xml:space="preserve"><value>Example: 33 units sold in one selected period.</value></data>
+  <data name="Period" xml:space="preserve"><value>Period</value></data>
+  <data name="Sales decline (%)" xml:space="preserve"><value>Sales decline (%)</value></data>
+  <data name="How will unit cost change?" xml:space="preserve"><value>How will unit cost change?</value></data>
+  <data name="Cost increase percentage" xml:space="preserve"><value>Cost increase percentage</value></data>
+  <data name="Resulting new unit cost" xml:space="preserve"><value>Resulting new unit cost</value></data>
+  <data name="Cost increase (%)" xml:space="preserve"><value>Cost increase (%)</value></data>
+  <data name="New total unit cost" xml:space="preserve"><value>New total unit cost</value></data>
+  <data name="If exchange rates affect only part of your cost, enter the resulting total unit cost. Rebaz does not apply an exchange-rate change to every cost." xml:space="preserve"><value>If exchange rates affect only part of your cost, enter the resulting total unit cost. Rebaz does not apply an exchange-rate change to every cost.</value></data>
+  <data name="Possible responses (optional)" xml:space="preserve"><value>Possible responses (optional)</value></data>
+  <data name="Try a different selling price" xml:space="preserve"><value>Try a different selling price</value></data>
+  <data name="Alternative selling price" xml:space="preserve"><value>Alternative selling price</value></data>
+  <data name="Assumed units sold at this price" xml:space="preserve"><value>Assumed units sold at this price</value></data>
+  <data name="A higher price may change demand. Rebaz does not predict it; edit the assumed quantity if needed." xml:space="preserve"><value>A higher price may change demand. Rebaz does not predict it; edit the assumed quantity if needed.</value></data>
+  <data name="Try an alternative supplier" xml:space="preserve"><value>Try an alternative supplier</value></data>
+  <data name="Alternative total unit cost" xml:space="preserve"><value>Alternative total unit cost</value></data>
+  <data name="Assumed units sold with this supplier" xml:space="preserve"><value>Assumed units sold with this supplier</value></data>
+  <data name="Enter the complete alternative unit cost. The original increase is not added again; quality and reliability are not evaluated." xml:space="preserve"><value>Enter the complete alternative unit cost. The original increase is not added again; quality and reliability are not evaluated.</value></data>
+  <data name="Compare responses" xml:space="preserve"><value>Compare responses</value></data>
+  <data name="Saved what-if result" xml:space="preserve"><value>Saved what-if result</value></data>
+  <data name="What-if comparison" xml:space="preserve"><value>What-if comparison</value></data>
+  <data name="If you keep the current price" xml:space="preserve"><value>If you keep the current price</value></data>
+  <data name="left after unit costs per {0}" xml:space="preserve"><value>left after unit costs per {0}</value></data>
+  <data name="Compared with the original situation" xml:space="preserve"><value>Compared with the original situation</value></data>
+  <data name="Unit cost becomes {0} {1}; units sold become {2} per {3}." xml:space="preserve"><value>Unit cost becomes {0} {1}; units sold become {2} per {3}.</value></data>
+  <data name="These are assumptions you choose, not forecasts. Contribution is sales revenue minus the unit costs entered here; rent, wages, and other business expenses are excluded." xml:space="preserve"><value>These are assumptions you choose, not forecasts. Contribution is sales revenue minus the unit costs entered here; rent, wages, and other business expenses are excluded.</value></data>
+  <data name="Sales quantities are whole units. Percentage declines are rounded down to the next whole unit." xml:space="preserve"><value>Sales quantities are whole units. Percentage declines are rounded down to the next whole unit.</value></data>
+  <data name="Original situation" xml:space="preserve"><value>Original situation</value></data>
+  <data name="Units sold per {0}" xml:space="preserve"><value>Units sold per {0}</value></data>
+  <data name="Total unit costs" xml:space="preserve"><value>Total unit costs</value></data>
+  <data name="Left after unit costs" xml:space="preserve"><value>Left after unit costs</value></data>
+  <data name="Keep current price under this scenario" xml:space="preserve"><value>Keep current price under this scenario</value></data>
+  <data name="Change selling price" xml:space="preserve"><value>Change selling price</value></data>
+  <data name="Alternative supplier" xml:space="preserve"><value>Alternative supplier</value></data>
+  <data name="Change from original" xml:space="preserve"><value>Change from original</value></data>
+  <data name="Change from no action" xml:space="preserve"><value>Change from no action</value></data>
+  <data name="Warning: selling price is below unit cost." xml:space="preserve"><value>Warning: selling price is below unit cost.</value></data>
+  <data name="At least {0} units per {1} are needed to maintain the original contribution." xml:space="preserve"><value>At least {0} units per {1} are needed to maintain the original contribution.</value></data>
+  <data name="No maintenance threshold: the original contribution is zero or negative." xml:space="preserve"><value>No maintenance threshold: the original contribution is zero or negative.</value></data>
+  <data name="No maintenance threshold: this option has no positive contribution per unit." xml:space="preserve"><value>No maintenance threshold: this option has no positive contribution per unit.</value></data>
+  <data name="The units needed exceed the supported quantity range." xml:space="preserve"><value>The units needed exceed the supported quantity range.</value></data>
+  <data name="Higher or lower contribution under these assumptions is not a guarantee or net profit. The maintenance threshold is not business break-even." xml:space="preserve"><value>Higher or lower contribution under these assumptions is not a guarantee or net profit. The maintenance threshold is not business break-even.</value></data>
+  <data name="Save this what-if scenario" xml:space="preserve"><value>Save this what-if scenario</value></data>
+  <data name="Saved what-if history" xml:space="preserve"><value>Saved what-if history</value></data>
+  <data name="Back to what-if history" xml:space="preserve"><value>Back to what-if history</value></data>
+  <data name="Explore another scenario" xml:space="preserve"><value>Explore another scenario</value></data>
+  <data name="Explore a new scenario" xml:space="preserve"><value>Explore a new scenario</value></data>
+  <data name="No saved what-if scenarios yet" xml:space="preserve"><value>No saved what-if scenarios yet</value></data>
+  <data name="Compare assumptions, then save explicitly to keep a snapshot here." xml:space="preserve"><value>Compare assumptions, then save explicitly to keep a snapshot here.</value></data>
+  <data name="This result uses saved inputs and answers, not the product&apos;s current price or cost." xml:space="preserve"><value>This result uses saved inputs and answers, not the product&apos;s current price or cost.</value></data>
+  <data name="Minimum units sold to maintain your current contribution" xml:space="preserve"><value>Minimum units sold to maintain your current contribution</value></data>
+  <data name="units each {0}" xml:space="preserve"><value>units each {0}</value></data>
+  <data name="At this price, you need at least {0} units sold per {1} to maintain your current contribution." xml:space="preserve"><value>At this price, you need at least {0} units sold per {1} to maintain your current contribution.</value></data>
+  <data name="units sold (period not specified)" xml:space="preserve"><value>units sold (period not specified)</value></data>
+  <data name="At this price, you need at least {0} units sold to maintain your current contribution. The period was not saved." xml:space="preserve"><value>At this price, you need at least {0} units sold to maintain your current contribution. The period was not saved.</value></data>
+  <data name="At the {0} units sold you entered, contribution is higher by {1} {2} per {3}." xml:space="preserve"><value>At the {0} units sold you entered, contribution is higher by {1} {2} per {3}.</value></data>
+  <data name="At the {0} units sold you entered, contribution is lower by {1} {2} per {3}." xml:space="preserve"><value>At the {0} units sold you entered, contribution is lower by {1} {2} per {3}.</value></data>
+  <data name="At the {0} units sold you entered, contribution is higher by {1} {2}. The period was not saved." xml:space="preserve"><value>At the {0} units sold you entered, contribution is higher by {1} {2}. The period was not saved.</value></data>
+  <data name="At the {0} units sold you entered, contribution is lower by {1} {2}. The period was not saved." xml:space="preserve"><value>At the {0} units sold you entered, contribution is lower by {1} {2}. The period was not saved.</value></data>
+  <data name="At the {0} units sold you entered, contribution is unchanged." xml:space="preserve"><value>At the {0} units sold you entered, contribution is unchanged.</value></data>
+  <data name="The decline scenario is an illustration, not a demand prediction. Fractional units are rounded down." xml:space="preserve"><value>The decline scenario is an illustration, not a demand prediction. Fractional units are rounded down.</value></data>
+  <data name="Units sold" xml:space="preserve"><value>Units sold</value></data>
+  <data name="What-if scenario saved." xml:space="preserve"><value>What-if scenario saved.</value></data>
+  <data name="Enter a cost increase percentage." xml:space="preserve"><value>Enter a cost increase percentage.</value></data>
+  <data name="Enter the resulting new unit cost." xml:space="preserve"><value>Enter the resulting new unit cost.</value></data>
+  <data name="Enter an alternative selling price." xml:space="preserve"><value>Enter an alternative selling price.</value></data>
+  <data name="Enter an alternative total unit cost." xml:space="preserve"><value>Enter an alternative total unit cost.</value></data>
+  <data name="Higher contribution under these assumptions" xml:space="preserve"><value>Higher contribution under these assumptions</value></data>
+  <data name="Lower contribution under these assumptions" xml:space="preserve"><value>Lower contribution under these assumptions</value></data>
+  <data name="Same contribution under these assumptions" xml:space="preserve"><value>Same contribution under these assumptions</value></data>
 </root>

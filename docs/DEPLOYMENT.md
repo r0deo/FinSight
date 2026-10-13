@@ -113,7 +113,9 @@ out of command arguments, transcripts and screenshots. The earlier
 **`20261011105742_PersistDataProtectionKeys`** migration adds the key-ring table.
 The later **`20261013105643_AddPricingDecisionAssumptions`** migration adds
 pricing-decision snapshot fields and permits an unknown expected quantity on
-saved simulations. Apply it explicitly before serving the new website pages.
+saved simulations. **`20261013120101_AddWhatIfSimulations`** adds a separate
+table for saved cost-and-demand shock scenarios. Apply both explicitly before
+serving their website pages.
 Do not roll back the key-ring migration on a used database: dropping that table
 invalidates protected data. Back up pilot data before updates.
 
@@ -292,8 +294,9 @@ resources are cleaned up. No live SMTP/Google credentials are used.
 
 ### Manual launch checks
 
-- Check migration history includes `PersistDataProtectionKeys` and
-  `AddPricingDecisionAssumptions` before serving the pricing-decision pages.
+- Check migration history includes `PersistDataProtectionKeys`,
+  `AddPricingDecisionAssumptions`, and `AddWhatIfSimulations` before serving
+  the corresponding website pages.
 - Check HTTPS `/health`, HTTP→HTTPS redirect, `/account/login`, `/css/site.css`, and
   a real database-backed operation. Wrong hosts should be rejected.
 - Complete real Google Business onboarding; create/edit products and preview pricing.
