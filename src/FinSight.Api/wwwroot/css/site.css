@@ -1,3 +1,10 @@
+@font-face {
+    font-family:"Noto Kufi Arabic";
+    src:url("../fonts/NotoKufiArabic-wght.ttf") format("truetype");
+    font-style:normal;
+    font-weight:100 900;
+    font-display:swap;
+}
 :root {
     color-scheme:dark;
     --background:#0B121A;
@@ -35,6 +42,23 @@ body {
     font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
     line-height:1.6;
 }
+[dir="rtl"] body {
+    font-family:"Noto Kufi Arabic",Tahoma,sans-serif;
+}
+[dir="rtl"] .hero h1,[dir="rtl"] .getting-started h2,
+[dir="rtl"] .auth-intro h1,[dir="rtl"] .form-guidance h2 {
+    font-family:"Noto Kufi Arabic",Tahoma,sans-serif;
+    letter-spacing:normal;
+}
+[dir="rtl"] h1,[dir="rtl"] h2,[dir="rtl"] .eyebrow,
+[dir="rtl"] legend,[dir="rtl"] .products-table th {
+    letter-spacing:normal;
+}
+bdi,.amount,[dir="rtl"] input[dir="ltr"] {
+    unicode-bidi:isolate;
+}
+.directional-icon { display:inline-block; }
+[dir="rtl"] .directional-icon { transform:scaleX(-1); }
 a {
     color:var(--accent);
     text-underline-offset:4px;
@@ -101,6 +125,21 @@ a,button,input,select {
 }
 .site-header form {
     margin:0;
+}
+.language-switch {
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+.site-header nav .language-switch select {
+    width:auto;
+    min-height:42px;
+    max-width:145px;
+    padding:6px 8px;
+    font-size:13px;
+}
+.site-header nav .language-switch .button {
+    min-height:42px;
 }
 .main-content {
     min-height:calc(100vh - 205px);
@@ -246,12 +285,13 @@ p {
     font-weight:400;
 }
 .steps {
-    padding-left:24px;
+    padding-inline-start:24px;
     margin-bottom:0;
 }
 .steps li {
-    padding:14px 0 8px 12px;
-    border-bottom:1px solid var(--border);
+    padding-block:14px 8px;
+    padding-inline-start:12px;
+    border-block-end:1px solid var(--border);
 }
 .steps li:last-child {
     border:0;
@@ -375,7 +415,7 @@ legend {
     margin-bottom:22px;
 }
 .validation-summary ul {
-    padding-left:18px;
+    padding-inline-start:18px;
     margin:0;
 }
 .validation-summary-valid,.field-validation-valid {
@@ -479,7 +519,7 @@ legend {
     font-size:11px;
     text-transform:uppercase;
     letter-spacing:1px;
-    text-align:left;
+    text-align:start;
     padding:14px 20px;
     background:var(--background);
     color:var(--text-secondary);
@@ -618,7 +658,7 @@ legend {
 .skip-link {
     position:absolute;
     top:-100px;
-    left:16px;
+    inset-inline-start:16px;
     padding:10px;
     background:var(--surface);
     z-index:10;
@@ -670,6 +710,9 @@ legend {
         gap:12px;
         font-size:13px;
         flex-wrap:wrap;
+    }
+    .site-header nav .language-switch {
+        width:100%;
     }
     .site-header .button {
         padding:8px 12px;
@@ -747,7 +790,7 @@ legend {
         gap:18px;
         border:0;
         padding:7px 0;
-        text-align:right;
+        text-align:end;
     }
     .products-table td::before {
         content:attr(data-label);
@@ -757,7 +800,7 @@ legend {
     }
     .products-table td:first-child {
         display:block;
-        text-align:left;
+        text-align:start;
         padding-bottom:12px;
     }
     .products-table td:first-child::before {

@@ -30,6 +30,78 @@ public class WebsiteTests(FinSightApiFactory factory) : IClassFixture<FinSightAp
     });
 
     [Fact]
+    public async Task LanguageChoice_PersistsThroughLoginLogout_AndKeepsApiJson()
+    {
+        using var browser = Browser();
+        browser.DefaultRequestHeaders.AcceptLanguage.ParseAdd("fr-FR");
+        Assert.Contains("<html lang=\"en\" dir=\"ltr\">", await browser.GetStringAsync("/account/login"));
+        var chosen = await Submit(browser, "/culture", new()
+        {
+            ["culture"] = "ar-IQ", ["returnUrl"] = "/account/login"
+        }, "/account/login");
+        Assert.Equal("/account/login", chosen.Headers.Location?.OriginalString);
+        var loginPage = WebUtility.HtmlDecode(await browser.GetStringAsync("/account/login?culture=en"));
+        Assert.Contains("<html lang=\"ar-IQ\" dir=\"rtl\">", loginPage);
+        Assert.Contains("أهلاً بعودتك", loginPage);
+
+        var invalid = await Submit(browser, "/account/login", new()
+        {
+            ["Email"] = "invalid", ["Password"] = ""
+        });
+        Assert.Equal(HttpStatusCode.BadRequest, invalid.StatusCode);
+        Assert.Contains("أدخل بريداً إلكترونياً صالحاً", WebUtility.HtmlDecode(await invalid.Content.ReadAsStringAsync()));
+
+        var email = await RegisterAndConfirm(browser);
+        Assert.Equal(HttpStatusCode.Redirect, (await Login(browser, email)).StatusCode);
+        Assert.Contains("<html lang=\"ar-IQ\" dir=\"rtl\">", await browser.GetStringAsync("/home"));
+        Assert.Equal(HttpStatusCode.Redirect, (await Submit(browser, "/account/logout", [], "/home")).StatusCode);
+        Assert.Contains("<html lang=\"ar-IQ\" dir=\"rtl\">", await browser.GetStringAsync("/account/login"));
+
+        var badini = await Submit(browser, "/culture", new()
+        {
+            ["culture"] = "ku-Arab-IQ", ["returnUrl"] = "/account/login"
+        }, "/account/login");
+        Assert.Equal(HttpStatusCode.Redirect, badini.StatusCode);
+        var badiniPage = WebUtility.HtmlDecode(await browser.GetStringAsync("/account/login"));
+        Assert.Contains("<html lang=\"ku-Arab-IQ\" dir=\"rtl\">", badiniPage);
+        Assert.Contains("بخێر هاتیە ڤەگەڕین", badiniPage);
+        var api = await browser.GetAsync("/api/products");
+        Assert.Equal(HttpStatusCode.Unauthorized, api.StatusCode);
+        Assert.Equal("application/problem+json", api.Content.Headers.ContentType?.MediaType);
+        Assert.Null(api.Headers.Location);
+        using var apiClient = Browser();
+        apiClient.DefaultRequestHeaders.AcceptLanguage.ParseAdd("ku-Arab-IQ");
+        var tokenResponse = await apiClient.PostAsJsonAsync("/api/auth/login", new { Email = email, Password = "Password1!" });
+        tokenResponse.EnsureSuccessStatusCode();
+        var token = await tokenResponse.Content.ReadFromJsonAsync<JsonElement>();
+        apiClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",
+            token.GetProperty("accessToken").GetString());
+        var products = await apiClient.GetAsync("/api/products");
+        Assert.Equal(HttpStatusCode.OK, products.StatusCode);
+        Assert.True((await products.Content.ReadFromJsonAsync<JsonElement>()).TryGetProperty("items", out _));
+    }
+
+    [Fact]
+    public async Task ArabicScriptNumerals_PersistTheSameProductAmounts()
+    {
+        using var browser = Browser();
+        await Login(browser, await RegisterAndConfirm(browser));
+        await Submit(browser, "/culture", new()
+        {
+            ["culture"] = "ku-Arab-IQ", ["returnUrl"] = "/products/create"
+        }, "/products/create");
+        var name = $"Localized-{Guid.NewGuid():N}";
+        var fields = ProductFields(name, "١٢٫٥٠");
+        fields["UnitCost"] = "۴";
+        Assert.Equal(HttpStatusCode.Redirect, (await Submit(browser, "/products/create", fields)).StatusCode);
+        var product = await FindProduct(name);
+        Assert.Equal(12.50m, product.SellingPrice);
+        Assert.Equal(4m, product.UnitCost);
+        var ambiguous = ProductFields(name + " invalid", "1,234");
+        Assert.Equal(HttpStatusCode.BadRequest, (await Submit(browser, "/products/create", ambiguous)).StatusCode);
+    }
+
+    [Fact]
     public async Task Owner_CanRegisterConfirmLoginCreateEditDeactivateReactivateAndLogout()
     {
         using var browser = Browser();

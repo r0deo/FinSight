@@ -1,13 +1,13 @@
 @model GoogleBusinessViewModel
-@{ ViewData["Title"] = "Set up your business"; }
-<section class="panel message-panel"><p class="eyebrow">FINISH YOUR BUSINESS SETUP</p><h1>Tell us about your business.</h1>
-    <p>Signing up as @ViewData["GoogleEmail"]. Complete these details to create your Owner account.</p>
+@{ ViewData["Title"] = T["Set up your business"].Value; }
+<section class="panel message-panel"><p class="eyebrow">@T["FINISH YOUR BUSINESS SETUP"]</p><h1>@T["Tell us about your business."]</h1>
+    <p>@T["Signing up as"] <bdi>@ViewData["GoogleEmail"]</bdi>. @T["Complete these details to create your Owner account."]</p>
     <form asp-action="Business" method="post">
         <div asp-validation-summary="All" class="validation-summary" role="alert"></div>
-        <div class="field"><label asp-for="BusinessName"></label><input asp-for="BusinessName" maxlength="100" /><span asp-validation-for="BusinessName"></span></div>
-        <div class="field"><label asp-for="Location"></label><input asp-for="Location" maxlength="200" /><span asp-validation-for="Location"></span></div>
-        <div class="field"><label asp-for="Currency"></label><input asp-for="Currency" maxlength="3" /><small>Three-letter code, such as IQD or USD.</small><span asp-validation-for="Currency"></span></div>
-        <div class="field"><label asp-for="ContactInformation"></label><input asp-for="ContactInformation" maxlength="200" /><span asp-validation-for="ContactInformation"></span></div>
-        <button class="button" type="submit">Create business</button>
+        <div class="field"><label asp-for="BusinessName"></label><input asp-for="BusinessName" maxlength="100" dir="auto" /><span asp-validation-for="BusinessName"></span></div>
+        <div class="field"><label asp-for="Location"></label><input asp-for="Location" maxlength="200" dir="auto" /><span asp-validation-for="Location"></span></div>
+        <div class="field"><label asp-for="Currency"></label><input asp-for="Currency" maxlength="3" dir="ltr" /><small>@T["Three-letter code, such as IQD or USD."]</small><span asp-validation-for="Currency"></span></div>
+        <div class="field"><label asp-for="ContactInformation"></label><input asp-for="ContactInformation" maxlength="200" dir="auto" /><span asp-validation-for="ContactInformation"></span></div>
+        <button class="button" type="submit">@T["Create business"]</button>
     </form>
 </section>

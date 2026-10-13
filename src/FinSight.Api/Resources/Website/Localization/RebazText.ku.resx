@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Skip to content" xml:space="preserve"><value>بڕە بۆ ناڤەرۆکێ</value></data>
+  <data name="Rebaz home" xml:space="preserve"><value>لاپەڕا سەرەکی یا رێباز</value></data>
+  <data name="Main navigation" xml:space="preserve"><value>رێنیشاندەرا سەرەکی</value></data>
+  <data name="Home" xml:space="preserve"><value>سەرەکی</value></data>
+  <data name="Products" xml:space="preserve"><value>بەرهەم</value></data>
+  <data name="Simulations" xml:space="preserve"><value>تاقیکرنا نرخان</value></data>
+  <data name="Account" xml:space="preserve"><value>هەژمار</value></data>
+  <data name="Log out" xml:space="preserve"><value>دەرکەفتن</value></data>
+  <data name="Log in" xml:space="preserve"><value>چوونا ژوور</value></data>
+  <data name="Get started" xml:space="preserve"><value>دەست پێ بکە</value></data>
+  <data name="Language" xml:space="preserve"><value>زمان</value></data>
+  <data name="Apply language" xml:space="preserve"><value>زمانی بگوهۆڕە</value></data>
+  <data name="Switching language will discard unsaved changes. Continue?" xml:space="preserve"><value>گوهۆڕینا زمانی دێ گوهۆڕینێن نەهاتیە هەلگرتن ژ دەست بدەت. دێ بەردەوام بی؟</value></data>
+  <data name="A clearer view of your menu." xml:space="preserve"><value>دیتنەکا روونتر بۆ لیستا تە.</value></data>
+  <data name="Know your menu" xml:space="preserve"><value>لیستا خۆ بناسە</value></data>
+  <data name="FOR RESTAURANTS &amp; CAFÉS" xml:space="preserve"><value>بۆ رێستوران و کافێیان</value></data>
+  <data name="Know your menu." xml:space="preserve"><value>لیستا خۆ بناسە.</value></data>
+  <data name="Know your numbers." xml:space="preserve"><value>ژمارەیێن خۆ تێبگەهە.</value></data>
+  <data name="Bring your products, selling prices, and unit costs into one simple workspace. Built for the people behind the counter." xml:space="preserve"><value>بەرهەم، نرخێن فرۆتنێ و تێچوویێن هەر دانەیێ بخە جهەکێ کاری یێ سادە. بۆ خودانێن رێستوران و کافێیان هاتیە چێکرن.</value></data>
+  <data name="Set up your business" xml:space="preserve"><value>کارێ خۆ دامەزرینە</value></data>
+  <data name="Already a member? Log in" xml:space="preserve"><value>هەژمارا تە هەیە؟ بچۆ ژوور</value></data>
+  <data name="YOUR FIRST FEW MINUTES" xml:space="preserve"><value>هەنگاوێن تە یێن ئێکەم</value></data>
+  <data name="Less setup." xml:space="preserve"><value>ئامادەکاری کێمتر.</value></data>
+  <data name="More clarity." xml:space="preserve"><value>روونی پتر.</value></data>
+  <data name="Create your business" xml:space="preserve"><value>کارێ خۆ دامەزرینە</value></data>
+  <data name="One workspace for your restaurant or café." xml:space="preserve"><value>جهەکێ کاری بۆ رێستوران یان کافێیا تە.</value></data>
+  <data name="Secure your account" xml:space="preserve"><value>هەژمارا خۆ بپارێزە</value></data>
+  <data name="Use Google, or confirm your email when email registration is available." xml:space="preserve"><value>Google بکار بینە، یان ئیمەیلا خۆ پشتڕاست بکە دەمێ تۆمارکرنا ئیمەیلێ بەردەست بیت.</value></data>
+  <data name="Add your first product" xml:space="preserve"><value>بەرهەمێ خۆ یێ ئێکەم زێدە بکە</value></data>
+  <data name="Record what you sell and what it costs." xml:space="preserve"><value>ئەوێ دفرۆشی و تێچوویا هەر دانەیێ تۆمار بکە.</value></data>
+  <data name="YOUR BUSINESS WORKSPACE" xml:space="preserve"><value>جهێ کاری یێ تە</value></data>
+  <data name="Welcome to" xml:space="preserve"><value>بخێر بێی بۆ</value></data>
+  <data name="Start with one product. Enter its selling price and unit cost, then test how a price change could affect your contribution." xml:space="preserve"><value>ب دانەیەک بەرهەم دەست پێ بکە. نرخێ فرۆتنێ و تێچوویا دانەیێ بنڤیسە، پاشی تاقی بکە کا گوهۆڕینا نرخێ چەوا کاریگەریێ ل پشکا بەشداریێ دکەت.</value></data>
+  <data name="Keep your menu up to date and explore your next price change." xml:space="preserve"><value>لیستا خۆ نوو بکە و کاریگەریا گوهۆڕینا نرخا داهاتی تاقی بکە.</value></data>
+  <data name="Manage products" xml:space="preserve"><value>رێڤەبرنا بەرهەمان</value></data>
+  <data name="Run a pricing simulation" xml:space="preserve"><value>تاقیکرنا نرخێ بکە</value></data>
+  <data name="From cost to confidence" xml:space="preserve"><value>ژ زانینا تێچوویێ بۆ بریارەکا روونتر</value></data>
+  <data name="Know your costs" xml:space="preserve"><value>تێچوویێن خۆ بناسە</value></data>
+  <data name="Record the unit cost and selling price of each product." xml:space="preserve"><value>تێچوویا دانەیێ و نرخێ فرۆتنا هەر بەرهەمەکی تۆمار بکە.</value></data>
+  <data name="Explore a change" xml:space="preserve"><value>گوهۆڕینەکێ تاقی بکە</value></data>
+  <data name="Compare contribution at a proposed price and expected sales quantity." xml:space="preserve"><value>پشکا بەشداریێ ل گەل نرخێ پێشنیارکری و ژمارا فرۆتنێن چاڤەڕێکری بەراورد بکە.</value></data>
+  <data name="Decide with context" xml:space="preserve"><value>ب زانیاری بریار بدە</value></data>
+  <data name="A preview is an estimate, not a guarantee of future sales. It never changes your product or saves a simulation." xml:space="preserve"><value>پێشبینین تەنێ مەزندەکرنە، نە گرەنتیا فرۆتنێن داهاتی. بەرهەمێ تە ناگوهۆڕیت و تاقیکرنێ ناهەلگریت.</value></data>
+  <data name="Welcome back" xml:space="preserve"><value>بخێر هاتیە ڤەگەڕین</value></data>
+  <data name="YOUR BUSINESS, IN FOCUS" xml:space="preserve"><value>کارێ تە ل بەر چاڤان</value></data>
+  <data name="Welcome" xml:space="preserve"><value>بخێر</value></data>
+  <data name="back." xml:space="preserve"><value>هاتیە ڤەگەڕین.</value></data>
+  <data name="Pick up where you left off. Your menu is ready when you are." xml:space="preserve"><value>ژ وێرێ بەردەوام بە کو تو راوەستیای. لیستا تە ل چاڤەڕێیە.</value></data>
+  <data name="Log in to Rebaz" xml:space="preserve"><value>چوونا ژوور بۆ رێباز</value></data>
+  <data name="Use your confirmed business account." xml:space="preserve"><value>هەژمارا کاری یا پشتڕاستکری بکار بینە.</value></data>
+  <data name="Sign in to continue. Your previous session may have expired." xml:space="preserve"><value>بۆ بەردەوامبوونێ بچۆ ژوور. رەنگە دانیشتنا تە یا بەرێ کۆتایی هاتبیت.</value></data>
+  <data name="New to Rebaz?" xml:space="preserve"><value>تو ل رێبازێ نوی؟</value></data>
+  <data name="Resend confirmation email" xml:space="preserve"><value>ئیمەیلا پشتڕاستکرنێ دوبارە بنێرە</value></data>
+  <data name="Continue with Google" xml:space="preserve"><value>ب Google بەردەوام بە</value></data>
+  <data name="Email registration and confirmation delivery are temporarily unavailable. Use Google registration if available. Existing confirmed accounts can still sign in with their password." xml:space="preserve"><value>تۆمارکرنا ئیمەیلێ و هنارتنا ناما پشتڕاستکرنێ بۆ دەمەکی نەبەردەستن. ئەگەر Google هەبیت، وێ بکار بینە. هەژمارێن پشتڕاستکری دشێن ب وشەیا نهێنی بچنە ژوور.</value></data>
+  <data name="MAKE ROOM FOR CLARITY" xml:space="preserve"><value>روونیێ پێش بخە</value></data>
+  <data name="Your menu." xml:space="preserve"><value>لیستا تە.</value></data>
+  <data name="Your workspace." xml:space="preserve"><value>جهێ کاری یێ تە.</value></data>
+  <data name="Sign in with Google and tell us about your business. Email registration also requires email confirmation when available." xml:space="preserve"><value>ب Google تۆمار ببە و دەربارەی کارێ خۆ بۆ مە بێژە. تۆمارکرن ب ئیمەیلێ ژی دەمێ بەردەست بیت پێدڤی ب پشتڕاستکرنێ هەیە.</value></data>
+  <data name="You&apos;ll be the Owner of this business. Existing Owners and Managers can use the login page." xml:space="preserve"><value>تو دێ خودانێ ڤی کاری بی. خودان و رێڤەبەرێن هەیی دشێن لاپەڕا چوونا ژوور بکار بینن.</value></data>
+  <data name="Business details" xml:space="preserve"><value>وردەکاریێن کاری</value></data>
+  <data name="e.g. Olive &amp; Bean Café" xml:space="preserve"><value>بۆ نموونە: کافێیا زەیتوون و قەهوە</value></data>
+  <data name="City or address" xml:space="preserve"><value>باژێر یان ناڤنیشان</value></data>
+  <data name="Three-letter currency code, such as IQD, USD, or EUR." xml:space="preserve"><value>کۆدا دراڤی ب سێ پیتان، وەک IQD یان USD یان EUR.</value></data>
+  <data name="Business phone number or email" xml:space="preserve"><value>ژمارا تەلەفۆنا کاری یان ئیمەیلا وی</value></data>
+  <data name="Your Owner account" xml:space="preserve"><value>هەژمارا خودانی</value></data>
+  <data name="At least 8 characters, including uppercase, lowercase, a number, and a symbol." xml:space="preserve"><value>کێمترین ٨ نیشان، ژ وان پیتەکا مەزن و بچووک، ژمارە و هێمایەک.</value></data>
+  <data name="Create business" xml:space="preserve"><value>کارێ خۆ دامەزرینە</value></data>
+  <data name="Already registered?" xml:space="preserve"><value>هەژمارا تە ژ بەرێ هەیە؟</value></data>
+  <data name="Check your email" xml:space="preserve"><value>ئیمەیلا خۆ بپشکنە</value></data>
+  <data name="BUSINESS CREATED" xml:space="preserve"><value>کار هاتە دامەزراندن</value></data>
+  <data name="One more step." xml:space="preserve"><value>هەنگاوەک ما.</value></data>
+  <data name="Check your inbox for the Rebaz confirmation email. Open the link, then log in to add your first product." xml:space="preserve"><value>ئیمەیلا خۆ بۆ ناما پشتڕاستکرنا رێبازێ بپشکنە. بەستەرێ بکەڤە، پاشی بچۆ ژوور دا بەرهەمێ خۆ یێ ئێکەم زێدە بکەی.</value></data>
+  <data name="If you don&apos;t see it, check your spam folder. Your account needs a confirmed email before you can sign in." xml:space="preserve"><value>ئەگەر نامە نەبینیت، پۆستا نەخوازراوی بپشکنە. بەرێ چوونا ژوور پێدڤیە ئیمەیلا تە پشتڕاست بیت.</value></data>
+  <data name="Continue to login" xml:space="preserve"><value>بەردەوام بە بۆ چوونا ژوور</value></data>
+  <data name="Didn&apos;t receive an email?" xml:space="preserve"><value>ناما ئیمەیلێ نەگەهشتە تە؟</value></data>
+  <data name="Request a new link" xml:space="preserve"><value>بەستەرەکا نوی بخوازە</value></data>
+  <data name="Your account is retained if email delivery is temporarily unavailable." xml:space="preserve"><value>ئەگەر هنارتنا ئیمەیلێ بۆ دەمەکی نەبەردەست بیت، هەژمارا تە دێ پاراستی مینیت.</value></data>
+  <data name="Email confirmed" xml:space="preserve"><value>ئیمەیل هاتە پشتڕاستکرن</value></data>
+  <data name="READY TO BEGIN" xml:space="preserve"><value>ئامادەی دەستپێکرنێ</value></data>
+  <data name="Email confirmed." xml:space="preserve"><value>ئیمەیلا تە هاتە پشتڕاستکرن.</value></data>
+  <data name="Your account is ready. Sign in with your password or Google to add your first product." xml:space="preserve"><value>هەژمارا تە ئامادەیە. ب وشەیا نهێنی یان Google بچۆ ژوور دا بەرهەمێ خۆ یێ ئێکەم زێدە بکەی.</value></data>
+  <data name="Confirm your email" xml:space="preserve"><value>ئیمەیلا خۆ پشتڕاست بکە</value></data>
+  <data name="WELCOME TO REBAZ" xml:space="preserve"><value>بخێر بێی بۆ رێبازێ</value></data>
+  <data name="Confirm your email." xml:space="preserve"><value>ئیمەیلا خۆ پشتڕاست بکە.</value></data>
+  <data name="Secure your account, then start building your product list." xml:space="preserve"><value>هەژمارا خۆ بپارێزە، پاشی دەست ب لیستا بەرهەمێن خۆ بکە.</value></data>
+  <data name="Confirm email &amp; continue" xml:space="preserve"><value>ئیمەیلێ پشتڕاست بکە و بەردەوام بە</value></data>
+  <data name="Confirmation link unavailable" xml:space="preserve"><value>بەستەرا پشتڕاستکرنێ نەبەردەستە</value></data>
+  <data name="This link is invalid or expired." xml:space="preserve"><value>ئەڤ بەستەرە نەدروستە یان ماوەیا وێ ب دوماهی هاتیە.</value></data>
+  <data name="Request a new confirmation email. If you already confirmed your email, you can log in." xml:space="preserve"><value>ناما پشتڕاستکرنێ یا نوی بخوازە. ئەگەر ئیمەیلا خۆ پشتڕاست کری، دشێی بچیە ژوور.</value></data>
+  <data name="Send a new link" xml:space="preserve"><value>بەستەرەکا نوی بنێرە</value></data>
+  <data name="Resend confirmation" xml:space="preserve"><value>دوبارە هنارتنا پشتڕاستکرنێ</value></data>
+  <data name="Need a new link?" xml:space="preserve"><value>بەستەرەکا نوی پێدڤییە؟</value></data>
+  <data name="Enter your account email. If it needs confirmation, we&apos;ll send a new link. You can try up to three times every 15 minutes." xml:space="preserve"><value>ئیمەیلا هەژمارا خۆ بنڤیسە. ئەگەر پێدڤی ب پشتڕاستکرنێ هەبیت، دێ بەستەرەکا نوی بنێرین. د هەر ١٥ خولەکان دا دشێی سێ جار تاقی بکەی.</value></data>
+  <data name="Send confirmation email" xml:space="preserve"><value>ناما پشتڕاستکرنێ بنێرە</value></data>
+  <data name="Back to login" xml:space="preserve"><value>ڤەگەڕە بۆ چوونا ژوور</value></data>
+  <data name="Check your inbox." xml:space="preserve"><value>ئیمەیلا خۆ بپشکنە.</value></data>
+  <data name="If an account with that email needs confirmation, a new link has been requested. Check your spam folder too." xml:space="preserve"><value>ئەگەر هەژمارەک ب ڤێ ئیمەیلێ پێدڤی ب پشتڕاستکرنێ هەبیت، بەستەرەکا نوی هاتیە خواستن. پۆستا نەخوازراوی ژی بپشکنە.</value></data>
+  <data name="If delivery is temporarily unavailable, try again later. Your account is kept safely." xml:space="preserve"><value>ئەگەر هنارتن بۆ دەمەکی نەبەردەست بیت، پاشتر دووبارە تاقی بکە. هەژمارا تە دێ پاراستی مینیت.</value></data>
+  <data name="Account settings" xml:space="preserve"><value>رێکخستنێن هەژمارێ</value></data>
+  <data name="YOUR ACCOUNT" xml:space="preserve"><value>هەژمارا تە</value></data>
+  <data name="Google connected" xml:space="preserve"><value>هەژمارا Google هاتیە گرێدان</value></data>
+  <data name="You can sign in with your connected Google account. Your business and role stay the same." xml:space="preserve"><value>دشێی ب هەژمارا Google یا گرێدای بچیە ژوور. کار و رۆلێ تە وەکی خۆ دمینن.</value></data>
+  <data name="Connect Google" xml:space="preserve"><value>Google گرێ بدە</value></data>
+  <data name="Optionally use Google to sign in to this account. This does not create another business or change your role." xml:space="preserve"><value>دشێی Google بۆ چوونا ژوور ب ڤێ هەژمارێ بکار بینی. ئەڤە کارەکێ دی ناچێکەت و رۆلێ تە ناگوهۆڕیت.</value></data>
+  <data name="Google is not connected. Connecting Google is currently unavailable." xml:space="preserve"><value>Google نەهاتیە گرێدان. گرێدان نوکە نەبەردەستە.</value></data>
+  <data name="Back to home" xml:space="preserve"><value>ڤەگەڕە بۆ سەرەکی</value></data>
+  <data name="FINISH YOUR BUSINESS SETUP" xml:space="preserve"><value>ئامادەکرنا کاری ب دوماهی بینە</value></data>
+  <data name="Tell us about your business." xml:space="preserve"><value>دەربارەی کارێ خۆ بۆ مە بێژە.</value></data>
+  <data name="Signing up as" xml:space="preserve"><value>تۆمار دبیت ب</value></data>
+  <data name="Complete these details to create your Owner account." xml:space="preserve"><value>ئەڤ وردەکارییە پڕ بکە دا هەژمارا خودانی چێ بکەی.</value></data>
+  <data name="Three-letter code, such as IQD or USD." xml:space="preserve"><value>کۆدەک ب سێ پیتان، وەک IQD یان USD.</value></data>
+  <data name="Google sign-in wasn&apos;t completed" xml:space="preserve"><value>چوونا ژوور ب Google تەمام نەبوو</value></data>
+  <data name="Sign-in wasn&apos;t completed." xml:space="preserve"><value>چوونا ژوور تەمام نەبوو.</value></data>
+  <data name="The request may have been cancelled or expired, or this Google account may already be connected elsewhere. Start again from the login page." xml:space="preserve"><value>رەنگە داخوازی هاتبیە راگرتن یان ماوەیا وێ ب دوماهی هاتبیت، یان ئەڤ هەژمارا Google ل جهەکێ دی گرێدایی بیت. ژ لاپەڕا چوونا ژوور دووبارە دەست پێ بکە.</value></data>
+  <data name="Back to Account settings" xml:space="preserve"><value>ڤەگەڕە بۆ رێکخستنێن هەژمارێ</value></data>
+  <data name="Try signing in again" xml:space="preserve"><value>دووبارە تاقی بکە بچیە ژوور</value></data>
+  <data name="Sign in before linking" xml:space="preserve"><value>بەرێ گرێدانێ بچۆ ژوور</value></data>
+  <data name="Sign in to your existing account." xml:space="preserve"><value>بچۆ ژوور هەژمارا خۆ یا هەیی.</value></data>
+  <data name="We never connect accounts just because their email addresses match. Sign in using your existing Rebaz login, then choose Connect Google in Account settings." xml:space="preserve"><value>ئەم هەژماران تەنێ ژبەر هەڤگرتنا ئیمەیلان ناگرێدین. ب هەژمارا خۆ یا هەیی ل رێبازێ بچۆ ژوور، پاشی ژ رێکخستنێن هەژمارێ «Google گرێ بدە» هەلبژێرە.</value></data>
+  <data name="Sign in to your account" xml:space="preserve"><value>بچۆ ژوور هەژمارا خۆ</value></data>
+  <data name="Need to confirm your existing email?" xml:space="preserve"><value>پێدڤییە ئیمەیلا خۆ یا هەیی پشتڕاست بکەی؟</value></data>
+  <data name="Manage your Google connection in" xml:space="preserve"><value>گرێدانا Google ژ ڤێرێ رێڤە ببە:</value></data>
+  <data name="Google sign-in unavailable" xml:space="preserve"><value>چوونا ژوور ب Google نەبەردەستە</value></data>
+  <data name="Google sign-in isn&apos;t available yet." xml:space="preserve"><value>چوونا ژوور ب Google هێشتا نەبەردەستە.</value></data>
+  <data name="Google sign-in is temporarily unavailable. Existing confirmed accounts can still log in with a password." xml:space="preserve"><value>چوونا ژوور ب Google بۆ دەمەکی نەبەردەستە. هەژمارێن پشتڕاستکری دشێن ب وشەیا نهێنی بچنە ژوور.</value></data>
+  <data name="Email login" xml:space="preserve"><value>چوونا ژوور ب ئیمەیلێ</value></data>
+  <data name="Edit product" xml:space="preserve"><value>گوهۆڕینا بەرهەمی</value></data>
+  <data name="Add product" xml:space="preserve"><value>بەرهەم زێدە بکە</value></data>
+  <data name="Back to products" xml:space="preserve"><value>ڤەگەڕە بۆ بەرهەمان</value></data>
+  <data name="KEEP YOUR MENU UP TO DATE" xml:space="preserve"><value>لیستا خۆ نوو بکە</value></data>
+  <data name="BUILD YOUR PRODUCT LIST" xml:space="preserve"><value>لیستا بەرهەمێن خۆ چێ بکە</value></data>
+  <data name="Start with the details. Prices and costs use your business currency." xml:space="preserve"><value>ب وردەکارییان دەست پێ بکە. نرخ و تێچوو ب دراڤێ کاری یێ تەنە.</value></data>
+  <data name="Product name" xml:space="preserve"><value>ناڤێ بەرهەمی</value></data>
+  <data name="e.g. Cappuccino" xml:space="preserve"><value>بۆ نموونە: کاپوچینو</value></data>
+  <data name="e.g. Coffee" xml:space="preserve"><value>بۆ نموونە: قەهوە</value></data>
+  <data name="Size" xml:space="preserve"><value>قەبارە</value></data>
+  <data name="(optional)" xml:space="preserve"><value>(نە پێدڤی)</value></data>
+  <data name="e.g. Regular" xml:space="preserve"><value>بۆ نموونە: ئاسایی</value></data>
+  <data name="Selling price" xml:space="preserve"><value>نرخێ فرۆتنێ</value></data>
+  <data name="Unit cost" xml:space="preserve"><value>تێچوویا دانەیێ</value></data>
+  <data name="Save changes" xml:space="preserve"><value>گوهۆڕینان هەلگرە</value></data>
+  <data name="Cancel" xml:space="preserve"><value>راگرتن</value></data>
+  <data name="A little detail goes a long way." xml:space="preserve"><value>وردەکاریێن بچووک زۆر هاریکار دکەن.</value></data>
+  <data name="is what a customer pays for one unit." xml:space="preserve"><value>ئەو پارەیە کو کڕیار بۆ دانەیەکێ ددەت.</value></data>
+  <data name="is what it costs your business to make or buy that unit." xml:space="preserve"><value>ئەو تێچوویەیە کو کارێ تە بۆ چێکرن یان کڕینا وێ دانەیێ ددەت.</value></data>
+  <data name="All fields except size are required. New products are active automatically." xml:space="preserve"><value>هەمی خانە پێدڤینە ژبلی قەبارەیێ. بەرهەمێن نوی ب خۆبەخۆ چالاکن.</value></data>
+  <data name="YOUR MENU, ORGANIZED" xml:space="preserve"><value>لیستا تە یا رێکخستی</value></data>
+  <data name="Manage what you sell, its price, and its cost." xml:space="preserve"><value>بەرهەم، نرخ و تێچوویا وان رێڤە ببە.</value></data>
+  <data name="Your products" xml:space="preserve"><value>بەرهەمێن تە</value></data>
+  <data name="Include inactive products" xml:space="preserve"><value>بەرهەمێن نەچالاک ژی نیشان بدە</value></data>
+  <data name="Per page" xml:space="preserve"><value>بۆ هەر لاپەڕەیەکێ</value></data>
+  <data name="Apply" xml:space="preserve"><value>جێبەجێ بکە</value></data>
+  <data name="No products on this page" xml:space="preserve"><value>د ڤێ لاپەڕەیێ دا بەرهەم نینن</value></data>
+  <data name="Try the first page of your product list." xml:space="preserve"><value>لاپەڕا ئێکەم یا لیستا بەرهەمان تاقی بکە.</value></data>
+  <data name="Go to first page" xml:space="preserve"><value>بچۆ لاپەڕا ئێکەم</value></data>
+  <data name="Your menu starts here" xml:space="preserve"><value>لیستا تە ژ ڤێرێ دەست پێ دکەت</value></data>
+  <data name="No active products yet" xml:space="preserve"><value>هێشتا بەرهەمێن چالاک نینن</value></data>
+  <data name="Add your first product with its selling price and unit cost." xml:space="preserve"><value>بەرهەمێ خۆ یێ ئێکەم ب نرخێ فرۆتنێ و تێچوویا دانەیێ زێدە بکە.</value></data>
+  <data name="You can also include inactive products using the filter above." xml:space="preserve"><value>دشێی ب فلتەرا سەری بەرهەمێن نەچالاک ژی نیشان بدەی.</value></data>
+  <data name="Product count" xml:space="preserve"><value>{0} بەرهەم</value></data>
+  <data name="Amounts in your business currency" xml:space="preserve"><value>بڕە ب دراڤێ کاری یێ تەنە</value></data>
+  <data name="Products with selling price, unit cost, status and actions" xml:space="preserve"><value>بەرهەم ب نرخێ فرۆتنێ و تێچوویا دانەیێ و بارودۆخ و کردار</value></data>
+  <data name="Product" xml:space="preserve"><value>بەرهەم</value></data>
+  <data name="Status" xml:space="preserve"><value>بارودۆخ</value></data>
+  <data name="Actions" xml:space="preserve"><value>کردار</value></data>
+  <data name="Active" xml:space="preserve"><value>چالاک</value></data>
+  <data name="Inactive" xml:space="preserve"><value>نەچالاک</value></data>
+  <data name="Edit product named" xml:space="preserve"><value>گوهۆڕینا بەرهەمێ {0}</value></data>
+  <data name="Edit" xml:space="preserve"><value>گوهۆڕین</value></data>
+  <data name="Preview price change" xml:space="preserve"><value>پێشبینینا گوهۆڕینا نرخێ</value></data>
+  <data name="Deactivate this product? It will remain in history." xml:space="preserve"><value>دێ ڤی بەرهەمی نەچالاک کەی؟ دێ د مێژوویێ دا بمینیت.</value></data>
+  <data name="Reactivate this product?" xml:space="preserve"><value>دێ ڤی بەرهەمی دوبارە چالاک کەی؟</value></data>
+  <data name="Deactivate product named" xml:space="preserve"><value>نەچالاککرنا بەرهەمێ {0}</value></data>
+  <data name="Reactivate product named" xml:space="preserve"><value>دوبارە چالاککرنا بەرهەمێ {0}</value></data>
+  <data name="Deactivate" xml:space="preserve"><value>نەچالاک بکە</value></data>
+  <data name="Reactivate" xml:space="preserve"><value>دوبارە چالاک بکە</value></data>
+  <data name="Product pagination" xml:space="preserve"><value>لاپەڕەیێن بەرهەمان</value></data>
+  <data name="Previous" xml:space="preserve"><value>یێ بەرێ</value></data>
+  <data name="Next" xml:space="preserve"><value>یێ پاشتر</value></data>
+  <data name="Page {0} of {1}" xml:space="preserve"><value>لاپەڕا {0} ژ {1}</value></data>
+  <data name="Deactivating a product keeps its history. You can reactivate it at any time." xml:space="preserve"><value>نەچالاککرنا بەرهەمی مێژوویا وی دپارێزیت. هەر دەم دشێی دوبارە چالاک بکەی.</value></data>
+  <data name="Preview a price change" xml:space="preserve"><value>پێشبینینا گوهۆڕینا نرخێ</value></data>
+  <data name="EXPLORE BEFORE YOU CHANGE" xml:space="preserve"><value>بەرێ گوهۆڕینێ تاقی بکە</value></data>
+  <data name="Compare sales over the same period. This preview never saves a simulation or changes your product." xml:space="preserve"><value>فرۆتنان بۆ هەمان ماوە بەراورد بکە. ئەڤ پێشبینینە تاقیکرنێ ناهەلگریت و بەرهەمێ تە ناگوهۆڕیت.</value></data>
+  <data name="Proposed price" xml:space="preserve"><value>نرخێ پێشنیارکری</value></data>
+  <data name="Current sales quantity" xml:space="preserve"><value>ژمارا فرۆتنێن نوکە</value></data>
+  <data name="Expected sales quantity" xml:space="preserve"><value>ژمارا فرۆتنێن چاڤەڕێکری</value></data>
+  <data name="Calculate preview" xml:space="preserve"><value>پێشبینینێ هەژمار بکە</value></data>
+  <data name="Calculation result" xml:space="preserve"><value>ئەنجاما هەژمارکرنێ</value></data>
+  <data name="Preview result" xml:space="preserve"><value>ئەنجاما پێشبینینێ</value></data>
+  <data name="Current contribution" xml:space="preserve"><value>پشکا بەشداریێ یا نوکە</value></data>
+  <data name="Proposed contribution" xml:space="preserve"><value>پشکا بەشداریێ یا پێشنیارکری</value></data>
+  <data name="Difference" xml:space="preserve"><value>جیاوازی</value></data>
+  <data name="Recommendation" xml:space="preserve"><value>پێشنیار</value></data>
+  <data name="Recommended" xml:space="preserve"><value>هاتە پێشنیارکرن</value></data>
+  <data name="Not recommended" xml:space="preserve"><value>نەهاتە پێشنیارکرن</value></data>
+  <data name="Warning: the proposed price is below unit cost." xml:space="preserve"><value>ئاگەهداری: نرخێ پێشنیارکری ژ تێچوویا دانەیێ کێمترە.</value></data>
+  <data name="Choose another product" xml:space="preserve"><value>بەرهەمەکێ دی هەلبژێرە</value></data>
+  <data name="Go to products" xml:space="preserve"><value>بچۆ بەرهەمان</value></data>
+  <data name="Access denied" xml:space="preserve"><value>دەستگەهشتن رێپێنەدایە</value></data>
+  <data name="An Owner or Manager account is required to manage products." xml:space="preserve"><value>بۆ رێڤەبرنا بەرهەمان هەژمارا خودانی یان رێڤەبەری پێدڤییە.</value></data>
+  <data name="Let&apos;s get you back on track" xml:space="preserve"><value>دێ هاریکاریا تە کەین بۆ بەردەوامبوونێ</value></data>
+  <data name="Your form or request could not be accepted. Reload the page and try again." xml:space="preserve"><value>فۆرم یان داخوازی نەهاتە وەرگرتن. لاپەڕێ نوو بکە و دوبارە تاقی بکە.</value></data>
+  <data name="That page could not be found. Use the links below to continue." xml:space="preserve"><value>ئەو لاپەڕە نەهاتە دیتن. بۆ بەردەوامبوونێ بەستەرێن خوارێ بکار بینە.</value></data>
+  <data name="Too many attempts. Please wait a minute before trying again." xml:space="preserve"><value>تاقیکرن زۆر بوون. خولەکەکێ چاڤەڕێ بکە و دوبارە تاقی بکە.</value></data>
+  <data name="We couldn&apos;t complete this request. Return to your products or try again." xml:space="preserve"><value>نەشیا ئەڤ داخوازی تەمام بکەین. بۆ بەرهەمێن خۆ ڤەگەڕە یان دوبارە تاقی بکە.</value></data>
+  <data name="We couldn&apos;t find that product" xml:space="preserve"><value>ئەو بەرهەم نەهاتە دیتن</value></data>
+  <data name="It may be unavailable. Return to your products to continue." xml:space="preserve"><value>رەنگە بەردەست نەبیت. بۆ بەردەوامبوونێ بۆ بەرهەمێن خۆ ڤەگەڕە.</value></data>
+  <data name="Only owners and managers can manage products." xml:space="preserve"><value>تەنێ خودان و رێڤەبەر دشێن بەرهەمان رێڤە ببەن.</value></data>
+  <data name="Check your request" xml:space="preserve"><value>داخوازییا خۆ بپشکنە</value></data>
+  <data name="The supplied values are invalid. Page must be at least 1 and page size must be between 1 and 100." xml:space="preserve"><value>بهایێن هاتینە دانان نەدروستن. ژمارا لاپەڕێ کێمترین ١ و قەبارەیا وێ دناڤبەرا ١ و ١٠٠ دا بیت.</value></data>
+  <data name="Something went wrong" xml:space="preserve"><value>هەلەیەک روو دا</value></data>
+  <data name="We couldn&apos;t complete your request. Please try again shortly." xml:space="preserve"><value>نەشیا داخوازییا تە تەمام بکەین. پاش کەمەکێ دوبارە تاقی بکە.</value></data>
+  <data name="Product added. You&apos;re ready to manage its price and cost." xml:space="preserve"><value>بەرهەم هاتە زێدەکرن. نوکە دشێی نرخ و تێچوویا وی رێڤە ببەی.</value></data>
+  <data name="Product updated." xml:space="preserve"><value>بەرهەم هاتە نووکرن.</value></data>
+  <data name="Product deactivated. It remains in your history and can be reactivated." xml:space="preserve"><value>بەرهەم هاتە نەچالاککرن. د مێژوویێ دا دمینیت و دشێی دوبارە چالاک بکەی.</value></data>
+  <data name="Product reactivated." xml:space="preserve"><value>بەرهەم دوبارە هاتە چالاککرن.</value></data>
+  <data name="Choose an active product and select Preview price change. No simulation is saved." xml:space="preserve"><value>بەرهەمەکێ چالاک هەلبژێرە و پێشبینینا گوهۆڕینا نرخێ بکە. چ تاقیکرن ناهێتە هەلگرتن.</value></data>
+  <data name="Google sign-in linked to your existing account. Your business and role have not changed." xml:space="preserve"><value>Google ب هەژمارا تە یا هەیی هاتە گرێدان. کار و رۆلێ تە نەهاتنە گوهۆڕین.</value></data>
+  <data name="Email registration is temporarily unavailable. Please use Google registration." xml:space="preserve"><value>تۆمارکرن ب ئیمەیلێ بۆ دەمەکی نەبەردەستە. تۆمارکرن ب Google بکار بینە.</value></data>
+  <data name="Unable to sign in." xml:space="preserve"><value>چوونا ژوور نەشیا.</value></data>
+  <data name="Unable to sign in. Check your email and password and confirm your email first." xml:space="preserve"><value>چوونا ژوور نەشیا. ئیمەیل و وشەیا نهێنی بپشکنە و بەرێ ئیمەیلا خۆ پشتڕاست بکە.</value></data>
+  <data name="Unable to sign in. Check your email and password and confirm your email first. If you tried several times, wait a few minutes." xml:space="preserve"><value>چوونا ژوور نەشیا. ئیمەیل و وشەیا نهێنی بپشکنە و ئیمەیلا خۆ پشتڕاست بکە. ئەگەر چەند جار تاقی کری، چەند خولەکان چاڤەڕێ بکە.</value></data>
+  <data name="Your session is no longer valid. Please sign in again." xml:space="preserve"><value>دانیشتنا تە چی دی نەدروستە. دوبارە بچۆ ژوور.</value></data>
+  <data name="{0} is required." xml:space="preserve"><value>خانا {0} پێدڤییە.</value></data>
+  <data name="Enter a valid email address." xml:space="preserve"><value>ئیمەیلەکا دروست بنڤیسە.</value></data>
+  <data name="Passwords do not match." xml:space="preserve"><value>هەردوو وشەیێن نهێنی وەک یەک نینن.</value></data>
+  <data name="{0} cannot be negative." xml:space="preserve"><value>بهایێ {0} نابیت ژ سفرێ کێمتر بیت.</value></data>
+  <data name="Enter a valid number without grouping separators." xml:space="preserve"><value>ژمارەکا دروست بێ نیشانێن هەزاران بنڤیسە. بۆ دەهەمی . یان ٫ بکار بینە.</value></data>
+  <data name="Business name" xml:space="preserve"><value>ناڤێ کاری</value></data>
+  <data name="Location" xml:space="preserve"><value>جه</value></data>
+  <data name="Currency" xml:space="preserve"><value>دراڤ</value></data>
+  <data name="Business contact information" xml:space="preserve"><value>زانیاریێن پەیوەندیا کاری</value></data>
+  <data name="Email" xml:space="preserve"><value>ئیمەیل</value></data>
+  <data name="Password" xml:space="preserve"><value>وشەیا نهێنی</value></data>
+  <data name="Confirm password" xml:space="preserve"><value>پشتڕاستکرنا وشەیا نهێنی</value></data>
+  <data name="Category" xml:space="preserve"><value>پۆل</value></data>
+  <data name="Page" xml:space="preserve"><value>لاپەڕە</value></data>
+  <data name="PageSize" xml:space="preserve"><value>قەبارەیا لاپەڕێ</value></data>
+  <data name="Name" xml:space="preserve"><value>ناڤ</value></data>
+  <data name="{0} must not be empty." xml:space="preserve"><value>خانا {0} پێدڤییە.</value></data>
+  <data name="{0} must not be more than {1} characters." xml:space="preserve"><value>{0} نابیت ژ {1} پیتان پتر بیت.</value></data>
+  <data name="{0} must be greater than or equal to {1}." xml:space="preserve"><value>{0} پێدڤییە {1} یان پتر بیت.</value></data>
+  <data name="{0} is not a valid email address." xml:space="preserve"><value>{0} ئیمەیلەکا دروست نینە.</value></data>
+  <data name="{0} must be between {1} and {2}." xml:space="preserve"><value>{0} پێدڤییە دناڤبەرا {1} و {2} دا بیت.</value></data>
+  <data name="Please check the highlighted fields and try again." xml:space="preserve"><value>خانەیێن نیشاندای بپشکنە و دوبارە تاقی بکە.</value></data>
+  <data name="{0} must be {1} characters in length." xml:space="preserve"><value>{0} پێدڤییە {1} پیت بیت.</value></data>
+  <data name="{0} must be at least {1} characters." xml:space="preserve"><value>{0} پێدڤییە کێمترین {1} پیت بیت.</value></data>
+  <data name="An account with this email already exists." xml:space="preserve"><value>هەژمارەک ب ڤێ ئیمەیلێ ژ بەرێ هەیە.</value></data>
+  <data name="The password is too short." xml:space="preserve"><value>وشەیا نهێنی زۆر کورتە.</value></data>
+  <data name="The password needs a symbol." xml:space="preserve"><value>وشەیا نهێنی پێدڤی ب هێمایەکێ هەیە.</value></data>
+  <data name="The password needs a number." xml:space="preserve"><value>وشەیا نهێنی پێدڤی ب ژمارەیەکێ هەیە.</value></data>
+  <data name="The password needs a lowercase letter." xml:space="preserve"><value>وشەیا نهێنی پێدڤی ب پیتەکا بچووک هەیە.</value></data>
+  <data name="The password needs an uppercase letter." xml:space="preserve"><value>وشەیا نهێنی پێدڤی ب پیتەکا مەزن هەیە.</value></data>
+  <data name="Use the configured HTTPS website address to sign in with Google." xml:space="preserve"><value>بۆ چوونا ژوور ب Google ناڤنیشانا HTTPS یا رێکخستی بکار بینە.</value></data>
+</root>

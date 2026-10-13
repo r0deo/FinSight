@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Skip to content" xml:space="preserve"><value>Skip to content</value></data>
+  <data name="Rebaz home" xml:space="preserve"><value>Rebaz home</value></data>
+  <data name="Main navigation" xml:space="preserve"><value>Main navigation</value></data>
+  <data name="Home" xml:space="preserve"><value>Home</value></data>
+  <data name="Products" xml:space="preserve"><value>Products</value></data>
+  <data name="Simulations" xml:space="preserve"><value>Simulations</value></data>
+  <data name="Account" xml:space="preserve"><value>Account</value></data>
+  <data name="Log out" xml:space="preserve"><value>Log out</value></data>
+  <data name="Log in" xml:space="preserve"><value>Log in</value></data>
+  <data name="Get started" xml:space="preserve"><value>Get started</value></data>
+  <data name="Language" xml:space="preserve"><value>Language</value></data>
+  <data name="Apply language" xml:space="preserve"><value>Apply language</value></data>
+  <data name="Switching language will discard unsaved changes. Continue?" xml:space="preserve"><value>Switching language will discard unsaved changes. Continue?</value></data>
+  <data name="A clearer view of your menu." xml:space="preserve"><value>A clearer view of your menu.</value></data>
+  <data name="Know your menu" xml:space="preserve"><value>Know your menu</value></data>
+  <data name="FOR RESTAURANTS &amp; CAFÉS" xml:space="preserve"><value>FOR RESTAURANTS &amp; CAFÉS</value></data>
+  <data name="Know your menu." xml:space="preserve"><value>Know your menu.</value></data>
+  <data name="Know your numbers." xml:space="preserve"><value>Know your numbers.</value></data>
+  <data name="Bring your products, selling prices, and unit costs into one simple workspace. Built for the people behind the counter." xml:space="preserve"><value>Bring your products, selling prices, and unit costs into one simple workspace. Built for the people behind the counter.</value></data>
+  <data name="Set up your business" xml:space="preserve"><value>Set up your business</value></data>
+  <data name="Already a member? Log in" xml:space="preserve"><value>Already a member? Log in</value></data>
+  <data name="YOUR FIRST FEW MINUTES" xml:space="preserve"><value>YOUR FIRST FEW MINUTES</value></data>
+  <data name="Less setup." xml:space="preserve"><value>Less setup.</value></data>
+  <data name="More clarity." xml:space="preserve"><value>More clarity.</value></data>
+  <data name="Create your business" xml:space="preserve"><value>Create your business</value></data>
+  <data name="One workspace for your restaurant or café." xml:space="preserve"><value>One workspace for your restaurant or café.</value></data>
+  <data name="Secure your account" xml:space="preserve"><value>Secure your account</value></data>
+  <data name="Use Google, or confirm your email when email registration is available." xml:space="preserve"><value>Use Google, or confirm your email when email registration is available.</value></data>
+  <data name="Add your first product" xml:space="preserve"><value>Add your first product</value></data>
+  <data name="Record what you sell and what it costs." xml:space="preserve"><value>Record what you sell and what it costs.</value></data>
+  <data name="YOUR BUSINESS WORKSPACE" xml:space="preserve"><value>YOUR BUSINESS WORKSPACE</value></data>
+  <data name="Welcome to" xml:space="preserve"><value>Welcome to</value></data>
+  <data name="Start with one product. Enter its selling price and unit cost, then test how a price change could affect your contribution." xml:space="preserve"><value>Start with one product. Enter its selling price and unit cost, then test how a price change could affect your contribution.</value></data>
+  <data name="Keep your menu up to date and explore your next price change." xml:space="preserve"><value>Keep your menu up to date and explore your next price change.</value></data>
+  <data name="Manage products" xml:space="preserve"><value>Manage products</value></data>
+  <data name="Run a pricing simulation" xml:space="preserve"><value>Run a pricing simulation</value></data>
+  <data name="From cost to confidence" xml:space="preserve"><value>From cost to confidence</value></data>
+  <data name="Know your costs" xml:space="preserve"><value>Know your costs</value></data>
+  <data name="Record the unit cost and selling price of each product." xml:space="preserve"><value>Record the unit cost and selling price of each product.</value></data>
+  <data name="Explore a change" xml:space="preserve"><value>Explore a change</value></data>
+  <data name="Compare contribution at a proposed price and expected sales quantity." xml:space="preserve"><value>Compare contribution at a proposed price and expected sales quantity.</value></data>
+  <data name="Decide with context" xml:space="preserve"><value>Decide with context</value></data>
+  <data name="A preview is an estimate, not a guarantee of future sales. It never changes your product or saves a simulation." xml:space="preserve"><value>A preview is an estimate, not a guarantee of future sales. It never changes your product or saves a simulation.</value></data>
+  <data name="Welcome back" xml:space="preserve"><value>Welcome back</value></data>
+  <data name="YOUR BUSINESS, IN FOCUS" xml:space="preserve"><value>YOUR BUSINESS, IN FOCUS</value></data>
+  <data name="Welcome" xml:space="preserve"><value>Welcome</value></data>
+  <data name="back." xml:space="preserve"><value>back.</value></data>
+  <data name="Pick up where you left off. Your menu is ready when you are." xml:space="preserve"><value>Pick up where you left off. Your menu is ready when you are.</value></data>
+  <data name="Log in to Rebaz" xml:space="preserve"><value>Log in to Rebaz</value></data>
+  <data name="Use your confirmed business account." xml:space="preserve"><value>Use your confirmed business account.</value></data>
+  <data name="Sign in to continue. Your previous session may have expired." xml:space="preserve"><value>Sign in to continue. Your previous session may have expired.</value></data>
+  <data name="New to Rebaz?" xml:space="preserve"><value>New to Rebaz?</value></data>
+  <data name="Resend confirmation email" xml:space="preserve"><value>Resend confirmation email</value></data>
+  <data name="Continue with Google" xml:space="preserve"><value>Continue with Google</value></data>
+  <data name="Email registration and confirmation delivery are temporarily unavailable. Use Google registration if available. Existing confirmed accounts can still sign in with their password." xml:space="preserve"><value>Email registration and confirmation delivery are temporarily unavailable. Use Google registration if available. Existing confirmed accounts can still sign in with their password.</value></data>
+  <data name="MAKE ROOM FOR CLARITY" xml:space="preserve"><value>MAKE ROOM FOR CLARITY</value></data>
+  <data name="Your menu." xml:space="preserve"><value>Your menu.</value></data>
+  <data name="Your workspace." xml:space="preserve"><value>Your workspace.</value></data>
+  <data name="Sign in with Google and tell us about your business. Email registration also requires email confirmation when available." xml:space="preserve"><value>Sign in with Google and tell us about your business. Email registration also requires email confirmation when available.</value></data>
+  <data name="You&apos;ll be the Owner of this business. Existing Owners and Managers can use the login page." xml:space="preserve"><value>You&apos;ll be the Owner of this business. Existing Owners and Managers can use the login page.</value></data>
+  <data name="Business details" xml:space="preserve"><value>Business details</value></data>
+  <data name="e.g. Olive &amp; Bean Café" xml:space="preserve"><value>e.g. Olive &amp; Bean Café</value></data>
+  <data name="City or address" xml:space="preserve"><value>City or address</value></data>
+  <data name="Three-letter currency code, such as IQD, USD, or EUR." xml:space="preserve"><value>Three-letter currency code, such as IQD, USD, or EUR.</value></data>
+  <data name="Business phone number or email" xml:space="preserve"><value>Business phone number or email</value></data>
+  <data name="Your Owner account" xml:space="preserve"><value>Your Owner account</value></data>
+  <data name="At least 8 characters, including uppercase, lowercase, a number, and a symbol." xml:space="preserve"><value>At least 8 characters, including uppercase, lowercase, a number, and a symbol.</value></data>
+  <data name="Create business" xml:space="preserve"><value>Create business</value></data>
+  <data name="Already registered?" xml:space="preserve"><value>Already registered?</value></data>
+  <data name="Check your email" xml:space="preserve"><value>Check your email</value></data>
+  <data name="BUSINESS CREATED" xml:space="preserve"><value>BUSINESS CREATED</value></data>
+  <data name="One more step." xml:space="preserve"><value>One more step.</value></data>
+  <data name="Check your inbox for the Rebaz confirmation email. Open the link, then log in to add your first product." xml:space="preserve"><value>Check your inbox for the Rebaz confirmation email. Open the link, then log in to add your first product.</value></data>
+  <data name="If you don&apos;t see it, check your spam folder. Your account needs a confirmed email before you can sign in." xml:space="preserve"><value>If you don&apos;t see it, check your spam folder. Your account needs a confirmed email before you can sign in.</value></data>
+  <data name="Continue to login" xml:space="preserve"><value>Continue to login</value></data>
+  <data name="Didn&apos;t receive an email?" xml:space="preserve"><value>Didn&apos;t receive an email?</value></data>
+  <data name="Request a new link" xml:space="preserve"><value>Request a new link</value></data>
+  <data name="Your account is retained if email delivery is temporarily unavailable." xml:space="preserve"><value>Your account is retained if email delivery is temporarily unavailable.</value></data>
+  <data name="Email confirmed" xml:space="preserve"><value>Email confirmed</value></data>
+  <data name="READY TO BEGIN" xml:space="preserve"><value>READY TO BEGIN</value></data>
+  <data name="Email confirmed." xml:space="preserve"><value>Email confirmed.</value></data>
+  <data name="Your account is ready. Sign in with your password or Google to add your first product." xml:space="preserve"><value>Your account is ready. Sign in with your password or Google to add your first product.</value></data>
+  <data name="Confirm your email" xml:space="preserve"><value>Confirm your email</value></data>
+  <data name="WELCOME TO REBAZ" xml:space="preserve"><value>WELCOME TO REBAZ</value></data>
+  <data name="Confirm your email." xml:space="preserve"><value>Confirm your email.</value></data>
+  <data name="Secure your account, then start building your product list." xml:space="preserve"><value>Secure your account, then start building your product list.</value></data>
+  <data name="Confirm email &amp; continue" xml:space="preserve"><value>Confirm email &amp; continue</value></data>
+  <data name="Confirmation link unavailable" xml:space="preserve"><value>Confirmation link unavailable</value></data>
+  <data name="This link is invalid or expired." xml:space="preserve"><value>This link is invalid or expired.</value></data>
+  <data name="Request a new confirmation email. If you already confirmed your email, you can log in." xml:space="preserve"><value>Request a new confirmation email. If you already confirmed your email, you can log in.</value></data>
+  <data name="Send a new link" xml:space="preserve"><value>Send a new link</value></data>
+  <data name="Resend confirmation" xml:space="preserve"><value>Resend confirmation</value></data>
+  <data name="Need a new link?" xml:space="preserve"><value>Need a new link?</value></data>
+  <data name="Enter your account email. If it needs confirmation, we&apos;ll send a new link. You can try up to three times every 15 minutes." xml:space="preserve"><value>Enter your account email. If it needs confirmation, we&apos;ll send a new link. You can try up to three times every 15 minutes.</value></data>
+  <data name="Send confirmation email" xml:space="preserve"><value>Send confirmation email</value></data>
+  <data name="Back to login" xml:space="preserve"><value>Back to login</value></data>
+  <data name="Check your inbox." xml:space="preserve"><value>Check your inbox.</value></data>
+  <data name="If an account with that email needs confirmation, a new link has been requested. Check your spam folder too." xml:space="preserve"><value>If an account with that email needs confirmation, a new link has been requested. Check your spam folder too.</value></data>
+  <data name="If delivery is temporarily unavailable, try again later. Your account is kept safely." xml:space="preserve"><value>If delivery is temporarily unavailable, try again later. Your account is kept safely.</value></data>
+  <data name="Account settings" xml:space="preserve"><value>Account settings</value></data>
+  <data name="YOUR ACCOUNT" xml:space="preserve"><value>YOUR ACCOUNT</value></data>
+  <data name="Google connected" xml:space="preserve"><value>Google connected</value></data>
+  <data name="You can sign in with your connected Google account. Your business and role stay the same." xml:space="preserve"><value>You can sign in with your connected Google account. Your business and role stay the same.</value></data>
+  <data name="Connect Google" xml:space="preserve"><value>Connect Google</value></data>
+  <data name="Optionally use Google to sign in to this account. This does not create another business or change your role." xml:space="preserve"><value>Optionally use Google to sign in to this account. This does not create another business or change your role.</value></data>
+  <data name="Google is not connected. Connecting Google is currently unavailable." xml:space="preserve"><value>Google is not connected. Connecting Google is currently unavailable.</value></data>
+  <data name="Back to home" xml:space="preserve"><value>Back to home</value></data>
+  <data name="FINISH YOUR BUSINESS SETUP" xml:space="preserve"><value>FINISH YOUR BUSINESS SETUP</value></data>
+  <data name="Tell us about your business." xml:space="preserve"><value>Tell us about your business.</value></data>
+  <data name="Signing up as" xml:space="preserve"><value>Signing up as</value></data>
+  <data name="Complete these details to create your Owner account." xml:space="preserve"><value>Complete these details to create your Owner account.</value></data>
+  <data name="Three-letter code, such as IQD or USD." xml:space="preserve"><value>Three-letter code, such as IQD or USD.</value></data>
+  <data name="Google sign-in wasn&apos;t completed" xml:space="preserve"><value>Google sign-in wasn&apos;t completed</value></data>
+  <data name="Sign-in wasn&apos;t completed." xml:space="preserve"><value>Sign-in wasn&apos;t completed.</value></data>
+  <data name="The request may have been cancelled or expired, or this Google account may already be connected elsewhere. Start again from the login page." xml:space="preserve"><value>The request may have been cancelled or expired, or this Google account may already be connected elsewhere. Start again from the login page.</value></data>
+  <data name="Back to Account settings" xml:space="preserve"><value>Back to Account settings</value></data>
+  <data name="Try signing in again" xml:space="preserve"><value>Try signing in again</value></data>
+  <data name="Sign in before linking" xml:space="preserve"><value>Sign in before linking</value></data>
+  <data name="Sign in to your existing account." xml:space="preserve"><value>Sign in to your existing account.</value></data>
+  <data name="We never connect accounts just because their email addresses match. Sign in using your existing Rebaz login, then choose Connect Google in Account settings." xml:space="preserve"><value>We never connect accounts just because their email addresses match. Sign in using your existing Rebaz login, then choose Connect Google in Account settings.</value></data>
+  <data name="Sign in to your account" xml:space="preserve"><value>Sign in to your account</value></data>
+  <data name="Need to confirm your existing email?" xml:space="preserve"><value>Need to confirm your existing email?</value></data>
+  <data name="Manage your Google connection in" xml:space="preserve"><value>Manage your Google connection in</value></data>
+  <data name="Google sign-in unavailable" xml:space="preserve"><value>Google sign-in unavailable</value></data>
+  <data name="Google sign-in isn&apos;t available yet." xml:space="preserve"><value>Google sign-in isn&apos;t available yet.</value></data>
+  <data name="Google sign-in is temporarily unavailable. Existing confirmed accounts can still log in with a password." xml:space="preserve"><value>Google sign-in is temporarily unavailable. Existing confirmed accounts can still log in with a password.</value></data>
+  <data name="Email login" xml:space="preserve"><value>Email login</value></data>
+  <data name="Edit product" xml:space="preserve"><value>Edit product</value></data>
+  <data name="Add product" xml:space="preserve"><value>Add product</value></data>
+  <data name="Back to products" xml:space="preserve"><value>Back to products</value></data>
+  <data name="KEEP YOUR MENU UP TO DATE" xml:space="preserve"><value>KEEP YOUR MENU UP TO DATE</value></data>
+  <data name="BUILD YOUR PRODUCT LIST" xml:space="preserve"><value>BUILD YOUR PRODUCT LIST</value></data>
+  <data name="Start with the details. Prices and costs use your business currency." xml:space="preserve"><value>Start with the details. Prices and costs use your business currency.</value></data>
+  <data name="Product name" xml:space="preserve"><value>Product name</value></data>
+  <data name="e.g. Cappuccino" xml:space="preserve"><value>e.g. Cappuccino</value></data>
+  <data name="e.g. Coffee" xml:space="preserve"><value>e.g. Coffee</value></data>
+  <data name="Size" xml:space="preserve"><value>Size</value></data>
+  <data name="(optional)" xml:space="preserve"><value>(optional)</value></data>
+  <data name="e.g. Regular" xml:space="preserve"><value>e.g. Regular</value></data>
+  <data name="Selling price" xml:space="preserve"><value>Selling price</value></data>
+  <data name="Unit cost" xml:space="preserve"><value>Unit cost</value></data>
+  <data name="Save changes" xml:space="preserve"><value>Save changes</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="A little detail goes a long way." xml:space="preserve"><value>A little detail goes a long way.</value></data>
+  <data name="is what a customer pays for one unit." xml:space="preserve"><value>is what a customer pays for one unit.</value></data>
+  <data name="is what it costs your business to make or buy that unit." xml:space="preserve"><value>is what it costs your business to make or buy that unit.</value></data>
+  <data name="All fields except size are required. New products are active automatically." xml:space="preserve"><value>All fields except size are required. New products are active automatically.</value></data>
+  <data name="YOUR MENU, ORGANIZED" xml:space="preserve"><value>YOUR MENU, ORGANIZED</value></data>
+  <data name="Manage what you sell, its price, and its cost." xml:space="preserve"><value>Manage what you sell, its price, and its cost.</value></data>
+  <data name="Your products" xml:space="preserve"><value>Your products</value></data>
+  <data name="Include inactive products" xml:space="preserve"><value>Include inactive products</value></data>
+  <data name="Per page" xml:space="preserve"><value>Per page</value></data>
+  <data name="Apply" xml:space="preserve"><value>Apply</value></data>
+  <data name="No products on this page" xml:space="preserve"><value>No products on this page</value></data>
+  <data name="Try the first page of your product list." xml:space="preserve"><value>Try the first page of your product list.</value></data>
+  <data name="Go to first page" xml:space="preserve"><value>Go to first page</value></data>
+  <data name="Your menu starts here" xml:space="preserve"><value>Your menu starts here</value></data>
+  <data name="No active products yet" xml:space="preserve"><value>No active products yet</value></data>
+  <data name="Add your first product with its selling price and unit cost." xml:space="preserve"><value>Add your first product with its selling price and unit cost.</value></data>
+  <data name="You can also include inactive products using the filter above." xml:space="preserve"><value>You can also include inactive products using the filter above.</value></data>
+  <data name="Product count" xml:space="preserve"><value>Product count</value></data>
+  <data name="Amounts in your business currency" xml:space="preserve"><value>Amounts in your business currency</value></data>
+  <data name="Products with selling price, unit cost, status and actions" xml:space="preserve"><value>Products with selling price, unit cost, status and actions</value></data>
+  <data name="Product" xml:space="preserve"><value>Product</value></data>
+  <data name="Status" xml:space="preserve"><value>Status</value></data>
+  <data name="Actions" xml:space="preserve"><value>Actions</value></data>
+  <data name="Active" xml:space="preserve"><value>Active</value></data>
+  <data name="Inactive" xml:space="preserve"><value>Inactive</value></data>
+  <data name="Edit product named" xml:space="preserve"><value>Edit product named</value></data>
+  <data name="Edit" xml:space="preserve"><value>Edit</value></data>
+  <data name="Preview price change" xml:space="preserve"><value>Preview price change</value></data>
+  <data name="Deactivate this product? It will remain in history." xml:space="preserve"><value>Deactivate this product? It will remain in history.</value></data>
+  <data name="Reactivate this product?" xml:space="preserve"><value>Reactivate this product?</value></data>
+  <data name="Deactivate product named" xml:space="preserve"><value>Deactivate product named</value></data>
+  <data name="Reactivate product named" xml:space="preserve"><value>Reactivate product named</value></data>
+  <data name="Deactivate" xml:space="preserve"><value>Deactivate</value></data>
+  <data name="Reactivate" xml:space="preserve"><value>Reactivate</value></data>
+  <data name="Product pagination" xml:space="preserve"><value>Product pagination</value></data>
+  <data name="Previous" xml:space="preserve"><value>Previous</value></data>
+  <data name="Next" xml:space="preserve"><value>Next</value></data>
+  <data name="Page {0} of {1}" xml:space="preserve"><value>Page {0} of {1}</value></data>
+  <data name="Deactivating a product keeps its history. You can reactivate it at any time." xml:space="preserve"><value>Deactivating a product keeps its history. You can reactivate it at any time.</value></data>
+  <data name="Preview a price change" xml:space="preserve"><value>Preview a price change</value></data>
+  <data name="EXPLORE BEFORE YOU CHANGE" xml:space="preserve"><value>EXPLORE BEFORE YOU CHANGE</value></data>
+  <data name="Compare sales over the same period. This preview never saves a simulation or changes your product." xml:space="preserve"><value>Compare sales over the same period. This preview never saves a simulation or changes your product.</value></data>
+  <data name="Proposed price" xml:space="preserve"><value>Proposed price</value></data>
+  <data name="Current sales quantity" xml:space="preserve"><value>Current sales quantity</value></data>
+  <data name="Expected sales quantity" xml:space="preserve"><value>Expected sales quantity</value></data>
+  <data name="Calculate preview" xml:space="preserve"><value>Calculate preview</value></data>
+  <data name="Calculation result" xml:space="preserve"><value>Calculation result</value></data>
+  <data name="Preview result" xml:space="preserve"><value>Preview result</value></data>
+  <data name="Current contribution" xml:space="preserve"><value>Current contribution</value></data>
+  <data name="Proposed contribution" xml:space="preserve"><value>Proposed contribution</value></data>
+  <data name="Difference" xml:space="preserve"><value>Difference</value></data>
+  <data name="Recommendation" xml:space="preserve"><value>Recommendation</value></data>
+  <data name="Recommended" xml:space="preserve"><value>Recommended</value></data>
+  <data name="Not recommended" xml:space="preserve"><value>Not recommended</value></data>
+  <data name="Warning: the proposed price is below unit cost." xml:space="preserve"><value>Warning: the proposed price is below unit cost.</value></data>
+  <data name="Choose another product" xml:space="preserve"><value>Choose another product</value></data>
+  <data name="Go to products" xml:space="preserve"><value>Go to products</value></data>
+  <data name="Access denied" xml:space="preserve"><value>Access denied</value></data>
+  <data name="An Owner or Manager account is required to manage products." xml:space="preserve"><value>An Owner or Manager account is required to manage products.</value></data>
+  <data name="Let&apos;s get you back on track" xml:space="preserve"><value>Let&apos;s get you back on track</value></data>
+  <data name="Your form or request could not be accepted. Reload the page and try again." xml:space="preserve"><value>Your form or request could not be accepted. Reload the page and try again.</value></data>
+  <data name="That page could not be found. Use the links below to continue." xml:space="preserve"><value>That page could not be found. Use the links below to continue.</value></data>
+  <data name="Too many attempts. Please wait a minute before trying again." xml:space="preserve"><value>Too many attempts. Please wait a minute before trying again.</value></data>
+  <data name="We couldn&apos;t complete this request. Return to your products or try again." xml:space="preserve"><value>We couldn&apos;t complete this request. Return to your products or try again.</value></data>
+  <data name="We couldn&apos;t find that product" xml:space="preserve"><value>We couldn&apos;t find that product</value></data>
+  <data name="It may be unavailable. Return to your products to continue." xml:space="preserve"><value>It may be unavailable. Return to your products to continue.</value></data>
+  <data name="Only owners and managers can manage products." xml:space="preserve"><value>Only owners and managers can manage products.</value></data>
+  <data name="Check your request" xml:space="preserve"><value>Check your request</value></data>
+  <data name="The supplied values are invalid. Page must be at least 1 and page size must be between 1 and 100." xml:space="preserve"><value>The supplied values are invalid. Page must be at least 1 and page size must be between 1 and 100.</value></data>
+  <data name="Something went wrong" xml:space="preserve"><value>Something went wrong</value></data>
+  <data name="We couldn&apos;t complete your request. Please try again shortly." xml:space="preserve"><value>We couldn&apos;t complete your request. Please try again shortly.</value></data>
+  <data name="Product added. You&apos;re ready to manage its price and cost." xml:space="preserve"><value>Product added. You&apos;re ready to manage its price and cost.</value></data>
+  <data name="Product updated." xml:space="preserve"><value>Product updated.</value></data>
+  <data name="Product deactivated. It remains in your history and can be reactivated." xml:space="preserve"><value>Product deactivated. It remains in your history and can be reactivated.</value></data>
+  <data name="Product reactivated." xml:space="preserve"><value>Product reactivated.</value></data>
+  <data name="Choose an active product and select Preview price change. No simulation is saved." xml:space="preserve"><value>Choose an active product and select Preview price change. No simulation is saved.</value></data>
+  <data name="Google sign-in linked to your existing account. Your business and role have not changed." xml:space="preserve"><value>Google sign-in linked to your existing account. Your business and role have not changed.</value></data>
+  <data name="Email registration is temporarily unavailable. Please use Google registration." xml:space="preserve"><value>Email registration is temporarily unavailable. Please use Google registration.</value></data>
+  <data name="Unable to sign in." xml:space="preserve"><value>Unable to sign in.</value></data>
+  <data name="Unable to sign in. Check your email and password and confirm your email first." xml:space="preserve"><value>Unable to sign in. Check your email and password and confirm your email first.</value></data>
+  <data name="Unable to sign in. Check your email and password and confirm your email first. If you tried several times, wait a few minutes." xml:space="preserve"><value>Unable to sign in. Check your email and password and confirm your email first. If you tried several times, wait a few minutes.</value></data>
+  <data name="Your session is no longer valid. Please sign in again." xml:space="preserve"><value>Your session is no longer valid. Please sign in again.</value></data>
+  <data name="{0} is required." xml:space="preserve"><value>{0} is required.</value></data>
+  <data name="Enter a valid email address." xml:space="preserve"><value>Enter a valid email address.</value></data>
+  <data name="Passwords do not match." xml:space="preserve"><value>Passwords do not match.</value></data>
+  <data name="{0} cannot be negative." xml:space="preserve"><value>{0} cannot be negative.</value></data>
+  <data name="Enter a valid number without grouping separators." xml:space="preserve"><value>Enter a valid number without grouping separators.</value></data>
+  <data name="Business name" xml:space="preserve"><value>Business name</value></data>
+  <data name="Location" xml:space="preserve"><value>Location</value></data>
+  <data name="Currency" xml:space="preserve"><value>Currency</value></data>
+  <data name="Business contact information" xml:space="preserve"><value>Business contact information</value></data>
+  <data name="Email" xml:space="preserve"><value>Email</value></data>
+  <data name="Password" xml:space="preserve"><value>Password</value></data>
+  <data name="Confirm password" xml:space="preserve"><value>Confirm password</value></data>
+  <data name="Category" xml:space="preserve"><value>Category</value></data>
+  <data name="Page" xml:space="preserve"><value>Page</value></data>
+  <data name="PageSize" xml:space="preserve"><value>PageSize</value></data>
+  <data name="Name" xml:space="preserve"><value>Name</value></data>
+  <data name="{0} must not be empty." xml:space="preserve"><value>{0} must not be empty.</value></data>
+  <data name="{0} must not be more than {1} characters." xml:space="preserve"><value>{0} must not be more than {1} characters.</value></data>
+  <data name="{0} must be greater than or equal to {1}." xml:space="preserve"><value>{0} must be greater than or equal to {1}.</value></data>
+  <data name="{0} is not a valid email address." xml:space="preserve"><value>{0} is not a valid email address.</value></data>
+  <data name="{0} must be between {1} and {2}." xml:space="preserve"><value>{0} must be between {1} and {2}.</value></data>
+  <data name="Please check the highlighted fields and try again." xml:space="preserve"><value>Please check the highlighted fields and try again.</value></data>
+  <data name="{0} must be {1} characters in length." xml:space="preserve"><value>{0} must be {1} characters in length.</value></data>
+  <data name="{0} must be at least {1} characters." xml:space="preserve"><value>{0} must be at least {1} characters.</value></data>
+  <data name="An account with this email already exists." xml:space="preserve"><value>An account with this email already exists.</value></data>
+  <data name="The password is too short." xml:space="preserve"><value>The password is too short.</value></data>
+  <data name="The password needs a symbol." xml:space="preserve"><value>The password needs a symbol.</value></data>
+  <data name="The password needs a number." xml:space="preserve"><value>The password needs a number.</value></data>
+  <data name="The password needs a lowercase letter." xml:space="preserve"><value>The password needs a lowercase letter.</value></data>
+  <data name="The password needs an uppercase letter." xml:space="preserve"><value>The password needs an uppercase letter.</value></data>
+  <data name="Use the configured HTTPS website address to sign in with Google." xml:space="preserve"><value>Use the configured HTTPS website address to sign in with Google.</value></data>
+</root>

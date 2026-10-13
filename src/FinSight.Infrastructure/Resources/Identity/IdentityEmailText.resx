@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="ConfirmationSubject" xml:space="preserve"><value>Confirm your Rebaz email</value></data>
+  <data name="ConfirmationBody" xml:space="preserve"><value>Confirm your email to start using Rebaz:
+{0}
+
+This link expires in 24 hours. If you did not request this, ignore this email.</value></data>
+  <data name="PasswordResetSubject" xml:space="preserve"><value>Reset your FinSight password</value></data>
+  <data name="PasswordResetBody" xml:space="preserve"><value>User ID: {0}
+Reset token: {1}</value></data>
+</root>

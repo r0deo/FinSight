@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using FinSight.Api.Website.Localization;
+using Microsoft.AspNetCore.Mvc;
 using FinSight.Application.Features.PricingSimulations.Queries.PreviewPricingSimulation;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
@@ -8,11 +10,14 @@ namespace FinSight.Api.Website.Models;
 public sealed class PreviewSimulationViewModel
 {
     public Guid ProductId { get; set; }
-    [Display(Name = "Proposed price"), Range(typeof(decimal), "0", "79228162514264337593543950335")]
+    [Display(Name = "Proposed price"), Range(typeof(decimal), "0", "79228162514264337593543950335",
+        ErrorMessage = "{0} cannot be negative."), ModelBinder(BinderType = typeof(WebsiteNumberModelBinder))]
     public decimal ProposedPrice { get; set; }
-    [Display(Name = "Current sales quantity"), Range(0, int.MaxValue)]
+    [Display(Name = "Current sales quantity"), Range(0, int.MaxValue,
+        ErrorMessage = "{0} cannot be negative."), ModelBinder(BinderType = typeof(WebsiteNumberModelBinder))]
     public int CurrentSalesQuantity { get; set; }
-    [Display(Name = "Expected sales quantity"), Range(0, int.MaxValue)]
+    [Display(Name = "Expected sales quantity"), Range(0, int.MaxValue,
+        ErrorMessage = "{0} cannot be negative."), ModelBinder(BinderType = typeof(WebsiteNumberModelBinder))]
     public int ExpectedSalesQuantity { get; set; }
     [BindNever, ValidateNever]
     public string ProductName { get; set; } = string.Empty;

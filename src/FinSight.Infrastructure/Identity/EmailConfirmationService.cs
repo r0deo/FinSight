@@ -3,6 +3,7 @@ using FinSight.Application.Common.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Localization;
 
 namespace FinSight.Infrastructure.Identity;
 
@@ -10,7 +11,8 @@ public sealed class EmailConfirmationService(
     UserManager<ApplicationUser> users,
     IEmailSender sender,
     IOptions<EmailOptions> options,
-    ILogger<EmailConfirmationService> logger) : IEmailConfirmationService
+    ILogger<EmailConfirmationService> logger,
+    IStringLocalizer<IdentityEmailText> text) : IEmailConfirmationService
 {
     public async Task ResendAsync(string email, CancellationToken cancellationToken = default)
     {
@@ -29,8 +31,8 @@ public sealed class EmailConfirmationService(
             + $"?userId={user.Id}&token={Uri.EscapeDataString(token)}";
         try
         {
-            await sender.SendAsync(user.Email!, "Confirm your Rebaz email",
-                $"Confirm your email to start using Rebaz:\n{url}\n\nThis link expires in 24 hours. If you did not request this, ignore this email.", cancellationToken);
+            await sender.SendAsync(user.Email!, text["ConfirmationSubject"],
+                text["ConfirmationBody", url], cancellationToken);
         }
         catch (Exception exception) when (exception is SmtpException or IOException or TimeoutException)
         {

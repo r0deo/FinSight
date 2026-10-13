@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="ConfirmationSubject" xml:space="preserve"><value>پشتڕاستکرنا ئیمەیلا تە ل رێبازێ</value></data>
+  <data name="ConfirmationBody" xml:space="preserve"><value>ئیمەیلا خۆ پشتڕاست بکە دا رێبازێ بکار بینی:
+{0}
+
+ماوەیا ڤی بەستەری پشتی ٢٤ دەمژمێران ب دوماهی دهێت. ئەگەر تە ئەڤە نەخواستی، ڤێ نامێ پشتگوێ بهاڤێژە.</value></data>
+  <data name="PasswordResetSubject" xml:space="preserve"><value>نووکرنا وشەیا نهێنیا FinSight</value></data>
+  <data name="PasswordResetBody" xml:space="preserve"><value>ناسناما بکاربەری: {0}
+کۆدا نووکرنێ: {1}</value></data>
+</root>

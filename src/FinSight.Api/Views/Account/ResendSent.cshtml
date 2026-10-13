@@ -1,6 +1,6 @@
-@{ ViewData["Title"] = "Check your email"; }
-<section class="panel message-panel"><h1>Check your inbox.</h1>
-    <p class="lead">If an account with that email needs confirmation, a new link has been requested. Check your spam folder too.</p>
-    <p>If delivery is temporarily unavailable, try again later. Your account is kept safely.</p>
-    <a class="button" href="/account/login">Back to login</a>
+@{ ViewData["Title"] = T["Check your email"].Value; }
+<section class="panel message-panel"><h1>@T["Check your inbox."]</h1>
+    <p class="lead">@T["If an account with that email needs confirmation, a new link has been requested. Check your spam folder too."]</p>
+    <p>@T["If delivery is temporarily unavailable, try again later. Your account is kept safely."]</p>
+    <a class="button" href="/account/login">@T["Back to login"]</a>
 </section>

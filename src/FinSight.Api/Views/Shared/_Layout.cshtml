@@ -1,5 +1,11 @@
+@using System.Globalization
+@{
+    var selectedCulture = CultureInfo.CurrentUICulture.Name;
+    var direction = WebsiteCultures.IsRightToLeft(CultureInfo.CurrentUICulture) ? "rtl" : "ltr";
+    var currentPage = Context.Request.Path.ToString() + Context.Request.QueryString.ToString();
+}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="@selectedCulture" dir="@direction">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,36 +15,48 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip-link" href="#main">@T["Skip to content"]</a>
     <header class="site-header">
         <div class="container header-inner">
-            <a class="brand" href="/" aria-label="Rebaz home"><img class="brand-logo" src="~/images/branding/rebaz-logo.png" asp-append-version="true" width="1178" height="339" alt="Rebaz" /></a>
-            <nav aria-label="Main navigation">
+            <a class="brand" href="/" aria-label="@T["Rebaz home"]"><img class="brand-logo" src="~/images/branding/rebaz-logo.png" asp-append-version="true" width="1178" height="339" alt="Rebaz" /></a>
+            <nav aria-label="@T["Main navigation"]">
                 @if (User.Identity?.IsAuthenticated == true)
                 {
-                    <a href="/home">Home</a>
-                    <a href="/products">Products</a>
-                    <a href="/simulations/preview">Simulations</a>
-                    <a href="/account/settings">Account</a>
+                    <a href="/home">@T["Home"]</a>
+                    <a href="/products">@T["Products"]</a>
+                    <a href="/simulations/preview">@T["Simulations"]</a>
+                    <a href="/account/settings">@T["Account"]</a>
                     <form asp-controller="Account" asp-action="Logout" method="post">
-                        <button class="button button-quiet" type="submit">Log out</button>
+                        <button class="button button-quiet" type="submit">@T["Log out"]</button>
                     </form>
                 }
                 else
                 {
-                    <a href="/account/login">Log in</a>
-                    <a class="button button-small" href="/account/register">Get started</a>
+                    <a href="/account/login">@T["Log in"]</a>
+                    <a class="button button-small" href="/account/register">@T["Get started"]</a>
                 }
+                <form class="language-switch" asp-controller="Culture" asp-action="Change" method="post"
+                      data-unsaved-warning="@T["Switching language will discard unsaved changes. Continue?"]">
+                    <input type="hidden" name="returnUrl" value="@currentPage" />
+                    <label class="sr-only" for="site-language">@T["Language"]</label>
+                    <select id="site-language" name="culture" aria-label="@T["Language"]">
+                        <option value="en" selected="@(selectedCulture == "en")">English</option>
+                        <option value="ar-IQ" selected="@(selectedCulture == "ar-IQ")">العربية</option>
+                        <option value="ku-Arab-IQ" selected="@(selectedCulture == "ku-Arab-IQ")">کوردی (بادینی)</option>
+                    </select>
+                    <button class="button button-quiet button-small" type="submit">@T["Apply language"]</button>
+                </form>
             </nav>
         </div>
     </header>
     <main id="main" class="container main-content">
         @if (TempData["Success"] is string message)
         {
-            <div class="notice notice-success" role="status">@message</div>
+            <div class="notice notice-success" role="status">@T[message]</div>
         }
         @RenderBody()
     </main>
-    <footer class="container site-footer"><a class="brand" href="/" aria-label="Rebaz home"><img class="brand-logo" src="~/images/branding/rebaz-logo.png" asp-append-version="true" width="1178" height="339" alt="Rebaz" /></a><span>A clearer view of your menu.</span></footer>
+    <footer class="container site-footer"><a class="brand" href="/" aria-label="@T["Rebaz home"]"><img class="brand-logo" src="~/images/branding/rebaz-logo.png" asp-append-version="true" width="1178" height="339" alt="Rebaz" /></a><span>@T["A clearer view of your menu."]</span></footer>
+    <script src="~/js/language-switcher.js" asp-append-version="true" defer></script>
 </body>
 </html>

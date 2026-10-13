@@ -1,18 +1,23 @@
 using System.ComponentModel.DataAnnotations;
+using FinSight.Api.Website.Localization;
+using Microsoft.AspNetCore.Mvc;
 using FinSight.Application.Features.Products.Queries.GetProducts;
 
 namespace FinSight.Api.Website.Models;
 
 public sealed class ProductFormViewModel
 {
-    [Required]
+    [Required(ErrorMessage = "{0} is required."), Display(Name = "Product name")]
     public string Name { get; set; } = string.Empty;
-    [Required]
+    [Required(ErrorMessage = "{0} is required."), Display(Name = "Category")]
     public string Category { get; set; } = string.Empty;
+    [Display(Name = "Size")]
     public string? Size { get; set; }
-    [Required, Display(Name = "Selling price")]
+    [Required(ErrorMessage = "{0} is required."), Display(Name = "Selling price"),
+        ModelBinder(BinderType = typeof(WebsiteNumberModelBinder))]
     public decimal? SellingPrice { get; set; }
-    [Required, Display(Name = "Unit cost")]
+    [Required(ErrorMessage = "{0} is required."), Display(Name = "Unit cost"),
+        ModelBinder(BinderType = typeof(WebsiteNumberModelBinder))]
     public decimal? UnitCost { get; set; }
 }
 

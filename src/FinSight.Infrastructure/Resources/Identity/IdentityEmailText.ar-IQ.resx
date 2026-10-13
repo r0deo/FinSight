@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="ConfirmationSubject" xml:space="preserve"><value>تأكيد بريدك الإلكتروني في ريباز</value></data>
+  <data name="ConfirmationBody" xml:space="preserve"><value>أكّد بريدك الإلكتروني لتبدأ باستخدام ريباز:
+{0}
+
+تنتهي صلاحية هذا الرابط بعد 24 ساعة. إذا لم تطلبه، تجاهل هذه الرسالة.</value></data>
+  <data name="PasswordResetSubject" xml:space="preserve"><value>إعادة تعيين كلمة مرور FinSight</value></data>
+  <data name="PasswordResetBody" xml:space="preserve"><value>معرّف المستخدم: {0}
+رمز إعادة التعيين: {1}</value></data>
+</root>

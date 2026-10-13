@@ -1,8 +1,8 @@
-@{ ViewData["Title"] = "Check your email"; }
+@{ ViewData["Title"] = T["Check your email"].Value; }
 <section class="panel message-panel">
-    <p class="eyebrow">BUSINESS CREATED</p><h1>One more step.</h1>
-    <p class="lead">Check your inbox for “Confirm your Rebaz email”. Open the confirmation link, then log in to add your first product.</p>
-    <p class="muted">If you don't see it, check your spam folder. Your account needs a confirmed email before you can sign in.</p>
-    <a class="button" href="/account/login?returnUrl=%2Fhome">Continue to login</a>
-    <p class="form-footer">Didn't receive an email? <a href="/account/resend-confirmation">Request a new link</a>. Your account is retained if email delivery is temporarily unavailable.</p>
+    <p class="eyebrow">@T["BUSINESS CREATED"]</p><h1>@T["One more step."]</h1>
+    <p class="lead">@T["Check your inbox for the Rebaz confirmation email. Open the link, then log in to add your first product."]</p>
+    <p class="muted">@T["If you don't see it, check your spam folder. Your account needs a confirmed email before you can sign in."]</p>
+    <a class="button" href="/account/login?returnUrl=%2Fhome">@T["Continue to login"]</a>
+    <p class="form-footer">@T["Didn't receive an email?"] <a href="/account/resend-confirmation">@T["Request a new link"]</a>. @T["Your account is retained if email delivery is temporarily unavailable."]</p>
 </section>

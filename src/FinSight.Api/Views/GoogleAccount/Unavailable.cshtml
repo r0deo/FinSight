@@ -1,6 +1,6 @@
-@{ ViewData["Title"] = "Google sign-in unavailable"; }
-<section class="panel message-panel"><h1>Google sign-in isn't available yet.</h1>
-    <p>Google sign-in is temporarily unavailable. Existing confirmed accounts can still log in with a password.</p>
+@{ ViewData["Title"] = T["Google sign-in unavailable"].Value; }
+<section class="panel message-panel"><h1>@T["Google sign-in isn't available yet."]</h1>
+    <p>@T["Google sign-in is temporarily unavailable. Existing confirmed accounts can still log in with a password."]</p>
     <partial name="_EmailAvailability" />
-    <a class="button" href="/account/login">Email login</a>
+    <a class="button" href="/account/login">@T["Email login"]</a>
 </section>

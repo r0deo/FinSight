@@ -1,5 +1,5 @@
-@{ ViewData["Title"] = "Email confirmed"; }
-<section class="panel message-panel"><p class="eyebrow">READY TO BEGIN</p><h1>Email confirmed.</h1>
-    <p class="lead">Your account is ready. Sign in with your password or Google to add your first product.</p>
-    <a class="button" href="/account/login?returnUrl=%2Fhome">Continue to login</a>
+@{ ViewData["Title"] = T["Email confirmed"].Value; }
+<section class="panel message-panel"><p class="eyebrow">@T["READY TO BEGIN"]</p><h1>@T["Email confirmed."]</h1>
+    <p class="lead">@T["Your account is ready. Sign in with your password or Google to add your first product."]</p>
+    <a class="button" href="/account/login?returnUrl=%2Fhome">@T["Continue to login"]</a>
 </section>

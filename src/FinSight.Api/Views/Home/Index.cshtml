@@ -1,18 +1,18 @@
-@{ ViewData["Title"] = "Know your menu"; }
+@{ ViewData["Title"] = T["Know your menu"].Value; }
 <section class="hero">
     <div>
-        <p class="eyebrow">FOR RESTAURANTS & CAFÉS</p>
-        <h1>Know your menu.<br /><span class="accent">Know your numbers.</span></h1>
-        <p class="lead">Bring your products, selling prices, and unit costs into one simple workspace. Built for the people behind the counter.</p>
-        <div class="actions"><a class="button" href="/account/register">Set up your business <span aria-hidden="true">→</span></a><a href="/account/login">Already a member? Log in</a></div>
+        <p class="eyebrow">@T["FOR RESTAURANTS & CAFÉS"]</p>
+        <h1>@T["Know your menu."]<br /><span class="accent">@T["Know your numbers."]</span></h1>
+        <p class="lead">@T["Bring your products, selling prices, and unit costs into one simple workspace. Built for the people behind the counter."]</p>
+        <div class="actions"><a class="button" href="/account/register">@T["Set up your business"] <span class="directional-icon" aria-hidden="true">→</span></a><a href="/account/login">@T["Already a member? Log in"]</a></div>
     </div>
     <aside class="getting-started">
-        <p class="eyebrow">YOUR FIRST FEW MINUTES</p>
-        <h2>Less setup.<br />More clarity.</h2>
+        <p class="eyebrow">@T["YOUR FIRST FEW MINUTES"]</p>
+        <h2>@T["Less setup."]<br />@T["More clarity."]</h2>
         <ol class="steps">
-            <li><span>Create your business</span><p>One workspace for your restaurant or café.</p></li>
-            <li><span>Secure your account</span><p>Use Google, or confirm your email when email registration is available.</p></li>
-            <li><span>Add your first product</span><p>Record what you sell and what it costs.</p></li>
+            <li><span>@T["Create your business"]</span><p>@T["One workspace for your restaurant or café."]</p></li>
+            <li><span>@T["Secure your account"]</span><p>@T["Use Google, or confirm your email when email registration is available."]</p></li>
+            <li><span>@T["Add your first product"]</span><p>@T["Record what you sell and what it costs."]</p></li>
         </ol>
     </aside>
 </section>

@@ -7,6 +7,7 @@
 !src/**/*.cs
 !src/**/*.csproj
 !src/**/*.cshtml
+!src/**/*.resx
 !src/FinSight.Api/appsettings.json
 !src/FinSight.Api/appsettings.Production.json
 !src/FinSight.Api/wwwroot/**

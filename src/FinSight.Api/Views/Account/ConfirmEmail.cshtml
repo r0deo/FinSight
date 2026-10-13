@@ -1,9 +1,9 @@
-@{ ViewData["Title"] = "Confirm your email"; }
+@{ ViewData["Title"] = T["Confirm your email"].Value; }
 <section class="panel message-panel">
-    <p class="eyebrow">WELCOME TO REBAZ</p><h1>Confirm your email.</h1>
-    <p class="lead">Secure your account, then start building your product list.</p>
+    <p class="eyebrow">@T["WELCOME TO REBAZ"]</p><h1>@T["Confirm your email."]</h1>
+    <p class="lead">@T["Secure your account, then start building your product list."]</p>
     <form asp-action="ConfirmEmail" method="post">
         <div asp-validation-summary="All" class="validation-summary" role="alert"></div>
-        <button class="button" type="submit">Confirm email & continue</button>
+        <button class="button" type="submit">@T["Confirm email & continue"]</button>
     </form>
 </section>

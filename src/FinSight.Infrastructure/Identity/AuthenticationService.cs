@@ -11,6 +11,7 @@ using FinSight.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Localization;
 using Microsoft.IdentityModel.Tokens;
 
 namespace FinSight.Infrastructure.Identity;
@@ -23,7 +24,8 @@ public sealed class AuthenticationService(
     IOptions<JwtOptions> jwtOptions,
     IEmailConfirmationService confirmation,
     IOptions<EmailOptions> emailOptions,
-    TimeProvider timeProvider) : IAuthenticationService
+    TimeProvider timeProvider,
+    IStringLocalizer<IdentityEmailText> text) : IAuthenticationService
 {
     public async Task<RegistrationResult> RegisterOwnerAsync(
         Business business,
@@ -163,8 +165,8 @@ public sealed class AuthenticationService(
         var token = await userManager.GeneratePasswordResetTokenAsync(user);
         await emailSender.SendAsync(
             user.Email!,
-            "Reset your FinSight password",
-            $"User ID: {user.Id}\nReset token: {token}",
+            text["PasswordResetSubject"],
+            text["PasswordResetBody", user.Id, token],
             cancellationToken);
     }
 

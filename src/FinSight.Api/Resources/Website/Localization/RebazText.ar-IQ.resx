@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Skip to content" xml:space="preserve"><value>تخطي إلى المحتوى</value></data>
+  <data name="Rebaz home" xml:space="preserve"><value>الصفحة الرئيسية لريباز</value></data>
+  <data name="Main navigation" xml:space="preserve"><value>التنقل الرئيسي</value></data>
+  <data name="Home" xml:space="preserve"><value>الرئيسية</value></data>
+  <data name="Products" xml:space="preserve"><value>المنتجات</value></data>
+  <data name="Simulations" xml:space="preserve"><value>محاكاة الأسعار</value></data>
+  <data name="Account" xml:space="preserve"><value>الحساب</value></data>
+  <data name="Log out" xml:space="preserve"><value>تسجيل الخروج</value></data>
+  <data name="Log in" xml:space="preserve"><value>تسجيل الدخول</value></data>
+  <data name="Get started" xml:space="preserve"><value>ابدأ الآن</value></data>
+  <data name="Language" xml:space="preserve"><value>اللغة</value></data>
+  <data name="Apply language" xml:space="preserve"><value>تغيير اللغة</value></data>
+  <data name="Switching language will discard unsaved changes. Continue?" xml:space="preserve"><value>سيؤدي تغيير اللغة إلى فقدان التعديلات غير المحفوظة. هل تريد المتابعة؟</value></data>
+  <data name="A clearer view of your menu." xml:space="preserve"><value>صورة أوضح لقائمتك.</value></data>
+  <data name="Know your menu" xml:space="preserve"><value>تعرّف على قائمتك</value></data>
+  <data name="FOR RESTAURANTS &amp; CAFÉS" xml:space="preserve"><value>للمطاعم والمقاهي</value></data>
+  <data name="Know your menu." xml:space="preserve"><value>تعرّف على قائمتك.</value></data>
+  <data name="Know your numbers." xml:space="preserve"><value>وافهم أرقامك.</value></data>
+  <data name="Bring your products, selling prices, and unit costs into one simple workspace. Built for the people behind the counter." xml:space="preserve"><value>اجمع منتجاتك وأسعار بيعها وتكلفة الوحدة في مكان عمل بسيط واحد. صُمم لأصحاب المطاعم والمقاهي.</value></data>
+  <data name="Set up your business" xml:space="preserve"><value>أنشئ نشاطك التجاري</value></data>
+  <data name="Already a member? Log in" xml:space="preserve"><value>لديك حساب؟ سجّل الدخول</value></data>
+  <data name="YOUR FIRST FEW MINUTES" xml:space="preserve"><value>خطواتك الأولى</value></data>
+  <data name="Less setup." xml:space="preserve"><value>إعداد أقل.</value></data>
+  <data name="More clarity." xml:space="preserve"><value>وضوح أكثر.</value></data>
+  <data name="Create your business" xml:space="preserve"><value>أنشئ نشاطك التجاري</value></data>
+  <data name="One workspace for your restaurant or café." xml:space="preserve"><value>مساحة عمل واحدة لمطعمك أو مقهاك.</value></data>
+  <data name="Secure your account" xml:space="preserve"><value>أمّن حسابك</value></data>
+  <data name="Use Google, or confirm your email when email registration is available." xml:space="preserve"><value>استخدم Google أو أكّد بريدك الإلكتروني عندما يتوفر التسجيل بالبريد.</value></data>
+  <data name="Add your first product" xml:space="preserve"><value>أضف منتجك الأول</value></data>
+  <data name="Record what you sell and what it costs." xml:space="preserve"><value>سجّل ما تبيعه وتكلفة كل وحدة.</value></data>
+  <data name="YOUR BUSINESS WORKSPACE" xml:space="preserve"><value>مساحة عملك</value></data>
+  <data name="Welcome to" xml:space="preserve"><value>أهلاً بك في</value></data>
+  <data name="Start with one product. Enter its selling price and unit cost, then test how a price change could affect your contribution." xml:space="preserve"><value>ابدأ بمنتج واحد. أدخل سعر بيعه وتكلفة وحدته، ثم اختبر كيف يمكن لتغيير السعر أن يؤثر في هامش المساهمة.</value></data>
+  <data name="Keep your menu up to date and explore your next price change." xml:space="preserve"><value>حدّث قائمتك باستمرار واستكشف أثر تغيير السعر القادم.</value></data>
+  <data name="Manage products" xml:space="preserve"><value>إدارة المنتجات</value></data>
+  <data name="Run a pricing simulation" xml:space="preserve"><value>جرّب محاكاة الأسعار</value></data>
+  <data name="From cost to confidence" xml:space="preserve"><value>من معرفة التكلفة إلى قرار أوضح</value></data>
+  <data name="Know your costs" xml:space="preserve"><value>اعرف تكاليفك</value></data>
+  <data name="Record the unit cost and selling price of each product." xml:space="preserve"><value>سجّل تكلفة الوحدة وسعر بيع كل منتج.</value></data>
+  <data name="Explore a change" xml:space="preserve"><value>استكشف تغيير السعر</value></data>
+  <data name="Compare contribution at a proposed price and expected sales quantity." xml:space="preserve"><value>قارن هامش المساهمة عند السعر المقترح وكمية المبيعات المتوقعة.</value></data>
+  <data name="Decide with context" xml:space="preserve"><value>اتخذ قرارك عن معرفة</value></data>
+  <data name="A preview is an estimate, not a guarantee of future sales. It never changes your product or saves a simulation." xml:space="preserve"><value>المعاينة تقدير وليست ضماناً للمبيعات المستقبلية. لا تغيّر المنتج ولا تحفظ المحاكاة.</value></data>
+  <data name="Welcome back" xml:space="preserve"><value>أهلاً بعودتك</value></data>
+  <data name="YOUR BUSINESS, IN FOCUS" xml:space="preserve"><value>نشاطك في متناولك</value></data>
+  <data name="Welcome" xml:space="preserve"><value>أهلاً</value></data>
+  <data name="back." xml:space="preserve"><value>بعودتك.</value></data>
+  <data name="Pick up where you left off. Your menu is ready when you are." xml:space="preserve"><value>تابع من حيث توقفت. قائمتك بانتظارك.</value></data>
+  <data name="Log in to Rebaz" xml:space="preserve"><value>تسجيل الدخول إلى ريباز</value></data>
+  <data name="Use your confirmed business account." xml:space="preserve"><value>استخدم حساب نشاطك التجاري المؤكّد.</value></data>
+  <data name="Sign in to continue. Your previous session may have expired." xml:space="preserve"><value>سجّل الدخول للمتابعة. ربما انتهت جلستك السابقة.</value></data>
+  <data name="New to Rebaz?" xml:space="preserve"><value>جديد على ريباز؟</value></data>
+  <data name="Resend confirmation email" xml:space="preserve"><value>إعادة إرسال رسالة التأكيد</value></data>
+  <data name="Continue with Google" xml:space="preserve"><value>المتابعة باستخدام Google</value></data>
+  <data name="Email registration and confirmation delivery are temporarily unavailable. Use Google registration if available. Existing confirmed accounts can still sign in with their password." xml:space="preserve"><value>التسجيل بالبريد وإرسال رسالة التأكيد غير متاحين مؤقتاً. استخدم Google إن كان متاحاً. يمكن للحسابات المؤكّدة تسجيل الدخول بكلمة المرور.</value></data>
+  <data name="MAKE ROOM FOR CLARITY" xml:space="preserve"><value>ابدأ بصورة أوضح</value></data>
+  <data name="Your menu." xml:space="preserve"><value>قائمتك.</value></data>
+  <data name="Your workspace." xml:space="preserve"><value>مساحة عملك.</value></data>
+  <data name="Sign in with Google and tell us about your business. Email registration also requires email confirmation when available." xml:space="preserve"><value>سجّل باستخدام Google وأخبرنا عن نشاطك. التسجيل بالبريد يتطلب تأكيد البريد عندما يكون متاحاً.</value></data>
+  <data name="You&apos;ll be the Owner of this business. Existing Owners and Managers can use the login page." xml:space="preserve"><value>ستكون مالك هذا النشاط. يمكن للمالكين والمديرين الحاليين استخدام صفحة تسجيل الدخول.</value></data>
+  <data name="Business details" xml:space="preserve"><value>بيانات النشاط التجاري</value></data>
+  <data name="e.g. Olive &amp; Bean Café" xml:space="preserve"><value>مثلاً: مقهى الزيتون والبُن</value></data>
+  <data name="City or address" xml:space="preserve"><value>المدينة أو العنوان</value></data>
+  <data name="Three-letter currency code, such as IQD, USD, or EUR." xml:space="preserve"><value>رمز العملة من ثلاثة أحرف، مثل IQD أو USD أو EUR.</value></data>
+  <data name="Business phone number or email" xml:space="preserve"><value>رقم هاتف النشاط أو بريده الإلكتروني</value></data>
+  <data name="Your Owner account" xml:space="preserve"><value>حساب المالك</value></data>
+  <data name="At least 8 characters, including uppercase, lowercase, a number, and a symbol." xml:space="preserve"><value>ثمانية أحرف على الأقل، تشمل حرفاً كبيراً وصغيراً ورقماً ورمزاً.</value></data>
+  <data name="Create business" xml:space="preserve"><value>إنشاء النشاط التجاري</value></data>
+  <data name="Already registered?" xml:space="preserve"><value>لديك حساب بالفعل؟</value></data>
+  <data name="Check your email" xml:space="preserve"><value>تحقق من بريدك الإلكتروني</value></data>
+  <data name="BUSINESS CREATED" xml:space="preserve"><value>تم إنشاء النشاط التجاري</value></data>
+  <data name="One more step." xml:space="preserve"><value>بقيت خطوة واحدة.</value></data>
+  <data name="Check your inbox for the Rebaz confirmation email. Open the link, then log in to add your first product." xml:space="preserve"><value>تحقق من بريدك بحثاً عن رسالة تأكيد ريباز. افتح الرابط، ثم سجّل الدخول لإضافة منتجك الأول.</value></data>
+  <data name="If you don&apos;t see it, check your spam folder. Your account needs a confirmed email before you can sign in." xml:space="preserve"><value>إذا لم تجد الرسالة، فتفقد البريد غير المرغوب فيه. يجب تأكيد بريدك قبل تسجيل الدخول.</value></data>
+  <data name="Continue to login" xml:space="preserve"><value>المتابعة إلى تسجيل الدخول</value></data>
+  <data name="Didn&apos;t receive an email?" xml:space="preserve"><value>لم تصلك الرسالة؟</value></data>
+  <data name="Request a new link" xml:space="preserve"><value>اطلب رابطاً جديداً</value></data>
+  <data name="Your account is retained if email delivery is temporarily unavailable." xml:space="preserve"><value>سيبقى حسابك محفوظاً إذا تعذر إرسال البريد مؤقتاً.</value></data>
+  <data name="Email confirmed" xml:space="preserve"><value>تم تأكيد البريد الإلكتروني</value></data>
+  <data name="READY TO BEGIN" xml:space="preserve"><value>جاهز للبدء</value></data>
+  <data name="Email confirmed." xml:space="preserve"><value>تم تأكيد بريدك الإلكتروني.</value></data>
+  <data name="Your account is ready. Sign in with your password or Google to add your first product." xml:space="preserve"><value>حسابك جاهز. سجّل الدخول بكلمة المرور أو Google لإضافة منتجك الأول.</value></data>
+  <data name="Confirm your email" xml:space="preserve"><value>أكّد بريدك الإلكتروني</value></data>
+  <data name="WELCOME TO REBAZ" xml:space="preserve"><value>أهلاً بك في ريباز</value></data>
+  <data name="Confirm your email." xml:space="preserve"><value>أكّد بريدك الإلكتروني.</value></data>
+  <data name="Secure your account, then start building your product list." xml:space="preserve"><value>أمّن حسابك ثم ابدأ بإضافة منتجاتك.</value></data>
+  <data name="Confirm email &amp; continue" xml:space="preserve"><value>تأكيد البريد والمتابعة</value></data>
+  <data name="Confirmation link unavailable" xml:space="preserve"><value>رابط التأكيد غير متاح</value></data>
+  <data name="This link is invalid or expired." xml:space="preserve"><value>هذا الرابط غير صالح أو انتهت مدته.</value></data>
+  <data name="Request a new confirmation email. If you already confirmed your email, you can log in." xml:space="preserve"><value>اطلب رسالة تأكيد جديدة. إذا أكدت بريدك بالفعل، يمكنك تسجيل الدخول.</value></data>
+  <data name="Send a new link" xml:space="preserve"><value>إرسال رابط جديد</value></data>
+  <data name="Resend confirmation" xml:space="preserve"><value>إعادة إرسال التأكيد</value></data>
+  <data name="Need a new link?" xml:space="preserve"><value>تحتاج إلى رابط جديد؟</value></data>
+  <data name="Enter your account email. If it needs confirmation, we&apos;ll send a new link. You can try up to three times every 15 minutes." xml:space="preserve"><value>أدخل بريد حسابك. إذا كان يحتاج إلى تأكيد، سنرسل رابطاً جديداً. يمكنك المحاولة ثلاث مرات كل 15 دقيقة.</value></data>
+  <data name="Send confirmation email" xml:space="preserve"><value>إرسال رسالة التأكيد</value></data>
+  <data name="Back to login" xml:space="preserve"><value>العودة لتسجيل الدخول</value></data>
+  <data name="Check your inbox." xml:space="preserve"><value>تحقق من بريدك.</value></data>
+  <data name="If an account with that email needs confirmation, a new link has been requested. Check your spam folder too." xml:space="preserve"><value>إذا كان هناك حساب بهذا البريد يحتاج إلى تأكيد، فقد طُلب له رابط جديد. تحقق من البريد غير المرغوب فيه أيضاً.</value></data>
+  <data name="If delivery is temporarily unavailable, try again later. Your account is kept safely." xml:space="preserve"><value>إذا تعذر الإرسال مؤقتاً، حاول لاحقاً. سيبقى حسابك محفوظاً.</value></data>
+  <data name="Account settings" xml:space="preserve"><value>إعدادات الحساب</value></data>
+  <data name="YOUR ACCOUNT" xml:space="preserve"><value>حسابك</value></data>
+  <data name="Google connected" xml:space="preserve"><value>حساب Google مرتبط</value></data>
+  <data name="You can sign in with your connected Google account. Your business and role stay the same." xml:space="preserve"><value>يمكنك الدخول بحساب Google المرتبط. نشاطك وصلاحياتك لا تتغير.</value></data>
+  <data name="Connect Google" xml:space="preserve"><value>ربط Google</value></data>
+  <data name="Optionally use Google to sign in to this account. This does not create another business or change your role." xml:space="preserve"><value>يمكنك اختيار تسجيل الدخول بهذا الحساب عبر Google. لن يُنشأ نشاط آخر ولن تتغير صلاحياتك.</value></data>
+  <data name="Google is not connected. Connecting Google is currently unavailable." xml:space="preserve"><value>Google غير مرتبط. الربط غير متاح حالياً.</value></data>
+  <data name="Back to home" xml:space="preserve"><value>العودة للرئيسية</value></data>
+  <data name="FINISH YOUR BUSINESS SETUP" xml:space="preserve"><value>أكمل إعداد نشاطك</value></data>
+  <data name="Tell us about your business." xml:space="preserve"><value>أخبرنا عن نشاطك التجاري.</value></data>
+  <data name="Signing up as" xml:space="preserve"><value>التسجيل بالبريد</value></data>
+  <data name="Complete these details to create your Owner account." xml:space="preserve"><value>أكمل هذه البيانات لإنشاء حساب المالك.</value></data>
+  <data name="Three-letter code, such as IQD or USD." xml:space="preserve"><value>رمز من ثلاثة أحرف، مثل IQD أو USD.</value></data>
+  <data name="Google sign-in wasn&apos;t completed" xml:space="preserve"><value>لم يكتمل تسجيل الدخول عبر Google</value></data>
+  <data name="Sign-in wasn&apos;t completed." xml:space="preserve"><value>لم يكتمل تسجيل الدخول.</value></data>
+  <data name="The request may have been cancelled or expired, or this Google account may already be connected elsewhere. Start again from the login page." xml:space="preserve"><value>ربما أُلغي الطلب أو انتهت مدته، أو أن حساب Google هذا مرتبط بحساب آخر. أعد المحاولة من صفحة الدخول.</value></data>
+  <data name="Back to Account settings" xml:space="preserve"><value>العودة لإعدادات الحساب</value></data>
+  <data name="Try signing in again" xml:space="preserve"><value>حاول تسجيل الدخول مجدداً</value></data>
+  <data name="Sign in before linking" xml:space="preserve"><value>سجّل الدخول قبل الربط</value></data>
+  <data name="Sign in to your existing account." xml:space="preserve"><value>سجّل الدخول إلى حسابك الحالي.</value></data>
+  <data name="We never connect accounts just because their email addresses match. Sign in using your existing Rebaz login, then choose Connect Google in Account settings." xml:space="preserve"><value>لا نربط الحسابات لمجرد تطابق البريد الإلكتروني. ادخل إلى حسابك الحالي في ريباز، ثم اختر ربط Google من إعدادات الحساب.</value></data>
+  <data name="Sign in to your account" xml:space="preserve"><value>سجّل الدخول إلى حسابك</value></data>
+  <data name="Need to confirm your existing email?" xml:space="preserve"><value>تحتاج إلى تأكيد بريدك الحالي؟</value></data>
+  <data name="Manage your Google connection in" xml:space="preserve"><value>أدر ربط Google من</value></data>
+  <data name="Google sign-in unavailable" xml:space="preserve"><value>تسجيل الدخول عبر Google غير متاح</value></data>
+  <data name="Google sign-in isn&apos;t available yet." xml:space="preserve"><value>تسجيل الدخول عبر Google غير متاح حالياً.</value></data>
+  <data name="Google sign-in is temporarily unavailable. Existing confirmed accounts can still log in with a password." xml:space="preserve"><value>تسجيل الدخول عبر Google غير متاح مؤقتاً. يمكن للحسابات المؤكّدة الدخول بكلمة المرور.</value></data>
+  <data name="Email login" xml:space="preserve"><value>الدخول بالبريد الإلكتروني</value></data>
+  <data name="Edit product" xml:space="preserve"><value>تعديل المنتج</value></data>
+  <data name="Add product" xml:space="preserve"><value>إضافة منتج</value></data>
+  <data name="Back to products" xml:space="preserve"><value>العودة للمنتجات</value></data>
+  <data name="KEEP YOUR MENU UP TO DATE" xml:space="preserve"><value>حدّث قائمتك</value></data>
+  <data name="BUILD YOUR PRODUCT LIST" xml:space="preserve"><value>أنشئ قائمة منتجاتك</value></data>
+  <data name="Start with the details. Prices and costs use your business currency." xml:space="preserve"><value>ابدأ بالتفاصيل. الأسعار والتكاليف بعملة نشاطك التجاري.</value></data>
+  <data name="Product name" xml:space="preserve"><value>اسم المنتج</value></data>
+  <data name="e.g. Cappuccino" xml:space="preserve"><value>مثلاً: كابتشينو</value></data>
+  <data name="e.g. Coffee" xml:space="preserve"><value>مثلاً: قهوة</value></data>
+  <data name="Size" xml:space="preserve"><value>الحجم</value></data>
+  <data name="(optional)" xml:space="preserve"><value>(اختياري)</value></data>
+  <data name="e.g. Regular" xml:space="preserve"><value>مثلاً: عادي</value></data>
+  <data name="Selling price" xml:space="preserve"><value>سعر البيع</value></data>
+  <data name="Unit cost" xml:space="preserve"><value>تكلفة الوحدة</value></data>
+  <data name="Save changes" xml:space="preserve"><value>حفظ التعديلات</value></data>
+  <data name="Cancel" xml:space="preserve"><value>إلغاء</value></data>
+  <data name="A little detail goes a long way." xml:space="preserve"><value>التفاصيل الصغيرة تساعدك كثيراً.</value></data>
+  <data name="is what a customer pays for one unit." xml:space="preserve"><value>هو ما يدفعه الزبون مقابل وحدة واحدة.</value></data>
+  <data name="is what it costs your business to make or buy that unit." xml:space="preserve"><value>هي تكلفة صنع أو شراء تلك الوحدة لنشاطك.</value></data>
+  <data name="All fields except size are required. New products are active automatically." xml:space="preserve"><value>كل الحقول مطلوبة عدا الحجم. المنتجات الجديدة تكون نشطة تلقائياً.</value></data>
+  <data name="YOUR MENU, ORGANIZED" xml:space="preserve"><value>قائمتك منظمة</value></data>
+  <data name="Manage what you sell, its price, and its cost." xml:space="preserve"><value>أدر منتجاتك وأسعارها وتكاليفها.</value></data>
+  <data name="Your products" xml:space="preserve"><value>منتجاتك</value></data>
+  <data name="Include inactive products" xml:space="preserve"><value>إظهار المنتجات غير النشطة</value></data>
+  <data name="Per page" xml:space="preserve"><value>لكل صفحة</value></data>
+  <data name="Apply" xml:space="preserve"><value>تطبيق</value></data>
+  <data name="No products on this page" xml:space="preserve"><value>لا توجد منتجات في هذه الصفحة</value></data>
+  <data name="Try the first page of your product list." xml:space="preserve"><value>جرّب الصفحة الأولى من قائمة منتجاتك.</value></data>
+  <data name="Go to first page" xml:space="preserve"><value>اذهب إلى الصفحة الأولى</value></data>
+  <data name="Your menu starts here" xml:space="preserve"><value>قائمتك تبدأ من هنا</value></data>
+  <data name="No active products yet" xml:space="preserve"><value>لا توجد منتجات نشطة بعد</value></data>
+  <data name="Add your first product with its selling price and unit cost." xml:space="preserve"><value>أضف منتجك الأول مع سعر بيعه وتكلفة وحدته.</value></data>
+  <data name="You can also include inactive products using the filter above." xml:space="preserve"><value>يمكنك أيضاً إظهار المنتجات غير النشطة باستخدام الفلتر أعلاه.</value></data>
+  <data name="Product count" xml:space="preserve"><value>{0} منتج</value></data>
+  <data name="Amounts in your business currency" xml:space="preserve"><value>المبالغ بعملة نشاطك التجاري</value></data>
+  <data name="Products with selling price, unit cost, status and actions" xml:space="preserve"><value>منتجات مع سعر البيع وتكلفة الوحدة والحالة والإجراءات</value></data>
+  <data name="Product" xml:space="preserve"><value>المنتج</value></data>
+  <data name="Status" xml:space="preserve"><value>الحالة</value></data>
+  <data name="Actions" xml:space="preserve"><value>الإجراءات</value></data>
+  <data name="Active" xml:space="preserve"><value>نشط</value></data>
+  <data name="Inactive" xml:space="preserve"><value>غير نشط</value></data>
+  <data name="Edit product named" xml:space="preserve"><value>تعديل المنتج {0}</value></data>
+  <data name="Edit" xml:space="preserve"><value>تعديل</value></data>
+  <data name="Preview price change" xml:space="preserve"><value>معاينة تغيير السعر</value></data>
+  <data name="Deactivate this product? It will remain in history." xml:space="preserve"><value>هل تريد إيقاف هذا المنتج؟ سيبقى في السجل.</value></data>
+  <data name="Reactivate this product?" xml:space="preserve"><value>هل تريد إعادة تنشيط هذا المنتج؟</value></data>
+  <data name="Deactivate product named" xml:space="preserve"><value>إيقاف المنتج {0}</value></data>
+  <data name="Reactivate product named" xml:space="preserve"><value>إعادة تنشيط المنتج {0}</value></data>
+  <data name="Deactivate" xml:space="preserve"><value>إيقاف</value></data>
+  <data name="Reactivate" xml:space="preserve"><value>إعادة تنشيط</value></data>
+  <data name="Product pagination" xml:space="preserve"><value>صفحات المنتجات</value></data>
+  <data name="Previous" xml:space="preserve"><value>السابق</value></data>
+  <data name="Next" xml:space="preserve"><value>التالي</value></data>
+  <data name="Page {0} of {1}" xml:space="preserve"><value>الصفحة {0} من {1}</value></data>
+  <data name="Deactivating a product keeps its history. You can reactivate it at any time." xml:space="preserve"><value>إيقاف المنتج يحافظ على سجله. يمكنك إعادة تنشيطه في أي وقت.</value></data>
+  <data name="Preview a price change" xml:space="preserve"><value>معاينة تغيير السعر</value></data>
+  <data name="EXPLORE BEFORE YOU CHANGE" xml:space="preserve"><value>استكشف قبل التغيير</value></data>
+  <data name="Compare sales over the same period. This preview never saves a simulation or changes your product." xml:space="preserve"><value>قارن المبيعات للفترة نفسها. هذه المعاينة لا تحفظ المحاكاة ولا تغيّر المنتج.</value></data>
+  <data name="Proposed price" xml:space="preserve"><value>السعر المقترح</value></data>
+  <data name="Current sales quantity" xml:space="preserve"><value>كمية المبيعات الحالية</value></data>
+  <data name="Expected sales quantity" xml:space="preserve"><value>كمية المبيعات المتوقعة</value></data>
+  <data name="Calculate preview" xml:space="preserve"><value>احسب المعاينة</value></data>
+  <data name="Calculation result" xml:space="preserve"><value>نتيجة الحساب</value></data>
+  <data name="Preview result" xml:space="preserve"><value>نتيجة المعاينة</value></data>
+  <data name="Current contribution" xml:space="preserve"><value>هامش المساهمة الحالي</value></data>
+  <data name="Proposed contribution" xml:space="preserve"><value>هامش المساهمة المقترح</value></data>
+  <data name="Difference" xml:space="preserve"><value>الفرق</value></data>
+  <data name="Recommendation" xml:space="preserve"><value>التوصية</value></data>
+  <data name="Recommended" xml:space="preserve"><value>موصى به</value></data>
+  <data name="Not recommended" xml:space="preserve"><value>غير موصى به</value></data>
+  <data name="Warning: the proposed price is below unit cost." xml:space="preserve"><value>تحذير: السعر المقترح أقل من تكلفة الوحدة.</value></data>
+  <data name="Choose another product" xml:space="preserve"><value>اختر منتجاً آخر</value></data>
+  <data name="Go to products" xml:space="preserve"><value>الذهاب إلى المنتجات</value></data>
+  <data name="Access denied" xml:space="preserve"><value>ليس لديك صلاحية الوصول</value></data>
+  <data name="An Owner or Manager account is required to manage products." xml:space="preserve"><value>إدارة المنتجات تتطلب حساب مالك أو مدير.</value></data>
+  <data name="Let&apos;s get you back on track" xml:space="preserve"><value>لنساعدك على المتابعة</value></data>
+  <data name="Your form or request could not be accepted. Reload the page and try again." xml:space="preserve"><value>تعذر قبول النموذج أو الطلب. أعد تحميل الصفحة وحاول مجدداً.</value></data>
+  <data name="That page could not be found. Use the links below to continue." xml:space="preserve"><value>لم نعثر على الصفحة. استخدم الروابط أدناه للمتابعة.</value></data>
+  <data name="Too many attempts. Please wait a minute before trying again." xml:space="preserve"><value>محاولات كثيرة. انتظر دقيقة ثم حاول مجدداً.</value></data>
+  <data name="We couldn&apos;t complete this request. Return to your products or try again." xml:space="preserve"><value>تعذر إكمال الطلب. ارجع إلى منتجاتك أو حاول مجدداً.</value></data>
+  <data name="We couldn&apos;t find that product" xml:space="preserve"><value>لم نعثر على هذا المنتج</value></data>
+  <data name="It may be unavailable. Return to your products to continue." xml:space="preserve"><value>قد يكون غير متاح. ارجع إلى منتجاتك للمتابعة.</value></data>
+  <data name="Only owners and managers can manage products." xml:space="preserve"><value>يمكن للمالكين والمديرين فقط إدارة المنتجات.</value></data>
+  <data name="Check your request" xml:space="preserve"><value>راجع طلبك</value></data>
+  <data name="The supplied values are invalid. Page must be at least 1 and page size must be between 1 and 100." xml:space="preserve"><value>القيم المدخلة غير صالحة. يجب أن يكون رقم الصفحة 1 على الأقل وحجمها بين 1 و100.</value></data>
+  <data name="Something went wrong" xml:space="preserve"><value>حدث خطأ</value></data>
+  <data name="We couldn&apos;t complete your request. Please try again shortly." xml:space="preserve"><value>تعذر إكمال طلبك. حاول مجدداً بعد قليل.</value></data>
+  <data name="Product added. You&apos;re ready to manage its price and cost." xml:space="preserve"><value>تمت إضافة المنتج. يمكنك الآن إدارة سعره وتكلفته.</value></data>
+  <data name="Product updated." xml:space="preserve"><value>تم تحديث المنتج.</value></data>
+  <data name="Product deactivated. It remains in your history and can be reactivated." xml:space="preserve"><value>تم إيقاف المنتج. سيبقى في السجل ويمكن إعادة تنشيطه.</value></data>
+  <data name="Product reactivated." xml:space="preserve"><value>تمت إعادة تنشيط المنتج.</value></data>
+  <data name="Choose an active product and select Preview price change. No simulation is saved." xml:space="preserve"><value>اختر منتجاً نشطاً ثم معاينة تغيير السعر. لن تُحفظ أي محاكاة.</value></data>
+  <data name="Google sign-in linked to your existing account. Your business and role have not changed." xml:space="preserve"><value>تم ربط Google بحسابك الحالي. نشاطك وصلاحياتك لم يتغيرا.</value></data>
+  <data name="Email registration is temporarily unavailable. Please use Google registration." xml:space="preserve"><value>التسجيل بالبريد غير متاح مؤقتاً. استخدم التسجيل عبر Google.</value></data>
+  <data name="Unable to sign in." xml:space="preserve"><value>تعذر تسجيل الدخول.</value></data>
+  <data name="Unable to sign in. Check your email and password and confirm your email first." xml:space="preserve"><value>تعذر تسجيل الدخول. تحقق من البريد وكلمة المرور وأكّد بريدك أولاً.</value></data>
+  <data name="Unable to sign in. Check your email and password and confirm your email first. If you tried several times, wait a few minutes." xml:space="preserve"><value>تعذر تسجيل الدخول. تحقق من البريد وكلمة المرور وتأكّد من تأكيد بريدك. إذا حاولت مرات عدة، انتظر بضع دقائق.</value></data>
+  <data name="Your session is no longer valid. Please sign in again." xml:space="preserve"><value>انتهت صلاحية جلستك. سجّل الدخول مجدداً.</value></data>
+  <data name="{0} is required." xml:space="preserve"><value>حقل {0} مطلوب.</value></data>
+  <data name="Enter a valid email address." xml:space="preserve"><value>أدخل بريداً إلكترونياً صالحاً.</value></data>
+  <data name="Passwords do not match." xml:space="preserve"><value>كلمتا المرور غير متطابقتين.</value></data>
+  <data name="{0} cannot be negative." xml:space="preserve"><value>لا يمكن أن تكون قيمة {0} سالبة.</value></data>
+  <data name="Enter a valid number without grouping separators." xml:space="preserve"><value>أدخل رقماً صحيحاً دون فواصل الآلاف. استخدم . أو ٫ للفاصلة العشرية.</value></data>
+  <data name="Business name" xml:space="preserve"><value>اسم النشاط التجاري</value></data>
+  <data name="Location" xml:space="preserve"><value>الموقع</value></data>
+  <data name="Currency" xml:space="preserve"><value>العملة</value></data>
+  <data name="Business contact information" xml:space="preserve"><value>معلومات الاتصال بالنشاط</value></data>
+  <data name="Email" xml:space="preserve"><value>البريد الإلكتروني</value></data>
+  <data name="Password" xml:space="preserve"><value>كلمة المرور</value></data>
+  <data name="Confirm password" xml:space="preserve"><value>تأكيد كلمة المرور</value></data>
+  <data name="Category" xml:space="preserve"><value>الفئة</value></data>
+  <data name="Page" xml:space="preserve"><value>الصفحة</value></data>
+  <data name="PageSize" xml:space="preserve"><value>حجم الصفحة</value></data>
+  <data name="Name" xml:space="preserve"><value>الاسم</value></data>
+  <data name="{0} must not be empty." xml:space="preserve"><value>حقل {0} مطلوب.</value></data>
+  <data name="{0} must not be more than {1} characters." xml:space="preserve"><value>يجب ألا يتجاوز {0} ‏{1} حرفاً.</value></data>
+  <data name="{0} must be greater than or equal to {1}." xml:space="preserve"><value>يجب أن يكون {0} ‏{1} أو أكثر.</value></data>
+  <data name="{0} is not a valid email address." xml:space="preserve"><value>{0} ليس بريداً إلكترونياً صالحاً.</value></data>
+  <data name="{0} must be between {1} and {2}." xml:space="preserve"><value>يجب أن يكون {0} بين {1} و{2}.</value></data>
+  <data name="Please check the highlighted fields and try again." xml:space="preserve"><value>راجع الحقول المحددة ثم حاول مجدداً.</value></data>
+  <data name="{0} must be {1} characters in length." xml:space="preserve"><value>يجب أن يتكون {0} من {1} أحرف.</value></data>
+  <data name="{0} must be at least {1} characters." xml:space="preserve"><value>يجب أن يتكون {0} من {1} أحرف على الأقل.</value></data>
+  <data name="An account with this email already exists." xml:space="preserve"><value>يوجد حساب مسجل بهذا البريد الإلكتروني.</value></data>
+  <data name="The password is too short." xml:space="preserve"><value>كلمة المرور قصيرة جداً.</value></data>
+  <data name="The password needs a symbol." xml:space="preserve"><value>يجب أن تحتوي كلمة المرور على رمز.</value></data>
+  <data name="The password needs a number." xml:space="preserve"><value>يجب أن تحتوي كلمة المرور على رقم.</value></data>
+  <data name="The password needs a lowercase letter." xml:space="preserve"><value>يجب أن تحتوي كلمة المرور على حرف صغير.</value></data>
+  <data name="The password needs an uppercase letter." xml:space="preserve"><value>يجب أن تحتوي كلمة المرور على حرف كبير.</value></data>
+  <data name="Use the configured HTTPS website address to sign in with Google." xml:space="preserve"><value>استخدم عنوان الموقع الآمن HTTPS المخصص لتسجيل الدخول عبر Google.</value></data>
+</root>

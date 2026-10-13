@@ -35,7 +35,7 @@ public sealed class AccountController(
         if (User.Identity?.IsAuthenticated == true) return LocalRedirect(PostAuthenticationDestination.Home);
         if (!emailOptions.Value.Enabled)
         {
-            ModelState.AddModelError(string.Empty, "Email registration is temporarily unavailable. Please use Google registration.");
+            ModelState.AddModelError(string.Empty, Text("Email registration is temporarily unavailable. Please use Google registration."));
             return InvalidForm("Register", model);
         }
         if (!ModelState.IsValid) return InvalidForm("Register", model);
@@ -131,7 +131,7 @@ public sealed class AccountController(
         }
         catch (UnauthorizedAccessException exception)
         {
-            ModelState.AddModelError(string.Empty, exception.Message);
+            ModelState.AddModelError(string.Empty, Text(exception.Message));
         }
         return InvalidForm("Login", model);
     }

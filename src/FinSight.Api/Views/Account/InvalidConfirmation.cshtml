@@ -1,5 +1,5 @@
-@{ ViewData["Title"] = "Confirmation link unavailable"; }
-<section class="panel message-panel"><h1>This link is invalid or expired.</h1>
-    <p class="lead">Request a new confirmation email. If you already confirmed your email, you can log in.</p>
-    <div class="actions"><a class="button" href="/account/resend-confirmation">Send a new link</a><a href="/account/login">Log in</a></div>
+@{ ViewData["Title"] = T["Confirmation link unavailable"].Value; }
+<section class="panel message-panel"><h1>@T["This link is invalid or expired."]</h1>
+    <p class="lead">@T["Request a new confirmation email. If you already confirmed your email, you can log in."]</p>
+    <div class="actions"><a class="button" href="/account/resend-confirmation">@T["Send a new link"]</a><a href="/account/login">@T["Log in"]</a></div>
 </section>

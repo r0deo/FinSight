@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.RateLimiting;
 using FinSight.Api.Website;
 using FinSight.Infrastructure.Identity;
 using FinSight.Api.Hosting;
+using FinSight.Api.Website.Localization;
+using Microsoft.Extensions.Localization;
 
 var builder = WebApplication.CreateBuilder(args);
 var renderOrigin = RenderHosting.Configure(builder);
@@ -15,7 +17,11 @@ var authenticationPermitLimit = builder.Configuration.GetValue(
     "RateLimiting:AuthenticationPermitLimit",
     10);
 
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 builder.Services.AddControllersWithViews()
+    .AddViewLocalization()
+    .AddDataAnnotationsLocalization(options => options.DataAnnotationLocalizerProvider =
+        (_, factory) => factory.Create(typeof(RebazText)))
     .AddJsonOptions(options =>
         options.JsonSerializerOptions.Converters.Add(
             new JsonStringEnumConverter()));
@@ -70,6 +76,7 @@ if (app.Environment.IsDevelopment())
 app.UseExceptionHandler();
 if (renderOrigin is not null)
     app.Use((context, next) => RenderHosting.NormalizeHttps(context, next, renderOrigin));
+app.UseRequestLocalization(WebsiteCultures.Configure());
 // OAuth must be reached at the trusted origin so authorization and code-exchange redirect URIs agree.
 app.Use(async (context, next) =>
 {
@@ -79,7 +86,8 @@ app.Use(async (context, next) =>
         if (!context.Request.IsHttps || !string.Equals(context.Request.Host.Value, origin.Authority, StringComparison.OrdinalIgnoreCase))
         {
             context.Response.StatusCode = StatusCodes.Status400BadRequest;
-            await context.Response.WriteAsync("Use the configured HTTPS website address to sign in with Google.");
+            var text = context.RequestServices.GetRequiredService<IStringLocalizer<RebazText>>();
+            await context.Response.WriteAsync(text["Use the configured HTTPS website address to sign in with Google."]);
             return;
         }
     }

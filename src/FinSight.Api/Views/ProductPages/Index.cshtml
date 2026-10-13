@@ -1,16 +1,16 @@
 @model ProductListViewModel
-@{ ViewData["Title"] = "Products"; var products = Model.Products; }
+@{ ViewData["Title"] = T["Products"].Value; var products = Model.Products; }
 <div class="page-heading">
-    <div><p class="eyebrow">YOUR MENU, ORGANIZED</p><h1>Products</h1><p class="muted">Manage what you sell, its price, and its cost.</p></div>
-    <a class="button" href="/products/create"><span aria-hidden="true">+</span> Add product</a>
+    <div><p class="eyebrow">@T["YOUR MENU, ORGANIZED"]</p><h1>@T["Products"]</h1><p class="muted">@T["Manage what you sell, its price, and its cost."]</p></div>
+    <a class="button" href="/products/create"><span aria-hidden="true">+</span> @T["Add product"]</a>
 </div>
-<section class="panel product-panel" aria-label="Your products">
+<section class="panel product-panel" aria-label="@T["Your products"]">
     <form class="filters" asp-action="Index" method="get">
-        <label class="checkbox-label"><input type="checkbox" name="includeInactive" value="true" checked="@Model.IncludeInactive" /> Include inactive products</label>
-        <div class="filter-controls"><label for="pageSize">Per page</label><select name="pageSize" id="pageSize">
+        <label class="checkbox-label"><input type="checkbox" name="includeInactive" value="true" checked="@Model.IncludeInactive" /> @T["Include inactive products"]</label>
+        <div class="filter-controls"><label for="pageSize">@T["Per page"]</label><select name="pageSize" id="pageSize">
             @foreach (var size in new[] { 20, 50, 100 }.Append(products.PageSize).Distinct().Order())
             { <option value="@size" selected="@(size == products.PageSize)">@size</option> }
-        </select><button class="button button-secondary button-small" type="submit">Apply</button></div>
+        </select><button class="button button-secondary button-small" type="submit">@T["Apply"]</button></div>
     </form>
     @if (products.Items.Count == 0)
     {
@@ -18,36 +18,36 @@
             <div class="empty-symbol" aria-hidden="true">+</div>
             @if (products.Page > 1)
             {
-                <h2>No products on this page</h2><p>Try the first page of your product list.</p><a asp-action="Index" asp-route-includeInactive="@Model.IncludeInactive" asp-route-pageSize="@products.PageSize">Go to first page →</a>
+                <h2>@T["No products on this page"]</h2><p>@T["Try the first page of your product list."]</p><a asp-action="Index" asp-route-includeInactive="@Model.IncludeInactive" asp-route-pageSize="@products.PageSize">@T["Go to first page"] <span class="directional-icon" aria-hidden="true">→</span></a>
             }
             else
             {
-                <h2>@(Model.IncludeInactive ? "Your menu starts here" : "No active products yet")</h2>
-                <p>Add your first product with its selling price and unit cost.@(!Model.IncludeInactive ? " You can also include inactive products using the filter above." : "")</p>
-                <a class="button" href="/products/create">Add your first product</a>
+                <h2>@T[Model.IncludeInactive ? "Your menu starts here" : "No active products yet"]</h2>
+                <p>@T["Add your first product with its selling price and unit cost."] @if (!Model.IncludeInactive) { @T["You can also include inactive products using the filter above."] }</p>
+                <a class="button" href="/products/create">@T["Add your first product"]</a>
             }
         </div>
     }
     else
     {
-        <p class="table-note">@products.TotalCount product@(products.TotalCount == 1 ? "" : "s") · Amounts in your business currency</p>
+        <p class="table-note">@T["Product count", products.TotalCount] · @T["Amounts in your business currency"]</p>
         <table class="products-table">
-            <caption class="sr-only">Products with selling price, unit cost, status and actions</caption>
-            <thead><tr><th scope="col">Product</th><th scope="col">Selling price</th><th scope="col">Unit cost</th><th scope="col">Status</th><th scope="col">Actions</th></tr></thead>
+            <caption class="sr-only">@T["Products with selling price, unit cost, status and actions"]</caption>
+            <thead><tr><th scope="col">@T["Product"]</th><th scope="col">@T["Selling price"]</th><th scope="col">@T["Unit cost"]</th><th scope="col">@T["Status"]</th><th scope="col">@T["Actions"]</th></tr></thead>
             <tbody>
                 @foreach (var product in products.Items)
                 {
                     <tr>
-                        <td data-label="Product"><strong>@product.Name</strong><span class="product-meta">@product.Category @(!string.IsNullOrWhiteSpace(product.Size) ? "· " + product.Size : "")</span></td>
-                        <td data-label="Selling price" class="amount">@product.SellingPrice.ToString("N2")</td>
-                        <td data-label="Unit cost" class="amount">@product.UnitCost.ToString("N2")</td>
-                        <td data-label="Status"><span class="badge @(product.IsActive ? "badge-active" : "badge-inactive")">@(product.IsActive ? "Active" : "Inactive")</span></td>
-                        <td data-label="Actions"><div class="row-actions">
-                            <a asp-action="Edit" asp-route-id="@product.Id" aria-label="Edit @product.Name">Edit</a>
+                        <td data-label="@T["Product"]"><strong><bdi>@product.Name</bdi></strong><span class="product-meta"><bdi>@product.Category</bdi> @if (!string.IsNullOrWhiteSpace(product.Size)) { <text>· <bdi>@product.Size</bdi></text> }</span></td>
+                        <td data-label="@T["Selling price"]" class="amount"><bdi>@product.SellingPrice.ToString("N2")</bdi></td>
+                        <td data-label="@T["Unit cost"]" class="amount"><bdi>@product.UnitCost.ToString("N2")</bdi></td>
+                        <td data-label="@T["Status"]"><span class="badge @(product.IsActive ? "badge-active" : "badge-inactive")">@T[product.IsActive ? "Active" : "Inactive"]</span></td>
+                        <td data-label="@T["Actions"]"><div class="row-actions">
+                            <a asp-action="Edit" asp-route-id="@product.Id" aria-label="@T["Edit product named", product.Name]">@T["Edit"]</a>
                             @if (product.IsActive)
-                            { <a href="/simulations/preview?productId=@product.Id">Preview price change</a> }
-                            <form asp-action="@(product.IsActive ? "Deactivate" : "Reactivate")" asp-route-id="@product.Id" method="post">
-                                <button class="text-button" type="submit" aria-label="@(product.IsActive ? "Deactivate" : "Reactivate") @product.Name">@(product.IsActive ? "Deactivate" : "Reactivate")</button>
+                            { <a href="/simulations/preview?productId=@product.Id">@T["Preview price change"]</a> }
+                            <form asp-action="@(product.IsActive ? "Deactivate" : "Reactivate")" asp-route-id="@product.Id" method="post" data-confirm="@T[product.IsActive ? "Deactivate this product? It will remain in history." : "Reactivate this product?"]">
+                                <button class="text-button" type="submit" aria-label="@T[product.IsActive ? "Deactivate product named" : "Reactivate product named", product.Name]">@T[product.IsActive ? "Deactivate" : "Reactivate"]</button>
                             </form>
                         </div></td>
                     </tr>
@@ -57,13 +57,13 @@
     }
     @if (products.TotalPages > 1)
     {
-        <nav class="pagination" aria-label="Product pagination">
+        <nav class="pagination" aria-label="@T["Product pagination"]">
             @if (products.Page > 1)
-            { <a class="button button-secondary button-small" asp-action="Index" asp-route-page="@(products.Page - 1)" asp-route-pageSize="@products.PageSize" asp-route-includeInactive="@Model.IncludeInactive">← Previous</a> }
-            <span>Page @products.Page of @products.TotalPages</span>
+            { <a class="button button-secondary button-small" asp-action="Index" asp-route-page="@(products.Page - 1)" asp-route-pageSize="@products.PageSize" asp-route-includeInactive="@Model.IncludeInactive"><span class="directional-icon" aria-hidden="true">←</span> @T["Previous"]</a> }
+            <span>@T["Page {0} of {1}", products.Page, products.TotalPages]</span>
             @if (products.Page < products.TotalPages)
-            { <a class="button button-secondary button-small" asp-action="Index" asp-route-page="@(products.Page + 1)" asp-route-pageSize="@products.PageSize" asp-route-includeInactive="@Model.IncludeInactive">Next →</a> }
+            { <a class="button button-secondary button-small" asp-action="Index" asp-route-page="@(products.Page + 1)" asp-route-pageSize="@products.PageSize" asp-route-includeInactive="@Model.IncludeInactive">@T["Next"] <span class="directional-icon" aria-hidden="true">→</span></a> }
         </nav>
     }
 </section>
-<p class="footnote">Deactivating a product keeps its history. You can reactivate it at any time.</p>
+<p class="footnote">@T["Deactivating a product keeps its history. You can reactivate it at any time."]</p>
