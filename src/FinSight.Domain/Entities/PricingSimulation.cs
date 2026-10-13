@@ -24,17 +24,27 @@ public sealed class PricingSimulation
 
     public int CurrentSalesQuantity { get; private set; }
 
-    public int ExpectedSalesQuantity { get; private set; }
+    public int? ExpectedSalesQuantity { get; private set; }
+
+    public SalesPeriod? ComparisonPeriod { get; private set; }
+
+    public int? DeclinePercentage { get; private set; }
+
+    public string? CurrencySnapshot { get; private set; }
+
+    public string? ProductNameSnapshot { get; private set; }
+
+    public int CalculationVersion { get; private set; }
 
     public decimal CurrentContribution { get; private set; }
 
-    public decimal ProposedContribution { get; private set; }
+    public decimal? ProposedContribution { get; private set; }
 
-    public decimal Difference { get; private set; }
+    public decimal? Difference { get; private set; }
 
     public bool IsProposedPriceBelowCost { get; private set; }
 
-    public Recommendation Recommendation { get; private set; }
+    public Recommendation? Recommendation { get; private set; }
 
     public DateTime CreatedAtUtc { get; private set; }
 
@@ -87,6 +97,65 @@ public sealed class PricingSimulation
             expectedSalesQuantity,
             createdAtUtc,
             calculator);
+    }
+
+    public PricingSimulation(
+        Guid id,
+        Guid businessId,
+        Guid productId,
+        Guid createdByUserId,
+        decimal currentPrice,
+        decimal unitCost,
+        decimal proposedPrice,
+        int currentSalesQuantity,
+        int? expectedSalesQuantity,
+        SalesPeriod comparisonPeriod,
+        int declinePercentage,
+        string currencySnapshot,
+        string productNameSnapshot,
+        DateTime createdAtUtc,
+        PricingDecisionCalculator decisionCalculator)
+    {
+        ThrowIfEmpty(id, nameof(id));
+        ThrowIfEmpty(businessId, nameof(businessId));
+        ThrowIfEmpty(productId, nameof(productId));
+        ThrowIfEmpty(createdByUserId, nameof(createdByUserId));
+        EnsureUtc(createdAtUtc, nameof(createdAtUtc));
+        ArgumentNullException.ThrowIfNull(decisionCalculator);
+        if (!Enum.IsDefined(comparisonPeriod))
+            throw new ArgumentOutOfRangeException(nameof(comparisonPeriod));
+        if (string.IsNullOrWhiteSpace(currencySnapshot) || currencySnapshot.Trim().Length != Business.CurrencyLength)
+            throw new ArgumentException("A three-letter currency is required.", nameof(currencySnapshot));
+        if (string.IsNullOrWhiteSpace(productNameSnapshot))
+            throw new ArgumentException("A product name is required.", nameof(productNameSnapshot));
+
+        var decision = decisionCalculator.Calculate(currentPrice, proposedPrice, unitCost,
+            currentSalesQuantity, expectedSalesQuantity, declinePercentage);
+        Id = id;
+        BusinessId = businessId;
+        ProductId = productId;
+        CreatedByUserId = createdByUserId;
+        CurrentPrice = currentPrice;
+        UnitCost = unitCost;
+        ProposedPrice = proposedPrice;
+        CurrentSalesQuantity = currentSalesQuantity;
+        ExpectedSalesQuantity = expectedSalesQuantity;
+        ComparisonPeriod = comparisonPeriod;
+        DeclinePercentage = declinePercentage;
+        CurrencySnapshot = currencySnapshot.Trim().ToUpperInvariant();
+        ProductNameSnapshot = productNameSnapshot.Trim();
+        CalculationVersion = 1;
+        CurrentContribution = decision.CurrentContribution;
+        ProposedContribution = decision.ExpectedScenario?.Contribution;
+        Difference = decision.ExpectedScenario?.Difference;
+        IsProposedPriceBelowCost = decision.IsProposedPriceBelowCost;
+        Recommendation = decision.ExpectedScenario is { } expected
+            ? expected.Difference > 0 ? FinSight.Domain.Enums.Recommendation.Recommended
+                : FinSight.Domain.Enums.Recommendation.NotRecommended
+            : null;
+        CreatedAtUtc = createdAtUtc;
+        UpdatedAtUtc = createdAtUtc;
+        Version = 1;
     }
 
     public void Update(

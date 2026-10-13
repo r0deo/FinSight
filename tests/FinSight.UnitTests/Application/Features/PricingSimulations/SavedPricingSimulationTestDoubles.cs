@@ -38,6 +38,16 @@ internal sealed class StubPricingSimulationRepository : IPricingSimulationReposi
         return Task.FromResult(ReadSimulation);
     }
 
+    public Task<PricingSimulation?> GetLegacyByIdAsync(
+        Guid simulationId,
+        Guid businessId,
+        CancellationToken cancellationToken = default)
+    {
+        RequestedSimulationId = simulationId;
+        RequestedBusinessId = businessId;
+        return Task.FromResult(ReadSimulation);
+    }
+
     public Task<PricingSimulation?> GetByIdForUpdateAsync(
         Guid simulationId,
         Guid businessId,
@@ -59,6 +69,14 @@ internal sealed class StubPricingSimulationRepository : IPricingSimulationReposi
         return Task.FromResult(PagedResult);
     }
 
+    public Task<PagedResult<PricingSimulation>> GetLegacyPagedAsync(
+        Guid businessId, int page, int pageSize, bool includeArchived,
+        CancellationToken cancellationToken = default)
+    {
+        RequestedBusinessId = businessId;
+        return Task.FromResult(PagedResult);
+    }
+
     public Task SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         SaveChangesCount++;
@@ -69,4 +87,14 @@ internal sealed class StubPricingSimulationRepository : IPricingSimulationReposi
 internal sealed class FixedTimeProvider(DateTimeOffset utcNow) : TimeProvider
 {
     public override DateTimeOffset GetUtcNow() => utcNow;
+}
+
+internal sealed class StubBusinessCurrencyReader : IBusinessCurrencyReader
+{
+    public Guid? RequestedBusinessId { get; private set; }
+    public Task<string?> GetCurrencyAsync(Guid businessId, CancellationToken cancellationToken)
+    {
+        RequestedBusinessId = businessId;
+        return Task.FromResult<string?>("IQD");
+    }
 }

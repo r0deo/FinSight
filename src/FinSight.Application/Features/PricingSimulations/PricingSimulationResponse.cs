@@ -11,17 +11,22 @@ public sealed record PricingSimulationResponse(
     decimal UnitCost,
     decimal ProposedPrice,
     int CurrentSalesQuantity,
-    int ExpectedSalesQuantity,
+    int? ExpectedSalesQuantity,
     decimal CurrentContribution,
-    decimal ProposedContribution,
-    decimal Difference,
+    decimal? ProposedContribution,
+    decimal? Difference,
     bool IsProposedPriceBelowCost,
-    Recommendation Recommendation,
+    Recommendation? Recommendation,
     DateTime CreatedAtUtc,
     DateTime UpdatedAtUtc,
     bool IsArchived,
     DateTime? ArchivedAtUtc,
-    long Version)
+    long Version,
+    SalesPeriod? ComparisonPeriod,
+    int? DeclinePercentage,
+    string? CurrencySnapshot,
+    string? ProductNameSnapshot,
+    int CalculationVersion)
 {
     public static PricingSimulationResponse FromSimulation(PricingSimulation simulation) => new(
         simulation.Id,
@@ -41,5 +46,10 @@ public sealed record PricingSimulationResponse(
         simulation.UpdatedAtUtc,
         simulation.IsArchived,
         simulation.ArchivedAtUtc,
-        simulation.Version);
+        simulation.Version,
+        simulation.ComparisonPeriod,
+        simulation.DeclinePercentage,
+        simulation.CurrencySnapshot,
+        simulation.ProductNameSnapshot,
+        simulation.CalculationVersion);
 }

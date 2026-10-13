@@ -5,5 +5,6 @@ namespace FinSight.Application.Features.PricingSimulations.Queries.GetSimulation
 public sealed record GetSimulationsQuery(
     int Page = 1,
     int PageSize = 20,
-    bool IncludeArchived = false)
+    bool IncludeArchived = false,
+    bool IncludeUnknownExpected = false)
     : IRequest<GetSimulationsResponse>;

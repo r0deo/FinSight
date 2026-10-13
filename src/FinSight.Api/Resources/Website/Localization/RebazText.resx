@@ -255,4 +255,86 @@
   <data name="The password needs a lowercase letter." xml:space="preserve"><value>The password needs a lowercase letter.</value></data>
   <data name="The password needs an uppercase letter." xml:space="preserve"><value>The password needs an uppercase letter.</value></data>
   <data name="Use the configured HTTPS website address to sign in with Google." xml:space="preserve"><value>Use the configured HTTPS website address to sign in with Google.</value></data>
+  <data name="Comparison period" xml:space="preserve"><value>Comparison period</value></data>
+  <data name="Illustrative sales decline (%)" xml:space="preserve"><value>Illustrative sales decline (%)</value></data>
+  <data name="day" xml:space="preserve"><value>day</value></data>
+  <data name="week" xml:space="preserve"><value>week</value></data>
+  <data name="month" xml:space="preserve"><value>month</value></data>
+  <data name="Current selling price" xml:space="preserve"><value>Current selling price</value></data>
+  <data name="Business currency" xml:space="preserve"><value>Business currency</value></data>
+  <data name="Example: 33 sales in one selected period." xml:space="preserve"><value>Example: 33 sales in one selected period.</value></data>
+  <data name="10% is illustrative, not a prediction." xml:space="preserve"><value>10% is illustrative, not a prediction.</value></data>
+  <data name="I don't know expected sales" xml:space="preserve"><value>I don't know expected sales</value></data>
+  <data name="Optional when you do not know. If entered, this is your assumption, not a forecast." xml:space="preserve"><value>Optional when you do not know. If entered, this is your assumption, not a forecast.</value></data>
+  <data name="All quantities refer to the selected period. Unit cost is assumed unchanged." xml:space="preserve"><value>All quantities refer to the selected period. Unit cost is assumed unchanged.</value></data>
+  <data name="All quantities refer to the selected period. Unit cost is assumed unchanged. Expected sales are your assumption, not a prediction." xml:space="preserve"><value>All quantities refer to the selected period. Unit cost is assumed unchanged. Expected sales are your assumption, not a prediction.</value></data>
+  <data name="Enter expected sales or choose I don't know expected sales." xml:space="preserve"><value>Enter expected sales or choose I don't know expected sales.</value></data>
+  <data name="Choose a valid comparison period." xml:space="preserve"><value>Choose a valid comparison period.</value></data>
+  <data name="Enter an illustrative decline from 0 to 100%." xml:space="preserve"><value>Enter an illustrative decline from 0 to 100%.</value></data>
+  <data name="Minimum sales to maintain your current contribution" xml:space="preserve"><value>Minimum sales to maintain your current contribution</value></data>
+  <data name="sales per {0}" xml:space="preserve"><value>sales per {0}</value></data>
+  <data name="At this price, you need at least {0} sales per {1} to maintain your current contribution." xml:space="preserve"><value>At this price, you need at least {0} sales per {1} to maintain your current contribution.</value></data>
+  <data name="You could sell {0} fewer units than today and maintain contribution." xml:space="preserve"><value>You could sell {0} fewer units than today and maintain contribution.</value></data>
+  <data name="You would need {0} additional units compared with today." xml:space="preserve"><value>You would need {0} additional units compared with today.</value></data>
+  <data name="You still need the same sales quantity as today." xml:space="preserve"><value>You still need the same sales quantity as today.</value></data>
+  <data name="Not possible at this price" xml:space="preserve"><value>Not possible at this price</value></data>
+  <data name="The proposed price has no positive contribution per unit, so it cannot maintain today's positive contribution." xml:space="preserve"><value>The proposed price has no positive contribution per unit, so it cannot maintain today's positive contribution.</value></data>
+  <data name="Beyond the supported quantity" xml:space="preserve"><value>Beyond the supported quantity</value></data>
+  <data name="Maintaining today's contribution would require more units than this calculator supports." xml:space="preserve"><value>Maintaining today's contribution would require more units than this calculator supports.</value></data>
+  <data name="No positive contribution to preserve" xml:space="preserve"><value>No positive contribution to preserve</value></data>
+  <data name="The current situation has zero or negative contribution. A standard maintenance threshold would be misleading; check costs and the scenarios below." xml:space="preserve"><value>The current situation has zero or negative contribution. A standard maintenance threshold would be misleading; check costs and the scenarios below.</value></data>
+  <data name="Every unit sold at this price contributes negatively before other expenses." xml:space="preserve"><value>Every unit sold at this price contributes negatively before other expenses.</value></data>
+  <data name="At the {0} sales you entered, contribution is higher by {1} {2} per {3}." xml:space="preserve"><value>At the {0} sales you entered, contribution is higher by {1} {2} per {3}.</value></data>
+  <data name="At the {0} sales you entered, contribution is lower by {1} {2} per {3}." xml:space="preserve"><value>At the {0} sales you entered, contribution is lower by {1} {2} per {3}.</value></data>
+  <data name="At the {0} sales you entered, contribution is unchanged." xml:space="preserve"><value>At the {0} sales you entered, contribution is unchanged.</value></data>
+  <data name="The price is unchanged; any difference comes from the sales quantity you assumed." xml:space="preserve"><value>The price is unchanged; any difference comes from the sales quantity you assumed.</value></data>
+  <data name="No expected sales were entered, so there is no personal forecast or overall recommendation." xml:space="preserve"><value>No expected sales were entered, so there is no personal forecast or overall recommendation.</value></data>
+  <data name="Scenario comparison" xml:space="preserve"><value>Scenario comparison</value></data>
+  <data name="The decline scenario is an illustration, not a demand prediction." xml:space="preserve"><value>The decline scenario is an illustration, not a demand prediction.</value></data>
+  <data name="Scenario" xml:space="preserve"><value>Scenario</value></data>
+  <data name="Sales" xml:space="preserve"><value>Sales</value></data>
+  <data name="Revenue" xml:space="preserve"><value>Revenue</value></data>
+  <data name="Entered unit costs" xml:space="preserve"><value>Entered unit costs</value></data>
+  <data name="Contribution" xml:space="preserve"><value>Contribution</value></data>
+  <data name="Compared with today" xml:space="preserve"><value>Compared with today</value></data>
+  <data name="Same sales quantity as today" xml:space="preserve"><value>Same sales quantity as today</value></data>
+  <data name="Sales decline ({0}% illustrative)" xml:space="preserve"><value>Sales decline ({0}% illustrative)</value></data>
+  <data name="Your expected sales" xml:space="preserve"><value>Your expected sales</value></data>
+  <data name="Higher contribution" xml:space="preserve"><value>Higher contribution</value></data>
+  <data name="Lower contribution" xml:space="preserve"><value>Lower contribution</value></data>
+  <data name="Unchanged contribution" xml:space="preserve"><value>Unchanged contribution</value></data>
+  <data name="Contribution means sales minus the unit costs entered here, before other business expenses." xml:space="preserve"><value>Contribution means sales minus the unit costs entered here, before other business expenses.</value></data>
+  <data name="This is not a business break-even point because fixed costs are not included." xml:space="preserve"><value>This is not a business break-even point because fixed costs are not included.</value></data>
+  <data name="Save this simulation" xml:space="preserve"><value>Save this simulation</value></data>
+  <data name="Saving is explicit. Preview alone never creates a history record." xml:space="preserve"><value>Saving is explicit. Preview alone never creates a history record.</value></data>
+  <data name="Pricing simulation saved." xml:space="preserve"><value>Pricing simulation saved.</value></data>
+  <data name="Saved simulation history" xml:space="preserve"><value>Saved simulation history</value></data>
+  <data name="YOUR DECISIONS" xml:space="preserve"><value>YOUR DECISIONS</value></data>
+  <data name="Preview another product" xml:space="preserve"><value>Preview another product</value></data>
+  <data name="Include archived" xml:space="preserve"><value>Include archived</value></data>
+  <data name="Apply filter" xml:space="preserve"><value>Apply filter</value></data>
+  <data name="No saved simulations yet" xml:space="preserve"><value>No saved simulations yet</value></data>
+  <data name="Preview a price change, then save it explicitly to keep a snapshot here." xml:space="preserve"><value>Preview a price change, then save it explicitly to keep a snapshot here.</value></data>
+  <data name="Choose a product" xml:space="preserve"><value>Choose a product</value></data>
+  <data name="Historical product" xml:space="preserve"><value>Historical product</value></data>
+  <data name="Period not specified" xml:space="preserve"><value>Period not specified</value></data>
+  <data name="Archived" xml:space="preserve"><value>Archived</value></data>
+  <data name="Pagination" xml:space="preserve"><value>Pagination</value></data>
+  <data name="SAVED SNAPSHOT" xml:space="preserve"><value>SAVED SNAPSHOT</value></data>
+  <data name="Saved simulation" xml:space="preserve"><value>Saved simulation</value></data>
+  <data name="Saved on {0}" xml:space="preserve"><value>Saved on {0}</value></data>
+  <data name="This result uses the prices and unit cost saved with the simulation, not today's product values." xml:space="preserve"><value>This result uses the prices and unit cost saved with the simulation, not today's product values.</value></data>
+  <data name="Back to history" xml:space="preserve"><value>Back to history</value></data>
+  <data name="Saved result" xml:space="preserve"><value>Saved result</value></data>
+  <data name="sales (period not specified)" xml:space="preserve"><value>sales (period not specified)</value></data>
+  <data name="At this price, you need at least {0} sales to maintain your current contribution. The period was not saved." xml:space="preserve"><value>At this price, you need at least {0} sales to maintain your current contribution. The period was not saved.</value></data>
+  <data name="At the {0} sales you entered, contribution is higher by {1} {2}. The period was not saved." xml:space="preserve"><value>At the {0} sales you entered, contribution is higher by {1} {2}. The period was not saved.</value></data>
+  <data name="At the {0} sales you entered, contribution is lower by {1} {2}. The period was not saved." xml:space="preserve"><value>At the {0} sales you entered, contribution is lower by {1} {2}. The period was not saved.</value></data>
+  <data name="This older record did not save a comparison period. Its prices, unit cost, and quantities are historical snapshots." xml:space="preserve"><value>This older record did not save a comparison period. Its prices, unit cost, and quantities are historical snapshots.</value></data>
+  <data name="All scenario amounts are per {0}." xml:space="preserve"><value>All scenario amounts are per {0}.</value></data>
+  <data name="We couldn't find that record" xml:space="preserve"><value>We couldn't find that record</value></data>
+  <data name="It may be unavailable or belong to another business." xml:space="preserve"><value>It may be unavailable or belong to another business.</value></data>
+  <data name="This simulation changed" xml:space="preserve"><value>This simulation changed</value></data>
+  <data name="Recalculate the preview, then save it again." xml:space="preserve"><value>Recalculate the preview, then save it again.</value></data>
+  <data name="Please check the supplied values and try again." xml:space="preserve"><value>Please check the supplied values and try again.</value></data>
 </root>

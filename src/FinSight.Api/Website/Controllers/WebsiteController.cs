@@ -56,6 +56,8 @@ public abstract class WebsiteController : Controller
             "SellingPrice" => "Selling price", "UnitCost" => "Unit cost",
             "ProposedPrice" => "Proposed price", "CurrentSalesQuantity" => "Current sales quantity",
             "ExpectedSalesQuantity" => "Expected sales quantity", "Name" => "Product name",
+            "DeclinePercentage" => "Illustrative sales decline (%)",
+            "ComparisonPeriod" => "Comparison period",
             _ => error.PropertyName
         });
         var values = error.FormattedMessagePlaceholderValues;

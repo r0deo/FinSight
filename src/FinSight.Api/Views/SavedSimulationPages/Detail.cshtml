@@ -1,0 +1,16 @@
+@model SavedSimulationDetailViewModel
+@{ ViewData["Title"] = T["Saved simulation"].Value; }
+<section class="panel simulation-panel">
+    <p class="eyebrow">@T["SAVED SNAPSHOT"]</p>
+    <h1>@T["Saved simulation"]</h1>
+    <h2><bdi>@Model.ProductName</bdi></h2>
+    @if (Model.Simulation.IsArchived) { <p class="status-label">@T["Archived"]</p> }
+    <p>@T["Saved on {0}", Model.Simulation.CreatedAtUtc.ToString("d")] UTC. @T["This result uses the prices and unit cost saved with the simulation, not today's product values."]</p>
+    <dl class="simulation-product-facts">
+        <div><dt>@T["Current selling price"]</dt><dd><bdi dir="ltr">@Model.Simulation.CurrentPrice.ToString("N2") @Model.Currency</bdi></dd></div>
+        <div><dt>@T["Unit cost"]</dt><dd><bdi dir="ltr">@Model.Simulation.UnitCost.ToString("N2") @Model.Currency</bdi></dd></div>
+        <div><dt>@T["Proposed price"]</dt><dd><bdi dir="ltr">@Model.Simulation.ProposedPrice.ToString("N2") @Model.Currency</bdi></dd></div>
+    </dl>
+    <partial name="_DecisionResult" model="@(new DecisionDisplayViewModel(Model.Decision, Model.Simulation.ComparisonPeriod, Model.Simulation.CurrentPrice, Model.Simulation.ProposedPrice, Model.Simulation.CurrentSalesQuantity, Model.Simulation.ExpectedSalesQuantity, Model.Simulation.DeclinePercentage, Model.Currency, true))" />
+    <p><a href="/simulations">@T["Back to history"]</a></p>
+</section>

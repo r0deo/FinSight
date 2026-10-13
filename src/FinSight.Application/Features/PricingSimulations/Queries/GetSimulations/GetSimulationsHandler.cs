@@ -12,12 +12,11 @@ public sealed class GetSimulationsHandler(
         GetSimulationsQuery request,
         CancellationToken cancellationToken)
     {
-        var result = await simulationRepository.GetPagedAsync(
-            currentUserContext.BusinessId,
-            request.Page,
-            request.PageSize,
-            request.IncludeArchived,
-            cancellationToken);
+        var result = request.IncludeUnknownExpected
+            ? await simulationRepository.GetPagedAsync(currentUserContext.BusinessId,
+                request.Page, request.PageSize, request.IncludeArchived, cancellationToken)
+            : await simulationRepository.GetLegacyPagedAsync(currentUserContext.BusinessId,
+                request.Page, request.PageSize, request.IncludeArchived, cancellationToken);
         var items = result.Items
             .Select(PricingSimulationResponse.FromSimulation)
             .ToArray();

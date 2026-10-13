@@ -1,16 +1,88 @@
 using FinSight.Application.Common.Exceptions;
 using FinSight.Application.Features.PricingSimulations.Commands.ArchiveSimulation;
 using FinSight.Application.Features.PricingSimulations.Commands.CreateSimulation;
+using FinSight.Application.Features.PricingSimulations.Commands.CreateDecisionSimulation;
 using FinSight.Application.Features.PricingSimulations.Commands.UpdateSimulation;
 using FinSight.Application.Features.PricingSimulations.Queries.GetSimulationById;
+using FinSight.Application.Features.PricingSimulations.Queries.GetSavedDecision;
 using FinSight.Domain.Entities;
 using FinSight.Domain.Services;
+using FinSight.Domain.Enums;
+using FinSight.Domain.Exceptions;
 using FinSight.UnitTests.Application.Features.Products;
 
 namespace FinSight.UnitTests.Application.Features.PricingSimulations;
 
 public class SavedPricingSimulationHandlerTests
 {
+    [Fact]
+    public async Task CreateDecision_SavesUnknownExpectedAndPeriodForAuthenticatedBusiness()
+    {
+        var businessId = Guid.NewGuid();
+        var userId = Guid.NewGuid();
+        var product = new Product(Guid.NewGuid(), businessId, "Coffee", "Drinks", null, 4000, 1000);
+        var products = new StubProductRepository { ReadProduct = product };
+        var currencies = new StubBusinessCurrencyReader();
+        var simulations = new StubPricingSimulationRepository();
+        var handler = new CreateDecisionSimulationHandler(products, currencies, simulations,
+            new StubCurrentUserContext(userId, businessId),
+            new PricingDecisionCalculator(new PricingSimulationCalculator()),
+            new FixedTimeProvider(new DateTimeOffset(2026, 10, 13, 8, 0, 0, TimeSpan.Zero)));
+
+        var result = await handler.Handle(new CreateDecisionSimulationCommand(product.Id,
+            5000, 33, null, SalesPeriod.Week, 10, 4000, 1000), CancellationToken.None);
+
+        Assert.Equal(businessId, products.RequestedBusinessId);
+        Assert.Equal(businessId, currencies.RequestedBusinessId);
+        Assert.Equal(businessId, simulations.AddedSimulation!.BusinessId);
+        Assert.Equal(userId, simulations.AddedSimulation.CreatedByUserId);
+        Assert.Null(result.ExpectedSalesQuantity);
+        Assert.Equal(SalesPeriod.Week, result.ComparisonPeriod);
+        Assert.Equal(10, result.DeclinePercentage);
+        Assert.Equal(99000, result.CurrentContribution);
+        Assert.Equal(1, simulations.SaveChangesCount);
+    }
+
+    [Fact]
+    public async Task CreateDecision_RejectsStaleProductSnapshotWithoutSaving()
+    {
+        var businessId = Guid.NewGuid();
+        var product = new Product(Guid.NewGuid(), businessId, "Coffee", "Drinks", null, 4500, 1000);
+        var simulations = new StubPricingSimulationRepository();
+        var handler = new CreateDecisionSimulationHandler(
+            new StubProductRepository { ReadProduct = product }, new StubBusinessCurrencyReader(),
+            simulations, new StubCurrentUserContext(Guid.NewGuid(), businessId),
+            new PricingDecisionCalculator(new PricingSimulationCalculator()),
+            new FixedTimeProvider(DateTimeOffset.UtcNow));
+
+        await Assert.ThrowsAsync<PricingSimulationConflictException>(() => handler.Handle(
+            new CreateDecisionSimulationCommand(product.Id, 5000, 33, null,
+                SalesPeriod.Week, 10, 4000, 1000), CancellationToken.None));
+        Assert.Null(simulations.AddedSimulation);
+        Assert.Equal(0, simulations.SaveChangesCount);
+    }
+
+    [Fact]
+    public async Task SavedDecision_ReadsTenantScopedSnapshotWithoutCurrentProduct()
+    {
+        var businessId = Guid.NewGuid();
+        var simulation = new PricingSimulation(Guid.NewGuid(), businessId, Guid.NewGuid(),
+            Guid.NewGuid(), 4000, 1000, 5000, 33, null, SalesPeriod.Week,
+            10, "IQD", "Coffee", DateTime.UtcNow,
+            new PricingDecisionCalculator(new PricingSimulationCalculator()));
+        var repository = new StubPricingSimulationRepository { ReadSimulation = simulation };
+        var handler = new GetSavedDecisionHandler(repository, new StubBusinessCurrencyReader(),
+            new StubCurrentUserContext(Guid.NewGuid(), businessId),
+            new PricingDecisionCalculator(new PricingSimulationCalculator()));
+
+        var result = await handler.Handle(new GetSavedDecisionQuery(simulation.Id), CancellationToken.None);
+
+        Assert.Equal(businessId, repository.RequestedBusinessId);
+        Assert.Equal(25, result.Decision.MinimumSalesToMaintainContribution);
+        Assert.Equal("IQD", result.Currency);
+        Assert.Null(result.Decision.ExpectedScenario);
+    }
+
     [Fact]
     public async Task Create_SavesCalculatedSnapshotForAuthenticatedBusinessAndUser()
     {

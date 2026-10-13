@@ -12,8 +12,8 @@ Website strings, including validation and status text, are in
 Email templates are in
 `src/FinSight.Infrastructure/Resources/Identity/IdentityEmailText*.resx`.
 The English resources are neutral; the email sender is not enabled or changed
-by this milestone. The only new static asset is the locally served Noto Kufi
-Arabic font, licensed under the bundled SIL Open Font License. Its upstream
+by localization. The locally served Noto Kufi Arabic font is licensed under
+the bundled SIL Open Font License. Its upstream
 metadata lists support for Arabic-script Kurdish:
 <https://github.com/google/fonts/blob/main/ofl/notokufiarabic/METADATA.pb>.
 
@@ -30,8 +30,10 @@ or integer types regardless of language. Display formatting changes with the
 selected culture, but the Business currency, stored prices, simulation inputs,
 and historical calculation snapshots do not. Contribution is the difference
 between selling price and unit cost multiplied by quantity, **not net profit**.
-There are currently no saved-simulation MVC pages; those features remain API
-endpoints with unchanged JSON names, enum values, and routes.
+The saved-simulation history and detail pages use the same localized resources.
+Existing API routes and enum names remain unchanged. New website saves may
+have no owner-entered expected quantity; those records stay in website history
+and are not returned through the classic API's non-null response contract.
 
 ## Translation review before customer launch
 

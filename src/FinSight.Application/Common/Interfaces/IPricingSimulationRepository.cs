@@ -14,12 +14,25 @@ public interface IPricingSimulationRepository
         Guid businessId,
         CancellationToken cancellationToken = default);
 
+    // Classic API reads keep their original non-null expected-sales contract.
+    Task<PricingSimulation?> GetLegacyByIdAsync(
+        Guid simulationId,
+        Guid businessId,
+        CancellationToken cancellationToken = default);
+
     Task<PricingSimulation?> GetByIdForUpdateAsync(
         Guid simulationId,
         Guid businessId,
         CancellationToken cancellationToken = default);
 
     Task<PagedResult<PricingSimulation>> GetPagedAsync(
+        Guid businessId,
+        int page,
+        int pageSize,
+        bool includeArchived,
+        CancellationToken cancellationToken = default);
+
+    Task<PagedResult<PricingSimulation>> GetLegacyPagedAsync(
         Guid businessId,
         int page,
         int pageSize,

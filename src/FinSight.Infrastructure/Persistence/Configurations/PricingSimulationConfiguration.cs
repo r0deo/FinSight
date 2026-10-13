@@ -18,6 +18,12 @@ public sealed class PricingSimulationConfiguration
         builder.Property(simulation => simulation.CurrentContribution).HasPrecision(18, 2);
         builder.Property(simulation => simulation.ProposedContribution).HasPrecision(18, 2);
         builder.Property(simulation => simulation.Difference).HasPrecision(18, 2);
+        builder.Property(simulation => simulation.ComparisonPeriod)
+            .HasConversion<string>().HasMaxLength(16);
+        builder.Property(simulation => simulation.DeclinePercentage);
+        builder.Property(simulation => simulation.CurrencySnapshot).HasMaxLength(3);
+        builder.Property(simulation => simulation.ProductNameSnapshot).HasMaxLength(Product.MaxNameLength);
+        builder.Property(simulation => simulation.CalculationVersion).HasDefaultValue(0);
         builder.Property(simulation => simulation.Recommendation)
             .HasConversion<string>()
             .HasMaxLength(32);

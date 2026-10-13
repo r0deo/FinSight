@@ -21,6 +21,7 @@ public static class DependencyInjection
 
         services.AddValidatorsFromAssembly(assembly);
         services.AddSingleton<PricingSimulationCalculator>();
+        services.AddSingleton<PricingDecisionCalculator>();
 
         return services;
     }

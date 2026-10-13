@@ -123,6 +123,7 @@ public static class DependencyInjection
         services.AddScoped<IEmailSender, SmtpEmailSender>();
         services.AddScoped<ICurrentUserContext, CurrentUserContext>();
         services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<IBusinessCurrencyReader, BusinessCurrencyReader>();
         services.AddScoped<IPricingSimulationRepository, PricingSimulationRepository>();
 
         return services;

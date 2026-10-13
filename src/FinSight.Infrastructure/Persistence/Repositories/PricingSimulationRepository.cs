@@ -30,6 +30,17 @@ public sealed class PricingSimulationRepository(FinSightDbContext dbContext)
                 cancellationToken);
     }
 
+    public Task<PricingSimulation?> GetLegacyByIdAsync(
+        Guid simulationId,
+        Guid businessId,
+        CancellationToken cancellationToken = default) =>
+        dbContext.PricingSimulations.AsNoTracking().SingleOrDefaultAsync(
+            simulation => simulation.Id == simulationId && simulation.BusinessId == businessId
+                && simulation.DeletedAtUtc == null && simulation.ExpectedSalesQuantity != null
+                && simulation.ProposedContribution != null && simulation.Difference != null
+                && simulation.Recommendation != null,
+            cancellationToken);
+
     public Task<PricingSimulation?> GetByIdForUpdateAsync(
         Guid simulationId,
         Guid businessId,
@@ -65,6 +76,27 @@ public sealed class PricingSimulationRepository(FinSightDbContext dbContext)
             .Take(pageSize)
             .ToListAsync(cancellationToken);
 
+        return new PagedResult<PricingSimulation>(items, totalCount);
+    }
+
+    public async Task<PagedResult<PricingSimulation>> GetLegacyPagedAsync(
+        Guid businessId,
+        int page,
+        int pageSize,
+        bool includeArchived,
+        CancellationToken cancellationToken = default)
+    {
+        var query = dbContext.PricingSimulations.AsNoTracking().Where(simulation =>
+            simulation.BusinessId == businessId && simulation.DeletedAtUtc == null
+            && simulation.ExpectedSalesQuantity != null
+            && simulation.ProposedContribution != null && simulation.Difference != null
+            && simulation.Recommendation != null);
+        if (!includeArchived)
+            query = query.Where(simulation => simulation.ArchivedAtUtc == null);
+        var totalCount = await query.CountAsync(cancellationToken);
+        var items = await query.OrderByDescending(simulation => simulation.CreatedAtUtc)
+            .ThenByDescending(simulation => simulation.Id)
+            .Skip((page - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken);
         return new PagedResult<PricingSimulation>(items, totalCount);
     }
 

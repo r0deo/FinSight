@@ -1,5 +1,6 @@
 using FinSight.Api.Website.Models;
 using FinSight.Application.Common.Exceptions;
+using FinSight.Domain.Exceptions;
 using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -23,9 +24,12 @@ public sealed class WebsiteExceptionFilter(
         {
             var model = context.Exception switch
             {
-                NotFoundException => new WebsiteErrorViewModel(404, "We couldn't find that product", "It may be unavailable. Return to your products to continue."),
+                NotFoundException => new WebsiteErrorViewModel(404, "We couldn't find that record", "It may be unavailable or belong to another business."),
                 ForbiddenAccessException => new WebsiteErrorViewModel(403, "Access denied", "Only owners and managers can manage products."),
-                ValidationException or RequestValidationException => new WebsiteErrorViewModel(400, "Check your request", "The supplied values are invalid. Page must be at least 1 and page size must be between 1 and 100."),
+                ValidationException or RequestValidationException or ArgumentOutOfRangeException =>
+                    new WebsiteErrorViewModel(400, "Check your request", "Please check the supplied values and try again."),
+                PricingSimulationConflictException or ConcurrencyConflictException =>
+                    new WebsiteErrorViewModel(409, "This simulation changed", "Recalculate the preview, then save it again."),
                 _ => new WebsiteErrorViewModel(500, "Something went wrong", "We couldn't complete your request. Please try again shortly.")
             };
             if (model.StatusCode == 500)

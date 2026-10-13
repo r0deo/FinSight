@@ -1,27 +1,52 @@
 @model PreviewSimulationViewModel
+@using System.Globalization
+@using FinSight.Domain.Enums
 @{ ViewData["Title"] = T["Preview a price change"].Value; }
-<section class="panel message-panel">
-    <p class="eyebrow">@T["EXPLORE BEFORE YOU CHANGE"]</p><h1>@T["Preview a price change"]</h1>
+<section class="panel message-panel simulation-panel">
+    <p class="eyebrow">@T["EXPLORE BEFORE YOU CHANGE"]</p>
+    <h1>@T["Preview a price change"]</h1>
     <h2><bdi>@Model.ProductName</bdi></h2>
     <p>@T["Compare sales over the same period. This preview never saves a simulation or changes your product."]</p>
-    <form method="post" asp-action="Preview">
+    <dl class="simulation-product-facts">
+        <div><dt>@T["Current selling price"]</dt><dd><bdi dir="ltr">@Model.CurrentPrice.ToString("N2") @Model.Currency</bdi></dd></div>
+        <div><dt>@T["Unit cost"]</dt><dd><bdi dir="ltr">@Model.UnitCost.ToString("N2") @Model.Currency</bdi></dd></div>
+        <div><dt>@T["Business currency"]</dt><dd><bdi dir="ltr">@Model.Currency</bdi></dd></div>
+    </dl>
+    <form method="post" asp-action="Preview" data-decision-form>
         <div asp-validation-summary="All" role="alert"></div>
         <input asp-for="ProductId" type="hidden" />
-        <div class="field"><label asp-for="ProposedPrice"></label><input asp-for="ProposedPrice" type="text" inputmode="decimal" dir="ltr" required /><span asp-validation-for="ProposedPrice"></span></div>
-        <div class="field"><label asp-for="CurrentSalesQuantity"></label><input asp-for="CurrentSalesQuantity" type="text" inputmode="numeric" dir="ltr" required /><span asp-validation-for="CurrentSalesQuantity"></span></div>
-        <div class="field"><label asp-for="ExpectedSalesQuantity"></label><input asp-for="ExpectedSalesQuantity" type="text" inputmode="numeric" dir="ltr" required /><span asp-validation-for="ExpectedSalesQuantity"></span></div>
+        <div class="field-grid">
+            <div class="field"><label asp-for="ProposedPrice"></label><input asp-for="ProposedPrice" type="text" inputmode="decimal" dir="ltr" required /><span asp-validation-for="ProposedPrice"></span></div>
+            <div class="field"><label asp-for="CurrentSalesQuantity"></label><input asp-for="CurrentSalesQuantity" type="text" inputmode="numeric" dir="ltr" required /><span asp-validation-for="CurrentSalesQuantity"></span><small>@T["Example: 33 sales in one selected period."]</small></div>
+            <div class="field"><label asp-for="ComparisonPeriod"></label><select asp-for="ComparisonPeriod">
+                <option value="Day">@T["day"]</option><option value="Week">@T["week"]</option><option value="Month">@T["month"]</option>
+            </select><span asp-validation-for="ComparisonPeriod"></span></div>
+            <div class="field"><label asp-for="DeclinePercentage"></label><input asp-for="DeclinePercentage" type="text" inputmode="numeric" dir="ltr" required /><span asp-validation-for="DeclinePercentage"></span><small>@T["10% is illustrative, not a prediction."]</small></div>
+        </div>
+        <div class="field"><label class="checkbox-label"><input asp-for="UnknownExpectedSales" type="checkbox" /> @T["I don't know expected sales"]</label></div>
+        <div class="field"><label asp-for="ExpectedSalesQuantity"></label><input asp-for="ExpectedSalesQuantity" type="text" inputmode="numeric" dir="ltr" disabled="@Model.UnknownExpectedSales" required="@(!Model.UnknownExpectedSales)" /><span asp-validation-for="ExpectedSalesQuantity"></span><small>@T["Optional when you do not know. If entered, this is your assumption, not a forecast."]</small></div>
+        <p class="form-guidance">@T["All quantities refer to the selected period. Unit cost is assumed unchanged."]</p>
         <button class="button" type="submit">@T["Calculate preview"]</button>
     </form>
-    @if (Model.Result is { } result)
+    @if (Model.Result is { } decision)
     {
-        <section aria-label="@T["Calculation result"]" role="status">
-            <h2>@T["Preview result"]</h2>
-            <dl><dt>@T["Current contribution"]</dt><dd><bdi>@result.CurrentContribution.ToString("N2")</bdi></dd>
-                <dt>@T["Proposed contribution"]</dt><dd><bdi>@result.ProposedContribution.ToString("N2")</bdi></dd>
-                <dt>@T["Difference"]</dt><dd><bdi>@result.Difference.ToString("N2")</bdi></dd>
-                <dt>@T["Recommendation"]</dt><dd>@T[result.Recommendation == FinSight.Domain.Enums.Recommendation.Recommended ? "Recommended" : "Not recommended"]</dd></dl>
-            @if (result.IsProposedPriceBelowCost) { <p role="alert">@T["Warning: the proposed price is below unit cost."]</p> }
-        </section>
+        <div data-decision-results>
+            <partial name="_DecisionResult" model="@(new DecisionDisplayViewModel(decision, Model.ComparisonPeriod, Model.CurrentPrice, Model.ProposedPrice, Model.CurrentSalesQuantity, Model.ExpectedSalesQuantity, Model.DeclinePercentage, Model.Currency))" />
+            <form method="post" asp-action="Save" data-decision-save>
+                <input type="hidden" name="ProductId" value="@Model.ProductId" />
+                <input type="hidden" name="ProposedPrice" value="@Model.ProposedPrice.ToString(CultureInfo.InvariantCulture)" />
+                <input type="hidden" name="CurrentSalesQuantity" value="@Model.CurrentSalesQuantity" />
+                @if (Model.ExpectedSalesQuantity.HasValue)
+                { <input type="hidden" name="ExpectedSalesQuantity" value="@Model.ExpectedSalesQuantity.Value" /> }
+                <input type="hidden" name="ComparisonPeriod" value="@Model.ComparisonPeriod" />
+                <input type="hidden" name="DeclinePercentage" value="@Model.DeclinePercentage" />
+                <input type="hidden" name="PreviewCurrentPrice" value="@Model.CurrentPrice.ToString(CultureInfo.InvariantCulture)" />
+                <input type="hidden" name="PreviewUnitCost" value="@Model.UnitCost.ToString(CultureInfo.InvariantCulture)" />
+                <button class="button" type="submit">@T["Save this simulation"]</button>
+                <small>@T["Saving is explicit. Preview alone never creates a history record."]</small>
+            </form>
+        </div>
     }
-    <p><a href="/products">@T["Choose another product"]</a></p>
+    <p><a href="/simulations">@T["Saved simulation history"]</a> · <a href="/products">@T["Choose another product"]</a></p>
 </section>
+<script src="~/js/simulation-preview.js" asp-append-version="true" defer></script>

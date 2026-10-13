@@ -14,7 +14,7 @@ public sealed class GetSimulationByIdHandler(
         GetSimulationByIdQuery request,
         CancellationToken cancellationToken)
     {
-        var simulation = await simulationRepository.GetByIdAsync(
+        var simulation = await simulationRepository.GetLegacyByIdAsync(
             request.SimulationId,
             currentUserContext.BusinessId,
             cancellationToken);

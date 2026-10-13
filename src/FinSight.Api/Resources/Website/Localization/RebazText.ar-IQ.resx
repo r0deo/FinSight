@@ -255,4 +255,86 @@
   <data name="The password needs a lowercase letter." xml:space="preserve"><value>يجب أن تحتوي كلمة المرور على حرف صغير.</value></data>
   <data name="The password needs an uppercase letter." xml:space="preserve"><value>يجب أن تحتوي كلمة المرور على حرف كبير.</value></data>
   <data name="Use the configured HTTPS website address to sign in with Google." xml:space="preserve"><value>استخدم عنوان الموقع الآمن HTTPS المخصص لتسجيل الدخول عبر Google.</value></data>
+  <data name="Comparison period" xml:space="preserve"><value>فترة المقارنة</value></data>
+  <data name="Illustrative sales decline (%)" xml:space="preserve"><value>انخفاض المبيعات الافتراضي (%)</value></data>
+  <data name="day" xml:space="preserve"><value>يوم</value></data>
+  <data name="week" xml:space="preserve"><value>أسبوع</value></data>
+  <data name="month" xml:space="preserve"><value>شهر</value></data>
+  <data name="Current selling price" xml:space="preserve"><value>سعر البيع الحالي</value></data>
+  <data name="Business currency" xml:space="preserve"><value>عملة النشاط</value></data>
+  <data name="Example: 33 sales in one selected period." xml:space="preserve"><value>مثال: 33 عملية بيع خلال الفترة المختارة.</value></data>
+  <data name="10% is illustrative, not a prediction." xml:space="preserve"><value>نسبة 10% مثال توضيحي وليست توقعاً.</value></data>
+  <data name="I don't know expected sales" xml:space="preserve"><value>لا أعرف المبيعات المتوقعة</value></data>
+  <data name="Optional when you do not know. If entered, this is your assumption, not a forecast." xml:space="preserve"><value>اتركه فارغاً إذا لم تعرف. إن أدخلته فهو افتراض منك، وليس توقعاً مؤكداً.</value></data>
+  <data name="All quantities refer to the selected period. Unit cost is assumed unchanged." xml:space="preserve"><value>كل الكميات تخص الفترة المختارة. نفترض أن تكلفة الوحدة لا تتغير.</value></data>
+  <data name="All quantities refer to the selected period. Unit cost is assumed unchanged. Expected sales are your assumption, not a prediction." xml:space="preserve"><value>كل الكميات تخص الفترة المختارة. نفترض ثبات تكلفة الوحدة. المبيعات المتوقعة افتراض منك وليست تنبؤاً.</value></data>
+  <data name="Enter expected sales or choose I don't know expected sales." xml:space="preserve"><value>أدخل المبيعات المتوقعة أو اختر «لا أعرف المبيعات المتوقعة».</value></data>
+  <data name="Choose a valid comparison period." xml:space="preserve"><value>اختر فترة مقارنة صحيحة.</value></data>
+  <data name="Enter an illustrative decline from 0 to 100%." xml:space="preserve"><value>أدخل نسبة انخفاض افتراضية بين 0 و100%.</value></data>
+  <data name="Minimum sales to maintain your current contribution" xml:space="preserve"><value>أقل عدد مبيعات للحفاظ على المساهمة الحالية</value></data>
+  <data name="sales per {0}" xml:space="preserve"><value>مبيعات لكل {0}</value></data>
+  <data name="At this price, you need at least {0} sales per {1} to maintain your current contribution." xml:space="preserve"><value>بهذا السعر، تحتاج إلى {0} عملية بيع على الأقل لكل {1} للحفاظ على مساهمتك الحالية.</value></data>
+  <data name="You could sell {0} fewer units than today and maintain contribution." xml:space="preserve"><value>يمكنك بيع {0} وحدات أقل من الآن مع الحفاظ على المساهمة.</value></data>
+  <data name="You would need {0} additional units compared with today." xml:space="preserve"><value>تحتاج إلى بيع {0} وحدات إضافية مقارنةً بالآن.</value></data>
+  <data name="You still need the same sales quantity as today." xml:space="preserve"><value>ما زلت تحتاج إلى عدد المبيعات نفسه كما الآن.</value></data>
+  <data name="Not possible at this price" xml:space="preserve"><value>غير ممكن بهذا السعر</value></data>
+  <data name="The proposed price has no positive contribution per unit, so it cannot maintain today's positive contribution." xml:space="preserve"><value>السعر المقترح لا يعطي مساهمة موجبة لكل وحدة، لذلك لا يمكنه الحفاظ على المساهمة الموجبة الحالية.</value></data>
+  <data name="Beyond the supported quantity" xml:space="preserve"><value>الكمية تتجاوز الحد المدعوم</value></data>
+  <data name="Maintaining today's contribution would require more units than this calculator supports." xml:space="preserve"><value>الحفاظ على المساهمة الحالية يتطلب وحدات أكثر مما تدعمه هذه الحاسبة.</value></data>
+  <data name="No positive contribution to preserve" xml:space="preserve"><value>لا توجد مساهمة موجبة للحفاظ عليها</value></data>
+  <data name="The current situation has zero or negative contribution. A standard maintenance threshold would be misleading; check costs and the scenarios below." xml:space="preserve"><value>المساهمة الحالية صفر أو سالبة. عرض حد مبيعات اعتيادي سيكون مضللاً؛ راجع التكاليف والسيناريوهات أدناه.</value></data>
+  <data name="Every unit sold at this price contributes negatively before other expenses." xml:space="preserve"><value>كل وحدة تُباع بهذا السعر تعطي مساهمة سالبة قبل المصاريف الأخرى.</value></data>
+  <data name="At the {0} sales you entered, contribution is higher by {1} {2} per {3}." xml:space="preserve"><value>عند بيع {0} وحدات كما أدخلت، ترتفع المساهمة بمقدار {1} {2} لكل {3}.</value></data>
+  <data name="At the {0} sales you entered, contribution is lower by {1} {2} per {3}." xml:space="preserve"><value>عند بيع {0} وحدات كما أدخلت، تنخفض المساهمة بمقدار {1} {2} لكل {3}.</value></data>
+  <data name="At the {0} sales you entered, contribution is unchanged." xml:space="preserve"><value>عند بيع {0} وحدات كما أدخلت، تبقى المساهمة دون تغيير.</value></data>
+  <data name="The price is unchanged; any difference comes from the sales quantity you assumed." xml:space="preserve"><value>السعر لم يتغير؛ أي فرق ينتج عن كمية المبيعات التي افترضتها.</value></data>
+  <data name="No expected sales were entered, so there is no personal forecast or overall recommendation." xml:space="preserve"><value>لم تُدخل مبيعات متوقعة، لذلك لا يوجد توقع شخصي أو توصية شاملة.</value></data>
+  <data name="Scenario comparison" xml:space="preserve"><value>مقارنة السيناريوهات</value></data>
+  <data name="The decline scenario is an illustration, not a demand prediction." xml:space="preserve"><value>سيناريو الانخفاض مثال توضيحي، وليس توقعاً للطلب.</value></data>
+  <data name="Scenario" xml:space="preserve"><value>السيناريو</value></data>
+  <data name="Sales" xml:space="preserve"><value>المبيعات</value></data>
+  <data name="Revenue" xml:space="preserve"><value>الإيراد</value></data>
+  <data name="Entered unit costs" xml:space="preserve"><value>إجمالي تكاليف الوحدات المدخلة</value></data>
+  <data name="Contribution" xml:space="preserve"><value>المساهمة</value></data>
+  <data name="Compared with today" xml:space="preserve"><value>مقارنةً بالوضع الحالي</value></data>
+  <data name="Same sales quantity as today" xml:space="preserve"><value>نفس كمية المبيعات الحالية</value></data>
+  <data name="Sales decline ({0}% illustrative)" xml:space="preserve"><value>انخفاض المبيعات ({0}% افتراضي)</value></data>
+  <data name="Your expected sales" xml:space="preserve"><value>مبيعاتك المتوقعة</value></data>
+  <data name="Higher contribution" xml:space="preserve"><value>مساهمة أعلى</value></data>
+  <data name="Lower contribution" xml:space="preserve"><value>مساهمة أقل</value></data>
+  <data name="Unchanged contribution" xml:space="preserve"><value>المساهمة دون تغيير</value></data>
+  <data name="Contribution means sales minus the unit costs entered here, before other business expenses." xml:space="preserve"><value>المساهمة تعني المبيعات ناقص تكاليف الوحدات المدخلة هنا، قبل مصاريف النشاط الأخرى.</value></data>
+  <data name="This is not a business break-even point because fixed costs are not included." xml:space="preserve"><value>هذا ليس حد تعادل النشاط لأن التكاليف الثابتة غير مشمولة.</value></data>
+  <data name="Save this simulation" xml:space="preserve"><value>احفظ هذه المحاكاة</value></data>
+  <data name="Saving is explicit. Preview alone never creates a history record." xml:space="preserve"><value>الحفظ يتم بطلب منك. المعاينة وحدها لا تنشئ سجلاً.</value></data>
+  <data name="Pricing simulation saved." xml:space="preserve"><value>حُفظت محاكاة السعر.</value></data>
+  <data name="Saved simulation history" xml:space="preserve"><value>سجل المحاكاة المحفوظة</value></data>
+  <data name="YOUR DECISIONS" xml:space="preserve"><value>قراراتك</value></data>
+  <data name="Preview another product" xml:space="preserve"><value>عاين منتجاً آخر</value></data>
+  <data name="Include archived" xml:space="preserve"><value>إظهار المؤرشف</value></data>
+  <data name="Apply filter" xml:space="preserve"><value>تطبيق المرشح</value></data>
+  <data name="No saved simulations yet" xml:space="preserve"><value>لا توجد محاكاة محفوظة بعد</value></data>
+  <data name="Preview a price change, then save it explicitly to keep a snapshot here." xml:space="preserve"><value>عاين تغيير سعر، ثم احفظه لتبقى نسخته هنا.</value></data>
+  <data name="Choose a product" xml:space="preserve"><value>اختر منتجاً</value></data>
+  <data name="Historical product" xml:space="preserve"><value>منتج تاريخي</value></data>
+  <data name="Period not specified" xml:space="preserve"><value>الفترة غير محددة</value></data>
+  <data name="Archived" xml:space="preserve"><value>مؤرشف</value></data>
+  <data name="Pagination" xml:space="preserve"><value>ترقيم الصفحات</value></data>
+  <data name="SAVED SNAPSHOT" xml:space="preserve"><value>نسخة محفوظة</value></data>
+  <data name="Saved simulation" xml:space="preserve"><value>محاكاة محفوظة</value></data>
+  <data name="Saved on {0}" xml:space="preserve"><value>حُفظت في {0}</value></data>
+  <data name="This result uses the prices and unit cost saved with the simulation, not today's product values." xml:space="preserve"><value>هذه النتيجة تستخدم الأسعار وتكلفة الوحدة المحفوظة مع المحاكاة، لا قيم المنتج الحالية.</value></data>
+  <data name="Back to history" xml:space="preserve"><value>العودة إلى السجل</value></data>
+  <data name="Saved result" xml:space="preserve"><value>النتيجة المحفوظة</value></data>
+  <data name="sales (period not specified)" xml:space="preserve"><value>عملية بيع (الفترة غير محددة)</value></data>
+  <data name="At this price, you need at least {0} sales to maintain your current contribution. The period was not saved." xml:space="preserve"><value>بهذا السعر، تحتاج إلى {0} عملية بيع على الأقل للحفاظ على المساهمة الحالية. لم تُحفظ الفترة.</value></data>
+  <data name="At the {0} sales you entered, contribution is higher by {1} {2}. The period was not saved." xml:space="preserve"><value>عند بيع {0} وحدات كما أدخلت، ترتفع المساهمة بمقدار {1} {2}. لم تُحفظ الفترة.</value></data>
+  <data name="At the {0} sales you entered, contribution is lower by {1} {2}. The period was not saved." xml:space="preserve"><value>عند بيع {0} وحدات كما أدخلت، تنخفض المساهمة بمقدار {1} {2}. لم تُحفظ الفترة.</value></data>
+  <data name="This older record did not save a comparison period. Its prices, unit cost, and quantities are historical snapshots." xml:space="preserve"><value>هذا السجل القديم لم يحفظ فترة المقارنة. أسعاره وتكلفة الوحدة وكمياته هي نسخ تاريخية.</value></data>
+  <data name="All scenario amounts are per {0}." xml:space="preserve"><value>كل مبالغ السيناريوهات تخص كل {0}.</value></data>
+  <data name="We couldn't find that record" xml:space="preserve"><value>لم نجد هذا السجل</value></data>
+  <data name="It may be unavailable or belong to another business." xml:space="preserve"><value>قد يكون غير متاح أو تابعاً لنشاط آخر.</value></data>
+  <data name="This simulation changed" xml:space="preserve"><value>تغيّرت هذه المحاكاة</value></data>
+  <data name="Recalculate the preview, then save it again." xml:space="preserve"><value>احسب المعاينة من جديد، ثم احفظها مرة أخرى.</value></data>
+  <data name="Please check the supplied values and try again." xml:space="preserve"><value>راجع القيم التي أدخلتها وحاول مرة أخرى.</value></data>
 </root>

@@ -1,0 +1,98 @@
+@model DecisionDisplayViewModel
+@using FinSight.Domain.Enums
+@{
+    var period = Model.Period switch {
+        SalesPeriod.Day => T["day"].Value,
+        SalesPeriod.Week => T["week"].Value,
+        SalesPeriod.Month => T["month"].Value,
+        _ => T["Period not specified"].Value
+    };
+    var d = Model.Decision;
+}
+<section class="decision-results" aria-label="@T["Calculation result"]" role="status">
+    <h2>@(Model.IsHistorical ? T["Saved result"] : T["Preview result"])</h2>
+    <div class="decision-answer">
+        <p class="eyebrow">@T["Minimum sales to maintain your current contribution"]</p>
+        @if (d.ThresholdStatus == MaintenanceThresholdStatus.Available)
+        {
+            @if (Model.Period.HasValue)
+            {
+                <h2><bdi dir="ltr">@d.MinimumSalesToMaintainContribution?.ToString("N0")</bdi> @T["sales per {0}", period]</h2>
+                <p>@T["At this price, you need at least {0} sales per {1} to maintain your current contribution.", d.MinimumSalesToMaintainContribution!.Value.ToString("N0"), period]</p>
+            }
+            else
+            {
+                <h2><bdi dir="ltr">@d.MinimumSalesToMaintainContribution?.ToString("N0")</bdi> @T["sales (period not specified)"]</h2>
+                <p>@T["At this price, you need at least {0} sales to maintain your current contribution. The period was not saved.", d.MinimumSalesToMaintainContribution!.Value.ToString("N0")]</p>
+            }
+            @if (d.QuantityChange < 0)
+            {
+                <p>@T["You could sell {0} fewer units than today and maintain contribution.", (-d.QuantityChange!.Value).ToString("N0")]
+                    @if (d.QuantityChangePercent.HasValue) { <span>(@(-d.QuantityChangePercent.Value).ToString("N1")%)</span> }</p>
+            }
+            else if (d.QuantityChange > 0)
+            {
+                <p>@T["You would need {0} additional units compared with today.", d.QuantityChange!.Value.ToString("N0")]
+                    @if (d.QuantityChangePercent.HasValue) { <span>(@d.QuantityChangePercent.Value.ToString("N1")%)</span> }</p>
+            }
+            else { <p>@T["You still need the same sales quantity as today."]</p> }
+        }
+        else if (d.ThresholdStatus == MaintenanceThresholdStatus.ImpossibleAtPrice)
+        { <h2>@T["Not possible at this price"]</h2><p>@T["The proposed price has no positive contribution per unit, so it cannot maintain today's positive contribution."]</p> }
+        else if (d.ThresholdStatus == MaintenanceThresholdStatus.OutsideSupportedQuantity)
+        { <h2>@T["Beyond the supported quantity"]</h2><p>@T["Maintaining today's contribution would require more units than this calculator supports."]</p> }
+        else
+        { <h2>@T["No positive contribution to preserve"]</h2><p>@T["The current situation has zero or negative contribution. A standard maintenance threshold would be misleading; check costs and the scenarios below."]</p> }
+    </div>
+    @if (d.IsProposedPriceBelowCost)
+    { <div class="notice notice-warning" role="alert">@T["Warning: the proposed price is below unit cost."] @T["Every unit sold at this price contributes negatively before other expenses."]</div> }
+    @if (d.ExpectedScenario is { } expected)
+    {
+        <p class="decision-summary">
+            @if (expected.Difference > 0 && Model.Period.HasValue) { @T["At the {0} sales you entered, contribution is higher by {1} {2} per {3}.", expected.Quantity.ToString("N0"), expected.Difference.ToString("N2"), Model.Currency, period] }
+            else if (expected.Difference < 0 && Model.Period.HasValue) { @T["At the {0} sales you entered, contribution is lower by {1} {2} per {3}.", expected.Quantity.ToString("N0"), (-expected.Difference).ToString("N2"), Model.Currency, period] }
+            else if (expected.Difference > 0) { @T["At the {0} sales you entered, contribution is higher by {1} {2}. The period was not saved.", expected.Quantity.ToString("N0"), expected.Difference.ToString("N2"), Model.Currency] }
+            else if (expected.Difference < 0) { @T["At the {0} sales you entered, contribution is lower by {1} {2}. The period was not saved.", expected.Quantity.ToString("N0"), (-expected.Difference).ToString("N2"), Model.Currency] }
+            else { @T["At the {0} sales you entered, contribution is unchanged.", expected.Quantity.ToString("N0")] }
+        </p>
+        @if (Model.CurrentPrice == Model.ProposedPrice)
+        { <p>@T["The price is unchanged; any difference comes from the sales quantity you assumed."]</p> }
+    }
+    else { <p class="decision-summary">@T["No expected sales were entered, so there is no personal forecast or overall recommendation."]</p> }
+    <h3>@T["Scenario comparison"]</h3>
+    @if (Model.Period.HasValue) { <p>@T["All scenario amounts are per {0}.", period]</p> }
+    <p>@T["The decline scenario is an illustration, not a demand prediction."]</p>
+    <div class="table-scroll"><table class="scenario-table">
+        <thead><tr><th scope="col">@T["Scenario"]</th><th scope="col">@T["Sales"]</th><th scope="col">@T["Revenue"]</th><th scope="col">@T["Entered unit costs"]</th><th scope="col">@T["Contribution"]</th><th scope="col">@T["Difference"]</th><th scope="col">@T["Compared with today"]</th></tr></thead>
+        <tbody>
+        @foreach (var scenario in d.Scenarios)
+        {
+            var label = scenario.Kind switch {
+                PricingScenarioKind.SameSales => T["Same sales quantity as today"].Value,
+                PricingScenarioKind.LowerSales => T["Sales decline ({0}% illustrative)", Model.DeclinePercentage.GetValueOrDefault()].Value,
+                _ => T["Your expected sales"].Value
+            };
+            var comparison = scenario.Difference > 0 ? T["Higher contribution"].Value
+                : scenario.Difference < 0 ? T["Lower contribution"].Value : T["Unchanged contribution"].Value;
+            <tr>
+                <th scope="row">@label</th>
+                <td data-label="@T["Sales"]"><bdi dir="ltr">@scenario.Quantity.ToString("N0")</bdi></td>
+                <td data-label="@T["Revenue"]"><bdi dir="ltr">@scenario.Revenue.ToString("N2") @Model.Currency</bdi></td>
+                <td data-label="@T["Entered unit costs"]"><bdi dir="ltr">@scenario.TotalUnitCosts.ToString("N2") @Model.Currency</bdi></td>
+                <td data-label="@T["Contribution"]"><bdi dir="ltr">@scenario.Contribution.ToString("N2") @Model.Currency</bdi></td>
+                <td data-label="@T["Difference"]"><bdi dir="ltr">@((scenario.Difference > 0 ? "+" : "") + scenario.Difference.ToString("N2")) @Model.Currency</bdi></td>
+                <td data-label="@T["Compared with today"]">@comparison</td>
+            </tr>
+        }
+        </tbody>
+    </table></div>
+    <div class="decision-explanation">
+        <p><strong>@T["Current contribution"]:</strong> <bdi dir="ltr">@d.CurrentContribution.ToString("N2") @Model.Currency</bdi> · @period</p>
+        <p>@T["Contribution means sales minus the unit costs entered here, before other business expenses."]</p>
+        @if (Model.Period.HasValue)
+        { <p>@T["All quantities refer to the selected period. Unit cost is assumed unchanged. Expected sales are your assumption, not a prediction."]</p> }
+        else
+        { <p>@T["This older record did not save a comparison period. Its prices, unit cost, and quantities are historical snapshots."]</p> }
+        <p>@T["This is not a business break-even point because fixed costs are not included."]</p>
+    </div>
+</section>

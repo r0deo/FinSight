@@ -60,6 +60,9 @@ public class LocalizationTests
 
     [Theory]
     [InlineData("/products?page=2", "/products?page=2")]
+    [InlineData("/simulations?page=2", "/simulations?page=2")]
+    [InlineData("/simulations/00000000-0000-0000-0000-000000000001", "/simulations/00000000-0000-0000-0000-000000000001")]
+    [InlineData("/simulations/not-an-id", "/")]
     [InlineData("https://attacker.example", "/")]
     [InlineData("//attacker.example", "/")]
     [InlineData("/api/products", "/")]

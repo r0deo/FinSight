@@ -109,10 +109,13 @@ try {
 
 The design-time factory reads environment configuration independently of the host:
 no Google/SMTP/JWT/certificate credentials are needed just to migrate. Keep secrets
-out of command arguments, transcripts and screenshots. The new migration is
-**`20261011105742_PersistDataProtectionKeys`** and only adds the key-ring table.
-Existing business tables are unchanged. Do not roll it back on a used database:
-dropping the key ring invalidates protected data. Back up pilot data before updates.
+out of command arguments, transcripts and screenshots. The earlier
+**`20261011105742_PersistDataProtectionKeys`** migration adds the key-ring table.
+The later **`20261013105643_AddPricingDecisionAssumptions`** migration adds
+pricing-decision snapshot fields and permits an unknown expected quantity on
+saved simulations. Apply it explicitly before serving the new website pages.
+Do not roll back the key-ring migration on a used database: dropping that table
+invalidates protected data. Back up pilot data before updates.
 
 Render Free does not provide the paid pre-deploy command/shell workflow. Run migration
 commands on your trusted machine or a separately approved release process, not inside
@@ -289,7 +292,8 @@ resources are cleaned up. No live SMTP/Google credentials are used.
 
 ### Manual launch checks
 
-- Check existing migrations plus `PersistDataProtectionKeys` are applied to Neon.
+- Check migration history includes `PersistDataProtectionKeys` and
+  `AddPricingDecisionAssumptions` before serving the pricing-decision pages.
 - Check HTTPS `/health`, HTTP→HTTPS redirect, `/account/login`, `/css/site.css`, and
   a real database-backed operation. Wrong hosts should be rejected.
 - Complete real Google Business onboarding; create/edit products and preview pricing.

@@ -1,0 +1,27 @@
+@model SavedSimulationListViewModel
+@using FinSight.Domain.Enums
+@{ ViewData["Title"] = T["Saved simulation history"].Value; }
+<section class="panel simulation-panel">
+    <div class="page-heading"><div><p class="eyebrow">@T["YOUR DECISIONS"]</p><h1>@T["Saved simulation history"]</h1></div><a class="button button-quiet" href="/products">@T["Preview another product"]</a></div>
+    <form method="get" action="/simulations" class="filters"><label class="checkbox-label"><input type="checkbox" name="includeArchived" value="true" checked="@Model.IncludeArchived" /> @T["Include archived"]</label><button class="button button-quiet button-small" type="submit">@T["Apply filter"]</button></form>
+    @if (Model.Page.Items.Count == 0)
+    { <div class="empty-state"><h2>@T["No saved simulations yet"]</h2><p>@T["Preview a price change, then save it explicitly to keep a snapshot here."]</p><a class="button" href="/products">@T["Choose a product"]</a></div> }
+    else
+    {
+        <div class="saved-simulation-list">
+        @foreach (var item in Model.Page.Items)
+        {
+            var period = item.ComparisonPeriod switch { SalesPeriod.Day => T["day"].Value, SalesPeriod.Week => T["week"].Value, SalesPeriod.Month => T["month"].Value, _ => T["Period not specified"].Value };
+            <article class="saved-simulation-card">
+                <div><h2><a href="/simulations/@item.Id"><bdi>@(item.ProductNameSnapshot ?? T["Historical product"].Value)</bdi></a></h2><p>@T["Proposed price"]: <bdi dir="ltr">@item.ProposedPrice.ToString("N2") @(item.CurrencySnapshot ?? "")</bdi> · @period</p></div>
+                <div><time datetime="@item.CreatedAtUtc.ToString("O")">@item.CreatedAtUtc.ToString("d") UTC</time>@if (item.IsArchived) { <span class="status-label">@T["Archived"]</span> }</div>
+            </article>
+        }
+        </div>
+        <nav class="pagination" aria-label="@T["Pagination"]">
+            @if (Model.Page.Page > 1) { <a class="button button-quiet" href="/simulations?page=@(Model.Page.Page - 1)&amp;includeArchived=@Model.IncludeArchived.ToString().ToLowerInvariant()">@T["Previous"]</a> }
+            <span>@T["Page {0} of {1}", Model.Page.Page, Model.Page.TotalPages]</span>
+            @if (Model.Page.Page < Model.Page.TotalPages) { <a class="button button-quiet" href="/simulations?page=@(Model.Page.Page + 1)&amp;includeArchived=@Model.IncludeArchived.ToString().ToLowerInvariant()">@T["Next"]</a> }
+        </nav>
+    }
+</section>

@@ -1,7 +1,10 @@
 using FinSight.Api.Website.Models;
 using FinSight.Application.Common.Exceptions;
+using FinSight.Application.Features.PricingSimulations.Commands.CreateDecisionSimulation;
+using FinSight.Application.Features.PricingSimulations.Queries.GetBusinessCurrency;
+using FinSight.Application.Features.PricingSimulations.Queries.PreviewPricingDecision;
 using FinSight.Application.Features.Products.Queries.GetProductById;
-using FinSight.Application.Features.PricingSimulations.Queries.PreviewPricingSimulation;
+using FinSight.Domain.Entities;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -21,22 +24,52 @@ public sealed class SimulationPagesController(ISender sender) : WebsiteControlle
             return LocalRedirect("/products");
         }
         var product = await sender.Send(new GetProductByIdQuery(productId.Value), cancellationToken);
+        if (!product.IsActive) throw new NotFoundException(nameof(Product), productId.Value);
+        var currency = await sender.Send(new GetBusinessCurrencyQuery(), cancellationToken);
         return View(new PreviewSimulationViewModel
-        { ProductId = product.Id, ProductName = product.Name, ProposedPrice = product.SellingPrice });
+        {
+            ProductId = product.Id, ProductName = product.Name, ProposedPrice = product.SellingPrice,
+            CurrentPrice = product.SellingPrice, UnitCost = product.UnitCost, Currency = currency,
+            UnknownExpectedSales = true
+        });
     }
 
     [HttpPost]
     public async Task<IActionResult> Preview(PreviewSimulationViewModel model, CancellationToken cancellationToken)
     {
-        // Never render submitted product names/results; retrieve the authenticated tenant's product.
+        // Always re-read product and business data; submitted display fields cannot override tenant snapshots.
         var product = await sender.Send(new GetProductByIdQuery(model.ProductId), cancellationToken);
+        if (!product.IsActive) throw new NotFoundException(nameof(Product), model.ProductId);
         model.ProductName = product.Name;
+        model.CurrentPrice = product.SellingPrice;
+        model.UnitCost = product.UnitCost;
+        model.Currency = await sender.Send(new GetBusinessCurrencyQuery(), cancellationToken);
         model.Result = null;
+        if (model.UnknownExpectedSales)
+        {
+            model.ExpectedSalesQuantity = null;
+            ModelState.Remove(nameof(model.ExpectedSalesQuantity));
+        }
+        else if (!model.ExpectedSalesQuantity.HasValue)
+            ModelState.AddModelError(nameof(model.ExpectedSalesQuantity),
+                Text("Enter expected sales or choose I don't know expected sales."));
+        if (ModelState.TryGetValue(nameof(model.ComparisonPeriod), out var periodState)
+            && periodState.Errors.Count > 0)
+        {
+            ModelState.Remove(nameof(model.ComparisonPeriod));
+            ModelState.AddModelError(nameof(model.ComparisonPeriod), Text("Choose a valid comparison period."));
+        }
+        else if (!Enum.IsDefined(model.ComparisonPeriod))
+            ModelState.AddModelError(nameof(model.ComparisonPeriod), Text("Choose a valid comparison period."));
+        if (!model.DeclinePercentage.HasValue)
+            ModelState.AddModelError(nameof(model.DeclinePercentage), Text("Enter an illustrative decline from 0 to 100%."));
         if (!ModelState.IsValid) return InvalidForm("Preview", model);
         try
         {
-            model.Result = await sender.Send(new PreviewPricingSimulationQuery(model.ProductId,
-                model.ProposedPrice, model.CurrentSalesQuantity, model.ExpectedSalesQuantity), cancellationToken);
+            var preview = await sender.Send(new PreviewPricingDecisionQuery(model.ProductId,
+                model.ProposedPrice, model.CurrentSalesQuantity, model.ExpectedSalesQuantity,
+                model.DeclinePercentage!.Value), cancellationToken);
+            model.Result = preview.Decision;
             return View(model);
         }
         catch (Exception exception) when (exception is ValidationException or RequestValidationException)
@@ -44,5 +77,17 @@ public sealed class SimulationPagesController(ISender sender) : WebsiteControlle
             AddValidationErrors(exception);
             return InvalidForm("Preview", model);
         }
+    }
+
+    [HttpPost("save")]
+    public async Task<IActionResult> Save(SaveDecisionViewModel model, CancellationToken cancellationToken)
+    {
+        if (!ModelState.IsValid) return BadRequest();
+        var saved = await sender.Send(new CreateDecisionSimulationCommand(model.ProductId,
+            model.ProposedPrice, model.CurrentSalesQuantity, model.ExpectedSalesQuantity,
+            model.ComparisonPeriod, model.DeclinePercentage, model.PreviewCurrentPrice,
+            model.PreviewUnitCost), cancellationToken);
+        TempData["Success"] = "Pricing simulation saved.";
+        return LocalRedirect($"/simulations/{saved.Id}");
     }
 }

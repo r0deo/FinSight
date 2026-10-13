@@ -66,11 +66,24 @@ namespace FinSight.Infrastructure.Persistence.Migrations
                     b.Property<Guid>("BusinessId")
                         .HasColumnType("uuid");
 
+                    b.Property<int>("CalculationVersion")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0);
+
+                    b.Property<string>("ComparisonPeriod")
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)");
+
                     b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("CreatedByUserId")
                         .HasColumnType("uuid");
+
+                    b.Property<string>("CurrencySnapshot")
+                        .HasMaxLength(3)
+                        .HasColumnType("character varying(3)");
 
                     b.Property<decimal>("CurrentContribution")
                         .HasPrecision(18, 2)
@@ -83,14 +96,17 @@ namespace FinSight.Infrastructure.Persistence.Migrations
                     b.Property<int>("CurrentSalesQuantity")
                         .HasColumnType("integer");
 
+                    b.Property<int?>("DeclinePercentage")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime?>("DeletedAtUtc")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<decimal>("Difference")
+                    b.Property<decimal?>("Difference")
                         .HasPrecision(18, 2)
                         .HasColumnType("numeric(18,2)");
 
-                    b.Property<int>("ExpectedSalesQuantity")
+                    b.Property<int?>("ExpectedSalesQuantity")
                         .HasColumnType("integer");
 
                     b.Property<bool>("IsProposedPriceBelowCost")
@@ -99,7 +115,11 @@ namespace FinSight.Infrastructure.Persistence.Migrations
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uuid");
 
-                    b.Property<decimal>("ProposedContribution")
+                    b.Property<string>("ProductNameSnapshot")
+                        .HasMaxLength(60)
+                        .HasColumnType("character varying(60)");
+
+                    b.Property<decimal?>("ProposedContribution")
                         .HasPrecision(18, 2)
                         .HasColumnType("numeric(18,2)");
 
@@ -108,7 +128,6 @@ namespace FinSight.Infrastructure.Persistence.Migrations
                         .HasColumnType("numeric(18,2)");
 
                     b.Property<string>("Recommendation")
-                        .IsRequired()
                         .HasMaxLength(32)
                         .HasColumnType("character varying(32)");
 

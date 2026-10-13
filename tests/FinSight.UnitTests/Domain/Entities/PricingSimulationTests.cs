@@ -8,6 +8,52 @@ namespace FinSight.UnitTests.Domain.Entities;
 public class PricingSimulationTests
 {
     [Fact]
+    public void DecisionSnapshot_WithUnknownExpected_PreservesUnknownAndAssumptions()
+    {
+        var simulation = new PricingSimulation(Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(),
+            Guid.NewGuid(), 4000, 1000, 5000, 33, null, SalesPeriod.Week, 10,
+            "IQD", "Coffee", DateTime.UtcNow,
+            new PricingDecisionCalculator(new PricingSimulationCalculator()));
+
+        Assert.Null(simulation.ExpectedSalesQuantity);
+        Assert.Null(simulation.ProposedContribution);
+        Assert.Null(simulation.Difference);
+        Assert.Null(simulation.Recommendation);
+        Assert.Equal(99000, simulation.CurrentContribution);
+        Assert.Equal(SalesPeriod.Week, simulation.ComparisonPeriod);
+        Assert.Equal(10, simulation.DeclinePercentage);
+        Assert.Equal("IQD", simulation.CurrencySnapshot);
+        Assert.Equal("Coffee", simulation.ProductNameSnapshot);
+        Assert.Equal(1, simulation.CalculationVersion);
+    }
+
+    [Fact]
+    public void DecisionSnapshot_WithExpectedSales_StoresCalculatedComparison()
+    {
+        var simulation = new PricingSimulation(Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(),
+            Guid.NewGuid(), 4000, 1000, 5000, 33, 35, SalesPeriod.Week, 10,
+            "IQD", "Coffee", DateTime.UtcNow,
+            new PricingDecisionCalculator(new PricingSimulationCalculator()));
+
+        Assert.Equal(35, simulation.ExpectedSalesQuantity);
+        Assert.Equal(140000, simulation.ProposedContribution);
+        Assert.Equal(41000, simulation.Difference);
+        Assert.Equal(Recommendation.Recommended, simulation.Recommendation);
+    }
+
+    [Fact]
+    public void LegacySnapshot_HasUnspecifiedPeriodAndUnchangedStoredResults()
+    {
+        var simulation = CreateSimulation(DateTime.UtcNow);
+
+        Assert.Null(simulation.ComparisonPeriod);
+        Assert.Null(simulation.DeclinePercentage);
+        Assert.Null(simulation.CurrencySnapshot);
+        Assert.Equal(0, simulation.CalculationVersion);
+        Assert.Equal(48, simulation.ProposedContribution);
+    }
+
+    [Fact]
     public void Constructor_CalculatesAndStoresSnapshot()
     {
         // Arrange

@@ -30,6 +30,121 @@ public class WebsiteTests(FinSightApiFactory factory) : IClassFixture<FinSightAp
     });
 
     [Fact]
+    public async Task DecisionPreview_SaveHistory_UsesSnapshotsAndRemainsTenantSafe()
+    {
+        using var owner = Browser();
+        var ownerEmail = await RegisterAndConfirm(owner);
+        await Login(owner, ownerEmail);
+        var name = $"Decision-{Guid.NewGuid():N}";
+        var productFields = ProductFields(name, "4000");
+        productFields["UnitCost"] = "1000";
+        Assert.Equal(HttpStatusCode.Redirect,
+            (await Submit(owner, "/products/create", productFields)).StatusCode);
+        var product = await FindProduct(name);
+        var previewUrl = $"/simulations/preview?productId={product.Id}";
+        var preview = await Submit(owner, "/simulations/preview", new()
+        {
+            ["ProductId"] = product.Id.ToString(), ["ProposedPrice"] = "5000",
+            ["CurrentSalesQuantity"] = "33", ["UnknownExpectedSales"] = "true",
+            ["ComparisonPeriod"] = "Week", ["DeclinePercentage"] = "10"
+        }, previewUrl);
+        Assert.Equal(HttpStatusCode.OK, preview.StatusCode);
+        var previewHtml = WebUtility.HtmlDecode(await preview.Content.ReadAsStringAsync());
+        Assert.Contains("Minimum sales to maintain your current contribution", previewHtml);
+        Assert.Contains("25", previewHtml);
+        Assert.Contains("No expected sales were entered", previewHtml);
+
+        var saved = await Submit(owner, "/simulations/preview/save", new()
+        {
+            ["ProductId"] = product.Id.ToString(), ["ProposedPrice"] = "5000",
+            ["CurrentSalesQuantity"] = "33", ["ComparisonPeriod"] = "Week",
+            ["DeclinePercentage"] = "10", ["PreviewCurrentPrice"] = "4000",
+            ["PreviewUnitCost"] = "1000"
+        }, previewUrl);
+        Assert.Equal(HttpStatusCode.Redirect, saved.StatusCode);
+        var savedUrl = saved.Headers.Location!.OriginalString;
+        var simulationId = Guid.Parse(savedUrl.Split('/').Last());
+        using (var apiClient = Browser())
+        {
+            var login = await apiClient.PostAsJsonAsync("/api/auth/login",
+                new { Email = ownerEmail, Password = "Password1!" });
+            login.EnsureSuccessStatusCode();
+            var token = await login.Content.ReadFromJsonAsync<JsonElement>();
+            apiClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",
+                token.GetProperty("accessToken").GetString());
+            var classicList = await apiClient.GetFromJsonAsync<JsonElement>("/api/pricing-simulations");
+            Assert.Equal(0, classicList.GetProperty("items").GetArrayLength());
+            Assert.Equal(HttpStatusCode.NotFound,
+                (await apiClient.GetAsync($"/api/pricing-simulations/{simulationId}")).StatusCode);
+        }
+        using (var scope = factory.Services.CreateScope())
+        {
+            var snapshot = await scope.ServiceProvider.GetRequiredService<FinSightDbContext>()
+                .PricingSimulations.AsNoTracking().SingleAsync(x => x.Id == simulationId);
+            Assert.Equal("IQD", snapshot.CurrencySnapshot);
+            Assert.Equal(name, snapshot.ProductNameSnapshot);
+            Assert.Equal(FinSight.Domain.Enums.SalesPeriod.Week, snapshot.ComparisonPeriod);
+            Assert.Equal(10, snapshot.DeclinePercentage);
+            Assert.Null(snapshot.ExpectedSalesQuantity);
+            Assert.Null(snapshot.Recommendation);
+            Assert.Equal(99000, snapshot.CurrentContribution);
+        }
+
+        productFields = ProductFields(name, "6000");
+        productFields["UnitCost"] = "700";
+        Assert.Equal(HttpStatusCode.Redirect,
+            (await Submit(owner, $"/products/{product.Id}/edit", productFields)).StatusCode);
+        var detail = WebUtility.HtmlDecode(await owner.GetStringAsync(savedUrl));
+        Assert.Contains("4,000", detail);
+        Assert.Contains("1,000", detail);
+        Assert.Contains("25", detail);
+        Assert.Contains(name, await owner.GetStringAsync("/simulations"));
+        var staleSave = await Submit(owner, "/simulations/preview/save", new()
+        {
+            ["ProductId"] = product.Id.ToString(), ["ProposedPrice"] = "5000",
+            ["CurrentSalesQuantity"] = "33", ["ComparisonPeriod"] = "Week",
+            ["DeclinePercentage"] = "10", ["PreviewCurrentPrice"] = "4000",
+            ["PreviewUnitCost"] = "1000"
+        }, previewUrl);
+        Assert.Equal(HttpStatusCode.Conflict, staleSave.StatusCode);
+
+        Guid legacyId;
+        using (var scope = factory.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<FinSightDbContext>();
+            var unchanged = await db.PricingSimulations.AsNoTracking()
+                .SingleAsync(x => x.Id == simulationId);
+            Assert.Equal(4000, unchanged.CurrentPrice);
+            Assert.Equal(1000, unchanged.UnitCost);
+            Assert.Equal(99000, unchanged.CurrentContribution);
+            var ownerId = await db.Users.Where(x => x.BusinessId == product.BusinessId)
+                .Select(x => x.Id).SingleAsync();
+            var legacy = new FinSight.Domain.Entities.PricingSimulation(Guid.NewGuid(),
+                product.BusinessId, product.Id, ownerId, 4000, 1000, 5000, 33, 24,
+                DateTime.UtcNow, new FinSight.Domain.Services.PricingSimulationCalculator());
+            legacyId = legacy.Id;
+            db.PricingSimulations.Add(legacy);
+            await db.SaveChangesAsync();
+        }
+        var legacyPage = WebUtility.HtmlDecode(await owner.GetStringAsync($"/simulations/{legacyId}"));
+        Assert.Contains("Period not specified", legacyPage);
+        Assert.DoesNotContain("Sales decline (", legacyPage);
+        Assert.Contains("96,000", legacyPage);
+
+        using var otherBusiness = Browser();
+        await Login(otherBusiness, await RegisterAndConfirm(otherBusiness));
+        Assert.Equal(HttpStatusCode.NotFound, (await otherBusiness.GetAsync(savedUrl)).StatusCode);
+        Assert.Equal(HttpStatusCode.NotFound, (await Submit(otherBusiness,
+            "/simulations/preview/save", new()
+            {
+                ["ProductId"] = product.Id.ToString(), ["ProposedPrice"] = "5000",
+                ["CurrentSalesQuantity"] = "33", ["ComparisonPeriod"] = "Week",
+                ["DeclinePercentage"] = "10", ["PreviewCurrentPrice"] = "4000",
+                ["PreviewUnitCost"] = "1000"
+            }, "/products")).StatusCode);
+    }
+
+    [Fact]
     public async Task LanguageChoice_PersistsThroughLoginLogout_AndKeepsApiJson()
     {
         using var browser = Browser();
