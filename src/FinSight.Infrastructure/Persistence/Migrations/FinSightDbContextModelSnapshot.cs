@@ -105,6 +105,29 @@ namespace FinSight.Infrastructure.Persistence.Migrations
                     b.ToTable("BusinessCosts");
                 });
 
+            modelBuilder.Entity("FinSight.Domain.Entities.BusinessCostMonth", b =>
+                {
+                    b.Property<Guid>("BusinessId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateOnly>("Month")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime?>("ReviewedAtUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid?>("ReviewedByUserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<long>("Version")
+                        .IsConcurrencyToken()
+                        .HasColumnType("bigint");
+
+                    b.HasKey("BusinessId", "Month");
+
+                    b.ToTable("BusinessCostMonths");
+                });
+
             modelBuilder.Entity("FinSight.Domain.Entities.PricingSimulation", b =>
                 {
                     b.Property<Guid>("Id")
@@ -555,6 +578,15 @@ namespace FinSight.Infrastructure.Persistence.Migrations
                 });
 
             modelBuilder.Entity("FinSight.Domain.Entities.BusinessCost", b =>
+                {
+                    b.HasOne("FinSight.Domain.Entities.Business", null)
+                        .WithMany()
+                        .HasForeignKey("BusinessId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FinSight.Domain.Entities.BusinessCostMonth", b =>
                 {
                     b.HasOne("FinSight.Domain.Entities.Business", null)
                         .WithMany()

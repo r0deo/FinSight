@@ -32,11 +32,19 @@ public sealed class BusinessCostMigrationTests
                 SalesPeriod.Month, new WhatIfInputs(4000,1000,100,CostShockInputMode.Percentage,20,null,10,null,null,null,null),
                 DateTime.UtcNow, new WhatIfCalculator(new PricingSimulationCalculator())));
             await old.SaveChangesAsync();
+            await old.GetService<IMigrator>().MigrateAsync("20261013163254_AddBusinessCosts");
+            old.BusinessCosts.Add(new BusinessCost(Guid.NewGuid(), businessId, "Legacy rent", BusinessCostCategory.Rent,
+                123, new(2026, 9, 1), CostCertainty.Actual, UnitCostInclusion.No, "Preserve this entry"));
+            await old.SaveChangesAsync();
         }
         await using var db = new FinSightDbContext(options);
         await db.Database.MigrateAsync();
         Assert.Empty(await db.Database.GetPendingMigrationsAsync());
         Assert.False(db.Database.HasPendingModelChanges());
+        var legacyCost = await db.BusinessCosts.SingleAsync();
+        Assert.Equal(123, legacyCost.Amount); Assert.Equal("Preserve this entry", legacyCost.Note);
+        Assert.Equal(new DateOnly(2026, 9, 1), legacyCost.Month); Assert.Equal(1, legacyCost.Version);
+        Assert.Empty(await db.BusinessCostMonths.ToListAsync()); // Existing months are not falsely declared complete.
         Assert.Equal(4000, (await db.Products.SingleAsync(x => x.Id == productId)).SellingPrice);
         var pricing = await db.PricingSimulations.SingleAsync(x => x.Id == pricingId);
         Assert.Equal(300000, pricing.CurrentContribution); Assert.Equal(315000, pricing.ProposedContribution);
@@ -46,6 +54,6 @@ public sealed class BusinessCostMigrationTests
         db.BusinessCosts.Add(new BusinessCost(Guid.NewGuid(), businessId, "Rent", BusinessCostCategory.Rent,
             500, new(2026,10,1), CostCertainty.Estimated, UnitCostInclusion.Unsure, null));
         await db.SaveChangesAsync();
-        Assert.Equal(500, (await db.BusinessCosts.SingleAsync()).Amount);
+        Assert.Equal(500, (await db.BusinessCosts.SingleAsync(x => x.Month == new DateOnly(2026, 10, 1))).Amount);
     }
 }

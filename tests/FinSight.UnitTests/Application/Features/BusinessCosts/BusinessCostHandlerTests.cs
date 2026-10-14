@@ -44,13 +44,34 @@ public class BusinessCostHandlerTests
     }
     private sealed class Repository : IBusinessCostRepository
     {
-        public BusinessCost? Cost; public Guid RequestedTenant; public bool Tracked; public bool Removed; public int Saves;
+        public BusinessCost? Cost; public BusinessCostMonth? Month; public Guid RequestedTenant; public bool Tracked; public bool Removed; public int Saves;
         public Task AddAsync(BusinessCost cost, CancellationToken ct) { Cost=cost; return Task.CompletedTask; }
+        public async Task<(IReadOnlyList<BusinessCost> Entries, BusinessCostMonth? Review)> GetMonthSnapshotAsync(Guid tenant, DateOnly month, CancellationToken ct) =>
+            (await GetMonthAsync(tenant, month, ct), null);
+        public Task<BusinessCostMonth?> GetTrackedMonthAsync(Guid tenant, DateOnly month, CancellationToken ct)
+        { RequestedTenant = tenant; return Task.FromResult(Month?.BusinessId == tenant && Month.Month == month ? Month : null); }
+        public Task AddMonthAsync(BusinessCostMonth month, CancellationToken ct) { Month = month; return Task.CompletedTask; }
         public Task<BusinessCost?> GetAsync(Guid id,Guid tenant,bool tracked,CancellationToken ct)
         { RequestedTenant=tenant; Tracked=tracked; return Task.FromResult(Cost?.BusinessId==tenant && Cost.Id==id ? Cost : null); }
         public Task<IReadOnlyList<BusinessCost>> GetMonthAsync(Guid tenant,DateOnly month,CancellationToken ct)
         { RequestedTenant=tenant; return Task.FromResult<IReadOnlyList<BusinessCost>>(Cost?.BusinessId==tenant && Cost.Month==month ? [Cost] : []); }
         public void Remove(BusinessCost cost) => Removed=true;
         public Task SaveChangesAsync(CancellationToken ct) { Saves++; return Task.CompletedTask; }
+    }
+    [Fact]
+    public async Task Review_EnforcesOwnerWithinApplication_UsesAuthenticatedTenantAndRejectsStaleVersion()
+    {
+        var tenant = Guid.NewGuid(); var owner = Guid.NewGuid(); var month = new DateOnly(2026, 10, 1);
+        var repo = new Repository { Cost = new(Guid.NewGuid(), tenant, "Rent", BusinessCostCategory.Rent,
+            100, month, CostCertainty.Actual, UnitCostInclusion.No, null) };
+        var manager = new ReviewBusinessCostMonthHandler(repo, new StubCurrentUserContext(owner, tenant, "Manager"), TimeProvider.System);
+        await Assert.ThrowsAsync<ForbiddenAccessException>(() => manager.Handle(new(month, 0, true), default));
+        Assert.Equal(0, repo.Saves);
+        var handler = new ReviewBusinessCostMonthHandler(repo, new StubCurrentUserContext(owner, tenant), TimeProvider.System);
+        await handler.Handle(new(month, 0, true), default);
+        Assert.Equal(tenant, repo.RequestedTenant); Assert.Equal(owner, repo.Month!.ReviewedByUserId);
+        Assert.Equal(DateTimeKind.Utc, repo.Month.ReviewedAtUtc!.Value.Kind); Assert.Equal(1, repo.Saves);
+        await Assert.ThrowsAsync<ConcurrencyConflictException>(() => handler.Handle(new(month, 0, true), default));
+        Assert.Equal(1, repo.Saves);
     }
 }

@@ -23,6 +23,13 @@ public sealed record BusinessCostResponse(Guid Id, string Name, BusinessCostCate
 public sealed record CategoryTotal(BusinessCostCategory Category, decimal Actual, decimal Estimated);
 public sealed record BusinessCostSummary(DateOnly Month, IReadOnlyList<BusinessCostResponse> Entries)
 {
+    public long ReviewVersion { get; init; }
+    public DateTime? ReviewedAtUtc { get; init; }
+    public bool IsReviewed => ReviewedAtUtc.HasValue;
+    public bool HasEstimates => Entries.Any(c => c.Certainty == CostCertainty.Estimated);
+    public decimal OperatingActual => OperatingCategories.Sum(c => c.Actual);
+    public decimal OperatingEstimated => OperatingCategories.Sum(c => c.Estimated);
+    public decimal RecordedOperatingTotal => OperatingActual + OperatingEstimated;
     public IReadOnlyList<CategoryTotal> OperatingCategories => Entries
         .Where(c => c.Category != BusinessCostCategory.Inventory).GroupBy(c => c.Category)
         .Select(g => new CategoryTotal(g.Key, g.Where(c => c.Certainty == CostCertainty.Actual).Sum(c => c.Amount),
@@ -98,8 +105,12 @@ public sealed class BusinessCostHandlers(IBusinessCostRepository costs, ICurrent
     }
     public async Task<BusinessCostResponse> Handle(GetBusinessCostQuery request, CancellationToken ct) =>
         BusinessCostResponse.From(await Required(request.Id, false, ct));
-    public async Task<BusinessCostSummary> Handle(GetBusinessCostsQuery request, CancellationToken ct) =>
-        new(request.Month, (await costs.GetMonthAsync(user.BusinessId, request.Month, ct)).Select(BusinessCostResponse.From).ToArray());
+    public async Task<BusinessCostSummary> Handle(GetBusinessCostsQuery request, CancellationToken ct)
+    {
+        var snapshot = await costs.GetMonthSnapshotAsync(user.BusinessId, request.Month, ct);
+        return new(request.Month, snapshot.Entries.Select(BusinessCostResponse.From).ToArray())
+        { ReviewVersion = snapshot.Review?.Version ?? 0, ReviewedAtUtc = snapshot.Review?.ReviewedAtUtc };
+    }
     private async Task<BusinessCost> Required(Guid id, bool tracked, CancellationToken ct) =>
         await costs.GetAsync(id, user.BusinessId, tracked, ct) ?? throw new NotFoundException(nameof(BusinessCost), id);
 }

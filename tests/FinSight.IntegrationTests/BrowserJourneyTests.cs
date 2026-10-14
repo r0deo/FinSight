@@ -133,7 +133,13 @@ public sealed class BrowserJourneyTests(BrowserApiFactory factory) : IClassFixtu
             Assert.Equal(4000, (await db.Products.SingleAsync(x => x.Id == productId)).SellingPrice);
             Assert.Single(await db.PricingSimulations.Where(x => x.BusinessId == tenant).ToListAsync());
         }
-        await page.GotoAsync("/business-costs/create?month=2026-10");
+        await page.Locator("header a[href='/business-costs']").ClickAsync();
+        await page.WaitForURLAsync("**/business-costs");
+        await page.Locator("#month").FillAsync("2026-10");
+        await page.Locator("main form[method=get] button").ClickAsync();
+        await page.WaitForURLAsync("**/business-costs?month=2026-10");
+        await Layout(page, culture, width, "costs-empty");
+        await page.Locator("main a[href='/business-costs/create?month=2026-10']").ClickAsync();
         await page.Locator("#Name").FillAsync("Kitchen rent");
         await page.Locator("#Category").SelectOptionAsync("Rent");
         await page.Locator("#Amount").FillAsync(culture == "en" ? "125.50" : "١٢٥٫٥٠");
@@ -145,11 +151,34 @@ public sealed class BrowserJourneyTests(BrowserApiFactory factory) : IClassFixtu
         await page.Locator("main form button[type=submit]").ClickAsync();
         await page.WaitForURLAsync("**/business-costs?month=2026-10");
         await Layout(page, culture, width, "costs");
+        await page.Locator("[data-cost-review] button").ClickAsync();
+        await page.WaitForURLAsync("**/business-costs?month=2026-10");
+        await Expect(page.Locator("[data-cost-review] input[name=reviewed]")).ToHaveValueAsync("false");
+        await page.Locator("#Percent").FillAsync(culture == "en" ? "10" : "١٠");
+        await page.Locator("[data-cost-adjustment] button").ClickAsync();
+        var numberCulture = System.Globalization.CultureInfo.GetCultureInfo(culture);
+        await Expect(page.Locator("[data-cost-adjustment-result]")).ToContainTextAsync(15m.ToString("N2", numberCulture));
+        await Expect(page.Locator("[data-cost-adjustment-result]")).ToContainTextAsync(135m.ToString("N2", numberCulture));
+        await Layout(page, culture, width, "cost-adjustment");
+        await page.Locator("[data-cost-adjustment-result]").ScrollIntoViewIfNeededAsync();
+        await page.ScreenshotAsync(new() { Path = Path.Combine(AppContext.BaseDirectory, "TestResults", "browser", $"{culture}-{width}-cost-adjustment-detail.png") });
+        // Switching language from a POST result returns safely to the same month, never to a POST-only URL.
+        await page.Locator("#site-language").SelectOptionAsync(culture == "en" ? "ar-IQ" : "en");
+        await page.WaitForURLAsync("**/business-costs?month=2026-10");
+        await page.Locator("#site-language").SelectOptionAsync(culture);
+        await Expect(page.Locator("html")).ToHaveAttributeAsync("lang", culture);
+        // Month navigation must still work after the read-only POST preview.
+        await page.Locator("#month").FillAsync("2026-11");
+        await page.Locator("main form[method=get] button").ClickAsync();
+        await page.WaitForURLAsync("**/business-costs?month=2026-11");
+        await Expect(page.Locator("main a[href$='/edit']")).ToHaveCountAsync(0);
+        await page.GotoAsync("/business-costs?month=2026-10");
         using (var scope = factory.Services.CreateScope())
         {
             var entry = await scope.ServiceProvider.GetRequiredService<FinSightDbContext>().BusinessCosts.SingleAsync(x => x.BusinessId == tenant);
             Assert.Equal(150, entry.Amount); Assert.Equal(2, entry.Version);
             Assert.Equal(new DateOnly(2026,10,1), entry.Month);
+            Assert.NotNull((await scope.ServiceProvider.GetRequiredService<FinSightDbContext>().BusinessCostMonths.SingleAsync(x => x.BusinessId == tenant)).ReviewedAtUtc);
         }
         Assert.True(errors.Count == 0, string.Join(Environment.NewLine, errors));
         if (culture == "en" && width == 1440)
@@ -183,6 +212,21 @@ public sealed class BrowserJourneyTests(BrowserApiFactory factory) : IClassFixtu
             // Chromium reports expected HTTP error responses in its console. No script/CSP errors are allowed.
             Assert.All(errors, error => Assert.True(error.Contains("Failed to load resource") &&
                 (error.Contains("400") || error.Contains("409")), error));
+        }
+        await page.GotoAsync("/business-costs?month=2026-10");
+        await page.Locator("main a[href$='/delete']").ClickAsync();
+        await Layout(page, culture, width, "cost-delete-confirmation");
+        await page.Locator("main form button[type=submit]").ClickAsync();
+        await page.WaitForURLAsync("**/business-costs?month=2026-10");
+        await Expect(page.Locator("main a[href$='/edit']")).ToHaveCountAsync(0);
+        await Expect(page.Locator("[data-cost-review]")).ToHaveCountAsync(0);
+        using (var scope = factory.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<FinSightDbContext>();
+            Assert.False(await db.BusinessCosts.AnyAsync(x => x.BusinessId == tenant));
+            Assert.Null((await db.BusinessCostMonths.SingleAsync(x => x.BusinessId == tenant)).ReviewedAtUtc);
+            Assert.Equal(1, await db.PricingSimulations.CountAsync(x => x.BusinessId == tenant));
+            Assert.Equal(1, await db.WhatIfSimulations.CountAsync(x => x.BusinessId == tenant));
         }
     }
     private static async Task Layout(IPage page, string culture, int width, string step)

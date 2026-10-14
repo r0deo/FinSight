@@ -1,9 +1,29 @@
 @model BusinessCostsViewModel
-@{ ViewData["Title"] = T["Business costs"].Value; var month = Model.Summary.Month.ToString("yyyy-MM"); }
-<section class="panel"><h1>@T["Business costs"]</h1>
-<form method="get" class="filters"><div class="field"><label for="month">@T["month"]</label><input id="month" name="month" type="month" min="2000-01" max="2100-12" value="@month" required dir="ltr" /></div><button class="button button-quiet button-small" type="submit">@T["View month"]</button></form>
-<p><a class="button" href="/business-costs/create?month=@month">@T["Add cost entry"]</a></p>
-<partial name="_BusinessCostSummary" model="Model" />
+@{ ViewData["Title"] = T["Business costs"].Value; var month = Model.Summary.Month.ToString("yyyy-MM");
+    ViewData["LanguageReturnUrl"] = "/business-costs?month=" + month; }
+<section class="panel business-cost-workspace"><h1>@T["Business costs"]</h1>
+<form method="get" action="/business-costs" class="filters"><div class="field"><label for="month">@T["month"]</label><input id="month" name="month" type="month" min="2000-01" max="2100-12" value="@month" required dir="ltr" /></div><button class="button button-quiet button-small" type="submit">@T["View month"]</button></form>
+<p><a class="button" href="/business-costs/create?month=@month">@T[Model.Summary.Entries.Count == 0 ? "Add your first cost" : "Add cost entry"]</a></p>
+@if (Model.Summary.Entries.Count == 0) { <p class="notice">@T["No costs entered for this month. This does not mean your business has no costs."]</p> }
+<div asp-validation-summary="All" class="validation-summary" role="alert"></div>
+<section class="notice" aria-labelledby="review-heading">
+<h2 id="review-heading">@T[Model.Summary.IsReviewed ? "Reviewed by owner" : "Month not yet reviewed"]</h2>
+<p>@T["Reviewed means the owner declares the recorded entries complete for this month. Rebaz has not verified accounting completeness. Changing any entry reopens the month."]</p>
+@if (Model.Summary.HasEstimates) { <p>@T["This month contains estimates, not just actual amounts."]</p> }
+@if (User.IsInRole("Owner") && Model.Summary.Entries.Count > 0) {
+<form method="post" action="/business-costs/review" asp-antiforgery="true" data-cost-review>
+<input type="hidden" name="month" value="@month" /><input type="hidden" name="version" value="@Model.Summary.ReviewVersion" />
+<input type="hidden" name="reviewed" value="@((!Model.Summary.IsReviewed).ToString().ToLowerInvariant())" />
+<button type="submit" class="button button-quiet">@T[Model.Summary.IsReviewed ? "Reopen month" : "Mark entries reviewed / complete"]</button>
+</form>
+}
+else if (!User.IsInRole("Owner")) { <p>@T["Only an owner can mark a month reviewed."]</p> }
+</section>
+<section class="panel"><h2>@T["Recorded operating costs"]</h2>
+<p>@T["Actual"]: <bdi dir="ltr">@Model.Summary.OperatingActual.ToString("N2") @Model.Currency</bdi></p>
+<p>@T["Estimated"]: <bdi dir="ltr">@Model.Summary.OperatingEstimated.ToString("N2") @Model.Currency</bdi></p>
+<p>@T["Recorded total (actual + estimated)"]: <bdi dir="ltr">@Model.Summary.RecordedOperatingTotal.ToString("N2") @Model.Currency</bdi></p>
+<p>@T["Only entered operating costs are counted. Inventory is separate. These figures are not business profit and must not be subtracted from a single product simulation."]</p></section>
 <h2>@T["Cost entries"]</h2>
 <div class="what-if-options">
 @foreach(var c in Model.Summary.Entries) {
@@ -14,7 +34,42 @@
 <a href="/business-costs/@c.Id/edit">@T["Edit"]</a> · <a href="/business-costs/@c.Id/delete">@T["Delete cost entry"]</a></article>
 }
 </div>
+<partial name="_BusinessCostSummary" model="Model" />
+<p>@T["The largest recorded category is not a recommendation to cut staffing or change operations."]</p>
+<section class="panel" data-cost-comparison><h2>@T["Compared with the previous month"]</h2>
+@if (Model.Previous is not null) { <p><bdi dir="ltr">@Model.Previous.Month.ToString("yyyy-MM")</bdi></p> }
+@if (Model.Comparison.NeedsCaution) { <p class="notice">@T["Caution: either month is not reviewed or contains estimates. Differences may reflect missing entries or changed estimates, not a real change in expenses."]</p> }
+@if (!Model.Comparison.CanCompare) { <p>@T["One or both months have no recorded entries. A comparison is unavailable; missing entries do not mean zero expenses."]</p> }
+else {
+<p>@T["Previous recorded operating total"]: <bdi dir="ltr">@Model.Previous!.RecordedOperatingTotal.ToString("N2") @Model.Currency</bdi>
+(@T["Actual"]: <bdi dir="ltr">@Model.Previous.OperatingActual.ToString("N2")</bdi>; @T["Estimated"]: <bdi dir="ltr">@Model.Previous.OperatingEstimated.ToString("N2")</bdi>)</p>
+<p>@T["Change in recorded operating costs"]: <bdi dir="ltr">@Model.Comparison.OperatingChange!.Value.ToString("N2") @Model.Currency</bdi></p>
+@if (Model.Comparison.OperatingPercent.HasValue) { <p>@T["Percentage change"]: <bdi dir="ltr">@Model.Comparison.OperatingPercent.Value.ToString("N2")%</bdi></p> }
+else { <p>@T["No percentage is shown because the previous recorded operating amount is zero."]</p> }
+<p>@T["Change in recorded inventory purchases (separate)"]: <bdi dir="ltr">@Model.Comparison.InventoryChange!.Value.ToString("N2") @Model.Currency</bdi></p>
+}
+</section>
+<section class="panel"><h2>@T["Assume a lower operating cost"]</h2>
+<p>@T["Choose your own assumption. This is conditional arithmetic, not predicted savings or net profit. No entries or simulations will change."]</p>
+@if (Model.AdjustmentForm.Categories.Count > 0) { <partial name="_AdjustmentForm" model="Model.AdjustmentForm" /> }
+else { <p>@T["Record an operating cost first to try an adjustment."]</p> }
+@if (Model.Adjustment is { } adjustment) {
+<div class="notice" data-cost-adjustment-result role="status"><h3>@T["Conditional result — if your assumption holds"]</h3>
+<p>@T[CostLabels.Category(adjustment.Category)]: <bdi dir="ltr">@adjustment.CategoryAmount.ToString("N2") @Model.Currency</bdi> · <bdi dir="ltr">@adjustment.Percent.ToString("N2")%</bdi></p>
+<p>@T["Potential monthly saving"]: <bdi dir="ltr">@adjustment.PotentialSaving.ToString("N2") @Model.Currency</bdi></p>
+<p>@T["Revised recorded operating total"]: <bdi dir="ltr">@adjustment.RevisedRecordedTotal.ToString("N2") @Model.Currency</bdi></p>
+<p>@T["This includes any estimates in the selected category. It excludes inventory purchases and unrecorded costs."]</p></div>
+}
+</section>
+<section class="notice"><h2>@T["Commonly forgotten costs — review checklist"]</h2>
+<p>@T["Check whether each applies to your business. An absent category is unknown, not zero. Add only costs for this month and check whether materials are already in unit costs."]</p>
+<ul class="cost-checklist">
+@foreach (var category in Enum.GetValues<FinSight.Domain.Enums.BusinessCostCategory>()) {
+<li>@T[CostLabels.Category(category)] — @T[Model.Summary.Entries.Any(c => c.Category == category) ? "Entries recorded — check completeness" : "No entries — check whether this applies"]</li>
+}
+</ul></section>
 <aside class="notice"><h2>@T["Avoid counting the same cost twice"]</h2>
 <p>@T["Unit costs describe the cost associated with each product unit. Monthly operating costs may continue even when sales change. Buying inventory is not the same as consuming or selling it."]</p>
 <p>@T["Check missing categories, estimates, and Unsure entries. A full business operating result requires sales and costs across the business for the same period."]</p></aside>
+<p><a href="/simulations">@T["Simulations"]</a> · <a href="/what-if">@T["What if?"]</a></p>
 </section>

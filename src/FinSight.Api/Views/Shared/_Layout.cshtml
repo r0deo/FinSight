@@ -2,7 +2,7 @@
 @{
     var selectedCulture = CultureInfo.CurrentUICulture.Name;
     var direction = WebsiteCultures.IsRightToLeft(CultureInfo.CurrentUICulture) ? "rtl" : "ltr";
-    var currentPage = Context.Request.Path.ToString() + Context.Request.QueryString.ToString();
+    var currentPage = ViewData["LanguageReturnUrl"] as string ?? Context.Request.Path.ToString() + Context.Request.QueryString.ToString();
 }
 <!DOCTYPE html>
 <html lang="@selectedCulture" dir="@direction">

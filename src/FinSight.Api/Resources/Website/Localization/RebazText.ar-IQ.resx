@@ -489,4 +489,41 @@
   <data name="Yes" xml:space="preserve"><value>نعم</value></data>
   <data name="No" xml:space="preserve"><value>لا</value></data>
   <data name="Assumptions changed. Calculate again before saving." xml:space="preserve"><value>تغيرت الافتراضات. أعد الحساب قبل الحفظ.</value></data>
+  <data name="Add your first cost" xml:space="preserve"><value>أضف أول تكلفة</value></data>
+  <data name="Month marked as reviewed." xml:space="preserve"><value>تم تحديد الشهر كمُراجَع.</value></data>
+  <data name="Month reopened for review." xml:space="preserve"><value>أُعيد فتح الشهر للمراجعة.</value></data>
+  <data name="Reviewed by owner" xml:space="preserve"><value>راجعه المالك</value></data>
+  <data name="Month not yet reviewed" xml:space="preserve"><value>لم تتم مراجعة الشهر بعد</value></data>
+  <data name="Reviewed means the owner declares the recorded entries complete for this month. Rebaz has not verified accounting completeness. Changing any entry reopens the month." xml:space="preserve"><value>المراجعة تعني أن المالك يصرّح باكتمال القيود المسجلة لهذا الشهر. ريباز لم يتحقق من اكتمال الحسابات. أي تعديل على قيد يعيد فتح الشهر للمراجعة.</value></data>
+  <data name="This month contains estimates, not just actual amounts." xml:space="preserve"><value>هذا الشهر يحتوي على تقديرات، وليس فقط مبالغ فعلية.</value></data>
+  <data name="Reopen month" xml:space="preserve"><value>أعد فتح الشهر</value></data>
+  <data name="Mark entries reviewed / complete" xml:space="preserve"><value>أُقرّ بمراجعة القيود واكتمالها</value></data>
+  <data name="Only an owner can mark a month reviewed." xml:space="preserve"><value>المالك وحده يستطيع إقرار مراجعة الشهر.</value></data>
+  <data name="Recorded operating costs" xml:space="preserve"><value>التكاليف التشغيلية المسجلة</value></data>
+  <data name="Recorded total (actual + estimated)" xml:space="preserve"><value>المجموع المسجل (فعلي + تقديري)</value></data>
+  <data name="Only entered operating costs are counted. Inventory is separate. These figures are not business profit and must not be subtracted from a single product simulation." xml:space="preserve"><value>نحسب التكاليف التشغيلية المُدخلة فقط. المخزون منفصل. هذه الأرقام ليست ربح النشاط، ولا تُطرح من محاكاة منتج واحد.</value></data>
+  <data name="The largest recorded category is not a recommendation to cut staffing or change operations." xml:space="preserve"><value>كون الفئة هي الأكبر لا يعني توصية بتقليل الموظفين أو تغيير طريقة العمل.</value></data>
+  <data name="Compared with the previous month" xml:space="preserve"><value>مقارنة بالشهر السابق</value></data>
+  <data name="Caution: either month is not reviewed or contains estimates. Differences may reflect missing entries or changed estimates, not a real change in expenses." xml:space="preserve"><value>تنبيه: أحد الشهرين غير مُراجَع أو يحتوي على تقديرات. قد تعكس الفروق قيوداً ناقصة أو تقديرات تغيّرت، لا تغيّراً فعلياً في المصاريف.</value></data>
+  <data name="One or both months have no recorded entries. A comparison is unavailable; missing entries do not mean zero expenses." xml:space="preserve"><value>لا توجد قيود مسجلة لأحد الشهرين أو كليهما. لا تتوفر مقارنة؛ عدم التسجيل لا يعني عدم وجود مصاريف.</value></data>
+  <data name="Previous recorded operating total" xml:space="preserve"><value>مجموع التكاليف التشغيلية المسجل للشهر السابق</value></data>
+  <data name="Change in recorded operating costs" xml:space="preserve"><value>التغيّر في التكاليف التشغيلية المسجلة</value></data>
+  <data name="Percentage change" xml:space="preserve"><value>نسبة التغيّر</value></data>
+  <data name="No percentage is shown because the previous recorded operating amount is zero." xml:space="preserve"><value>لا نعرض نسبة تغيير لأن المبلغ التشغيلي المسجل للشهر السابق يساوي صفراً.</value></data>
+  <data name="Change in recorded inventory purchases (separate)" xml:space="preserve"><value>التغيّر في مشتريات المخزون المسجلة (منفصل)</value></data>
+  <data name="Assume a lower operating cost" xml:space="preserve"><value>جرّب افتراض تخفيض تكلفة تشغيلية</value></data>
+  <data name="Choose your own assumption. This is conditional arithmetic, not predicted savings or net profit. No entries or simulations will change." xml:space="preserve"><value>اختر افتراضك بنفسك. هذا حساب مشروط، وليس وفراً متوقعاً أو ربحاً صافياً. لن تتغير القيود أو المحاكاة المحفوظة.</value></data>
+  <data name="Record an operating cost first to try an adjustment." xml:space="preserve"><value>أدخل تكلفة تشغيلية أولاً لتجربة التعديل.</value></data>
+  <data name="Conditional result — if your assumption holds" xml:space="preserve"><value>نتيجة مشروطة — إذا تحقق افتراضك</value></data>
+  <data name="Potential monthly saving" xml:space="preserve"><value>الوفر الشهري المحتمل</value></data>
+  <data name="Revised recorded operating total" xml:space="preserve"><value>مجموع التكاليف التشغيلية المسجلة بعد الافتراض</value></data>
+  <data name="This includes any estimates in the selected category. It excludes inventory purchases and unrecorded costs." xml:space="preserve"><value>يشمل هذا أي تقديرات في الفئة المختارة. ولا يشمل مشتريات المخزون أو التكاليف غير المسجلة.</value></data>
+  <data name="Commonly forgotten costs — review checklist" xml:space="preserve"><value>تكاليف يسهل نسيانها — قائمة للمراجعة</value></data>
+  <data name="Check whether each applies to your business. An absent category is unknown, not zero. Add only costs for this month and check whether materials are already in unit costs." xml:space="preserve"><value>تحقق مما ينطبق على نشاطك. الفئة الغائبة غير معروفة وليست صفراً. أضف تكاليف هذا الشهر فقط، وتحقق هل المواد محسوبة مسبقاً في تكلفة الوحدة.</value></data>
+  <data name="Entries recorded — check completeness" xml:space="preserve"><value>توجد قيود — تحقق من اكتمالها</value></data>
+  <data name="No entries — check whether this applies" xml:space="preserve"><value>لا توجد قيود — تحقق إن كانت تنطبق</value></data>
+  <data name="Operating-cost category" xml:space="preserve"><value>فئة التكلفة التشغيلية</value></data>
+  <data name="Assumed reduction (%)" xml:space="preserve"><value>التخفيض المفترض (%)</value></data>
+  <data name="Calculate assumed saving" xml:space="preserve"><value>احسب الوفر وفق الافتراض</value></data>
+  <data name="Choose a recorded operating category and a reduction from 0 to 100, with up to two decimals." xml:space="preserve"><value>اختر فئة تشغيلية مسجلة ونسبة تخفيض بين 0 و100، بمنزلتين عشريتين كحد أقصى.</value></data>
 </root>

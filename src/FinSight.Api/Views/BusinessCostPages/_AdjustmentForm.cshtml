@@ -1,0 +1,10 @@
+@model CostAdjustmentForm
+<form method="post" action="/business-costs/adjustment" asp-antiforgery="true" class="filters" data-cost-adjustment>
+    <input type="hidden" asp-for="Month" />
+    <div class="field"><label for="cost-category">@T["Operating-cost category"]</label>
+    <select asp-for="Category" id="cost-category">
+        @foreach (var category in Model.Categories) { <option value="@category">@T[CostLabels.Category(category)]</option> }
+    </select></div>
+    <div class="field"><label asp-for="Percent"></label><input asp-for="Percent" id="Percent" type="text" inputmode="decimal" dir="ltr" required /></div>
+    <button type="submit" class="button button-quiet">@T["Calculate assumed saving"]</button>
+</form>

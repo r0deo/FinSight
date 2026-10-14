@@ -489,4 +489,41 @@
   <data name="Yes" xml:space="preserve"><value>Yes</value></data>
   <data name="No" xml:space="preserve"><value>No</value></data>
   <data name="Assumptions changed. Calculate again before saving." xml:space="preserve"><value>Assumptions changed. Calculate again before saving.</value></data>
+  <data name="Add your first cost" xml:space="preserve"><value>Add your first cost</value></data>
+  <data name="Month marked as reviewed." xml:space="preserve"><value>Month marked as reviewed.</value></data>
+  <data name="Month reopened for review." xml:space="preserve"><value>Month reopened for review.</value></data>
+  <data name="Reviewed by owner" xml:space="preserve"><value>Reviewed by owner</value></data>
+  <data name="Month not yet reviewed" xml:space="preserve"><value>Month not yet reviewed</value></data>
+  <data name="Reviewed means the owner declares the recorded entries complete for this month. Rebaz has not verified accounting completeness. Changing any entry reopens the month." xml:space="preserve"><value>Reviewed means the owner declares the recorded entries complete for this month. Rebaz has not verified accounting completeness. Changing any entry reopens the month.</value></data>
+  <data name="This month contains estimates, not just actual amounts." xml:space="preserve"><value>This month contains estimates, not just actual amounts.</value></data>
+  <data name="Reopen month" xml:space="preserve"><value>Reopen month</value></data>
+  <data name="Mark entries reviewed / complete" xml:space="preserve"><value>Mark entries reviewed / complete</value></data>
+  <data name="Only an owner can mark a month reviewed." xml:space="preserve"><value>Only an owner can mark a month reviewed.</value></data>
+  <data name="Recorded operating costs" xml:space="preserve"><value>Recorded operating costs</value></data>
+  <data name="Recorded total (actual + estimated)" xml:space="preserve"><value>Recorded total (actual + estimated)</value></data>
+  <data name="Only entered operating costs are counted. Inventory is separate. These figures are not business profit and must not be subtracted from a single product simulation." xml:space="preserve"><value>Only entered operating costs are counted. Inventory is separate. These figures are not business profit and must not be subtracted from a single product simulation.</value></data>
+  <data name="The largest recorded category is not a recommendation to cut staffing or change operations." xml:space="preserve"><value>The largest recorded category is not a recommendation to cut staffing or change operations.</value></data>
+  <data name="Compared with the previous month" xml:space="preserve"><value>Compared with the previous month</value></data>
+  <data name="Caution: either month is not reviewed or contains estimates. Differences may reflect missing entries or changed estimates, not a real change in expenses." xml:space="preserve"><value>Caution: either month is not reviewed or contains estimates. Differences may reflect missing entries or changed estimates, not a real change in expenses.</value></data>
+  <data name="One or both months have no recorded entries. A comparison is unavailable; missing entries do not mean zero expenses." xml:space="preserve"><value>One or both months have no recorded entries. A comparison is unavailable; missing entries do not mean zero expenses.</value></data>
+  <data name="Previous recorded operating total" xml:space="preserve"><value>Previous recorded operating total</value></data>
+  <data name="Change in recorded operating costs" xml:space="preserve"><value>Change in recorded operating costs</value></data>
+  <data name="Percentage change" xml:space="preserve"><value>Percentage change</value></data>
+  <data name="No percentage is shown because the previous recorded operating amount is zero." xml:space="preserve"><value>No percentage is shown because the previous recorded operating amount is zero.</value></data>
+  <data name="Change in recorded inventory purchases (separate)" xml:space="preserve"><value>Change in recorded inventory purchases (separate)</value></data>
+  <data name="Assume a lower operating cost" xml:space="preserve"><value>Assume a lower operating cost</value></data>
+  <data name="Choose your own assumption. This is conditional arithmetic, not predicted savings or net profit. No entries or simulations will change." xml:space="preserve"><value>Choose your own assumption. This is conditional arithmetic, not predicted savings or net profit. No entries or simulations will change.</value></data>
+  <data name="Record an operating cost first to try an adjustment." xml:space="preserve"><value>Record an operating cost first to try an adjustment.</value></data>
+  <data name="Conditional result — if your assumption holds" xml:space="preserve"><value>Conditional result — if your assumption holds</value></data>
+  <data name="Potential monthly saving" xml:space="preserve"><value>Potential monthly saving</value></data>
+  <data name="Revised recorded operating total" xml:space="preserve"><value>Revised recorded operating total</value></data>
+  <data name="This includes any estimates in the selected category. It excludes inventory purchases and unrecorded costs." xml:space="preserve"><value>This includes any estimates in the selected category. It excludes inventory purchases and unrecorded costs.</value></data>
+  <data name="Commonly forgotten costs — review checklist" xml:space="preserve"><value>Commonly forgotten costs — review checklist</value></data>
+  <data name="Check whether each applies to your business. An absent category is unknown, not zero. Add only costs for this month and check whether materials are already in unit costs." xml:space="preserve"><value>Check whether each applies to your business. An absent category is unknown, not zero. Add only costs for this month and check whether materials are already in unit costs.</value></data>
+  <data name="Entries recorded — check completeness" xml:space="preserve"><value>Entries recorded — check completeness</value></data>
+  <data name="No entries — check whether this applies" xml:space="preserve"><value>No entries — check whether this applies</value></data>
+  <data name="Operating-cost category" xml:space="preserve"><value>Operating-cost category</value></data>
+  <data name="Assumed reduction (%)" xml:space="preserve"><value>Assumed reduction (%)</value></data>
+  <data name="Calculate assumed saving" xml:space="preserve"><value>Calculate assumed saving</value></data>
+  <data name="Choose a recorded operating category and a reduction from 0 to 100, with up to two decimals." xml:space="preserve"><value>Choose a recorded operating category and a reduction from 0 to 100, with up to two decimals.</value></data>
 </root>

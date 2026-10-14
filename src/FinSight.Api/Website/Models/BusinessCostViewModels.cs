@@ -5,6 +5,7 @@ using FinSight.Application.Features.BusinessCosts;
 using FinSight.Domain.Entities;
 using FinSight.Domain.Enums;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace FinSight.Api.Website.Models;
 
@@ -28,7 +29,21 @@ public sealed class BusinessCostForm
         return new(Name, Category, Amount!.Value, month, Certainty, Inclusion, Note);
     }
 }
-public sealed record BusinessCostsViewModel(BusinessCostSummary Summary, string Currency);
+public sealed record BusinessCostsViewModel(BusinessCostSummary Summary, string Currency)
+{
+    public BusinessCostSummary? Previous { get; init; }
+    public CostMonthComparison Comparison => new(Summary, Previous);
+    public CostAdjustmentForm AdjustmentForm { get; init; } = new();
+    public CostAdjustmentResult? Adjustment { get; init; }
+}
+public sealed class CostAdjustmentForm
+{
+    public string Month { get; set; } = "";
+    public BusinessCostCategory Category { get; set; }
+    [Required(ErrorMessage = "{0} is required."), Display(Name = "Assumed reduction (%)"), ModelBinder(BinderType = typeof(WebsiteNumberModelBinder))]
+    public decimal? Percent { get; set; }
+    [BindNever] public IReadOnlyList<BusinessCostCategory> Categories { get; set; } = [];
+}
 public static class CostLabels
 {
     public static string Category(BusinessCostCategory c) => c switch {

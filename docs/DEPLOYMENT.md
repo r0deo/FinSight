@@ -114,8 +114,62 @@ out of command arguments, transcripts and screenshots. The earlier
 The later **`20261013105643_AddPricingDecisionAssumptions`** migration adds
 pricing-decision snapshot fields and permits an unknown expected quantity on
 saved simulations. **`20261013120101_AddWhatIfSimulations`** adds a separate
-table for saved cost-and-demand shock scenarios. Apply both explicitly before
-serving their website pages.
+table for saved cost-and-demand shock scenarios.
+**`20261013163254_AddBusinessCosts`** is required for `/business-costs` and
+monthly cost context in previews. **`20261014125743_AddBusinessCostMonthReviews`**
+adds owner review declarations and atomic monthly versions. Apply all pending
+migrations explicitly before serving this release. No application startup migration
+or empty-data fallback is implemented.
+
+### Business Costs 500: release checklist
+
+An authenticated request against the schema before `AddBusinessCosts` reproduces
+PostgreSQL SQLSTATE `42P01`: `relation "BusinessCosts" does not exist`. Applying
+the migrations restores the page. This was reproduced on disposable local PostgreSQL;
+production logs and production migration history have **not** been inspected.
+If Render reports this error (or a missing `BusinessCostMonths` table), check the
+database target and migration history rather than changing authentication or hiding
+the error as an empty month. `/health` is liveness only and cannot confirm schema readiness.
+
+1. Keep automatic deployment disabled while preparing the release. Back up the
+   intended Neon branch and verify that the runtime pooled connection and migration
+   direct connection target the same branch/database.
+2. From the source version containing both migrations, run the masked helper in
+   your own interactive PowerShell window from `D:\FinSight`:
+
+   ```powershell
+   dotnet build tools/FinSight.NeonMigrate/FinSight.NeonMigrate.csproj
+   if ($LASTEXITCODE -eq 0) {
+       dotnet tools/FinSight.NeonMigrate/bin/Debug/net10.0/FinSight.NeonMigrate.dll
+   }
+   ```
+
+3. Enter the **direct** Neon URL only at the masked prompt. Verify the displayed
+   host/database, then type `APPLY`. The helper applies all pending existing
+   migrations in order and verifies history. Do not generate another migration,
+   reset the database, or copy credentials into chat/command arguments.
+4. Confirm success and history containing `20261013163254_AddBusinessCosts` and
+   `20261014125743_AddBusinessCostMonthReviews`. The helper's credential-free
+   result is under its ignored `bin/Debug/net10.0` directory. With authorized SQL
+   console access, a read-only additional check is:
+
+   ```sql
+   SELECT "MigrationId" FROM "__EFMigrationsHistory" ORDER BY "MigrationId";
+   SELECT to_regclass('public."BusinessCosts"'), to_regclass('public."BusinessCostMonths"');
+   ```
+
+5. Only after successful migration verification, manually deploy the matching
+   release through your approved workflow. Sign in, use the Business Costs
+   navigation link, select a month, and check listing/CRUD/review. Confirm that a
+   second business cannot access the first business's entries. If it still fails,
+   inspect the actual Render exception and SQLSTATE; do not assume every 500 has
+   the same cause. Never share connection strings or full sensitive logs.
+
+These steps are instructions for the operator, **not actions performed against
+production by the implementation agent**. The review migration adds one table;
+it neither changes recorded amounts nor marks existing months complete. Old
+versions can continue using their existing tables, but do not downgrade/drop
+tables containing customer records.
 Do not roll back the key-ring migration on a used database: dropping that table
 invalidates protected data. Back up pilot data before updates.
 

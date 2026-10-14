@@ -16,8 +16,42 @@ public sealed class BusinessCostPagesController(ISender sender, TimeProvider clo
     {
         month ??= clock.GetUtcNow().ToString("yyyy-MM");
         if (!BusinessCostForm.TryMonth(month, out var selected)) return BadRequest();
-        return View(new BusinessCostsViewModel(await sender.Send(new GetBusinessCostsQuery(selected), ct),
-            await sender.Send(new GetBusinessCurrencyQuery(), ct)));
+        return View(await Workspace(selected, ct));
+    }
+    [HttpPost("review"), Authorize(Roles = "Owner")]
+    public async Task<IActionResult> Review(string month, long version, bool reviewed, CancellationToken ct)
+    {
+        if (!ModelState.IsValid || !BusinessCostForm.TryMonth(month, out var selected)) return BadRequest();
+        await sender.Send(new ReviewBusinessCostMonthCommand(selected, version, reviewed), ct);
+        TempData["Success"] = reviewed ? "Month marked as reviewed." : "Month reopened for review.";
+        return RedirectToAction(nameof(Index), new { month });
+    }
+    [HttpPost("adjustment")]
+    public async Task<IActionResult> Adjustment(CostAdjustmentForm form, CancellationToken ct)
+    {
+        if (!BusinessCostForm.TryMonth(form.Month, out var selected)) return BadRequest();
+        var workspace = await Workspace(selected, ct);
+        form.Categories = workspace.AdjustmentForm.Categories;
+        var query = new PreviewCostAdjustmentQuery(selected, form.Category, form.Percent ?? -1);
+        if (!ModelState.IsValid || !(await new PreviewCostAdjustmentValidator().ValidateAsync(query, ct)).IsValid
+            || !form.Categories.Contains(form.Category))
+        {
+            ModelState.Clear();
+            ModelState.AddModelError("", Text("Choose a recorded operating category and a reduction from 0 to 100, with up to two decimals."));
+            return InvalidForm("Index", workspace with { AdjustmentForm = form });
+        }
+        var adjustment = await sender.Send(query, ct);
+        return View("Index", workspace with { Summary = adjustment.Source, AdjustmentForm = form, Adjustment = adjustment });
+    }
+    private async Task<BusinessCostsViewModel> Workspace(DateOnly month, CancellationToken ct)
+    {
+        var summary = await sender.Send(new GetBusinessCostsQuery(month), ct);
+        return new(summary, await sender.Send(new GetBusinessCurrencyQuery(), ct))
+        {
+            Previous = month > new DateOnly(2000, 1, 1) ? await sender.Send(new GetBusinessCostsQuery(month.AddMonths(-1)), ct) : null,
+            AdjustmentForm = new() { Month = month.ToString("yyyy-MM"), Categories = summary.OperatingCategories.Select(c => c.Category).ToArray(),
+                Category = summary.OperatingCategories.FirstOrDefault()?.Category ?? FinSight.Domain.Enums.BusinessCostCategory.Rent }
+        };
     }
     [HttpGet("create")]
     public IActionResult Create(string? month)

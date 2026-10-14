@@ -489,4 +489,41 @@
   <data name="Yes" xml:space="preserve"><value>بەلێ</value></data>
   <data name="No" xml:space="preserve"><value>نەخێر</value></data>
   <data name="Assumptions changed. Calculate again before saving." xml:space="preserve"><value>گریمانە گوهۆڕین. بەری پاشەکەوتکرنێ دووبارە بهژمێرە.</value></data>
+  <data name="Add your first cost" xml:space="preserve"><value>ئێکەم تێچوونا خۆ زێدە بکە</value></data>
+  <data name="Month marked as reviewed." xml:space="preserve"><value>مەه هاتە نیشانکرن کو هاتیە پێداچوون.</value></data>
+  <data name="Month reopened for review." xml:space="preserve"><value>مەه ژ نوو ڤەبوو بۆ پێداچوونێ.</value></data>
+  <data name="Reviewed by owner" xml:space="preserve"><value>خاوەن پێداچوون پێ کریە</value></data>
+  <data name="Month not yet reviewed" xml:space="preserve"><value>هێشتا پێداچوون ب مەهێ نەهاتیە کرن</value></data>
+  <data name="Reviewed means the owner declares the recorded entries complete for this month. Rebaz has not verified accounting completeness. Changing any entry reopens the month." xml:space="preserve"><value>پێداچوون واتە خاوەن دبێژیت تۆمارێن ڤێ مەهێ تەمامن. رێباز تەمامییا حسابان پشتڕاست نەکریە. گوهۆڕینا هەر تۆمارەکێ مەهێ ژ نوو ڤەدکەت.</value></data>
+  <data name="This month contains estimates, not just actual amounts." xml:space="preserve"><value>د ڤێ مەهێ دا بڕێن مەزەندەکری هەنە، نە بتنێ بڕێن ڕاستەقینە.</value></data>
+  <data name="Reopen month" xml:space="preserve"><value>مەهێ ژ نوو ڤەکە</value></data>
+  <data name="Mark entries reviewed / complete" xml:space="preserve"><value>تۆماران وەک پێداچووی / تەمام نیشان بکە</value></data>
+  <data name="Only an owner can mark a month reviewed." xml:space="preserve"><value>بتنێ خاوەن دشێت مەهێ وەک پێداچووی نیشان بکەت.</value></data>
+  <data name="Recorded operating costs" xml:space="preserve"><value>تێچوونێن کارکرنێ یێن تۆمارکری</value></data>
+  <data name="Recorded total (actual + estimated)" xml:space="preserve"><value>کۆما تۆمارکری (ڕاستەقینە + مەزەندەکری)</value></data>
+  <data name="Only entered operating costs are counted. Inventory is separate. These figures are not business profit and must not be subtracted from a single product simulation." xml:space="preserve"><value>بتنێ تێچوونێن کارکرنێ یێن تۆمارکری دهێنە هژمارتن. کۆگا جودایە. ئەڤ ژمارە نە قازانجا کارێ تە نە و نابیت ژ تاقیکرنا بەرهەمەکێ بهێنە کێمکرن.</value></data>
+  <data name="The largest recorded category is not a recommendation to cut staffing or change operations." xml:space="preserve"><value>ئەو پۆلێ تۆمارکری یێ هەری مەزن، نە شێرەتە بۆ کێمکرنا کارمەندان یان گوهۆڕینا کارکرنێ.</value></data>
+  <data name="Compared with the previous month" xml:space="preserve"><value>بەراورد دگەل مەها بۆری</value></data>
+  <data name="Caution: either month is not reviewed or contains estimates. Differences may reflect missing entries or changed estimates, not a real change in expenses." xml:space="preserve"><value>ئاگەهداری: ئێک ژ هەردوو مەهان پێداچووی نینە یان مەزەندە تێدا هەنە. جوداهی دشێت ژ تۆمارێن کێم یان مەزەندەیێن گوهۆڕی بیت، نە گوهۆڕینەکا ڕاستەقینە د خەرجیان دا.</value></data>
+  <data name="One or both months have no recorded entries. A comparison is unavailable; missing entries do not mean zero expenses." xml:space="preserve"><value>ئێک یان هەردوو مەه تۆمار نینن. بەراورد ناهێتە کرن؛ نەبوونا تۆماران واتە نینە خەرجی سفرە.</value></data>
+  <data name="Previous recorded operating total" xml:space="preserve"><value>کۆما تێچوونێن کارکرنێ یێن تۆمارکری بۆ مەها بۆری</value></data>
+  <data name="Change in recorded operating costs" xml:space="preserve"><value>گوهۆڕین د تێچوونێن کارکرنێ یێن تۆمارکری دا</value></data>
+  <data name="Percentage change" xml:space="preserve"><value>ڕێژەیا گوهۆڕینێ</value></data>
+  <data name="No percentage is shown because the previous recorded operating amount is zero." xml:space="preserve"><value>ڕێژە ناهێتە نیشاندان چونکی بڕێ کارکرنێ یێ تۆمارکری بۆ مەها بۆری سفرە.</value></data>
+  <data name="Change in recorded inventory purchases (separate)" xml:space="preserve"><value>گوهۆڕین د کرینێن کۆگایێ یێن تۆمارکری دا (جودا)</value></data>
+  <data name="Assume a lower operating cost" xml:space="preserve"><value>کێمکرنەکا تێچوونا کارکرنێ بگریمانە</value></data>
+  <data name="Choose your own assumption. This is conditional arithmetic, not predicted savings or net profit. No entries or simulations will change." xml:space="preserve"><value>گریمانا خۆ هەلبژێرە. ئەڤە هژمارەکا ب مەرجە، نە پارەیا پێشبینیکری یا پاشەکەفتکری یان قازانجا سافی. تۆمار و تاقیکرنێن پاشەکەفتکری ناگوهۆڕن.</value></data>
+  <data name="Record an operating cost first to try an adjustment." xml:space="preserve"><value>بەرێ تێچوونەکا کارکرنێ تۆمار بکە دا گوهۆڕینێ بتاقیکەی.</value></data>
+  <data name="Conditional result — if your assumption holds" xml:space="preserve"><value>ئەنجامێ ب مەرج — ئەگەر گریمانا تە دروست بیت</value></data>
+  <data name="Potential monthly saving" xml:space="preserve"><value>پارەیا مەهانە یا دشێت بهێتە پاشەکەفتکرن</value></data>
+  <data name="Revised recorded operating total" xml:space="preserve"><value>کۆما تێچوونێن کارکرنێ یێن تۆمارکری پشتی گریمانێ</value></data>
+  <data name="This includes any estimates in the selected category. It excludes inventory purchases and unrecorded costs." xml:space="preserve"><value>ئەڤە مەزەندەیێن پۆلا هەلبژارتی ژی دگریتە خوە. کرینێن کۆگایێ و تێچوونێن نە تۆمارکری تێدا نینن.</value></data>
+  <data name="Commonly forgotten costs — review checklist" xml:space="preserve"><value>تێچوونێن زۆرجاران دهێنە ژبیرکرن — لیستا پێداچوونێ</value></data>
+  <data name="Check whether each applies to your business. An absent category is unknown, not zero. Add only costs for this month and check whether materials are already in unit costs." xml:space="preserve"><value>ببینە کا هەر ئێک بۆ کارێ تە هەیە. پۆلا نە تۆمارکری نەدیارە، نە سفرە. بتنێ تێچوونێن ڤێ مەهێ زێدە بکە و بپشکنە کا کەرەستە ژ بەری نوکە د تێچوونا یەکەیێ دا هەنە.</value></data>
+  <data name="Entries recorded — check completeness" xml:space="preserve"><value>تۆمار هەنە — تەمامییا وان بپشکنە</value></data>
+  <data name="No entries — check whether this applies" xml:space="preserve"><value>تۆمار نینن — بپشکنە کا بۆ تە هەیە</value></data>
+  <data name="Operating-cost category" xml:space="preserve"><value>پۆلا تێچوونا کارکرنێ</value></data>
+  <data name="Assumed reduction (%)" xml:space="preserve"><value>کێمکرنا گریمانەکری (%)</value></data>
+  <data name="Calculate assumed saving" xml:space="preserve"><value>پاشەکەفتکرنێ ل دویڤ گریمانێ بهژمێرە</value></data>
+  <data name="Choose a recorded operating category and a reduction from 0 to 100, with up to two decimals." xml:space="preserve"><value>پۆلەکا کارکرنێ یا تۆمارکری و کێمکرنەکێ ژ 0 هەتا 100 هەلبژێرە، ب هەری زێدە دوو ژمارەیێن دەهەکی.</value></data>
 </root>
