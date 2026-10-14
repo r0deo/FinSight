@@ -1,0 +1,206 @@
+using System.Net;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using FinSight.Domain.Entities;
+using FinSight.Infrastructure.Identity;
+using FinSight.Infrastructure.Persistence;
+using FinSight.IntegrationTests.Infrastructure;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting.Server;
+using Microsoft.AspNetCore.Hosting.Server.Features;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Playwright;
+using static Microsoft.Playwright.Assertions;
+
+namespace FinSight.IntegrationTests;
+
+public sealed class BrowserApiFactory : FinSightApiFactory
+{
+    public BrowserApiFactory()
+    {
+        using var rsa = RSA.Create(2048);
+        var request = new CertificateRequest("CN=localhost", rsa, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
+        var san = new SubjectAlternativeNameBuilder();
+        san.AddDnsName("localhost"); san.AddIpAddress(IPAddress.Loopback);
+        request.CertificateExtensions.Add(san.Build());
+        using var generated = request.CreateSelfSigned(DateTimeOffset.UtcNow.AddMinutes(-5), DateTimeOffset.UtcNow.AddDays(1));
+        // Schannel on Windows requires a reimported key rather than CreateSelfSigned's ephemeral handle.
+        var cert = X509CertificateLoader.LoadPkcs12(generated.Export(X509ContentType.Pfx), null);
+        // Ephemeral test-only certificate; no production origin, credentials, or database are used.
+        UseKestrel(options => options.Listen(IPAddress.Loopback, 0, listen => listen.UseHttps(cert)));
+    }
+}
+
+public sealed class BrowserJourneyTests(BrowserApiFactory factory) : IClassFixture<BrowserApiFactory>
+{
+    [Theory]
+    [InlineData("en", 1440)]
+    [InlineData("en", 390)]
+    [InlineData("ar-IQ", 1440)]
+    [InlineData("ar-IQ", 390)]
+    [InlineData("ku-Arab-IQ", 1440)]
+    [InlineData("ku-Arab-IQ", 390)]
+    public async Task ProductSimulationAndCosts_WorkInBrowser(string culture, int width)
+    {
+        var email = $"browser-{Guid.NewGuid():N}@example.com";
+        Guid tenant;
+        using (var scope = factory.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<FinSightDbContext>();
+            tenant = Guid.NewGuid();
+            db.Businesses.Add(new Business(tenant, "Browser café", "Duhok", "IQD", email));
+            await db.SaveChangesAsync();
+            var roles = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
+            if (!await roles.RoleExistsAsync("Owner")) Assert.True((await roles.CreateAsync(new("Owner"))).Succeeded);
+            var users = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            var user = new ApplicationUser(Guid.NewGuid(), tenant, email) { EmailConfirmed = true };
+            Assert.True((await users.CreateAsync(user, "Password1!")).Succeeded);
+            Assert.True((await users.AddToRoleAsync(user, "Owner")).Succeeded);
+        }
+        var origin = factory.Services.GetRequiredService<IServer>().Features.Get<IServerAddressesFeature>()!.Addresses.Single();
+        using var playwright = await Playwright.CreateAsync();
+        await using var browser = await playwright.Chromium.LaunchAsync(new() { Headless = true });
+        await using var context = await browser.NewContextAsync(new() {
+            BaseURL = origin, IgnoreHTTPSErrors = true, ViewportSize = new() { Width = width, Height = 900 }
+        });
+        var page = await context.NewPageAsync();
+        var errors = new List<string>();
+        page.PageError += (_, error) => errors.Add(error);
+        page.Console += (_, message) => { if (message.Type == "error") errors.Add(message.Location + ": " + message.Text); };
+        await page.GotoAsync("/account/login");
+        await page.Locator("#site-language").SelectOptionAsync(culture);
+        await Expect(page.Locator("html")).ToHaveAttributeAsync("lang", culture);
+        await page.Locator("#Email").FillAsync(email);
+        await page.Locator("#Password").FillAsync("Password1!");
+        await page.Locator("main form button[type=submit]").ClickAsync();
+        await page.WaitForURLAsync(url => !url.Contains("/account/login"));
+        await page.GotoAsync("/home");
+        await Expect(page.Locator("header a[href='/what-if']")).ToHaveCountAsync(0);
+        await Expect(page.Locator("main a[href='/what-if']")).ToHaveCountAsync(0);
+        await page.GotoAsync("/products/create");
+        await page.Locator("#Name").FillAsync("Browser coffee");
+        await page.Locator("#Category").FillAsync("Coffee");
+        await page.Locator("#SellingPrice").FillAsync(culture == "en" ? "4000" : "٤٠٠٠");
+        await page.Locator("#UnitCost").FillAsync("1000");
+        await page.Locator("main form button[type=submit]").ClickAsync();
+        await page.WaitForURLAsync("**/products");
+        Guid productId;
+        using (var scope = factory.Services.CreateScope())
+            productId = await scope.ServiceProvider.GetRequiredService<FinSightDbContext>().Products
+                .Where(x => x.BusinessId == tenant).Select(x => x.Id).SingleAsync();
+        await page.GotoAsync($"/simulations/preview?productId={productId}");
+        await page.Locator("#CurrentSalesQuantity").FillAsync("100");
+        await page.Locator("#ProposedPrice").FillAsync("4500");
+        await page.Locator("[data-decision-form] button[type=submit]").ClickAsync();
+        await Expect(page.Locator("[data-decision-results]")).ToBeVisibleAsync();
+        await page.Locator("[data-decision-save] button").ClickAsync();
+        await page.WaitForURLAsync(url => System.Text.RegularExpressions.Regex.IsMatch(url, @"/simulations/[a-f0-9-]{36}$"));
+        await Layout(page, culture, width, "pricing");
+        await page.GotoAsync($"/simulations/preview?productId={productId}");
+        await page.Locator($"a[href='/what-if?productId={productId}']").ClickAsync();
+        await Expect(page.Locator("#UsePriceResponse")).ToHaveCountAsync(0);
+        await Expect(page.Locator("[data-demand-assumption]")).ToBeHiddenAsync();
+        await page.Locator("#Concern").SelectOptionAsync("Both");
+        await page.Locator("#CurrentQuantity").FillAsync("100");
+        await page.Locator("[data-preset=cost]").ClickAsync();
+        await page.Locator("[data-preset=demand]").ClickAsync();
+        await page.Locator("[data-what-if-form] button[type=submit]").ClickAsync();
+        await Expect(page.Locator("[data-what-if-results]").First).ToBeVisibleAsync();
+        await Layout(page, culture, width, "shock");
+        await page.Locator("#UsePriceResponse").CheckAsync();
+        await Expect(page.Locator("#AlternativePrice")).ToBeVisibleAsync();
+        await page.Locator("#AlternativePrice").FillAsync("4500");
+        await Expect(page.Locator("#AlternativePriceQuantity")).ToHaveValueAsync("90");
+        await Expect(page.Locator("[data-what-if-save]")).ToBeHiddenAsync();
+        await page.Locator("[data-what-if-form] button[type=submit]").ClickAsync();
+        await Expect(page.Locator("[data-what-if-save]")).ToBeVisibleAsync();
+        await Layout(page, culture, width, "responses");
+        var saveRequests = 0;
+        page.Request += (_, request) => { if (request.Method == "POST" && request.Url.EndsWith("/what-if/save")) saveRequests++; };
+        await page.Locator("[data-what-if-save] button").ClickAsync(new() { ClickCount = 2 });
+        await page.WaitForURLAsync(url => System.Text.RegularExpressions.Regex.IsMatch(url, @"/what-if/[a-f0-9-]{36}$"));
+        Assert.Equal(1, saveRequests);
+        using (var scope = factory.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<FinSightDbContext>();
+            var snapshot = await db.WhatIfSimulations.SingleAsync(x => x.BusinessId == tenant);
+            Assert.Equal(300000, snapshot.Result.BaselineContribution);
+            Assert.Equal(252000, snapshot.Result.NoActionContribution);
+            Assert.Equal(297000, snapshot.Result.Options[1].Contribution);
+            Assert.Equal(91, snapshot.Result.Options[1].MinimumUnitsToMaintainBaseline);
+            Assert.Equal(4000, (await db.Products.SingleAsync(x => x.Id == productId)).SellingPrice);
+            Assert.Single(await db.PricingSimulations.Where(x => x.BusinessId == tenant).ToListAsync());
+        }
+        await page.GotoAsync("/business-costs/create?month=2026-10");
+        await page.Locator("#Name").FillAsync("Kitchen rent");
+        await page.Locator("#Category").SelectOptionAsync("Rent");
+        await page.Locator("#Amount").FillAsync(culture == "en" ? "125.50" : "١٢٥٫٥٠");
+        await page.Locator("#Inclusion").SelectOptionAsync("No");
+        await page.Locator("main form button[type=submit]").ClickAsync();
+        await page.WaitForURLAsync("**/business-costs?month=2026-10");
+        await page.Locator("main a[href$='/edit']").ClickAsync();
+        await page.Locator("#Amount").FillAsync("150");
+        await page.Locator("main form button[type=submit]").ClickAsync();
+        await page.WaitForURLAsync("**/business-costs?month=2026-10");
+        await Layout(page, culture, width, "costs");
+        using (var scope = factory.Services.CreateScope())
+        {
+            var entry = await scope.ServiceProvider.GetRequiredService<FinSightDbContext>().BusinessCosts.SingleAsync(x => x.BusinessId == tenant);
+            Assert.Equal(150, entry.Amount); Assert.Equal(2, entry.Version);
+            Assert.Equal(new DateOnly(2026,10,1), entry.Month);
+        }
+        Assert.True(errors.Count == 0, string.Join(Environment.NewLine, errors));
+        if (culture == "en" && width == 1440)
+        {
+            // Failure paths use the real server, not a mocked success/error response.
+            await page.GotoAsync("/business-costs/create?month=2026-10");
+            await page.Locator("#Name").FillAsync("Rejected cost");
+            await page.Locator("#Amount").FillAsync("-1");
+            var invalid = await page.RunAndWaitForResponseAsync(
+                () => page.Locator("main form button[type=submit]").ClickAsync(),
+                r => r.Request.Method == "POST" && r.Url.EndsWith("/business-costs/create"));
+            Assert.Equal(400, invalid.Status);
+            await Expect(page.Locator(".validation-summary-errors")).ToBeVisibleAsync();
+            await Expect(page.Locator("#Name")).ToHaveValueAsync("Rejected cost");
+
+            await page.GotoAsync($"/what-if?productId={productId}");
+            await page.Locator("#CurrentQuantity").FillAsync("100");
+            await page.Locator("#CostIncreasePercent").FillAsync("20");
+            await page.Locator("[data-what-if-form] button[type=submit]").ClickAsync();
+            await Expect(page.Locator("[data-what-if-save]")).ToBeVisibleAsync();
+            await page.Locator("[name=PreviewProof]").EvaluateAsync("input => input.value = 'invalid-proof'");
+            var rejected = await page.RunAndWaitForResponseAsync(
+                () => page.Locator("[data-what-if-save] button").ClickAsync(),
+                r => r.Request.Method == "POST" && r.Url.EndsWith("/what-if/save"));
+            Assert.Equal(409, rejected.Status);
+            await Expect(page.Locator("main")).ToContainTextAsync("Recalculate the preview");
+            using var scope = factory.Services.CreateScope();
+            var db = scope.ServiceProvider.GetRequiredService<FinSightDbContext>();
+            Assert.Equal(1, await db.BusinessCosts.CountAsync(x => x.BusinessId == tenant));
+            Assert.Equal(1, await db.WhatIfSimulations.CountAsync(x => x.BusinessId == tenant));
+            // Chromium reports expected HTTP error responses in its console. No script/CSP errors are allowed.
+            Assert.All(errors, error => Assert.True(error.Contains("Failed to load resource") &&
+                (error.Contains("400") || error.Contains("409")), error));
+        }
+    }
+    private static async Task Layout(IPage page, string culture, int width, string step)
+    {
+        await Expect(page.Locator("html")).ToHaveAttributeAsync("lang", culture);
+        await Expect(page.Locator("html")).ToHaveAttributeAsync("dir", culture == "en" ? "ltr" : "rtl");
+        Assert.True(await page.EvaluateAsync<bool>("document.documentElement.scrollWidth <= window.innerWidth + 1"), $"Overflow: {culture} {width} {step}");
+        var text = await page.Locator("main").InnerTextAsync();
+        Assert.DoesNotContain("ToString(", text); Assert.DoesNotContain("CultureInfo", text);
+        var folder = Path.Combine(AppContext.BaseDirectory, "TestResults", "browser");
+        Directory.CreateDirectory(folder);
+        await page.ScreenshotAsync(new() { Path = Path.Combine(folder, $"{culture}-{width}-{step}.png"),
+            FullPage = true, Caret = ScreenshotCaret.Initial });
+        if (await page.Locator(".decision-answer").CountAsync() > 0)
+        {
+            await page.Locator(".decision-answer").ScrollIntoViewIfNeededAsync();
+            await page.ScreenshotAsync(new() { Path = Path.Combine(folder, $"{culture}-{width}-{step}-detail.png"),
+                Caret = ScreenshotCaret.Initial });
+        }
+    }
+}

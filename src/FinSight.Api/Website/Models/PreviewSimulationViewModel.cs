@@ -10,6 +10,8 @@ namespace FinSight.Api.Website.Models;
 
 public sealed class PreviewSimulationViewModel
 {
+    public string? ContextMonth { get; set; }
+    [BindNever, ValidateNever] public BusinessCostsViewModel? CostContext { get; set; }
     public Guid ProductId { get; set; }
 
     [Display(Name = "Proposed price"), Range(typeof(decimal), "0", "79228162514264337593543950335",

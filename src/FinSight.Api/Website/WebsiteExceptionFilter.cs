@@ -28,7 +28,9 @@ public sealed class WebsiteExceptionFilter(
                 ForbiddenAccessException => new WebsiteErrorViewModel(403, "Access denied", "Only owners and managers can manage products."),
                 ValidationException or RequestValidationException or ArgumentOutOfRangeException =>
                     new WebsiteErrorViewModel(400, "Check your request", "Please check the supplied values and try again."),
-                PricingSimulationConflictException or ConcurrencyConflictException =>
+                ConcurrencyConflictException =>
+                    new WebsiteErrorViewModel(409, "This record changed", "Reload the record and review your changes before trying again."),
+                PricingSimulationConflictException =>
                     new WebsiteErrorViewModel(409, "This simulation changed", "Recalculate the preview, then save it again."),
                 _ => new WebsiteErrorViewModel(500, "Something went wrong", "We couldn't complete your request. Please try again shortly.")
             };

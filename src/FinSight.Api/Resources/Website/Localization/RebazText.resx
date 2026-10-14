@@ -416,4 +416,77 @@
   <data name="Higher contribution under these assumptions" xml:space="preserve"><value>Higher contribution under these assumptions</value></data>
   <data name="Lower contribution under these assumptions" xml:space="preserve"><value>Lower contribution under these assumptions</value></data>
   <data name="Same contribution under these assumptions" xml:space="preserve"><value>Same contribution under these assumptions</value></data>
+  <data name="Business costs" xml:space="preserve"><value>Business costs</value></data>
+  <data name="Labor / wages" xml:space="preserve"><value>Labor / wages</value></data>
+  <data name="Rent" xml:space="preserve"><value>Rent</value></data>
+  <data name="Electricity / generator / fuel" xml:space="preserve"><value>Electricity / generator / fuel</value></data>
+  <data name="Water / internet" xml:space="preserve"><value>Water / internet</value></data>
+  <data name="Transport" xml:space="preserve"><value>Transport</value></data>
+  <data name="Maintenance" xml:space="preserve"><value>Maintenance</value></data>
+  <data name="Inventory / raw-material purchases" xml:space="preserve"><value>Inventory / raw-material purchases</value></data>
+  <data name="Other" xml:space="preserve"><value>Other</value></data>
+  <data name="Amount" xml:space="preserve"><value>Amount</value></data>
+  <data name="Actual or estimated" xml:space="preserve"><value>Actual or estimated</value></data>
+  <data name="Actual" xml:space="preserve"><value>Actual</value></data>
+  <data name="Estimated" xml:space="preserve"><value>Estimated</value></data>
+  <data name="Unsure" xml:space="preserve"><value>Unsure</value></data>
+  <data name="Already included in product unit costs?" xml:space="preserve"><value>Already included in product unit costs?</value></data>
+  <data name="For example, if delivery is part of each product's unit cost, choose Yes for that same delivery cost. Wages and electricity may also be included. Choose Unsure if you need to check." xml:space="preserve"><value>For example, if delivery is part of each product's unit cost, choose Yes for that same delivery cost. Wages and electricity may also be included. Choose Unsure if you need to check.</value></data>
+  <data name="Note (optional)" xml:space="preserve"><value>Note (optional)</value></data>
+  <data name="Save cost entry" xml:space="preserve"><value>Save cost entry</value></data>
+  <data name="Edit cost entry" xml:space="preserve"><value>Edit cost entry</value></data>
+  <data name="Add cost entry" xml:space="preserve"><value>Add cost entry</value></data>
+  <data name="Amounts use your business currency. Enter one specific month." xml:space="preserve"><value>Amounts use your business currency. Enter one specific month.</value></data>
+  <data name="Delete cost entry?" xml:space="preserve"><value>Delete cost entry?</value></data>
+  <data name="Delete cost entry" xml:space="preserve"><value>Delete cost entry</value></data>
+  <data name="This removes the cost entry permanently. Saved simulations are unchanged." xml:space="preserve"><value>This removes the cost entry permanently. Saved simulations are unchanged.</value></data>
+  <data name="Entered operating costs by category" xml:space="preserve"><value>Entered operating costs by category</value></data>
+  <data name="Largest entered categories first. Actual and estimated amounts are separate; this is not a complete business result." xml:space="preserve"><value>Largest entered categories first. Actual and estimated amounts are separate; this is not a complete business result.</value></data>
+  <data name="No costs entered for this month. This does not mean your business has no costs." xml:space="preserve"><value>No costs entered for this month. This does not mean your business has no costs.</value></data>
+  <data name="Inventory purchases — separate" xml:space="preserve"><value>Inventory purchases — separate</value></data>
+  <data name="Unresolved inclusion entries" xml:space="preserve"><value>Unresolved inclusion entries</value></data>
+  <data name="Included costs are not deducted again. Unsure means unresolved, not zero. No monthly cost is deducted from product contribution here." xml:space="preserve"><value>Included costs are not deducted again. Unsure means unresolved, not zero. No monthly cost is deducted from product contribution here.</value></data>
+  <data name="View month" xml:space="preserve"><value>View month</value></data>
+  <data name="Cost entries" xml:space="preserve"><value>Cost entries</value></data>
+  <data name="Avoid counting the same cost twice" xml:space="preserve"><value>Avoid counting the same cost twice</value></data>
+  <data name="Unit costs describe the cost associated with each product unit. Monthly operating costs may continue even when sales change. Buying inventory is not the same as consuming or selling it." xml:space="preserve"><value>Unit costs describe the cost associated with each product unit. Monthly operating costs may continue even when sales change. Buying inventory is not the same as consuming or selling it.</value></data>
+  <data name="Check missing categories, estimates, and Unsure entries. A full business operating result requires sales and costs across the business for the same period." xml:space="preserve"><value>Check missing categories, estimates, and Unsure entries. A full business operating result requires sales and costs across the business for the same period.</value></data>
+  <data name="A full business operating result requires sales and costs across the business for the same period." xml:space="preserve"><value>A full business operating result requires sales and costs across the business for the same period.</value></data>
+  <data name="Cost entry added." xml:space="preserve"><value>Cost entry added.</value></data>
+  <data name="Cost entry updated." xml:space="preserve"><value>Cost entry updated.</value></data>
+  <data name="Cost entry deleted." xml:space="preserve"><value>Cost entry deleted.</value></data>
+  <data name="Choose a month between 2000 and 2100." xml:space="preserve"><value>Choose a month between 2000 and 2100.</value></data>
+  <data name="Check the name, category, amount (up to two decimals), and note." xml:space="preserve"><value>Check the name, category, amount (up to two decimals), and note.</value></data>
+  <data name="This record changed" xml:space="preserve"><value>This record changed</value></data>
+  <data name="Reload the record and review your changes before trying again." xml:space="preserve"><value>Reload the record and review your changes before trying again.</value></data>
+  <data name="Simulation tools" xml:space="preserve"><value>Simulation tools</value></data>
+  <data name="What if conditions change?" xml:space="preserve"><value>What if conditions change?</value></data>
+  <data name="1. Choose your concern" xml:space="preserve"><value>1. Choose your concern</value></data>
+  <data name="What might change?" xml:space="preserve"><value>What might change?</value></data>
+  <data name="My supplier increases prices." xml:space="preserve"><value>My supplier increases prices.</value></data>
+  <data name="I sell fewer units." xml:space="preserve"><value>I sell fewer units.</value></data>
+  <data name="Both happen together." xml:space="preserve"><value>Both happen together.</value></data>
+  <data name="2. Enter your assumptions" xml:space="preserve"><value>2. Enter your assumptions</value></data>
+  <data name="Use the same period as your baseline quantity." xml:space="preserve"><value>Use the same period as your baseline quantity.</value></data>
+  <data name="Illustration only: 10% fewer units" xml:space="preserve"><value>Illustration only: 10% fewer units</value></data>
+  <data name="Illustration only: 20% higher unit cost" xml:space="preserve"><value>Illustration only: 20% higher unit cost</value></data>
+  <data name="4. Explore a response after reviewing the impact below." xml:space="preserve"><value>4. Explore a response after reviewing the impact below.</value></data>
+  <data name="Show impact" xml:space="preserve"><value>Show impact</value></data>
+  <data name="3. Understand the impact" xml:space="preserve"><value>3. Understand the impact</value></data>
+  <data name="Monthly cost context (optional; monthly simulations only)" xml:space="preserve"><value>Monthly cost context (optional; monthly simulations only)</value></data>
+  <data name="Business-wide monthly context — not deducted from this product" xml:space="preserve"><value>Business-wide monthly context — not deducted from this product</value></data>
+  <data name="This is current entered information for the selected month, not part of the saved calculation snapshot." xml:space="preserve"><value>This is current entered information for the selected month, not part of the saved calculation snapshot.</value></data>
+  <data name="Under these assumptions, the amount remaining after product costs falls from {0} to {1} per {2}, a decrease of {3}." xml:space="preserve"><value>Under these assumptions, the amount remaining after product costs falls from {0} to {1} per {2}, a decrease of {3}.</value></data>
+  <data name="Under these assumptions, contribution changes from {0} to {1} per {2}." xml:space="preserve"><value>Under these assumptions, contribution changes from {0} to {1} per {2}.</value></data>
+  <data name="The amount remaining is {0} below zero." xml:space="preserve"><value>The amount remaining is {0} below zero.</value></data>
+  <data name="Contribution is revenue minus the unit costs entered here. Some wages or delivery may already be in those unit costs. Other business costs are not deducted." xml:space="preserve"><value>Contribution is revenue minus the unit costs entered here. Some wages or delivery may already be in those unit costs. Other business costs are not deducted.</value></data>
+  <data name="This option recovers {0} of the {1} decrease." xml:space="preserve"><value>This option recovers {0} of the {1} decrease.</value></data>
+  <data name="It remains {0} below the original contribution." xml:space="preserve"><value>It remains {0} below the original contribution.</value></data>
+  <data name="It is {0} above the original contribution." xml:space="preserve"><value>It is {0} above the original contribution.</value></data>
+  <data name="It matches the original contribution." xml:space="preserve"><value>It matches the original contribution.</value></data>
+  <data name="Demand, quality, and supplier reliability are not predicted. No option is universally best." xml:space="preserve"><value>Demand, quality, and supplier reliability are not predicted. No option is universally best.</value></data>
+  <data name="4. Explore a response" xml:space="preserve"><value>4. Explore a response</value></data>
+  <data name="Yes" xml:space="preserve"><value>Yes</value></data>
+  <data name="No" xml:space="preserve"><value>No</value></data>
+  <data name="Assumptions changed. Calculate again before saving." xml:space="preserve"><value>Assumptions changed. Calculate again before saving.</value></data>
 </root>

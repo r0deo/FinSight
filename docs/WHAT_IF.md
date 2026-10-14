@@ -1,5 +1,10 @@
 # What If? (first cost-and-demand shock)
 
+The progressive concern/response flow and the separate monthly cost workspace are
+documented in [BUSINESS_COSTS_AND_WHAT_IF.md](BUSINESS_COSTS_AND_WHAT_IF.md).
+What If is now reached from Simulations rather than global navigation. The routes
+and snapshot guarantees below remain supported.
+
 The authenticated website provides `/what-if` (active product selection),
 `POST /what-if/preview`, `POST /what-if/save`, `/what-if/history`, and
 `/what-if/{id}`. Owner and Manager use the existing website cookie and

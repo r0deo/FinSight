@@ -7,6 +7,12 @@
     const results = document.querySelector('[data-decision-results]');
     const save = document.querySelector('[data-decision-save]');
     const syncExpected = () => {
+        const monthBlock = form.querySelector('[data-month-context]');
+        if (monthBlock) {
+            const monthly = form.querySelector('[name="ComparisonPeriod"]').value === 'Month';
+            monthBlock.hidden = !monthly;
+            monthBlock.querySelector('input').disabled = !monthly;
+        }
         expected.disabled = unknown.checked;
         expected.required = !unknown.checked;
         expectedField.hidden = unknown.checked;
@@ -14,13 +20,14 @@
     };
     syncExpected();
     form.addEventListener('input', event => {
-        if (event.target === unknown) syncExpected();
+        syncExpected();
         if (results) results.hidden = true;
         if (save) save.querySelector('button[type="submit"]').disabled = true;
     });
     form.addEventListener('change', event => {
-        if (event.target === unknown) syncExpected();
+        syncExpected();
         if (results) results.hidden = true;
         if (save) save.querySelector('button[type="submit"]').disabled = true;
     });
+    if (save) save.addEventListener('submit', () => save.querySelector('button[type="submit"]').disabled = true);
 })();

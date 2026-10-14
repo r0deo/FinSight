@@ -3,6 +3,7 @@
 @using FinSight.Domain.Enums
 @{ ViewData["Title"] = T["Preview a price change"].Value; }
 <section class="panel message-panel simulation-panel">
+    <nav class="actions" aria-label="@T["Simulation tools"]"><a href="/simulations">@T["Saved simulation history"]</a><a href="/what-if?productId=@Model.ProductId">@T["What if conditions change?"]</a></nav>
     <p class="eyebrow">@T["EXPLORE BEFORE YOU CHANGE"]</p>
     <h1>@T["Preview a price change"]</h1>
     <h2><bdi>@Model.ProductName</bdi></h2>
@@ -26,11 +27,13 @@
         <div class="field"><label class="checkbox-label"><input asp-for="UnknownExpectedSales" type="checkbox" /> @T["I don't know expected sales"]</label></div>
         <div class="field" data-expected-field hidden="@Model.UnknownExpectedSales"><label for="ExpectedSalesQuantity">@T["Expected units sold"]</label><input asp-for="ExpectedSalesQuantity" type="text" inputmode="numeric" dir="ltr" disabled="@Model.UnknownExpectedSales" required="@(!Model.UnknownExpectedSales)" /><span asp-validation-for="ExpectedSalesQuantity"></span><small>@T["Optional when you do not know. If entered, this is your assumption, not a forecast."]</small></div>
         <p class="form-guidance">@T["All quantities refer to the selected period. Unit cost is assumed unchanged."]</p>
+        <div class="field" data-month-context><label for="ContextMonth">@T["Monthly cost context (optional; monthly simulations only)"]</label><input asp-for="ContextMonth" type="month" min="2000-01" max="2100-12" dir="ltr" /><span asp-validation-for="ContextMonth"></span></div>
         <button class="button" type="submit">@T["Calculate preview"]</button>
     </form>
     @if (Model.Result is { } decision)
     {
         <div data-decision-results>
+            @if (Model.CostContext is not null) { <partial name="_SimulationCostContext" model="Model.CostContext" /> }
             <partial name="_DecisionResult" model="@(new DecisionDisplayViewModel(decision, Model.ComparisonPeriod, Model.CurrentPrice, Model.ProposedPrice, Model.CurrentSalesQuantity, Model.ExpectedSalesQuantity, Model.DeclinePercentage, Model.Currency))" />
             <form method="post" asp-action="Save" data-decision-save>
                 <input type="hidden" name="ProductId" value="@Model.ProductId" />
@@ -48,5 +51,6 @@
         </div>
     }
     <p><a href="/simulations">@T["Saved simulation history"]</a> · <a href="/products">@T["Choose another product"]</a></p>
+    <p><a href="/business-costs">@T["Business costs"]</a> — @T["A full business operating result requires sales and costs across the business for the same period."]</p>
 </section>
 <script src="~/js/simulation-preview.js" asp-append-version="true" defer></script>

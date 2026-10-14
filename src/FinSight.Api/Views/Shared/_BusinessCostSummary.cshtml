@@ -1,0 +1,15 @@
+@model BusinessCostsViewModel
+<h2>@T["Entered operating costs by category"] · <bdi dir="ltr">@Model.Summary.Month.ToString("yyyy-MM")</bdi></h2>
+<p>@T["Largest entered categories first. Actual and estimated amounts are separate; this is not a complete business result."]</p>
+@if (Model.Summary.Entries.Count == 0) { <p class="notice">@T["No costs entered for this month. This does not mean your business has no costs."]</p> }
+<div class="what-if-options">
+@foreach (var c in Model.Summary.OperatingCategories) {
+<article class="panel"><h3>@T[CostLabels.Category(c.Category)]</h3>
+<p>@T["Actual"]: <bdi dir="ltr">@c.Actual.ToString("N2") @Model.Currency</bdi></p>
+<p>@T["Estimated"]: <bdi dir="ltr">@c.Estimated.ToString("N2") @Model.Currency</bdi></p></article>
+}
+</div>
+<h3>@T["Inventory purchases — separate"]</h3>
+<p>@T["Actual"]: <bdi dir="ltr">@Model.Summary.InventoryActual.ToString("N2") @Model.Currency</bdi> · @T["Estimated"]: <bdi dir="ltr">@Model.Summary.InventoryEstimated.ToString("N2") @Model.Currency</bdi></p>
+<p>@T["Unresolved inclusion entries"]: @Model.Summary.UnresolvedCount</p>
+<p>@T["Included costs are not deducted again. Unsure means unresolved, not zero. No monthly cost is deducted from product contribution here."]</p>

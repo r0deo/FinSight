@@ -2,6 +2,7 @@
 @using FinSight.Domain.Enums
 @{ ViewData["Title"] = T["Saved simulation history"].Value; }
 <section class="panel simulation-panel">
+    <nav class="actions" aria-label="@T["Simulation tools"]"><a href="/what-if">@T["What if conditions change?"]</a><a href="/what-if/history">@T["Saved what-if history"]</a></nav>
     <div class="page-heading"><div><p class="eyebrow">@T["YOUR DECISIONS"]</p><h1>@T["Saved simulation history"]</h1></div><a class="button button-quiet" href="/products">@T["Preview another product"]</a></div>
     <form method="get" action="/simulations" class="filters"><label class="checkbox-label"><input type="checkbox" name="includeArchived" value="true" checked="@Model.IncludeArchived" /> @T["Include archived"]</label><button class="button button-quiet button-small" type="submit">@T["Apply filter"]</button></form>
     @if (Model.Page.Items.Count == 0)

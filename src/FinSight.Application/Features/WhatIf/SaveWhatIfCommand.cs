@@ -9,7 +9,7 @@ using MediatR;
 namespace FinSight.Application.Features.WhatIf;
 
 public sealed record SaveWhatIfCommand(WhatIfRequest Request, decimal PreviewPrice,
-    decimal PreviewCost) : IRequest<WhatIfResponse>;
+    decimal PreviewCost, Guid? SaveId = null) : IRequest<WhatIfResponse>;
 
 public sealed class SaveWhatIfValidator : AbstractValidator<SaveWhatIfCommand>
 {
@@ -29,6 +29,12 @@ public sealed class SaveWhatIfHandler(IProductRepository products, IBusinessCurr
         CancellationToken cancellationToken)
     {
         var request = command.Request;
+        // Website supplies a stable ID derived from a validated, user-bound preview proof.
+        if (command.SaveId is { } saveId)
+        {
+            var existing = await simulations.GetByIdAsync(saveId, user.BusinessId, cancellationToken);
+            if (existing is not null) return WhatIfResponse.From(existing);
+        }
         var product = await products.GetActiveByIdAsync(request.ProductId, user.BusinessId,
             cancellationToken) ?? throw new NotFoundException(nameof(Product), request.ProductId);
         if (product.SellingPrice != command.PreviewPrice || product.UnitCost != command.PreviewCost)
@@ -37,7 +43,7 @@ public sealed class SaveWhatIfHandler(IProductRepository products, IBusinessCurr
         var currency = await currencies.GetCurrencyAsync(user.BusinessId, cancellationToken)
             ?? throw new InvalidOperationException("The current business is unavailable.");
         var inputs = WhatIfRequestMapping.ToInputs(request, product.SellingPrice, product.UnitCost);
-        var simulation = new WhatIfSimulation(Guid.NewGuid(), user.BusinessId, product.Id,
+        var simulation = new WhatIfSimulation(command.SaveId ?? Guid.NewGuid(), user.BusinessId, product.Id,
             user.UserId, product.Name, currency, request.Period, inputs,
             clock.GetUtcNow().UtcDateTime, calculator);
         await simulations.AddAsync(simulation, cancellationToken);

@@ -416,4 +416,77 @@
   <data name="Higher contribution under these assumptions" xml:space="preserve"><value>ل سەر ڤان گریمانەیان پارەیەکێ زێدەتر دمینیت</value></data>
   <data name="Lower contribution under these assumptions" xml:space="preserve"><value>ل سەر ڤان گریمانەیان پارەیەکێ کێمتر دمینیت</value></data>
   <data name="Same contribution under these assumptions" xml:space="preserve"><value>ل سەر ڤان گریمانەیان هەمان پارە دمینیت</value></data>
+  <data name="Business costs" xml:space="preserve"><value>تێچوونێن کارێ</value></data>
+  <data name="Labor / wages" xml:space="preserve"><value>کار / مووچە</value></data>
+  <data name="Rent" xml:space="preserve"><value>کرێ</value></data>
+  <data name="Electricity / generator / fuel" xml:space="preserve"><value>کارەبا / مۆلیدە / سوتەمەنی</value></data>
+  <data name="Water / internet" xml:space="preserve"><value>ئاڤ / ئینتەرنێت</value></data>
+  <data name="Transport" xml:space="preserve"><value>ڤەگوهاستن</value></data>
+  <data name="Maintenance" xml:space="preserve"><value>چاککرن</value></data>
+  <data name="Inventory / raw-material purchases" xml:space="preserve"><value>کرینێن کۆگەهێ / ماددەیێن سەرەتایی</value></data>
+  <data name="Other" xml:space="preserve"><value>یێن دی</value></data>
+  <data name="Amount" xml:space="preserve"><value>بڕێ پارەی</value></data>
+  <data name="Actual or estimated" xml:space="preserve"><value>راستەقینە یان خەمڵاندی</value></data>
+  <data name="Actual" xml:space="preserve"><value>راستەقینە</value></data>
+  <data name="Estimated" xml:space="preserve"><value>خەمڵاندی</value></data>
+  <data name="Unsure" xml:space="preserve"><value>نە پشتراست</value></data>
+  <data name="Already included in product unit costs?" xml:space="preserve"><value>ئەرێ د تێچوونا یەکەیا بەرهەمی دا هاتیە هژمارتن؟</value></data>
+  <data name="For example, if delivery is part of each product's unit cost, choose Yes for that same delivery cost. Wages and electricity may also be included. Choose Unsure if you need to check." xml:space="preserve"><value>بۆ نموونە، ئەگەر گەهاندن د تێچوونا یەکەیا بەرهەمی دا بیت، بۆ هەمان تێچوونێ بەلێ هەلبژێرە. مووچە و کارەبا ژی دکارن هاتبن هژمارتن. ئەگەر پێدڤی ب پشکنینێ هەیە، نە پشتراست هەلبژێرە.</value></data>
+  <data name="Note (optional)" xml:space="preserve"><value>تێبینی (ئارەزوومەندانە)</value></data>
+  <data name="Save cost entry" xml:space="preserve"><value>تێچوونێ پاشەکەوت بکە</value></data>
+  <data name="Edit cost entry" xml:space="preserve"><value>تێچوونێ بگوهۆڕە</value></data>
+  <data name="Add cost entry" xml:space="preserve"><value>تێچوونەکێ زێدە بکە</value></data>
+  <data name="Amounts use your business currency. Enter one specific month." xml:space="preserve"><value>بڕ ب دراڤێ کارێ تە نە. هەیڤەکا دیارکری بنڤیسە.</value></data>
+  <data name="Delete cost entry?" xml:space="preserve"><value>ڤێ تێچوونێ ژێ ببە؟</value></data>
+  <data name="Delete cost entry" xml:space="preserve"><value>تێچوونێ ژێ ببە</value></data>
+  <data name="This removes the cost entry permanently. Saved simulations are unchanged." xml:space="preserve"><value>ئەڤە تێچوونێ ب ئێکجاری ژێ دبەت. تاقیکرنێن پاشەکەوتکری ناگوهۆڕن.</value></data>
+  <data name="Entered operating costs by category" xml:space="preserve"><value>تێچوونێن کارکرنێ یێن تۆمارکری ل دویڤ جۆری</value></data>
+  <data name="Largest entered categories first. Actual and estimated amounts are separate; this is not a complete business result." xml:space="preserve"><value>جۆرێن مەزنتر ل پێشینێ. بڕێن راستەقینە و خەمڵاندی جودا نە؛ ئەڤە ئەنجامێ تەمام یێ کارێ نینە.</value></data>
+  <data name="No costs entered for this month. This does not mean your business has no costs." xml:space="preserve"><value>بۆ ڤێ هەیڤێ تێچوون نەهاتیە تۆمارکرن. ئەڤە ناگەهینیت کو کارێ تە بێ تێچوونە.</value></data>
+  <data name="Inventory purchases — separate" xml:space="preserve"><value>کرینێن کۆگەهێ — جودا</value></data>
+  <data name="Unresolved inclusion entries" xml:space="preserve"><value>تۆمارێن هێشتا نەدیار د تێچوونا یەکەیێ دا</value></data>
+  <data name="Included costs are not deducted again. Unsure means unresolved, not zero. No monthly cost is deducted from product contribution here." xml:space="preserve"><value>تێچوونێن هژمارتی دووبارە ناهێن کێمکرن. نە پشتراست واتە هێشتا نەدیارە، نە سفرە. ل ڤێرە چ تێچوونەکا هەیڤانە ژ بڕێ مای پشتی تێچوونا بەرهەمی ناهێتە کێمکرن.</value></data>
+  <data name="View month" xml:space="preserve"><value>هەیڤێ ببینە</value></data>
+  <data name="Cost entries" xml:space="preserve"><value>تۆمارێن تێچوونێ</value></data>
+  <data name="Avoid counting the same cost twice" xml:space="preserve"><value>هەمان تێچوونێ دوو جاران مەهژمێرە</value></data>
+  <data name="Unit costs describe the cost associated with each product unit. Monthly operating costs may continue even when sales change. Buying inventory is not the same as consuming or selling it." xml:space="preserve"><value>تێچوونا یەکەیێ گرێدای هەر یەکەیەکا بەرهەمی یە. تێچوونێن هەیڤانە دکارن بەردەوام بن حەتا ئەگەر فرۆتن بگوهۆڕیت. کرینا کۆگەهێ نە وەک بکارئینان یان فرۆتنا وێ یە.</value></data>
+  <data name="Check missing categories, estimates, and Unsure entries. A full business operating result requires sales and costs across the business for the same period." xml:space="preserve"><value>جۆرێن کێم، خەمڵاندن و تۆمارێن نە پشتراست بپشکنە. ئەنجامێ تەمام یێ کارکرنێ پێدڤی ب فرۆتن و تێچوونێن هەمی کارێ بۆ هەمان ماوەی هەیە.</value></data>
+  <data name="A full business operating result requires sales and costs across the business for the same period." xml:space="preserve"><value>ئەنجامێ تەمام یێ کارکرنێ پێدڤی ب فرۆتن و تێچوونێن هەمی کارێ بۆ هەمان ماوەی هەیە.</value></data>
+  <data name="Cost entry added." xml:space="preserve"><value>تێچوون هاتە زێدەکرن.</value></data>
+  <data name="Cost entry updated." xml:space="preserve"><value>تێچوون هاتە گوهۆڕین.</value></data>
+  <data name="Cost entry deleted." xml:space="preserve"><value>تێچوون هاتە ژێبرن.</value></data>
+  <data name="Choose a month between 2000 and 2100." xml:space="preserve"><value>هەیڤەکێ د ناڤبەرا سالێن 2000 و 2100 دا هەلبژێرە.</value></data>
+  <data name="Check the name, category, amount (up to two decimals), and note." xml:space="preserve"><value>ناڤ، جۆر، بڕ (هەتا دوو خانەیێن دەهەمی) و تێبینیێ بپشکنە.</value></data>
+  <data name="This record changed" xml:space="preserve"><value>ئەڤ تۆمار گوهۆڕی</value></data>
+  <data name="Reload the record and review your changes before trying again." xml:space="preserve"><value>تۆمارێ دووبارە ڤەکە و گوهۆڕینێن خۆ بپشکنە بەری هەولدانەکا دی.</value></data>
+  <data name="Simulation tools" xml:space="preserve"><value>ئامرازێن تاقیکرنێ</value></data>
+  <data name="What if conditions change?" xml:space="preserve"><value>ئەگەر بارودۆخ بگوهۆڕیت؟</value></data>
+  <data name="1. Choose your concern" xml:space="preserve"><value>1. نیگەرانییا خۆ هەلبژێرە</value></data>
+  <data name="What might change?" xml:space="preserve"><value>چی دکاریت بگوهۆڕیت؟</value></data>
+  <data name="My supplier increases prices." xml:space="preserve"><value>دابینکەرێ من بهایان بلند دکەت.</value></data>
+  <data name="I sell fewer units." xml:space="preserve"><value>ئەز یەکەیێن کێمتر دفرۆشم.</value></data>
+  <data name="Both happen together." xml:space="preserve"><value>هەردوو پێکڤە رووددەن.</value></data>
+  <data name="2. Enter your assumptions" xml:space="preserve"><value>2. گریمانەیێن خۆ بنڤیسە</value></data>
+  <data name="Use the same period as your baseline quantity." xml:space="preserve"><value>هەمان ماوەیا بڕێ سەرەتایی بکاربینە.</value></data>
+  <data name="Illustration only: 10% fewer units" xml:space="preserve"><value>تەنێ نموونە: یەکە 10٪ کێمتر</value></data>
+  <data name="Illustration only: 20% higher unit cost" xml:space="preserve"><value>تەنێ نموونە: تێچوونا یەکەیێ 20٪ بلندتر</value></data>
+  <data name="4. Explore a response after reviewing the impact below." xml:space="preserve"><value>4. پشتی دیتنا کاریگەریێ ل خوارێ، بەرسڤەکێ تاقی بکە.</value></data>
+  <data name="Show impact" xml:space="preserve"><value>کاریگەریێ ببینە</value></data>
+  <data name="3. Understand the impact" xml:space="preserve"><value>3. کاریگەریێ تێبگەهە</value></data>
+  <data name="Monthly cost context (optional; monthly simulations only)" xml:space="preserve"><value>تێچوونێن هەیڤێ (ئارەزوومەندانە؛ تەنێ بۆ تاقیکرنێن هەیڤانە)</value></data>
+  <data name="Business-wide monthly context — not deducted from this product" xml:space="preserve"><value>تێچوونێن هەیڤانە یێن هەمی کارێ — ژ ڤی بەرهەمی ناهێن کێمکرن</value></data>
+  <data name="This is current entered information for the selected month, not part of the saved calculation snapshot." xml:space="preserve"><value>ئەڤە زانیارییێن نوکە تۆمارکری نە بۆ هەیڤا هەلبژارتی، نە بەشەک ژ هژمارتنا پاشەکەوتکری.</value></data>
+  <data name="Under these assumptions, the amount remaining after product costs falls from {0} to {1} per {2}, a decrease of {3}." xml:space="preserve"><value>ب ڤان گریمانەیان، بڕێ مای پشتی تێچوونا بەرهەمی ژ {0} بۆ {1} د هەر {2} دا دادکەڤیت، کێمبوونەکا {3}.</value></data>
+  <data name="Under these assumptions, contribution changes from {0} to {1} per {2}." xml:space="preserve"><value>ب ڤان گریمانەیان، بڕێ مای پشتی تێچوونا بەرهەمی ژ {0} بۆ {1} د هەر {2} دا دگوهۆڕیت.</value></data>
+  <data name="The amount remaining is {0} below zero." xml:space="preserve"><value>بڕێ مای ب {0} ژ سفرێ کێمترە.</value></data>
+  <data name="Contribution is revenue minus the unit costs entered here. Some wages or delivery may already be in those unit costs. Other business costs are not deducted." xml:space="preserve"><value>بڕێ مای داهاتە کێم تێچوونێن یەکەیان یێن ل ڤێرە هاتینە تۆمارکرن. هەندەک مووچە یان گەهاندن دکارن د وان دا بن. تێچوونێن دی یێن کارێ نەهاتینە کێمکرن.</value></data>
+  <data name="This option recovers {0} of the {1} decrease." xml:space="preserve"><value>ئەڤ هەلبژاردن {0} ژ کێمبوونا {1} دگەڕینیت.</value></data>
+  <data name="It remains {0} below the original contribution." xml:space="preserve"><value>هێشتا ب {0} ژ بڕێ مای یێ سەرەتایی کێمترە.</value></data>
+  <data name="It is {0} above the original contribution." xml:space="preserve"><value>ب {0} ژ بڕێ مای یێ سەرەتایی بلندترە.</value></data>
+  <data name="It matches the original contribution." xml:space="preserve"><value>وەک بڕێ مای یێ سەرەتایی یە.</value></data>
+  <data name="Demand, quality, and supplier reliability are not predicted. No option is universally best." xml:space="preserve"><value>داخوازی، کوالیتی و پشتپێبەستنا دابینکەری ناهێن پێشبینیکرن. چ هەلبژاردنەک هەردەم باشترین نینە.</value></data>
+  <data name="4. Explore a response" xml:space="preserve"><value>4. بەرسڤەکێ تاقی بکە</value></data>
+  <data name="Yes" xml:space="preserve"><value>بەلێ</value></data>
+  <data name="No" xml:space="preserve"><value>نەخێر</value></data>
+  <data name="Assumptions changed. Calculate again before saving." xml:space="preserve"><value>گریمانە گوهۆڕین. بەری پاشەکەوتکرنێ دووبارە بهژمێرە.</value></data>
 </root>

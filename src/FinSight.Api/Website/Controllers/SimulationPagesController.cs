@@ -70,6 +70,15 @@ public sealed class SimulationPagesController(ISender sender) : WebsiteControlle
                 model.ProposedPrice, model.CurrentSalesQuantity, model.ExpectedSalesQuantity,
                 model.DeclinePercentage!.Value), cancellationToken);
             model.Result = preview.Decision;
+            if (model.ComparisonPeriod == FinSight.Domain.Enums.SalesPeriod.Month && !string.IsNullOrEmpty(model.ContextMonth))
+            {
+                if (!BusinessCostForm.TryMonth(model.ContextMonth, out var month))
+                {
+                    ModelState.AddModelError(nameof(model.ContextMonth), Text("Choose a month between 2000 and 2100."));
+                    return InvalidForm("Preview", model);
+                }
+                model.CostContext = new(await sender.Send(new FinSight.Application.Features.BusinessCosts.GetBusinessCostsQuery(month), cancellationToken), model.Currency);
+            }
             return View(model);
         }
         catch (Exception exception) when (exception is ValidationException or RequestValidationException)

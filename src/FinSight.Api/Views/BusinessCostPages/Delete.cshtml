@@ -1,0 +1,8 @@
+@model FinSight.Application.Features.BusinessCosts.BusinessCostResponse
+@{ ViewData["Title"] = T["Delete cost entry?"].Value; }
+<section class="panel message-panel"><h1>@T["Delete cost entry?"]</h1>
+<p><bdi>@Model.Name</bdi> · <bdi dir="ltr">@Model.Amount.ToString("N2") · @Model.Month.ToString("yyyy-MM")</bdi></p>
+<p>@T["This removes the cost entry permanently. Saved simulations are unchanged."]</p>
+<form method="post" asp-antiforgery="true"><input type="hidden" name="version" value="@Model.Version" />
+<button class="button" type="submit">@T["Delete cost entry"]</button>
+<a href="/business-costs?month=@Model.Month.ToString("yyyy-MM")">@T["Cancel"]</a></form></section>

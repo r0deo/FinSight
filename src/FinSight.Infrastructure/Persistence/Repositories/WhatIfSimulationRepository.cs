@@ -24,5 +24,13 @@ public sealed class WhatIfSimulationRepository(FinSightDbContext db) : IWhatIfSi
         return new PagedResult<WhatIfSimulation>(items, total);
     }
 
-    public Task SaveChangesAsync(CancellationToken cancellationToken) => db.SaveChangesAsync(cancellationToken);
+    public async Task SaveChangesAsync(CancellationToken cancellationToken)
+    {
+        try { await db.SaveChangesAsync(cancellationToken); }
+        catch (DbUpdateException e) when (e.InnerException is Npgsql.PostgresException
+            { SqlState: "23505", ConstraintName: "PK_WhatIfSimulations" })
+        {
+            throw new FinSight.Application.Common.Exceptions.ConcurrencyConflictException();
+        }
+    }
 }

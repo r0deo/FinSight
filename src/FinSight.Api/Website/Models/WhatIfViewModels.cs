@@ -11,6 +11,9 @@ namespace FinSight.Api.Website.Models;
 
 public sealed class WhatIfFormViewModel
 {
+    public WhatIfConcern Concern { get; set; } = WhatIfConcern.Both;
+    public string? ContextMonth { get; set; }
+    [BindNever, ValidateNever] public BusinessCostsViewModel? CostContext { get; set; }
     public Guid ProductId { get; set; }
     [Required, Display(Name = "Current units sold")]
     [ModelBinder(BinderType = typeof(WebsiteNumberModelBinder))]
@@ -56,3 +59,5 @@ public sealed class WhatIfFormViewModel
 
 public sealed record WhatIfDisplayViewModel(string ProductName, string Currency,
     SalesPeriod Period, WhatIfInputs Inputs, WhatIfResult Result, bool IsHistorical);
+
+public enum WhatIfConcern { Supplier, Demand, Both }

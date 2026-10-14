@@ -416,4 +416,77 @@
   <data name="Higher contribution under these assumptions" xml:space="preserve"><value>مبلغ متبقٍّ أعلى وفق هذه الافتراضات</value></data>
   <data name="Lower contribution under these assumptions" xml:space="preserve"><value>مبلغ متبقٍّ أقل وفق هذه الافتراضات</value></data>
   <data name="Same contribution under these assumptions" xml:space="preserve"><value>المبلغ المتبقي نفسه وفق هذه الافتراضات</value></data>
+  <data name="Business costs" xml:space="preserve"><value>تكاليف النشاط</value></data>
+  <data name="Labor / wages" xml:space="preserve"><value>العمل / الأجور</value></data>
+  <data name="Rent" xml:space="preserve"><value>الإيجار</value></data>
+  <data name="Electricity / generator / fuel" xml:space="preserve"><value>الكهرباء / المولدة / الوقود</value></data>
+  <data name="Water / internet" xml:space="preserve"><value>الماء / الإنترنت</value></data>
+  <data name="Transport" xml:space="preserve"><value>النقل</value></data>
+  <data name="Maintenance" xml:space="preserve"><value>الصيانة</value></data>
+  <data name="Inventory / raw-material purchases" xml:space="preserve"><value>مشتريات المخزون / المواد الأولية</value></data>
+  <data name="Other" xml:space="preserve"><value>أخرى</value></data>
+  <data name="Amount" xml:space="preserve"><value>المبلغ</value></data>
+  <data name="Actual or estimated" xml:space="preserve"><value>فعلي أم تقديري</value></data>
+  <data name="Actual" xml:space="preserve"><value>فعلي</value></data>
+  <data name="Estimated" xml:space="preserve"><value>تقديري</value></data>
+  <data name="Unsure" xml:space="preserve"><value>غير متأكد</value></data>
+  <data name="Already included in product unit costs?" xml:space="preserve"><value>هل هو محسوب ضمن تكلفة وحدة المنتج؟</value></data>
+  <data name="For example, if delivery is part of each product's unit cost, choose Yes for that same delivery cost. Wages and electricity may also be included. Choose Unsure if you need to check." xml:space="preserve"><value>مثلاً إذا كان التوصيل ضمن تكلفة وحدة المنتج، اختر نعم لنفس تكلفة التوصيل. قد تكون الأجور والكهرباء محسوبة أيضاً. اختر غير متأكد إذا احتجت إلى التحقق.</value></data>
+  <data name="Note (optional)" xml:space="preserve"><value>ملاحظة (اختيارية)</value></data>
+  <data name="Save cost entry" xml:space="preserve"><value>حفظ التكلفة</value></data>
+  <data name="Edit cost entry" xml:space="preserve"><value>تعديل التكلفة</value></data>
+  <data name="Add cost entry" xml:space="preserve"><value>إضافة تكلفة</value></data>
+  <data name="Amounts use your business currency. Enter one specific month." xml:space="preserve"><value>المبالغ بعملة نشاطك. أدخل شهراً محدداً.</value></data>
+  <data name="Delete cost entry?" xml:space="preserve"><value>حذف هذه التكلفة؟</value></data>
+  <data name="Delete cost entry" xml:space="preserve"><value>حذف التكلفة</value></data>
+  <data name="This removes the cost entry permanently. Saved simulations are unchanged." xml:space="preserve"><value>سيُحذف سجل التكلفة نهائياً. لن تتغير المحاكاة المحفوظة.</value></data>
+  <data name="Entered operating costs by category" xml:space="preserve"><value>تكاليف التشغيل المدخلة حسب الفئة</value></data>
+  <data name="Largest entered categories first. Actual and estimated amounts are separate; this is not a complete business result." xml:space="preserve"><value>الفئات الأكبر أولاً. المبالغ الفعلية والتقديرية منفصلة؛ هذه ليست نتيجة كاملة للنشاط.</value></data>
+  <data name="No costs entered for this month. This does not mean your business has no costs." xml:space="preserve"><value>لم تُدخل تكاليف لهذا الشهر. هذا لا يعني أن نشاطك بلا تكاليف.</value></data>
+  <data name="Inventory purchases — separate" xml:space="preserve"><value>مشتريات المخزون — منفصلة</value></data>
+  <data name="Unresolved inclusion entries" xml:space="preserve"><value>سجلات لم يُحسم احتسابها ضمن تكلفة الوحدة</value></data>
+  <data name="Included costs are not deducted again. Unsure means unresolved, not zero. No monthly cost is deducted from product contribution here." xml:space="preserve"><value>التكاليف المحسوبة لا تُخصم مرة أخرى. غير متأكد تعني غير محسومة، وليست صفراً. لا تُخصم أي تكلفة شهرية من المبلغ المتبقي بعد تكلفة المنتج هنا.</value></data>
+  <data name="View month" xml:space="preserve"><value>عرض الشهر</value></data>
+  <data name="Cost entries" xml:space="preserve"><value>سجلات التكاليف</value></data>
+  <data name="Avoid counting the same cost twice" xml:space="preserve"><value>تجنب احتساب نفس التكلفة مرتين</value></data>
+  <data name="Unit costs describe the cost associated with each product unit. Monthly operating costs may continue even when sales change. Buying inventory is not the same as consuming or selling it." xml:space="preserve"><value>تكلفة الوحدة ترتبط بكل وحدة منتج. قد تستمر تكاليف التشغيل الشهرية حتى مع تغير المبيعات. شراء المخزون ليس استهلاكه أو بيعه.</value></data>
+  <data name="Check missing categories, estimates, and Unsure entries. A full business operating result requires sales and costs across the business for the same period." xml:space="preserve"><value>راجع الفئات الناقصة والتقديرات والسجلات غير المحسومة. النتيجة التشغيلية الكاملة تحتاج مبيعات وتكاليف النشاط كله لنفس الفترة.</value></data>
+  <data name="A full business operating result requires sales and costs across the business for the same period." xml:space="preserve"><value>النتيجة التشغيلية الكاملة تحتاج مبيعات وتكاليف النشاط كله لنفس الفترة.</value></data>
+  <data name="Cost entry added." xml:space="preserve"><value>تمت إضافة التكلفة.</value></data>
+  <data name="Cost entry updated." xml:space="preserve"><value>تم تعديل التكلفة.</value></data>
+  <data name="Cost entry deleted." xml:space="preserve"><value>تم حذف التكلفة.</value></data>
+  <data name="Choose a month between 2000 and 2100." xml:space="preserve"><value>اختر شهراً بين عامي 2000 و2100.</value></data>
+  <data name="Check the name, category, amount (up to two decimals), and note." xml:space="preserve"><value>راجع الاسم والفئة والمبلغ (منزلتان عشريتان كحد أقصى) والملاحظة.</value></data>
+  <data name="This record changed" xml:space="preserve"><value>هذا السجل تغير</value></data>
+  <data name="Reload the record and review your changes before trying again." xml:space="preserve"><value>أعد تحميل السجل وراجع تعديلاتك قبل المحاولة مجدداً.</value></data>
+  <data name="Simulation tools" xml:space="preserve"><value>أدوات المحاكاة</value></data>
+  <data name="What if conditions change?" xml:space="preserve"><value>ماذا لو تغيرت الظروف؟</value></data>
+  <data name="1. Choose your concern" xml:space="preserve"><value>1. اختر ما يقلقك</value></data>
+  <data name="What might change?" xml:space="preserve"><value>ما الذي قد يتغير؟</value></data>
+  <data name="My supplier increases prices." xml:space="preserve"><value>المجهز يرفع الأسعار.</value></data>
+  <data name="I sell fewer units." xml:space="preserve"><value>أبيع وحدات أقل.</value></data>
+  <data name="Both happen together." xml:space="preserve"><value>كلاهما يحدث معاً.</value></data>
+  <data name="2. Enter your assumptions" xml:space="preserve"><value>2. أدخل افتراضاتك</value></data>
+  <data name="Use the same period as your baseline quantity." xml:space="preserve"><value>استخدم نفس فترة الكمية الأصلية.</value></data>
+  <data name="Illustration only: 10% fewer units" xml:space="preserve"><value>مثال توضيحي فقط: وحدات أقل بنسبة 10٪</value></data>
+  <data name="Illustration only: 20% higher unit cost" xml:space="preserve"><value>مثال توضيحي فقط: تكلفة وحدة أعلى بنسبة 20٪</value></data>
+  <data name="4. Explore a response after reviewing the impact below." xml:space="preserve"><value>4. جرّب استجابة بعد مراجعة الأثر أدناه.</value></data>
+  <data name="Show impact" xml:space="preserve"><value>عرض الأثر</value></data>
+  <data name="3. Understand the impact" xml:space="preserve"><value>3. افهم الأثر</value></data>
+  <data name="Monthly cost context (optional; monthly simulations only)" xml:space="preserve"><value>سياق تكاليف الشهر (اختياري؛ للمحاكاة الشهرية فقط)</value></data>
+  <data name="Business-wide monthly context — not deducted from this product" xml:space="preserve"><value>سياق شهري للنشاط كله — لا يُخصم من هذا المنتج</value></data>
+  <data name="This is current entered information for the selected month, not part of the saved calculation snapshot." xml:space="preserve"><value>هذه المعلومات المدخلة حالياً للشهر المختار، وليست جزءاً من لقطة الحساب المحفوظة.</value></data>
+  <data name="Under these assumptions, the amount remaining after product costs falls from {0} to {1} per {2}, a decrease of {3}." xml:space="preserve"><value>بهذه الافتراضات، ينخفض المبلغ المتبقي بعد تكلفة المنتج من {0} إلى {1} لكل {2}، بانخفاض {3}.</value></data>
+  <data name="Under these assumptions, contribution changes from {0} to {1} per {2}." xml:space="preserve"><value>بهذه الافتراضات، يتغير المبلغ المتبقي بعد تكلفة المنتج من {0} إلى {1} لكل {2}.</value></data>
+  <data name="The amount remaining is {0} below zero." xml:space="preserve"><value>المبلغ المتبقي أقل من الصفر بمقدار {0}.</value></data>
+  <data name="Contribution is revenue minus the unit costs entered here. Some wages or delivery may already be in those unit costs. Other business costs are not deducted." xml:space="preserve"><value>المبلغ المتبقي هو الإيراد ناقص تكاليف الوحدات المدخلة هنا. قد تتضمن تكلفة الوحدة بعض الأجور أو التوصيل. التكاليف الأخرى للنشاط غير مخصومة.</value></data>
+  <data name="This option recovers {0} of the {1} decrease." xml:space="preserve"><value>هذا الخيار يعوض {0} من الانخفاض البالغ {1}.</value></data>
+  <data name="It remains {0} below the original contribution." xml:space="preserve"><value>يبقى أقل من المبلغ المتبقي الأصلي بمقدار {0}.</value></data>
+  <data name="It is {0} above the original contribution." xml:space="preserve"><value>يتجاوز المبلغ المتبقي الأصلي بمقدار {0}.</value></data>
+  <data name="It matches the original contribution." xml:space="preserve"><value>يساوي المبلغ المتبقي الأصلي.</value></data>
+  <data name="Demand, quality, and supplier reliability are not predicted. No option is universally best." xml:space="preserve"><value>لا نتنبأ بالطلب أو الجودة أو موثوقية المجهز. لا يوجد خيار أفضل في كل الحالات.</value></data>
+  <data name="4. Explore a response" xml:space="preserve"><value>4. جرّب استجابة</value></data>
+  <data name="Yes" xml:space="preserve"><value>نعم</value></data>
+  <data name="No" xml:space="preserve"><value>لا</value></data>
+  <data name="Assumptions changed. Calculate again before saving." xml:space="preserve"><value>تغيرت الافتراضات. أعد الحساب قبل الحفظ.</value></data>
 </root>

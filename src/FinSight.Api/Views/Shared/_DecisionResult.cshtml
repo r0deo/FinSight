@@ -89,6 +89,7 @@
     <div class="decision-explanation">
         <p><strong>@T["Current contribution"]:</strong> <bdi dir="ltr">@d.CurrentContribution.ToString("N2") @Model.Currency</bdi> · @period</p>
         <p>@T["Contribution means sales minus the unit costs entered here, before other business expenses."]</p>
+        <p><a href="/business-costs">@T["Business costs"]</a> — @T["A full business operating result requires sales and costs across the business for the same period."]</p>
         @if (Model.Period.HasValue)
         { <p>@T["All quantities refer to the selected period. Unit cost is assumed unchanged. Expected sales are your assumption, not a prediction."]</p> }
         else

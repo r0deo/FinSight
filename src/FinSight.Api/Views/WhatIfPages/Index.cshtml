@@ -2,12 +2,12 @@
 @using System.Globalization
 @using FinSight.Domain.Enums
 @{
-    ViewData["Title"] = T["What if?"].Value;
-    var shocked = Model.Result?.ShockedQuantity;
+    ViewData["Title"] = T["What if conditions change?"].Value;
 }
 <section class="panel simulation-panel">
+    <nav class="actions" aria-label="@T["Simulation tools"]"><a href="/simulations/preview?productId=@Model.ProductId">@T["Preview a price change"]</a><a href="/simulations">@T["Saved simulation history"]</a></nav>
     <p class="eyebrow">@T["EXPLORE A SHOCK"]</p>
-    <h1>@T["What if?"]</h1>
+    <h1>@T["What if conditions change?"]</h1>
     <h2><bdi>@Model.ProductName</bdi></h2>
     <p>@T["These are assumptions you choose, not forecasts."]</p>
     <dl class="simulation-product-facts">
@@ -15,15 +15,22 @@
         <div><dt>@T["Unit cost"]</dt><dd><bdi dir="ltr">@Model.CurrentUnitCost.ToString("N2") @Model.Currency</bdi></dd></div>
         <div><dt>@T["Business currency"]</dt><dd><bdi dir="ltr">@Model.Currency</bdi></dd></div>
     </dl>
-    <form method="post" action="/what-if/preview" data-what-if-form>
+    <form method="post" action="/what-if/preview" asp-antiforgery="true" data-what-if-form>
         <div asp-validation-summary="All" role="alert"></div>
         <input asp-for="ProductId" type="hidden" />
+        <h2>@T["1. Choose your concern"]</h2>
+        <div class="field"><label for="Concern">@T["What might change?"]</label><select asp-for="Concern">
+            <option value="Supplier">@T["My supplier increases prices."]</option>
+            <option value="Demand">@T["I sell fewer units."]</option>
+            <option value="Both">@T["Both happen together."]</option>
+        </select></div>
+        <h2>@T["2. Enter your assumptions"]</h2>
         <div class="field-grid">
             <div class="field"><label for="CurrentQuantity">@T["Current units sold"]</label><input asp-for="CurrentQuantity" type="text" inputmode="numeric" dir="ltr" required /><span asp-validation-for="CurrentQuantity"></span></div>
             <div class="field"><label for="Period">@T["Period"]</label><select asp-for="Period"><option value="Day">@T["day"]</option><option value="Week">@T["week"]</option><option value="Month">@T["month"]</option></select><span asp-validation-for="Period"></span></div>
-            <div class="field"><label for="SalesDeclinePercent">@T["Sales decline (%)"]</label><input asp-for="SalesDeclinePercent" type="text" inputmode="decimal" dir="ltr" required /><span asp-validation-for="SalesDeclinePercent"></span></div>
+            <div class="field" data-demand-assumption><label for="SalesDeclinePercent">@T["Sales decline (%)"]</label><input asp-for="SalesDeclinePercent" type="text" inputmode="decimal" dir="ltr" required /><span asp-validation-for="SalesDeclinePercent"></span><small>@T["Use the same period as your baseline quantity."]</small><button type="button" class="button button-quiet" data-preset="demand">@T["Illustration only: 10% fewer units"]</button></div>
         </div>
-        <fieldset class="what-if-fieldset"><legend>@T["How will unit cost change?"]</legend>
+        <fieldset class="what-if-fieldset" data-cost-assumption><legend>@T["How will unit cost change?"]</legend>
             <label class="checkbox-label"><input type="radio" asp-for="CostInputMode" value="Percentage" checked="@(Model.CostInputMode == CostShockInputMode.Percentage)" /> @T["Cost increase percentage"]</label>
             <label class="checkbox-label"><input type="radio" asp-for="CostInputMode" value="NewUnitCost" checked="@(Model.CostInputMode == CostShockInputMode.NewUnitCost)" /> @T["Resulting new unit cost"]</label>
             <div class="field-grid">
@@ -31,8 +38,28 @@
                 <div class="field" data-cost-direct><label for="NewUnitCost">@T["New total unit cost"]</label><input asp-for="NewUnitCost" type="text" inputmode="decimal" dir="ltr" /><span asp-validation-for="NewUnitCost"></span></div>
             </div>
             <small>@T["If exchange rates affect only part of your cost, enter the resulting total unit cost. Rebaz does not apply an exchange-rate change to every cost."]</small>
+            <button type="button" class="button button-quiet" data-preset="cost">@T["Illustration only: 20% higher unit cost"]</button>
         </fieldset>
+        <div class="field" data-month-context><label for="ContextMonth">@T["Monthly cost context (optional; monthly simulations only)"]</label><input asp-for="ContextMonth" type="month" min="2000-01" max="2100-12" dir="ltr" /><span asp-validation-for="ContextMonth"></span></div>
+        @if (Model.Result is not null)
+        {
+            <div data-what-if-results>
+            <h2>@T["3. Understand the impact"]</h2>
+            @if (Model.CostContext is not null) { <partial name="_SimulationCostContext" model="Model.CostContext" /> }
+            <partial name="_WhatIfResult" model="@(new WhatIfDisplayViewModel(Model.ProductName, Model.Currency, Model.Period,
+                new(Model.CurrentPrice, Model.CurrentUnitCost, Model.CurrentQuantity!.Value, Model.CostInputMode,
+                    Model.CostInputMode == CostShockInputMode.Percentage ? Model.CostIncreasePercent : null,
+                    Model.CostInputMode == CostShockInputMode.NewUnitCost ? Model.NewUnitCost : null,
+                    Model.SalesDeclinePercent!.Value, Model.UsePriceResponse ? Model.AlternativePrice : null,
+                    Model.UsePriceResponse ? Model.AlternativePriceQuantity : null,
+                    Model.UseSupplierResponse ? Model.AlternativeSupplierCost : null,
+                    Model.UseSupplierResponse ? Model.AlternativeSupplierQuantity : null), Model.Result, false))" />
+            </div>
+        }
+        @if (Model.Result is not null || Model.UsePriceResponse || Model.UseSupplierResponse)
+        {
         <fieldset class="what-if-fieldset"><legend>@T["Possible responses (optional)"]</legend>
+            <p>@T["4. Explore a response"]</p>
             <div class="field"><label class="checkbox-label"><input asp-for="UsePriceResponse" type="checkbox" /> @T["Try a different selling price"]</label></div>
             <div class="field-grid" data-price-response>
                 <div class="field"><label for="AlternativePrice">@T["Alternative selling price"]</label><input asp-for="AlternativePrice" type="text" inputmode="decimal" dir="ltr" /><span asp-validation-for="AlternativePrice"></span></div>
@@ -46,21 +73,16 @@
             </div>
             <small data-supplier-note>@T["Enter the complete alternative unit cost. The original increase is not added again; quality and reliability are not evaluated."]</small>
         </fieldset>
-        <button class="button" type="submit">@T["Compare responses"]</button>
+        }
+        <button class="button" type="submit">@T[Model.Result is null ? "Show impact" : "Compare responses"]</button>
     </form>
+    <p data-what-if-stale hidden class="notice" role="status">@T["Assumptions changed. Calculate again before saving."]</p>
     @if (Model.Result is { } result)
     {
         <div data-what-if-results>
-            <partial name="_WhatIfResult" model="@(new WhatIfDisplayViewModel(Model.ProductName, Model.Currency, Model.Period,
-                new(Model.CurrentPrice, Model.CurrentUnitCost, Model.CurrentQuantity!.Value, Model.CostInputMode,
-                    Model.CostInputMode == CostShockInputMode.Percentage ? Model.CostIncreasePercent : null,
-                    Model.CostInputMode == CostShockInputMode.NewUnitCost ? Model.NewUnitCost : null,
-                    Model.SalesDeclinePercent!.Value, Model.UsePriceResponse ? Model.AlternativePrice : null,
-                    Model.UsePriceResponse ? Model.AlternativePriceQuantity : null,
-                    Model.UseSupplierResponse ? Model.AlternativeSupplierCost : null,
-                    Model.UseSupplierResponse ? Model.AlternativeSupplierQuantity : null), result, false))" />
-            <form method="post" action="/what-if/save" data-what-if-save>
+            <form method="post" action="/what-if/save" asp-antiforgery="true" data-what-if-save>
                 <input type="hidden" name="ProductId" value="@Model.ProductId" />
+                <input type="hidden" name="Concern" value="@Model.Concern" />
                 <input type="hidden" name="CurrentQuantity" value="@Model.CurrentQuantity" />
                 <input type="hidden" name="Period" value="@Model.Period" />
                 <input type="hidden" name="CostInputMode" value="@Model.CostInputMode" />

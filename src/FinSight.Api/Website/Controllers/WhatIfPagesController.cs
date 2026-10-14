@@ -30,7 +30,7 @@ public sealed class WhatIfPagesController(ISender sender, WhatIfPreviewProofServ
             return View("SelectProduct");
         }
         var model = new WhatIfFormViewModel { ProductId = productId.Value,
-            CostIncreasePercent = 0, SalesDeclinePercent = 0 };
+            CostIncreasePercent = 0, SalesDeclinePercent = 0, Concern = WhatIfConcern.Supplier };
         await Populate(model, cancellationToken);
         return View("Index", model);
     }
@@ -61,6 +61,15 @@ public sealed class WhatIfPagesController(ISender sender, WhatIfPreviewProofServ
                 ModelState.Remove(nameof(model.AlternativeSupplierQuantity));
             }
             model.Result = response.Result;
+            if (model.Period == SalesPeriod.Month && !string.IsNullOrEmpty(model.ContextMonth))
+            {
+                if (!BusinessCostForm.TryMonth(model.ContextMonth, out var month))
+                {
+                    ModelState.AddModelError(nameof(model.ContextMonth), Text("Choose a month between 2000 and 2100."));
+                    return InvalidForm("Index", model);
+                }
+                model.CostContext = new(await sender.Send(new FinSight.Application.Features.BusinessCosts.GetBusinessCostsQuery(month), cancellationToken), model.Currency);
+            }
             model.PreviewProof = proof.Create(model.ToRequest(), model.CurrentPrice, model.CurrentUnitCost);
             return View("Index", model);
         }
@@ -84,7 +93,8 @@ public sealed class WhatIfPagesController(ISender sender, WhatIfPreviewProofServ
         if (!proof.Matches(model.PreviewProof, model.ToRequest(), model.PreviewPrice, model.PreviewCost))
             throw new PricingSimulationConflictException("Recalculate the preview before saving.");
         var saved = await sender.Send(new SaveWhatIfCommand(model.ToRequest(),
-            model.PreviewPrice, model.PreviewCost), cancellationToken);
+            model.PreviewPrice, model.PreviewCost,
+            new Guid(System.Security.Cryptography.SHA256.HashData(System.Text.Encoding.UTF8.GetBytes(model.PreviewProof!)).AsSpan(0, 16))), cancellationToken);
         TempData["Success"] = "What-if scenario saved.";
         return LocalRedirect($"/what-if/{saved.Id}");
     }
@@ -110,6 +120,21 @@ public sealed class WhatIfPagesController(ISender sender, WhatIfPreviewProofServ
 
     private void Normalize(WhatIfFormViewModel model)
     {
+        // Hidden assumptions are canonicalized on the server, not merely hidden by JavaScript.
+        if (model.Concern == WhatIfConcern.Demand)
+        {
+            model.CostInputMode = CostShockInputMode.Percentage;
+            model.CostIncreasePercent = 0;
+            model.NewUnitCost = null;
+            ModelState.Remove(nameof(model.CostInputMode));
+            ModelState.Remove(nameof(model.CostIncreasePercent));
+            ModelState.Remove(nameof(model.NewUnitCost));
+        }
+        if (model.Concern == WhatIfConcern.Supplier)
+        {
+            model.SalesDeclinePercent = 0;
+            ModelState.Remove(nameof(model.SalesDeclinePercent));
+        }
         if (model.CostInputMode == CostShockInputMode.Percentage)
         {
             model.NewUnitCost = null;
@@ -147,7 +172,7 @@ public sealed class WhatIfPagesController(ISender sender, WhatIfPreviewProofServ
             ModelState.AddModelError(nameof(model.AlternativePrice), Text("Enter an alternative selling price."));
         if (model.UseSupplierResponse && !model.AlternativeSupplierCost.HasValue)
             ModelState.AddModelError(nameof(model.AlternativeSupplierCost), Text("Enter an alternative total unit cost."));
-        if (!Enum.IsDefined(model.Period) || !Enum.IsDefined(model.CostInputMode))
+        if (!Enum.IsDefined(model.Period) || !Enum.IsDefined(model.CostInputMode) || !Enum.IsDefined(model.Concern))
             ModelState.AddModelError(string.Empty, Text("Please check the supplied values and try again."));
     }
 }

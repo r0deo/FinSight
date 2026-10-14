@@ -16,6 +16,7 @@ public sealed class FinSightDbContext(
     public DbSet<Business> Businesses => Set<Business>();
 
     public DbSet<Product> Products => Set<Product>();
+    public DbSet<BusinessCost> BusinessCosts => Set<BusinessCost>();
 
     public DbSet<PricingSimulation> PricingSimulations => Set<PricingSimulation>();
 

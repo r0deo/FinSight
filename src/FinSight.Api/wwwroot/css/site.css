@@ -916,3 +916,8 @@ legend {
         padding:40px 22px;
     }
 }
+/* Monthly costs share the simulation card rhythm, including narrow RTL screens. */
+.what-if-options { display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap:16px; }
+.what-if-options > .panel { min-width:0; padding:20px; overflow-wrap:anywhere; }
+input[type="month"], textarea { max-width:100%; min-width:0; }
+[hidden] { display:none !important; }

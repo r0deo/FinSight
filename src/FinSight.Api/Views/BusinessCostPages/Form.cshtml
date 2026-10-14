@@ -1,0 +1,25 @@
+@model BusinessCostForm
+@using FinSight.Domain.Enums
+@{ ViewData["Title"] = T["Business costs"].Value; var id = ViewData["CostId"] as Guid?; }
+<section class="panel message-panel">
+<h1>@T[id.HasValue ? "Edit cost entry" : "Add cost entry"]</h1>
+<p>@T["Amounts use your business currency. Enter one specific month."]</p>
+<form method="post" action="@(id.HasValue ? $"/business-costs/{id}/edit" : "/business-costs/create")" asp-antiforgery="true">
+<div asp-validation-summary="All" role="alert"></div>
+<input asp-for="Version" type="hidden" />
+<div class="field"><label asp-for="Name"></label><input asp-for="Name" required maxlength="100" /><span asp-validation-for="Name"></span></div>
+<div class="field-grid">
+<div class="field"><label for="Category">@T["Category"]</label><select asp-for="Category">
+@foreach (var c in Enum.GetValues<BusinessCostCategory>()) { <option value="@c">@T[CostLabels.Category(c)]</option> }
+</select></div>
+<div class="field"><label for="Amount">@T["Amount"]</label><input asp-for="Amount" type="text" inputmode="decimal" dir="ltr" required /><span asp-validation-for="Amount"></span></div>
+<div class="field"><label for="Month">@T["month"]</label><input asp-for="Month" type="month" min="2000-01" max="2100-12" required dir="ltr" /><span asp-validation-for="Month"></span></div>
+<div class="field"><label for="Certainty">@T["Actual or estimated"]</label><select asp-for="Certainty"><option value="Actual">@T["Actual"]</option><option value="Estimated">@T["Estimated"]</option></select></div>
+</div>
+<div class="field"><label for="Inclusion">@T["Already included in product unit costs?"]</label>
+<select asp-for="Inclusion"><option value="Yes">@T["Yes"]</option><option value="No">@T["No"]</option><option value="Unsure">@T["Unsure"]</option></select>
+<small>@T["For example, if delivery is part of each product's unit cost, choose Yes for that same delivery cost. Wages and electricity may also be included. Choose Unsure if you need to check."]</small></div>
+<div class="field"><label for="Note">@T["Note (optional)"]</label><textarea asp-for="Note" maxlength="500"></textarea><span asp-validation-for="Note"></span></div>
+<button class="button" type="submit">@T["Save cost entry"]</button>
+<a class="button button-quiet" href="/business-costs?month=@Model.Month">@T["Cancel"]</a>
+</form></section>

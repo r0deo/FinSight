@@ -22,7 +22,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace FinSight.IntegrationTests;
 
-public class WebsiteTests(FinSightApiFactory factory) : IClassFixture<FinSightApiFactory>
+public partial class WebsiteTests(FinSightApiFactory factory) : IClassFixture<FinSightApiFactory>
 {
     private HttpClient Browser() => factory.CreateClient(new WebApplicationFactoryClientOptions
     {
@@ -78,6 +78,9 @@ public class WebsiteTests(FinSightApiFactory factory) : IClassFixture<FinSightAp
         var saved = await Submit(owner, "/what-if/save", saveFields, formUrl);
         Assert.Equal(HttpStatusCode.Redirect, saved.StatusCode);
         var savedUrl = saved.Headers.Location!.OriginalString;
+        var retried = await Submit(owner, "/what-if/save", saveFields, formUrl);
+        Assert.Equal(HttpStatusCode.Redirect, retried.StatusCode);
+        Assert.Equal(savedUrl, retried.Headers.Location!.OriginalString);
         Assert.Contains("/what-if/", savedUrl);
         using (var scope = factory.Services.CreateScope())
         {
@@ -256,6 +259,7 @@ public class WebsiteTests(FinSightApiFactory factory) : IClassFixture<FinSightAp
 
         var email = await RegisterAndConfirm(browser);
         Assert.Equal(HttpStatusCode.Redirect, (await Login(browser, email)).StatusCode);
+        Assert.Equal(HttpStatusCode.Redirect, (await Submit(browser, "/business-costs/create", CostFields("Manager cost"))).StatusCode);
         Assert.Contains("<html lang=\"ar-IQ\" dir=\"rtl\">", await browser.GetStringAsync("/home"));
         Assert.Equal(HttpStatusCode.Redirect, (await Submit(browser, "/account/logout", [], "/home")).StatusCode);
         Assert.Contains("<html lang=\"ar-IQ\" dir=\"rtl\">", await browser.GetStringAsync("/account/login"));
@@ -526,6 +530,9 @@ public class WebsiteTests(FinSightApiFactory factory) : IClassFixture<FinSightAp
         Assert.Equal(HttpStatusCode.Redirect, page.StatusCode);
         Assert.Contains("/account/access-denied", page.Headers.Location!.OriginalString);
         Assert.Equal(HttpStatusCode.Forbidden, (await browser.GetAsync(page.Headers.Location)).StatusCode);
+        var costs = await browser.GetAsync("/business-costs");
+        Assert.Equal(HttpStatusCode.Redirect, costs.StatusCode);
+        Assert.Contains("/account/access-denied", costs.Headers.Location!.OriginalString);
 
         var jwt = scope.ServiceProvider.GetRequiredService<IOptions<JwtOptions>>().Value;
         var token = new JwtSecurityToken(jwt.Issuer, jwt.Audience, claims, DateTime.UtcNow,

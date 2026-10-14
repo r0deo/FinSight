@@ -38,6 +38,41 @@ public class WhatIfCalculatorTests
         Assert.Equal(9000, supplier.DifferenceFromNoAction);
     }
 
+    [Theory]
+    [InlineData(20, 0, 280000)]
+    [InlineData(0, 10, 270000)]
+    [InlineData(0, 0, 300000)]
+    [InlineData(20, 100, 0)]
+    public void IndependentShockOracles(decimal increase, decimal decline, decimal expected)
+    {
+        Assert.Equal(expected, _calculator.Calculate(Inputs(increase: increase, decline: decline)).NoActionContribution);
+    }
+
+    [Theory]
+    [InlineData(1000, 0, -18000)]
+    [InlineData(500, -50000, -63000)]
+    public void NonpositiveBaseline_HasNoMaintenanceThreshold(decimal price, decimal baseline, decimal shocked)
+    {
+        var result = _calculator.Calculate(Inputs(price: price));
+        Assert.Equal(baseline, result.BaselineContribution);
+        Assert.Equal(shocked, result.NoActionContribution);
+        Assert.Equal(MaintenanceThresholdStatus.NoPositiveBaseline, result.Options[0].ThresholdStatus);
+        Assert.True(result.Options[0].IsBelowCost);
+    }
+
+    [Fact]
+    public void AlternativeResponses_CanOvershootOrWorsenWithoutChangingInputs()
+    {
+        var input = Inputs(alternativePrice: 5000, supplierCost: 2000);
+        var result = _calculator.Calculate(input);
+        Assert.Equal(342000, result.Options[1].Contribution);
+        Assert.Equal(42000, result.Options[1].DifferenceFromBaseline);
+        Assert.Equal(180000, result.Options[2].Contribution);
+        Assert.Equal(-72000, result.Options[2].DifferenceFromNoAction);
+        Assert.Equal(1000, input.CurrentUnitCost);
+        Assert.Throws<ArgumentException>(() => _calculator.Calculate(Inputs() with { AlternativePriceQuantity = 1 }));
+    }
+
     [Fact]
     public void DirectCostMode_UsesEnteredTotalCostWithoutAddingIncreaseAgain()
     {
