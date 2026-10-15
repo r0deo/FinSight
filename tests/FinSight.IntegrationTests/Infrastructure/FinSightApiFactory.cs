@@ -22,7 +22,9 @@ public class FinSightApiFactory : WebApplicationFactory<Program>, IAsyncLifetime
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseEnvironment("Development");
-        builder.UseSetting("RateLimiting:AuthenticationPermitLimit", "100");
+        // The growing shared-fixture suite performs many real logins from one test IP.
+        // Keep a test-only allowance; production defaults and resend-limit tests are unchanged.
+        builder.UseSetting("RateLimiting:AuthenticationPermitLimit", "1000");
         builder.ConfigureAppConfiguration((_, configuration) =>
         {
             configuration.AddInMemoryCollection(new Dictionary<string, string?>
@@ -32,7 +34,7 @@ public class FinSightApiFactory : WebApplicationFactory<Program>, IAsyncLifetime
                 ["Email:Host"] = "localhost",
                 ["Email:Port"] = "1025",
                 ["Email:FromAddress"] = "tests@finsight.local",
-                ["RateLimiting:AuthenticationPermitLimit"] = "100"
+                ["RateLimiting:AuthenticationPermitLimit"] = "1000"
             });
         });
         builder.ConfigureServices(services =>

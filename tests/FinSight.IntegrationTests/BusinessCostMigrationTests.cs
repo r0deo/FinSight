@@ -24,8 +24,13 @@ public sealed class BusinessCostMigrationTests
         {
             await old.GetService<IMigrator>().MigrateAsync("20261013120101_AddWhatIfSimulations");
             old.Businesses.Add(new Business(businessId, "Legacy café", "Duhok", "IQD", "test@example.com"));
-            old.Products.Add(new Product(productId, businessId, "Coffee", "Drinks", null, 4000, 1000));
             old.Users.Add(new ApplicationUser(userId, businessId, "legacy@example.com"));
+            await old.SaveChangesAsync();
+            // Seed the historical schema explicitly; today's Product mapping has additional optional columns.
+            await old.Database.ExecuteSqlInterpolatedAsync($"""
+                INSERT INTO "Products" ("Id", "BusinessId", "Name", "Category", "Size", "SellingPrice", "UnitCost", "IsActive")
+                VALUES ({productId}, {businessId}, 'Coffee', 'Drinks', NULL, 4000, 1000, TRUE)
+                """);
             old.PricingSimulations.Add(new PricingSimulation(pricingId, businessId, productId, userId,
                 4000, 1000, 4500, 100, 90, DateTime.UtcNow, new PricingSimulationCalculator()));
             old.WhatIfSimulations.Add(new WhatIfSimulation(whatIfId, businessId, productId, userId, "Coffee", "IQD",
@@ -46,6 +51,7 @@ public sealed class BusinessCostMigrationTests
         Assert.Equal(new DateOnly(2026, 9, 1), legacyCost.Month); Assert.Equal(1, legacyCost.Version);
         Assert.Empty(await db.BusinessCostMonths.ToListAsync()); // Existing months are not falsely declared complete.
         Assert.Equal(4000, (await db.Products.SingleAsync(x => x.Id == productId)).SellingPrice);
+        Assert.Null((await db.Products.SingleAsync(x => x.Id == productId)).CostBreakdown);
         var pricing = await db.PricingSimulations.SingleAsync(x => x.Id == pricingId);
         Assert.Equal(300000, pricing.CurrentContribution); Assert.Equal(315000, pricing.ProposedContribution);
         var whatIf = await db.WhatIfSimulations.SingleAsync(x => x.Id == whatIfId);

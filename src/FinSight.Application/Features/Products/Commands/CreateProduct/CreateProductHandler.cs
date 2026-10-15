@@ -13,6 +13,7 @@ public sealed class CreateProductHandler(
         CreateProductCommand request,
         CancellationToken cancellationToken)
     {
+        ProductCostSelection.Validate(request.CostInputs, request.UnitCost);
         var product = new Product(
             Guid.NewGuid(),
             currentUserContext.BusinessId,
@@ -22,6 +23,7 @@ public sealed class CreateProductHandler(
             request.SellingPrice,
             request.UnitCost);
 
+        if (request.CostInputs is not null) product.ApplyCostBreakdown(request.CostInputs);
         await productRepository.AddAsync(product, cancellationToken);
         await productRepository.SaveChangesAsync(cancellationToken);
 

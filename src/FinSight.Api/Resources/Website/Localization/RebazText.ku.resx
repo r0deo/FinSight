@@ -526,4 +526,51 @@
   <data name="Assumed reduction (%)" xml:space="preserve"><value>کێمکرنا گریمانەکری (%)</value></data>
   <data name="Calculate assumed saving" xml:space="preserve"><value>پاشەکەفتکرنێ ل دویڤ گریمانێ بهژمێرە</value></data>
   <data name="Choose a recorded operating category and a reduction from 0 to 100, with up to two decimals." xml:space="preserve"><value>پۆلەکا کارکرنێ یا تۆمارکری و کێمکرنەکێ ژ 0 هەتا 100 هەلبژێرە، ب هەری زێدە دوو ژمارەیێن دەهەکی.</value></data>
+  <data name="Help me calculate this cost" xml:space="preserve"><value>هاریکاریا من بکە بۆ حیسابکرنا ڤێ تێچوونێ</value></data>
+  <data name="Calculated cost selected. Only Save stores this cost and breakdown with the product." xml:space="preserve"><value>تێچوونا حیسابکری هاتە هەلبژارتن. بتنێ پاشەکەفتکرن تێچوون و وردەکارییان دگەل بەرهەمی پاشەکەفت دکەت.</value></data>
+  <data name="Manual cost selected. Saving a manual cost removes the old ingredient breakdown." xml:space="preserve"><value>تێچوونا دەستی هاتە هەلبژارتن. پاشەکەفتکرنا تێچوونا دەستی وردەکاریێن کەرەستەیێن کەڤن ژێ دبەت.</value></data>
+  <data name="Enter one batch, not your whole menu. Review the estimate, choose Use this unit cost, then Save the product." xml:space="preserve"><value>پێزانینێن ئێک جارێ ئامادەکرنێ بنڤیسە، نە هەمی مێنویێ. تەخمینێ بپشکنە، تێچوونا ئێک دانەیێ بکار بینە، پاشی بەرهەمی پاشەکەفت بکە.</value></data>
+  <data name="Example: ingredients cost 12,000 IQD for 10 usable servings: 1,200 each. Add 200 packaging and explicitly 0 other costs: 1,400 IQD per serving." xml:space="preserve"><value>نموونە: کەرەستە ب 12,000 دیناران بۆ 10 پشکێن بکارئینانێ: 1,200 بۆ هەر پشکەکێ. 200 بۆ پێچانێ زێدە بکە و 0 بۆ تێچوونێن دی بنڤیسە: 1,400 دینار بۆ هەر پشکەکێ.</value></data>
+  <data name="Ingredient" xml:space="preserve"><value>کەرەستە</value></data>
+  <data name="Ingredient name" xml:space="preserve"><value>ناڤێ کەرەستەیێ</value></data>
+  <data name="Purchase-pack quantity" xml:space="preserve"><value>بڕێ پاکێتا کڕینێ</value></data>
+  <data name="Pack unit" xml:space="preserve"><value>یەکەیا پاکێتێ</value></data>
+  <data name="Choose a unit" xml:space="preserve"><value>یەکەیەکێ هەلبژێرە</value></data>
+  <data name="Purchase-pack price" xml:space="preserve"><value>بهایێ پاکێتا کڕینێ</value></data>
+  <data name="Quantity used in this batch" xml:space="preserve"><value>بڕێ بکارئینای د ڤێ جارێ دا</value></data>
+  <data name="Used unit" xml:space="preserve"><value>یەکەیا بڕێ بکارئینای</value></data>
+  <data name="Remove ingredient" xml:space="preserve"><value>کەرەستەیێ ژێ ببە</value></data>
+  <data name="Add ingredient" xml:space="preserve"><value>کەرەستەیەکێ زێدە بکە</value></data>
+  <data name="Usable servings / items produced" xml:space="preserve"><value>ژمارا پشک / دانەیێن چێکری یێن بکار دێن</value></data>
+  <data name="Enter only usable output after discards. Discarded output is already accounted for; do not deduct it again." xml:space="preserve"><value>بتنێ ئەو بڕێ بکار دێت پشتی ژێبرنا خرابوویا بنڤیسە. یێن هاتینە هاڤێتن د ڤێ ژمارێ دا هاتینە حیسابکرن؛ جارەکا دی کێم نەکە.</value></data>
+  <data name="Packaging per serving (optional)" xml:space="preserve"><value>پێچان بۆ هەر پشکەکێ (ب هەلبژارتن)</value></data>
+  <data name="Other variable costs per serving (optional)" xml:space="preserve"><value>تێچوونێن گۆهەر یێن دی بۆ هەر پشکەکێ (ب هەلبژارتن)</value></data>
+  <data name="Leave optional costs blank to exclude them; enter 0 only when you know that cost is zero. All amounts use your business currency." xml:space="preserve"><value>تێچوونێن ب هەلبژارتن بەتاڵ بهێلە بۆ نەحیسابکرنێ؛ بتنێ دەمێ تو دزانی صفرە 0 بنڤیسە. هەمی بڕ ب دراڤێ کارێ تە نە.</value></data>
+  <data name="Calculate estimated cost" xml:space="preserve"><value>تێچوونا تەخمینی حیساب بکە</value></data>
+  <data name="Cancel calculation" xml:space="preserve"><value>حیسابکرنێ هەلوەشینە</value></data>
+  <data name="Keep manual unit cost" xml:space="preserve"><value>تێچوونا دەستی یا ئێک دانەیێ بهێلە</value></data>
+  <data name="Estimated unit cost" xml:space="preserve"><value>تێچوونا تەخمینی یا ئێک دانەیێ</value></data>
+  <data name="Total ingredients used in batch" xml:space="preserve"><value>کۆما تێچوونا کەرەستەیێن بکارئینای</value></data>
+  <data name="Ingredient cost per serving" xml:space="preserve"><value>تێچوونا کەرەستەیان بۆ هەر پشکەکێ</value></data>
+  <data name="Not entered — excluded, not assumed zero" xml:space="preserve"><value>نەهاتیە نڤیسین — نەهاتیە حیسابکرن، نە کو صفرە</value></data>
+  <data name="Displayed amounts are rounded to two decimals. Calculations keep precision until the final unit cost is rounded." xml:space="preserve"><value>بڕێن دیارکری بۆ دوو ژمارێن دەهەکی هاتینە گردکرن. حیساب وردیێ دپارێزیت هەتا تێچوونا دوماهیکێ یا ئێک دانەیێ دهێتە گردکرن.</value></data>
+  <data name="Use this unit cost" xml:space="preserve"><value>ڤێ تێچوونا ئێک دانەیێ بکار بینە</value></data>
+  <data name="This estimate covers only the ingredients and optional variable costs you entered, not every business cost or net profit." xml:space="preserve"><value>ئەڤ تەخمین بتنێ کەرەستە و تێچوونێن گۆهەر یێن تە نڤیسین دگریت، نە هەمی تێچوونێن کاری یان قازانجا سافی.</value></data>
+  <data name="Keep monthly rent and salaries in Business Costs. They are not automatically allocated to this product." xml:space="preserve"><value>کرێ و مووچەیێن هەیڤانە د تێچوونێن کاری دا بهێلە. ئەو ب شێوەیەکێ خودکار ل سەر ڤی بەرهەمی ناهێنە بەلاڤکرن.</value></data>
+  <data name="Grams (g)" xml:space="preserve"><value>گرام (g)</value></data>
+  <data name="Kilograms (kg)" xml:space="preserve"><value>کیلوگرام (kg)</value></data>
+  <data name="Millilitres (ml)" xml:space="preserve"><value>میلیلیتر (ml)</value></data>
+  <data name="Litres (L)" xml:space="preserve"><value>لیتر (L)</value></data>
+  <data name="Items" xml:space="preserve"><value>دانە</value></data>
+  <data name="Enter between 1 and 30 ingredients." xml:space="preserve"><value>ژ 1 هەتا 30 کەرەستەیان بنڤیسە.</value></data>
+  <data name="Each ingredient needs a name of at most 100 characters." xml:space="preserve"><value>هەر کەرەستە پێدڤی ب ناڤەکی هەیە کو ژ 100 پیتان زێدە نەبیت.</value></data>
+  <data name="Choose a supported ingredient unit." xml:space="preserve"><value>یەکەیەکا پشتەڤانیکری بۆ کەرەستەیێ هەلبژێرە.</value></data>
+  <data name="Use compatible units: mass with mass, volume with volume, or items with items." xml:space="preserve"><value>یەکەیێن گونجای بکار بینە: کێش دگەل کێشی، قەبارە دگەل قەبارەیێ، یان دانە دگەل دانەیێ.</value></data>
+  <data name="These quantities or costs are too large to calculate safely." xml:space="preserve"><value>ئەڤ بڕ یان تێچوون بۆ حیسابکرنا ئێمن گەلەک مەزنن.</value></data>
+  <data name="Quantities must be positive, at most 1,000,000, with no more than six decimal places." xml:space="preserve"><value>دڤێت بڕ ژ صفرێ مەزنتر بن و ژ 1,000,000 زێدە نەبن، ب پتری ژ شەش ژمارێن دەهەکی نەبن.</value></data>
+  <data name="Costs must be non-negative, at most 999,999,999,999.99, with no more than two decimal places." xml:space="preserve"><value>دڤێت تێچوون نەرێنی نەبن و ژ 999,999,999,999.99 زێدە نەبن، ب پتری ژ دوو ژمارێن دەهەکی نەبن.</value></data>
+  <data name="Complete every ingredient field and the usable batch output. Blank required amounts are not zero." xml:space="preserve"><value>هەمی خانەیێن کەرەستەیان و بڕێ بکار دێت تەمام بکە. بڕێن پێدڤی یێن بەتاڵ نە صفرن.</value></data>
+  <data name="Recalculate and choose Use this unit cost, or keep a manual cost." xml:space="preserve"><value>دوبارە حیساب بکە و تێچوونا ئێک دانەیێ بکار بینە، یان تێچوونا دەستی بهێلە.</value></data>
+  <data name="Ingredients changed. Review the recalculated breakdown before using this cost." xml:space="preserve"><value>کەرەستە هاتنە گۆهارتن. بەری بکارئینانا ڤێ تێچوونێ وردەکاریێن دوبارە حیسابکری بپشکنە.</value></data>
+  <data name="Product name, category, selling price and unit cost are required. New products are active automatically." xml:space="preserve"><value>ناڤێ بەرهەمی، جۆر، بهایێ فرۆتنێ و تێچوونا ئێک دانەیێ پێدڤین. بەرهەمێن نوی ب شێوەیەکێ خودکار چالاکن.</value></data>
 </root>

@@ -24,8 +24,11 @@ public sealed class UpdateProductHandler(
             throw new NotFoundException(nameof(Product), request.ProductId);
         }
 
+        ProductCostSelection.Validate(request.CostInputs, request.UnitCost);
         product.UpdateDetails(request.Name, request.Category, request.Size);
         product.UpdateFinancials(request.SellingPrice, request.UnitCost);
+        if (request.ClearCostBreakdown) product.ClearCostBreakdown();
+        if (request.CostInputs is not null) product.ApplyCostBreakdown(request.CostInputs);
         await productRepository.SaveChangesAsync(cancellationToken);
     }
 }

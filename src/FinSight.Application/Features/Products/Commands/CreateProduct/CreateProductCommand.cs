@@ -7,4 +7,7 @@ public sealed record CreateProductCommand(
     string Category,
     string? Size,
     decimal SellingPrice,
-    decimal UnitCost) : IRequest<CreateProductResponse>;
+    decimal UnitCost) : IRequest<CreateProductResponse>
+{
+    public FinSight.Domain.Models.ProductCostInputs? CostInputs { get; init; }
+}

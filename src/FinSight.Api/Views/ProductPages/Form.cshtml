@@ -4,7 +4,7 @@
 <div class="page-heading"><div><p class="eyebrow">@T[editing ? "KEEP YOUR MENU UP TO DATE" : "BUILD YOUR PRODUCT LIST"]</p><h1>@ViewData["Title"]</h1><p class="muted">@T["Start with the details. Prices and costs use your business currency."]</p></div></div>
 <div class="form-layout">
     <section class="panel">
-        <form asp-action="@(editing ? "Edit" : "Create")" asp-route-id="@id" method="post">
+        <form asp-action="@(editing ? "Edit" : "Create")" asp-route-id="@id" method="post" data-product-form>
             <div asp-validation-summary="All" class="validation-summary" role="alert"></div>
             <div class="field"><label asp-for="Name">@T["Product name"]</label><input asp-for="Name" maxlength="60" dir="auto" placeholder="@T["e.g. Cappuccino"]" /><span asp-validation-for="Name"></span></div>
             <div class="field-grid">
@@ -15,8 +15,11 @@
                 <div class="field"><label asp-for="SellingPrice"></label><input asp-for="SellingPrice" type="text" inputmode="decimal" dir="ltr" placeholder="0.00" /><span asp-validation-for="SellingPrice"></span></div>
                 <div class="field"><label asp-for="UnitCost"></label><input asp-for="UnitCost" type="text" inputmode="decimal" dir="ltr" placeholder="0.00" /><span asp-validation-for="UnitCost"></span></div>
             </div>
-            <div class="form-actions"><button class="button" type="submit">@T[editing ? "Save changes" : "Add product"]</button><a href="/products">@T["Cancel"]</a></div>
+            <p class="muted">@T["Business currency"]: <bdi>@Model.Currency</bdi></p>
+            <partial name="_CostHelper" model="Model" />
+            <div class="form-actions"><button class="button" type="submit" data-product-save>@T[editing ? "Save changes" : "Add product"]</button><a href="/products">@T["Cancel"]</a></div>
         </form>
     </section>
-    <aside class="form-guidance"><h2>@T["A little detail goes a long way."]</h2><p><strong>@T["Selling price"]</strong> @T["is what a customer pays for one unit."]</p><p><strong>@T["Unit cost"]</strong> @T["is what it costs your business to make or buy that unit."]</p><p class="muted">@T["All fields except size are required. New products are active automatically."]</p></aside>
+    <aside class="form-guidance"><h2>@T["A little detail goes a long way."]</h2><p><strong>@T["Selling price"]</strong> @T["is what a customer pays for one unit."]</p><p><strong>@T["Unit cost"]</strong> @T["is what it costs your business to make or buy that unit."]</p><p class="muted">@T["Product name, category, selling price and unit cost are required. New products are active automatically."]</p></aside>
 </div>
+<script src="~/js/product-cost-helper.js" asp-append-version="true" defer></script>

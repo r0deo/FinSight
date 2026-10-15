@@ -1,6 +1,8 @@
 using FinSight.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Text.Json;
+using FinSight.Domain.Models;
 
 namespace FinSight.Infrastructure.Persistence.Configurations;
 
@@ -18,7 +20,11 @@ public sealed class ProductConfiguration : IEntityTypeConfiguration<Product>
             .HasPrecision(18, 2);
 
         builder.Property(product => product.UnitCost)
-            .HasPrecision(18, 2);
+            .HasPrecision(18, 2).IsConcurrencyToken();
+        builder.Property(product => product.CostBreakdown)
+            .HasConversion(x => JsonSerializer.Serialize(x, (JsonSerializerOptions?)null),
+                x => JsonSerializer.Deserialize<ProductCostBreakdown>(x, (JsonSerializerOptions?)null))
+            .HasColumnType("text").IsConcurrencyToken();
 
         builder.Property(product => product.BusinessId)
             .IsRequired();

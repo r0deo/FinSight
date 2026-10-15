@@ -240,6 +240,10 @@ namespace FinSight.Infrastructure.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("CostBreakdown")
+                        .IsConcurrencyToken()
+                        .HasColumnType("text");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
@@ -256,6 +260,7 @@ namespace FinSight.Infrastructure.Persistence.Migrations
                         .HasColumnType("text");
 
                     b.Property<decimal>("UnitCost")
+                        .IsConcurrencyToken()
                         .HasPrecision(18, 2)
                         .HasColumnType("numeric(18,2)");
 

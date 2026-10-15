@@ -17,5 +17,6 @@ public sealed class UpdateProductValidator : AbstractValidator<UpdateProductComm
             .Must(category => !string.IsNullOrWhiteSpace(category));
         RuleFor(command => command.SellingPrice).GreaterThanOrEqualTo(0);
         RuleFor(command => command.UnitCost).GreaterThanOrEqualTo(0);
+        When(x => x.CostInputs is not null, () => RuleFor(x => x.CostInputs!).SetValidator(new ProductCostInputsValidator()));
     }
 }

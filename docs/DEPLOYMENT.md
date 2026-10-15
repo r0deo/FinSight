@@ -185,6 +185,17 @@ dotnet ef database update --project src/FinSight.Infrastructure --startup-projec
 Remove-Item Env:DOTNET_ENVIRONMENT
 ```
 
+### Product-cost helper release
+
+Apply **`20261015141948_AddProductCostBreakdown`** before serving the product-cost
+helper release. It adds only a nullable `Products.CostBreakdown` text column;
+existing manual costs and simulation snapshots are not changed. Use the same
+masked direct-Neon migration helper above, verify its migration history, then
+release the matching application version. No automatic startup migration is added.
+See [PRODUCT_COST_HELPER.md](PRODUCT_COST_HELPER.md) for limits, local verification,
+manual checks and the complete change manifest. Production is not migrated by the
+implementation task.
+
 ## 3. Provision the Data Protection certificate
 
 This private encryption certificate is NOT the website HTTPS certificate. It may be

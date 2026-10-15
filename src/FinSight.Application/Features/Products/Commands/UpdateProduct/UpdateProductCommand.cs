@@ -8,4 +8,8 @@ public sealed record UpdateProductCommand(
     string Category,
     string? Size,
     decimal SellingPrice,
-    decimal UnitCost) : IRequest;
+    decimal UnitCost) : IRequest
+{
+    public FinSight.Domain.Models.ProductCostInputs? CostInputs { get; init; }
+    public bool ClearCostBreakdown { get; init; }
+}

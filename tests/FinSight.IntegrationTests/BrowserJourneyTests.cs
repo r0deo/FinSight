@@ -33,7 +33,7 @@ public sealed class BrowserApiFactory : FinSightApiFactory
     }
 }
 
-public sealed class BrowserJourneyTests(BrowserApiFactory factory) : IClassFixture<BrowserApiFactory>
+public sealed partial class BrowserJourneyTests(BrowserApiFactory factory) : IClassFixture<BrowserApiFactory>
 {
     [Theory]
     [InlineData("en", 1440)]
@@ -75,7 +75,8 @@ public sealed class BrowserJourneyTests(BrowserApiFactory factory) : IClassFixtu
         await page.Locator("#Email").FillAsync(email);
         await page.Locator("#Password").FillAsync("Password1!");
         await page.Locator("main form button[type=submit]").ClickAsync();
-        await page.WaitForURLAsync(url => !url.Contains("/account/login"));
+        await page.WaitForURLAsync(url => !url.Contains("/account/login"), new() { WaitUntil = WaitUntilState.DOMContentLoaded });
+        await Expect(page.Locator("form[action='/account/logout']")).ToBeVisibleAsync();
         await page.GotoAsync("/home");
         await Expect(page.Locator("header a[href='/what-if']")).ToHaveCountAsync(0);
         await Expect(page.Locator("main a[href='/what-if']")).ToHaveCountAsync(0);
@@ -84,7 +85,7 @@ public sealed class BrowserJourneyTests(BrowserApiFactory factory) : IClassFixtu
         await page.Locator("#Category").FillAsync("Coffee");
         await page.Locator("#SellingPrice").FillAsync(culture == "en" ? "4000" : "٤٠٠٠");
         await page.Locator("#UnitCost").FillAsync("1000");
-        await page.Locator("main form button[type=submit]").ClickAsync();
+        await page.Locator("[data-product-save]").ClickAsync();
         await page.WaitForURLAsync("**/products");
         Guid productId;
         using (var scope = factory.Services.CreateScope())

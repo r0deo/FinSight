@@ -11,6 +11,7 @@ public sealed record ProductResponse(
     decimal UnitCost,
     bool IsActive)
 {
+    public FinSight.Domain.Models.ProductCostBreakdown? CostBreakdown { get; init; }
     public static ProductResponse FromProduct(Product product) => new(
         product.Id,
         product.Name,
@@ -18,5 +19,5 @@ public sealed record ProductResponse(
         product.Size,
         product.SellingPrice,
         product.UnitCost,
-        product.IsActive);
+        product.IsActive) { CostBreakdown = product.CostBreakdown };
 }

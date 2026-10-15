@@ -30,7 +30,7 @@ public partial class WebsiteTests
             var journey = new WebsiteTests(isolated);
             using var browser = journey.Browser();
             await Login(browser, await journey.RegisterAndConfirm(browser));
-            Assert.Contains("href=\"/business-costs\"", await browser.GetStringAsync("/products"));
+            Assert.Contains("href=\"/business-costs\"", await browser.GetStringAsync("/business-costs/create"));
             var broken = await browser.GetAsync("/business-costs?month=2026-10");
             Assert.Equal(HttpStatusCode.InternalServerError, broken.StatusCode);
             Assert.Contains(logs.Exceptions, e => e is PostgresException

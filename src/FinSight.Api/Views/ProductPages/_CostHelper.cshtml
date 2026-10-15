@@ -1,0 +1,63 @@
+@using FinSight.Domain.Enums
+@using FinSight.Domain.Services
+@model ProductFormViewModel
+@functions {
+    string UnitLabel(IngredientUnit unit) => unit switch {
+        IngredientUnit.Gram => "Grams (g)", IngredientUnit.Kilogram => "Kilograms (kg)",
+        IngredientUnit.Millilitre => "Millilitres (ml)", IngredientUnit.Litre => "Litres (L)", _ => "Items" };
+    string Money(decimal value) => ProductCostCalculator.Round(value).ToString("N2");
+}
+<input type="hidden" asp-for="UseCostHelper" /><input type="hidden" asp-for="ClearCostBreakdown" />
+<input type="hidden" asp-for="UnitCostBeforeHelper" /><input type="hidden" asp-for="HelperOpen" />
+<input type="hidden" asp-for="CostPreviewFingerprint" />
+<p class="notice" data-cost-selected hidden="@(!Model.UseCostHelper)">@T["Calculated cost selected. Only Save stores this cost and breakdown with the product."]</p>
+<p class="notice" data-cost-manual hidden>@T["Manual cost selected. Saving a manual cost removes the old ingredient breakdown."]</p>
+<details class="product-cost-helper" data-cost-helper open="@Model.HelperOpen">
+<summary>@T["Help me calculate this cost"]</summary>
+<p>@T["Enter one batch, not your whole menu. Review the estimate, choose Use this unit cost, then Save the product."]</p>
+<p>@T["Example: ingredients cost 12,000 IQD for 10 usable servings: 1,200 each. Add 200 packaging and explicitly 0 other costs: 1,400 IQD per serving."]</p>
+@for (var i = 0; i < Model.CostHelper.Ingredients.Count; i++) {
+<fieldset class="ingredient-row"><legend>@T["Ingredient"] @(i + 1)</legend>
+<div class="field"><label asp-for="CostHelper.Ingredients[i].Name">@T["Ingredient name"]</label><input asp-for="CostHelper.Ingredients[i].Name" maxlength="100" dir="auto" /></div>
+<div class="field-grid">
+<div class="field"><label asp-for="CostHelper.Ingredients[i].PackQuantity">@T["Purchase-pack quantity"]</label><input asp-for="CostHelper.Ingredients[i].PackQuantity" type="text" inputmode="decimal" dir="ltr" /></div>
+<div class="field"><label asp-for="CostHelper.Ingredients[i].PackUnit">@T["Pack unit"]</label><select asp-for="CostHelper.Ingredients[i].PackUnit"><option value="">@T["Choose a unit"]</option>@foreach (var u in Enum.GetValues<IngredientUnit>()) { <option value="@u">@T[UnitLabel(u)]</option> }</select></div>
+</div>
+<div class="field"><label asp-for="CostHelper.Ingredients[i].PackPrice">@T["Purchase-pack price"] (<bdi>@Model.Currency</bdi>)</label><input asp-for="CostHelper.Ingredients[i].PackPrice" type="text" inputmode="decimal" dir="ltr" /></div>
+<div class="field-grid">
+<div class="field"><label asp-for="CostHelper.Ingredients[i].UsedQuantity">@T["Quantity used in this batch"]</label><input asp-for="CostHelper.Ingredients[i].UsedQuantity" type="text" inputmode="decimal" dir="ltr" /></div>
+<div class="field"><label asp-for="CostHelper.Ingredients[i].UsedUnit">@T["Used unit"]</label><select asp-for="CostHelper.Ingredients[i].UsedUnit"><option value="">@T["Choose a unit"]</option>@foreach (var u in Enum.GetValues<IngredientUnit>()) { <option value="@u">@T[UnitLabel(u)]</option> }</select></div>
+</div>
+@if (Model.CostHelper.Ingredients.Count > 1) {
+<button class="button button-quiet button-small" type="submit" name="costAction" value="remove:@i" formnovalidate>@T["Remove ingredient"]</button>
+}
+</fieldset>
+}
+<p><button class="button button-quiet button-small" type="submit" name="costAction" value="add" formnovalidate>@T["Add ingredient"]</button></p>
+<div class="field"><label asp-for="CostHelper.UsableOutput">@T["Usable servings / items produced"]</label><input asp-for="CostHelper.UsableOutput" type="text" inputmode="decimal" dir="ltr" /></div>
+<p class="muted">@T["Enter only usable output after discards. Discarded output is already accounted for; do not deduct it again."]</p>
+<div class="field-grid">
+<div class="field"><label asp-for="CostHelper.PackagingPerUnit">@T["Packaging per serving (optional)"]</label><input asp-for="CostHelper.PackagingPerUnit" type="text" inputmode="decimal" dir="ltr" /></div>
+<div class="field"><label asp-for="CostHelper.OtherVariableCostPerUnit">@T["Other variable costs per serving (optional)"]</label><input asp-for="CostHelper.OtherVariableCostPerUnit" type="text" inputmode="decimal" dir="ltr" /></div>
+</div>
+<p>@T["Leave optional costs blank to exclude them; enter 0 only when you know that cost is zero. All amounts use your business currency."]</p>
+<div class="form-actions">
+<button class="button button-quiet" type="submit" name="costAction" value="calculate" formnovalidate>@T["Calculate estimated cost"]</button>
+<button class="button button-quiet" type="submit" name="costAction" value="cancel" formnovalidate>@T["Cancel calculation"]</button>
+<button class="button button-quiet" type="submit" name="costAction" value="manual" formnovalidate>@T["Keep manual unit cost"]</button>
+</div>
+@if (Model.CostPreview is { } preview) {
+<section class="notice" data-product-cost-result aria-live="polite"><h2>@T["Estimated unit cost"]: <bdi dir="ltr">@Money(preview.Result.EstimatedUnitCost) @Model.Currency</bdi></h2>
+<ul>@for (var i = 0; i < preview.Inputs.Ingredients.Count; i++) { <li><bdi>@preview.Inputs.Ingredients[i].Name</bdi>: <bdi dir="ltr">@Money(preview.Result.IngredientCosts[i]) @Model.Currency</bdi></li> }</ul>
+<p>@T["Total ingredients used in batch"]: <bdi dir="ltr">@Money(preview.Result.TotalIngredientCost) @Model.Currency</bdi></p>
+<p>@T["Usable servings / items produced"]: <bdi dir="ltr">@preview.Inputs.UsableOutput</bdi></p>
+<p>@T["Ingredient cost per serving"]: <bdi dir="ltr">@Money(preview.Result.IngredientCostPerUnit) @Model.Currency</bdi></p>
+<p>@T["Packaging per serving (optional)"]: @if (preview.Inputs.PackagingPerUnit is { } packaging) { <bdi dir="ltr">@Money(packaging) @Model.Currency</bdi> } else { @T["Not entered — excluded, not assumed zero"] }</p>
+<p>@T["Other variable costs per serving (optional)"]: @if (preview.Inputs.OtherVariableCostPerUnit is { } other) { <bdi dir="ltr">@Money(other) @Model.Currency</bdi> } else { @T["Not entered — excluded, not assumed zero"] }</p>
+<p>@T["Displayed amounts are rounded to two decimals. Calculations keep precision until the final unit cost is rounded."]</p>
+<button class="button" type="submit" name="costAction" value="use" formnovalidate>@T["Use this unit cost"]</button>
+</section>
+}
+<p>@T["This estimate covers only the ingredients and optional variable costs you entered, not every business cost or net profit."]</p>
+<p>@T["Keep monthly rent and salaries in Business Costs. They are not automatically allocated to this product."] <a href="/business-costs">@T["Business costs"]</a></p>
+</details>

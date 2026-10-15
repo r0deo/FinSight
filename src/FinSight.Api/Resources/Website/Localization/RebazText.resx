@@ -526,4 +526,51 @@
   <data name="Assumed reduction (%)" xml:space="preserve"><value>Assumed reduction (%)</value></data>
   <data name="Calculate assumed saving" xml:space="preserve"><value>Calculate assumed saving</value></data>
   <data name="Choose a recorded operating category and a reduction from 0 to 100, with up to two decimals." xml:space="preserve"><value>Choose a recorded operating category and a reduction from 0 to 100, with up to two decimals.</value></data>
+  <data name="Help me calculate this cost" xml:space="preserve"><value>Help me calculate this cost</value></data>
+  <data name="Calculated cost selected. Only Save stores this cost and breakdown with the product." xml:space="preserve"><value>Calculated cost selected. Only Save stores this cost and breakdown with the product.</value></data>
+  <data name="Manual cost selected. Saving a manual cost removes the old ingredient breakdown." xml:space="preserve"><value>Manual cost selected. Saving a manual cost removes the old ingredient breakdown.</value></data>
+  <data name="Enter one batch, not your whole menu. Review the estimate, choose Use this unit cost, then Save the product." xml:space="preserve"><value>Enter one batch, not your whole menu. Review the estimate, choose Use this unit cost, then Save the product.</value></data>
+  <data name="Example: ingredients cost 12,000 IQD for 10 usable servings: 1,200 each. Add 200 packaging and explicitly 0 other costs: 1,400 IQD per serving." xml:space="preserve"><value>Example: ingredients cost 12,000 IQD for 10 usable servings: 1,200 each. Add 200 packaging and explicitly 0 other costs: 1,400 IQD per serving.</value></data>
+  <data name="Ingredient" xml:space="preserve"><value>Ingredient</value></data>
+  <data name="Ingredient name" xml:space="preserve"><value>Ingredient name</value></data>
+  <data name="Purchase-pack quantity" xml:space="preserve"><value>Purchase-pack quantity</value></data>
+  <data name="Pack unit" xml:space="preserve"><value>Pack unit</value></data>
+  <data name="Choose a unit" xml:space="preserve"><value>Choose a unit</value></data>
+  <data name="Purchase-pack price" xml:space="preserve"><value>Purchase-pack price</value></data>
+  <data name="Quantity used in this batch" xml:space="preserve"><value>Quantity used in this batch</value></data>
+  <data name="Used unit" xml:space="preserve"><value>Used unit</value></data>
+  <data name="Remove ingredient" xml:space="preserve"><value>Remove ingredient</value></data>
+  <data name="Add ingredient" xml:space="preserve"><value>Add ingredient</value></data>
+  <data name="Usable servings / items produced" xml:space="preserve"><value>Usable servings / items produced</value></data>
+  <data name="Enter only usable output after discards. Discarded output is already accounted for; do not deduct it again." xml:space="preserve"><value>Enter only usable output after discards. Discarded output is already accounted for; do not deduct it again.</value></data>
+  <data name="Packaging per serving (optional)" xml:space="preserve"><value>Packaging per serving (optional)</value></data>
+  <data name="Other variable costs per serving (optional)" xml:space="preserve"><value>Other variable costs per serving (optional)</value></data>
+  <data name="Leave optional costs blank to exclude them; enter 0 only when you know that cost is zero. All amounts use your business currency." xml:space="preserve"><value>Leave optional costs blank to exclude them; enter 0 only when you know that cost is zero. All amounts use your business currency.</value></data>
+  <data name="Calculate estimated cost" xml:space="preserve"><value>Calculate estimated cost</value></data>
+  <data name="Cancel calculation" xml:space="preserve"><value>Cancel calculation</value></data>
+  <data name="Keep manual unit cost" xml:space="preserve"><value>Keep manual unit cost</value></data>
+  <data name="Estimated unit cost" xml:space="preserve"><value>Estimated unit cost</value></data>
+  <data name="Total ingredients used in batch" xml:space="preserve"><value>Total ingredients used in batch</value></data>
+  <data name="Ingredient cost per serving" xml:space="preserve"><value>Ingredient cost per serving</value></data>
+  <data name="Not entered — excluded, not assumed zero" xml:space="preserve"><value>Not entered — excluded, not assumed zero</value></data>
+  <data name="Displayed amounts are rounded to two decimals. Calculations keep precision until the final unit cost is rounded." xml:space="preserve"><value>Displayed amounts are rounded to two decimals. Calculations keep precision until the final unit cost is rounded.</value></data>
+  <data name="Use this unit cost" xml:space="preserve"><value>Use this unit cost</value></data>
+  <data name="This estimate covers only the ingredients and optional variable costs you entered, not every business cost or net profit." xml:space="preserve"><value>This estimate covers only the ingredients and optional variable costs you entered, not every business cost or net profit.</value></data>
+  <data name="Keep monthly rent and salaries in Business Costs. They are not automatically allocated to this product." xml:space="preserve"><value>Keep monthly rent and salaries in Business Costs. They are not automatically allocated to this product.</value></data>
+  <data name="Grams (g)" xml:space="preserve"><value>Grams (g)</value></data>
+  <data name="Kilograms (kg)" xml:space="preserve"><value>Kilograms (kg)</value></data>
+  <data name="Millilitres (ml)" xml:space="preserve"><value>Millilitres (ml)</value></data>
+  <data name="Litres (L)" xml:space="preserve"><value>Litres (L)</value></data>
+  <data name="Items" xml:space="preserve"><value>Items</value></data>
+  <data name="Enter between 1 and 30 ingredients." xml:space="preserve"><value>Enter between 1 and 30 ingredients.</value></data>
+  <data name="Each ingredient needs a name of at most 100 characters." xml:space="preserve"><value>Each ingredient needs a name of at most 100 characters.</value></data>
+  <data name="Choose a supported ingredient unit." xml:space="preserve"><value>Choose a supported ingredient unit.</value></data>
+  <data name="Use compatible units: mass with mass, volume with volume, or items with items." xml:space="preserve"><value>Use compatible units: mass with mass, volume with volume, or items with items.</value></data>
+  <data name="These quantities or costs are too large to calculate safely." xml:space="preserve"><value>These quantities or costs are too large to calculate safely.</value></data>
+  <data name="Quantities must be positive, at most 1,000,000, with no more than six decimal places." xml:space="preserve"><value>Quantities must be positive, at most 1,000,000, with no more than six decimal places.</value></data>
+  <data name="Costs must be non-negative, at most 999,999,999,999.99, with no more than two decimal places." xml:space="preserve"><value>Costs must be non-negative, at most 999,999,999,999.99, with no more than two decimal places.</value></data>
+  <data name="Complete every ingredient field and the usable batch output. Blank required amounts are not zero." xml:space="preserve"><value>Complete every ingredient field and the usable batch output. Blank required amounts are not zero.</value></data>
+  <data name="Recalculate and choose Use this unit cost, or keep a manual cost." xml:space="preserve"><value>Recalculate and choose Use this unit cost, or keep a manual cost.</value></data>
+  <data name="Ingredients changed. Review the recalculated breakdown before using this cost." xml:space="preserve"><value>Ingredients changed. Review the recalculated breakdown before using this cost.</value></data>
+  <data name="Product name, category, selling price and unit cost are required. New products are active automatically." xml:space="preserve"><value>Product name, category, selling price and unit cost are required. New products are active automatically.</value></data>
 </root>

@@ -2,6 +2,7 @@ using FinSight.Application.Common.Interfaces;
 using FinSight.Application.Common.Models;
 using FinSight.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using FinSight.Application.Common.Exceptions;
 
 namespace FinSight.Infrastructure.Persistence.Repositories;
 
@@ -82,6 +83,7 @@ public sealed class ProductRepository(FinSightDbContext dbContext)
 
     public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
     {
-        await dbContext.SaveChangesAsync(cancellationToken);
+        try { await dbContext.SaveChangesAsync(cancellationToken); }
+        catch (DbUpdateConcurrencyException) { throw new ConcurrencyConflictException(); }
     }
 }

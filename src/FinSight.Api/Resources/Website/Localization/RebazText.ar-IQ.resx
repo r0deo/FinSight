@@ -526,4 +526,51 @@
   <data name="Assumed reduction (%)" xml:space="preserve"><value>التخفيض المفترض (%)</value></data>
   <data name="Calculate assumed saving" xml:space="preserve"><value>احسب الوفر وفق الافتراض</value></data>
   <data name="Choose a recorded operating category and a reduction from 0 to 100, with up to two decimals." xml:space="preserve"><value>اختر فئة تشغيلية مسجلة ونسبة تخفيض بين 0 و100، بمنزلتين عشريتين كحد أقصى.</value></data>
+  <data name="Help me calculate this cost" xml:space="preserve"><value>ساعدني في حساب هذه التكلفة</value></data>
+  <data name="Calculated cost selected. Only Save stores this cost and breakdown with the product." xml:space="preserve"><value>تم اختيار التكلفة المحسوبة. زر الحفظ وحده يخزن التكلفة وتفاصيلها مع المنتج.</value></data>
+  <data name="Manual cost selected. Saving a manual cost removes the old ingredient breakdown." xml:space="preserve"><value>تم اختيار التكلفة اليدوية. حفظ تكلفة يدوية يزيل تفاصيل المكونات القديمة.</value></data>
+  <data name="Enter one batch, not your whole menu. Review the estimate, choose Use this unit cost, then Save the product." xml:space="preserve"><value>أدخل دفعة واحدة، وليس كل قائمة الطعام. راجع التقدير، واختر استخدام تكلفة الوحدة هذه، ثم احفظ المنتج.</value></data>
+  <data name="Example: ingredients cost 12,000 IQD for 10 usable servings: 1,200 each. Add 200 packaging and explicitly 0 other costs: 1,400 IQD per serving." xml:space="preserve"><value>مثال: مكونات بـ 12,000 دينار تنتج 10 حصص صالحة: 1,200 للحصة. أضف 200 للتغليف وأدخل 0 صراحةً للتكاليف الأخرى: 1,400 دينار للحصة.</value></data>
+  <data name="Ingredient" xml:space="preserve"><value>المكوّن</value></data>
+  <data name="Ingredient name" xml:space="preserve"><value>اسم المكوّن</value></data>
+  <data name="Purchase-pack quantity" xml:space="preserve"><value>كمية عبوة الشراء</value></data>
+  <data name="Pack unit" xml:space="preserve"><value>وحدة العبوة</value></data>
+  <data name="Choose a unit" xml:space="preserve"><value>اختر وحدة</value></data>
+  <data name="Purchase-pack price" xml:space="preserve"><value>سعر عبوة الشراء</value></data>
+  <data name="Quantity used in this batch" xml:space="preserve"><value>الكمية المستخدمة في هذه الدفعة</value></data>
+  <data name="Used unit" xml:space="preserve"><value>وحدة الكمية المستخدمة</value></data>
+  <data name="Remove ingredient" xml:space="preserve"><value>إزالة المكوّن</value></data>
+  <data name="Add ingredient" xml:space="preserve"><value>إضافة مكوّن</value></data>
+  <data name="Usable servings / items produced" xml:space="preserve"><value>عدد الحصص / القطع الصالحة الناتجة</value></data>
+  <data name="Enter only usable output after discards. Discarded output is already accounted for; do not deduct it again." xml:space="preserve"><value>أدخل الناتج الصالح فقط بعد استبعاد التالف. الهدر محسوب ضمن هذا العدد؛ لا تخصمه مرة أخرى.</value></data>
+  <data name="Packaging per serving (optional)" xml:space="preserve"><value>التغليف لكل حصة (اختياري)</value></data>
+  <data name="Other variable costs per serving (optional)" xml:space="preserve"><value>تكاليف متغيرة أخرى لكل حصة (اختياري)</value></data>
+  <data name="Leave optional costs blank to exclude them; enter 0 only when you know that cost is zero. All amounts use your business currency." xml:space="preserve"><value>اترك التكاليف الاختيارية فارغة لاستبعادها؛ أدخل 0 فقط إذا كنت متأكداً أنها صفر. جميع المبالغ بعملة نشاطك.</value></data>
+  <data name="Calculate estimated cost" xml:space="preserve"><value>احسب التكلفة التقديرية</value></data>
+  <data name="Cancel calculation" xml:space="preserve"><value>إلغاء الحساب</value></data>
+  <data name="Keep manual unit cost" xml:space="preserve"><value>الاحتفاظ بتكلفة الوحدة اليدوية</value></data>
+  <data name="Estimated unit cost" xml:space="preserve"><value>تكلفة الوحدة التقديرية</value></data>
+  <data name="Total ingredients used in batch" xml:space="preserve"><value>إجمالي تكلفة المكونات المستخدمة في الدفعة</value></data>
+  <data name="Ingredient cost per serving" xml:space="preserve"><value>تكلفة المكونات لكل حصة</value></data>
+  <data name="Not entered — excluded, not assumed zero" xml:space="preserve"><value>لم تُدخل — مستبعدة وليست صفراً مفترضاً</value></data>
+  <data name="Displayed amounts are rounded to two decimals. Calculations keep precision until the final unit cost is rounded." xml:space="preserve"><value>المبالغ المعروضة مقربة إلى منزلتين عشريتين. يحتفظ الحساب بالدقة حتى تقريب تكلفة الوحدة النهائية.</value></data>
+  <data name="Use this unit cost" xml:space="preserve"><value>استخدم تكلفة الوحدة هذه</value></data>
+  <data name="This estimate covers only the ingredients and optional variable costs you entered, not every business cost or net profit." xml:space="preserve"><value>يشمل هذا التقدير المكونات والتكاليف المتغيرة الاختيارية التي أدخلتها فقط، وليس كل تكاليف النشاط ولا صافي الربح.</value></data>
+  <data name="Keep monthly rent and salaries in Business Costs. They are not automatically allocated to this product." xml:space="preserve"><value>أبقِ الإيجار والرواتب الشهرية في تكاليف النشاط. لا يتم توزيعها تلقائياً على هذا المنتج.</value></data>
+  <data name="Grams (g)" xml:space="preserve"><value>غرام (g)</value></data>
+  <data name="Kilograms (kg)" xml:space="preserve"><value>كيلوغرام (kg)</value></data>
+  <data name="Millilitres (ml)" xml:space="preserve"><value>مليلتر (ml)</value></data>
+  <data name="Litres (L)" xml:space="preserve"><value>لتر (L)</value></data>
+  <data name="Items" xml:space="preserve"><value>قطع</value></data>
+  <data name="Enter between 1 and 30 ingredients." xml:space="preserve"><value>أدخل من 1 إلى 30 مكوّناً.</value></data>
+  <data name="Each ingredient needs a name of at most 100 characters." xml:space="preserve"><value>كل مكوّن يحتاج اسماً لا يتجاوز 100 حرف.</value></data>
+  <data name="Choose a supported ingredient unit." xml:space="preserve"><value>اختر وحدة مكوّن مدعومة.</value></data>
+  <data name="Use compatible units: mass with mass, volume with volume, or items with items." xml:space="preserve"><value>استخدم وحدات متوافقة: وزن مع وزن، حجم مع حجم، أو قطع مع قطع.</value></data>
+  <data name="These quantities or costs are too large to calculate safely." xml:space="preserve"><value>هذه الكميات أو التكاليف أكبر من حدود الحساب الآمن.</value></data>
+  <data name="Quantities must be positive, at most 1,000,000, with no more than six decimal places." xml:space="preserve"><value>يجب أن تكون الكميات أكبر من صفر ولا تتجاوز 1,000,000، وبحد أقصى ست منازل عشرية.</value></data>
+  <data name="Costs must be non-negative, at most 999,999,999,999.99, with no more than two decimal places." xml:space="preserve"><value>يجب ألا تكون التكاليف سالبة وألا تتجاوز 999,999,999,999.99، وبحد أقصى منزلتين عشريتين.</value></data>
+  <data name="Complete every ingredient field and the usable batch output. Blank required amounts are not zero." xml:space="preserve"><value>أكمل كل حقول المكونات والناتج الصالح للدفعة. المبالغ المطلوبة الفارغة ليست صفراً.</value></data>
+  <data name="Recalculate and choose Use this unit cost, or keep a manual cost." xml:space="preserve"><value>أعد الحساب واختر استخدام تكلفة الوحدة هذه، أو احتفظ بتكلفة يدوية.</value></data>
+  <data name="Ingredients changed. Review the recalculated breakdown before using this cost." xml:space="preserve"><value>تغيرت المكونات. راجع التفاصيل المحسوبة مجدداً قبل استخدام هذه التكلفة.</value></data>
+  <data name="Product name, category, selling price and unit cost are required. New products are active automatically." xml:space="preserve"><value>اسم المنتج والفئة وسعر البيع وتكلفة الوحدة مطلوبة. المنتجات الجديدة تكون نشطة تلقائياً.</value></data>
 </root>

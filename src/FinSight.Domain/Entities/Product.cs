@@ -1,3 +1,6 @@
+using FinSight.Domain.Models;
+using FinSight.Domain.Services;
+
 namespace FinSight.Domain.Entities;
 
 public class Product
@@ -17,6 +20,7 @@ public class Product
     public decimal SellingPrice { get; private set; }
 
     public decimal UnitCost { get; private set; }
+    public ProductCostBreakdown? CostBreakdown { get; private set; }
 
     public bool IsActive { get; private set; }
 
@@ -91,8 +95,17 @@ public class Product
         }
 
         SellingPrice = sellingPrice;
+        if (UnitCost != unitCost) CostBreakdown = null;
         UnitCost = unitCost;
     }
+
+    public void ApplyCostBreakdown(ProductCostInputs inputs)
+    {
+        var calculated = new ProductCostCalculator().Calculate(inputs);
+        CostBreakdown = calculated;
+        UnitCost = calculated.Result.EstimatedUnitCost;
+    }
+    public void ClearCostBreakdown() => CostBreakdown = null;
 
     public void Deactivate() => IsActive = false;
 
