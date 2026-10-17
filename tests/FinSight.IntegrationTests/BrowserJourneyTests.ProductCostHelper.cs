@@ -53,25 +53,40 @@ public sealed partial class BrowserJourneyTests
         await page.WaitForURLAsync(url => !url.Contains("/account/login"), new() { WaitUntil = WaitUntilState.DOMContentLoaded });
         await Expect(page.Locator("form[action='/account/logout']")).ToBeVisibleAsync();
         await page.GotoAsync("/products/create");
-        await page.Locator("#Name").FillAsync("Rice meal"); await page.Locator("#Category").FillAsync("Meals");
-        await page.Locator("#SellingPrice").FillAsync("5000"); await page.Locator("#UnitCost").FillAsync("4");
+        // An estimate must work before the owner has completed any product details.
         await page.Locator("[data-cost-helper] summary").ClickAsync();
         await page.Locator("[name='CostHelper.Ingredients[0].Name']").FillAsync("Rice");
         await page.Locator("[name='CostHelper.Ingredients[0].PackQuantity']").FillAsync("1");
         await page.Locator("[name='CostHelper.Ingredients[0].PackUnit']").SelectOptionAsync("Kilogram");
         await page.Locator("[name='CostHelper.Ingredients[0].PackPrice']").FillAsync("12000");
-        await page.Locator("[name='CostHelper.Ingredients[0].UsedQuantity']").FillAsync(culture == "en" ? "1000" : "١٠٠٠");
-        await page.Locator("[name='CostHelper.Ingredients[0].UsedUnit']").SelectOptionAsync("Gram");
+        await page.Locator("[name='CostHelper.Ingredients[0].UsedQuantity']").FillAsync(culture == "en" ? "1" : "١");
+        await page.Locator("[name='CostHelper.Ingredients[0].UsedUnit']").SelectOptionAsync("Kilogram");
         await page.Locator("[name='CostHelper.UsableOutput']").FillAsync("10");
         await page.Locator("[name='CostHelper.PackagingPerUnit']").FillAsync(culture == "en" ? "200" : "٢٠٠");
         await page.Locator("[name='CostHelper.OtherVariableCostPerUnit']").FillAsync("0");
+        await page.Locator("[name='CostHelper.Ingredients[0].PackQuantity']").FillAsync("0");
+        var invalid = await page.RunAndWaitForResponseAsync(
+            () => page.Locator("button[value=calculate]").ClickAsync(),
+            r => r.Request.Method == "POST" && r.Url.EndsWith("/products/create"));
+        Assert.Equal(400, invalid.Status);
+        var fieldError = page.Locator("[data-valmsg-for='CostHelper.Ingredients[0].PackQuantity']");
+        await Expect(fieldError).ToBeVisibleAsync();
+        Assert.False(string.IsNullOrWhiteSpace(await fieldError.InnerTextAsync()));
+        Assert.All(await page.Locator(".validation-summary-errors li").AllTextContentsAsync(), text => Assert.False(string.IsNullOrWhiteSpace(text)));
+        await Expect(page.Locator("[name='CostHelper.Ingredients[0].PackUnit']")).ToHaveValueAsync("Kilogram");
+        await Expect(page.Locator("[name='CostHelper.Ingredients[0].PackPrice']")).ToHaveValueAsync("12000");
+        await Layout(page, culture, width, "product-cost-field-error");
+        await page.Locator("[name='CostHelper.Ingredients[0].PackQuantity']").FillAsync("1");
         await page.Locator("button[value=calculate]").ClickAsync();
         await Expect(page.Locator("[data-product-cost-result]")).ToBeVisibleAsync();
+        await Expect(page.Locator(".validation-summary-errors")).ToHaveCountAsync(0);
         await Layout(page, culture, width, "product-cost-review");
         await page.Locator("button[value=use]").ClickAsync();
         await Expect(page.Locator("#UnitCost")).ToHaveValueAsync("1400");
         using (var scope = factory.Services.CreateScope())
             Assert.False(await scope.ServiceProvider.GetRequiredService<FinSightDbContext>().Products.AnyAsync(x => x.BusinessId == tenant));
+        await page.Locator("#Name").FillAsync("Rice meal"); await page.Locator("#Category").FillAsync("Meals");
+        await page.Locator("#SellingPrice").FillAsync("5000");
         await page.Locator("[data-product-save]").ClickAsync();
         await page.WaitForURLAsync("**/products");
         Guid id;
@@ -100,6 +115,7 @@ public sealed partial class BrowserJourneyTests
             Assert.Equal(1400m, saved.UnitCost);
             Assert.Equal(12000m, saved.CostBreakdown!.Inputs.Ingredients[0].PackPrice);
         }
-        Assert.Empty(errors);
+        // Chromium logs the expected HTTP 400; script/CSP errors are never accepted.
+        Assert.All(errors, error => Assert.True(error.Contains("Failed to load resource") && error.Contains("400"), error));
     }
 }

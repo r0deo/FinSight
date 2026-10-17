@@ -573,4 +573,7 @@
   <data name="Recalculate and choose Use this unit cost, or keep a manual cost." xml:space="preserve"><value>أعد الحساب واختر استخدام تكلفة الوحدة هذه، أو احتفظ بتكلفة يدوية.</value></data>
   <data name="Ingredients changed. Review the recalculated breakdown before using this cost." xml:space="preserve"><value>تغيرت المكونات. راجع التفاصيل المحسوبة مجدداً قبل استخدام هذه التكلفة.</value></data>
   <data name="Product name, category, selling price and unit cost are required. New products are active automatically." xml:space="preserve"><value>اسم المنتج والفئة وسعر البيع وتكلفة الوحدة مطلوبة. المنتجات الجديدة تكون نشطة تلقائياً.</value></data>
+  <data name="Enter this quantity." xml:space="preserve"><value>أدخل هذه الكمية.</value></data>
+  <data name="Enter the purchase-pack price." xml:space="preserve"><value>أدخل سعر عبوة الشراء.</value></data>
+  <data name="Enter the usable batch output." xml:space="preserve"><value>أدخل عدد الحصص أو القطع الصالحة الناتجة.</value></data>
 </root>

@@ -573,4 +573,7 @@
   <data name="Recalculate and choose Use this unit cost, or keep a manual cost." xml:space="preserve"><value>Recalculate and choose Use this unit cost, or keep a manual cost.</value></data>
   <data name="Ingredients changed. Review the recalculated breakdown before using this cost." xml:space="preserve"><value>Ingredients changed. Review the recalculated breakdown before using this cost.</value></data>
   <data name="Product name, category, selling price and unit cost are required. New products are active automatically." xml:space="preserve"><value>Product name, category, selling price and unit cost are required. New products are active automatically.</value></data>
+  <data name="Enter this quantity." xml:space="preserve"><value>Enter this quantity.</value></data>
+  <data name="Enter the purchase-pack price." xml:space="preserve"><value>Enter the purchase-pack price.</value></data>
+  <data name="Enter the usable batch output." xml:space="preserve"><value>Enter the usable batch output.</value></data>
 </root>

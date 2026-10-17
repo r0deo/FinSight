@@ -184,6 +184,9 @@ No production migration, deployment, Git commit or push is part of this mileston
 
 ## Changed-file manifest
 
+The manifest below describes the original helper milestone. See the estimate-validation
+repair section at the end for the subsequent fix.
+
 - `docs/DEPLOYMENT.md`
 - `src/FinSight.Api/Resources/Website/Localization/RebazText.ar-IQ.resx`
 - `src/FinSight.Api/Resources/Website/Localization/RebazText.ku.resx`
@@ -223,3 +226,102 @@ No production migration, deployment, Git commit or push is part of this mileston
 - `tests/FinSight.IntegrationTests/WebsiteTests.ProductCostHelper.cs`
 - `tests/FinSight.UnitTests/Application/Features/Products/ProductCostHandlerTests.cs`
 - `tests/FinSight.UnitTests/Domain/Services/ProductCostCalculatorTests.cs`
+
+## Estimate validation repair — 2026-10-17
+
+### Reproduction and root cause
+
+Authenticated, antiforgery-protected POSTs to `/products/create` with
+`costAction=calculate` reproduced HTTP 400 in both `en` and `ar-IQ`. The submitted
+recipe was valid: Rice, pack quantity 1 Kilogram, pack price 12000, used quantity
+1 Kilogram, usable output 10, packaging 200, other costs explicitly 0. Product
+Name, Category, SellingPrice and UnitCost were blank.
+
+A test-only MVC action filter inspected attempted values, validation states and
+errors before and after the action. Cost fields bound correctly, including
+Arabic-Indic digits. The unrelated required product fields were initially
+Invalid with localized required messages. The helper cleared their Errors but
+left their ValidationState Invalid. Consequently ModelState.IsValid remained
+false and the action returned before invoking the calculator. No application
+exception was logged. This was not a routing, database, migration or missing
+Arabic-translation failure.
+
+MVC then generated an empty summary list item whose hiding relied on inline
+style. The site's strict CSP does not permit that inline style. The existing
+summary helper suppressed valid summaries only, so the invalid-without-messages
+case exposed a blank bullet. Ingredient controls also lacked field validation
+spans, and calculator errors did not retain input paths.
+
+### Repair boundaries
+
+- Helper actions now explicitly skip validation state for unrelated product fields
+  on that request only, retaining their raw values. Save still runs normal MVC,
+  Application and Domain validation. No global validation or antiforgery bypass.
+- Required cost inputs get field-specific errors. Domain errors carry input-relative
+  paths; Application validation preserves those paths; the website maps/localizes
+  them onto the cost fields. Arithmetic, bounds and rounding are unchanged.
+- Every cost field has a validation span. Draft ingredient names, quantities,
+  selected units and optional explicit zero values survive invalid submissions.
+- The summary replaces MVC's generated list (including its PostContent), removes
+  empty/duplicate bullets and HTML-encodes messages. Blank or exception-only errors
+  use a nonempty localized safe fallback, never exception details. Existing global
+  unexpected-error handling remains unchanged.
+- English, Arabic and existing Badini resource sets include the new required-input
+  messages. No packages, schema changes or migrations are needed for this repair.
+
+### Regression checks
+
+`WebsiteTests.ProductCostValidation` exercises real cookie-authenticated POSTs with
+antiforgery, routing, model binding, MediatR and disposable PostgreSQL. It covers
+the exact 1400 example with incomplete/unparseable unrelated product fields,
+localized field errors for missing, invalid, zero, negative and incompatible
+inputs, retained draft values, full Save validation and absence of product writes.
+`ValidationSummaryTests` covers the invalid-without-messages state, safe localized
+fallback, HTML encoding and ModelOnly behavior. Existing Chromium helper tests
+now calculate before filling product details, show an invalid quantity error,
+then review/use/save/reopen/cancel at desktop/mobile sizes in all three cultures.
+
+Manual recheck: leave product details blank, open the helper and enter the reference
+recipe above without grouping separators. Calculate must display 1400 IQD; Use
+must fill UnitCost but not save. Try a zero pack quantity: expect readable field
+and summary errors while retaining the recipe. Correct it, Use, then Save without
+a name/category/selling price: expect required-field errors. Complete those fields
+and Save explicitly. Repeat in English and Arabic.
+
+### Executed repair verification
+
+- `dotnet build --no-restore -v quiet`: passed, 0 errors; 10 existing NU1902/NU1903
+  dependency advisory warnings (same packages noted above).
+- Final `dotnet test --no-build --no-restore --logger "console;verbosity=minimal"`:
+  **315 passed, 0 failed, 0 skipped** — 239 unit and 76 PostgreSQL/integration/browser tests.
+  This includes existing simulation snapshots, tenant isolation and antiforgery checks.
+- The preceding full run had one navigation timeout in the existing Arabic desktop
+  Business Costs language-switch browser test (`BrowserJourneyTests.cs`, line 168).
+  All new tests passed in that run. The complete suite was rerun without code changes
+  and passed; the intermittent browser wait is recorded rather than concealed.
+- Six updated cost-helper Chromium journeys passed at 1440px and 390px in English,
+  Arabic and Badini, with direction/overflow checks. English and Arabic desktop/mobile
+  screenshots were visually inspected for the error and estimate flows. The summary
+  has a single readable item, field errors are visible, and the reference estimate is
+  1400 IQD with unrelated product details still blank.
+- `git diff --check`: passed. No local verification was blocked. Live Render and
+  production logs were not inspected; no claim is made about a deployed fix. Non-Chromium
+  browsers and native Badini wording review remain outside these executed checks.
+- No migration, production-data change, commit, push or deployment was performed.
+
+Repair files:
+
+- `docs/PRODUCT_COST_HELPER.md`
+- `src/FinSight.Api/Resources/Website/Localization/RebazText.resx`
+- `src/FinSight.Api/Resources/Website/Localization/RebazText.ar-IQ.resx`
+- `src/FinSight.Api/Resources/Website/Localization/RebazText.ku.resx`
+- `src/FinSight.Api/Views/ProductPages/_CostHelper.cshtml`
+- `src/FinSight.Api/Website/Controllers/ProductPagesController.CostHelper.cs`
+- `src/FinSight.Api/Website/Models/ProductCostModels.cs`
+- `src/FinSight.Api/Website/ValidationSummaryCspTagHelper.cs`
+- `src/FinSight.Application/Features/Products/ProductCostRequests.cs`
+- `src/FinSight.Domain/Exceptions/ProductCostValidationException.cs`
+- `src/FinSight.Domain/Services/ProductCostCalculator.cs`
+- `tests/FinSight.IntegrationTests/BrowserJourneyTests.ProductCostHelper.cs`
+- `tests/FinSight.IntegrationTests/WebsiteTests.ProductCostValidation.cs`
+- `tests/FinSight.UnitTests/Website/ValidationSummaryTests.cs`

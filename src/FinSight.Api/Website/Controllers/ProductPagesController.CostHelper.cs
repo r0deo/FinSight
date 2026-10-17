@@ -5,6 +5,7 @@ using FinSight.Domain.Exceptions;
 using FinSight.Domain.Services;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace FinSight.Api.Website.Controllers;
 
@@ -31,18 +32,35 @@ public sealed partial class ProductPagesController
             foreach (var error in validation.Errors)
             {
                 if (error.PropertyName.StartsWith("CostInputs", StringComparison.Ordinal) || error.PropertyName.StartsWith("Inputs", StringComparison.Ordinal))
-                    ModelState.AddModelError("", Text(error.ErrorMessage));
+                    ModelState.AddModelError(CostField(error.PropertyName), CostErrorText(error.ErrorMessage));
                 else AddValidationErrors(new ValidationException([error]));
             }
-        else if (exception is ProductCostValidationException or ValidationException) ModelState.AddModelError("", Text(exception.Message));
+        else if (exception is ProductCostValidationException cost)
+            ModelState.AddModelError(string.IsNullOrEmpty(cost.FieldPath) ? "" : "CostHelper." + cost.FieldPath, CostErrorText(cost.Message));
+        else if (exception is ValidationException) ModelState.AddModelError("", CostErrorText(exception.Message));
         else AddValidationErrors(exception);
+    }
+    private string CostErrorText(string? message) => Text(string.IsNullOrWhiteSpace(message)
+        ? "Please check the supplied values and try again." : message);
+    private static string CostField(string path)
+    {
+        foreach (var prefix in new[] { "CostInputs", "Inputs" })
+            if (path == prefix || path.StartsWith(prefix + ".", StringComparison.Ordinal))
+                return "CostHelper" + path[prefix.Length..];
+        return "";
     }
     private static string CostFingerprint(FinSight.Domain.Models.ProductCostInputs inputs) =>
         Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(System.Text.Json.JsonSerializer.SerializeToUtf8Bytes(inputs)));
     private async Task<IActionResult> HandleCostAction(ProductFormViewModel model, string action, CancellationToken ct, ProductResponse? existing = null)
     {
         // Helper actions do not require completed product details and never invoke a save handler.
-        foreach (var entry in ModelState.Where(x => !x.Key.StartsWith("CostHelper.", StringComparison.Ordinal))) entry.Value?.Errors.Clear();
+        foreach (var entry in ModelState.Where(x => x.Key != "CostHelper" && !x.Key.StartsWith("CostHelper.", StringComparison.Ordinal)))
+        {
+            // Clearing messages alone leaves ValidationState.Invalid and blocks a valid estimate.
+            // Skip only unrelated fields for this request; retain their raw values for redisplay.
+            entry.Value!.Errors.Clear();
+            entry.Value.ValidationState = ModelValidationState.Skipped;
+        }
         model.HelperOpen = true;
         ModelState.Remove(nameof(model.HelperOpen));
         LocalizeUnitErrors();

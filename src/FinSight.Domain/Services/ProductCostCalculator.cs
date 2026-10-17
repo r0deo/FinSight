@@ -13,23 +13,30 @@ public sealed class ProductCostCalculator
     public ProductCostBreakdown Calculate(ProductCostInputs inputs)
     {
         if (inputs?.Ingredients is null || inputs.Ingredients.Count is < 1 or > MaximumIngredients)
-            throw new ProductCostValidationException("Enter between 1 and 30 ingredients.");
-        Quantity(inputs.UsableOutput);
-        Cost(inputs.PackagingPerUnit); Cost(inputs.OtherVariableCostPerUnit);
+            throw new ProductCostValidationException("Enter between 1 and 30 ingredients.", nameof(inputs.Ingredients));
+        Quantity(inputs.UsableOutput, nameof(inputs.UsableOutput));
+        Cost(inputs.PackagingPerUnit, nameof(inputs.PackagingPerUnit));
+        Cost(inputs.OtherVariableCostPerUnit, nameof(inputs.OtherVariableCostPerUnit));
         var lines = new List<ProductCostIngredient>();
         var amounts = new List<decimal>();
         decimal total = 0;
         try
         {
-            foreach (var ingredient in inputs.Ingredients)
+            for (var i = 0; i < inputs.Ingredients.Count; i++)
             {
+                var ingredient = inputs.Ingredients[i];
+                var path = $"Ingredients[{i}].";
                 if (ingredient is null || string.IsNullOrWhiteSpace(ingredient.Name) || ingredient.Name.Trim().Length > 100)
-                    throw new ProductCostValidationException("Each ingredient needs a name of at most 100 characters.");
-                Quantity(ingredient.PackQuantity); Quantity(ingredient.UsedQuantity); Cost(ingredient.PackPrice);
-                if (!Enum.IsDefined(ingredient.PackUnit) || !Enum.IsDefined(ingredient.UsedUnit))
-                    throw new ProductCostValidationException("Choose a supported ingredient unit.");
+                    throw new ProductCostValidationException("Each ingredient needs a name of at most 100 characters.", path + nameof(ingredient.Name));
+                Quantity(ingredient.PackQuantity, path + nameof(ingredient.PackQuantity));
+                Quantity(ingredient.UsedQuantity, path + nameof(ingredient.UsedQuantity));
+                Cost(ingredient.PackPrice, path + nameof(ingredient.PackPrice));
+                if (!Enum.IsDefined(ingredient.PackUnit))
+                    throw new ProductCostValidationException("Choose a supported ingredient unit.", path + nameof(ingredient.PackUnit));
+                if (!Enum.IsDefined(ingredient.UsedUnit))
+                    throw new ProductCostValidationException("Choose a supported ingredient unit.", path + nameof(ingredient.UsedUnit));
                 if (Group(ingredient.PackUnit) != Group(ingredient.UsedUnit))
-                    throw new ProductCostValidationException("Use compatible units: mass with mass, volume with volume, or items with items.");
+                    throw new ProductCostValidationException("Use compatible units: mass with mass, volume with volume, or items with items.", path + nameof(ingredient.UsedUnit));
                 var usedCost = checked(ingredient.PackPrice * (ingredient.UsedQuantity * Factor(ingredient.UsedUnit))
                     / (ingredient.PackQuantity * Factor(ingredient.PackUnit)));
                 total = checked(total + usedCost);
@@ -48,14 +55,14 @@ public sealed class ProductCostCalculator
     private static int Group(IngredientUnit unit) => unit switch { IngredientUnit.Gram or IngredientUnit.Kilogram => 0,
         IngredientUnit.Millilitre or IngredientUnit.Litre => 1, _ => 2 };
     private static decimal Factor(IngredientUnit unit) => unit is IngredientUnit.Kilogram or IngredientUnit.Litre ? 1000m : 1m;
-    private static void Quantity(decimal quantity)
+    private static void Quantity(decimal quantity, string fieldPath)
     {
         if (quantity <= 0 || quantity > MaximumQuantity || decimal.Round(quantity, 6) != quantity)
-            throw new ProductCostValidationException("Quantities must be positive, at most 1,000,000, with no more than six decimal places.");
+            throw new ProductCostValidationException("Quantities must be positive, at most 1,000,000, with no more than six decimal places.", fieldPath);
     }
-    private static void Cost(decimal? cost)
+    private static void Cost(decimal? cost, string fieldPath)
     {
         if (cost.HasValue && (cost < 0 || cost > MaximumInputCost || Round(cost.Value) != cost))
-            throw new ProductCostValidationException("Costs must be non-negative, at most 999,999,999,999.99, with no more than two decimal places.");
+            throw new ProductCostValidationException("Costs must be non-negative, at most 999,999,999,999.99, with no more than two decimal places.", fieldPath);
     }
 }

@@ -573,4 +573,7 @@
   <data name="Recalculate and choose Use this unit cost, or keep a manual cost." xml:space="preserve"><value>دوبارە حیساب بکە و تێچوونا ئێک دانەیێ بکار بینە، یان تێچوونا دەستی بهێلە.</value></data>
   <data name="Ingredients changed. Review the recalculated breakdown before using this cost." xml:space="preserve"><value>کەرەستە هاتنە گۆهارتن. بەری بکارئینانا ڤێ تێچوونێ وردەکاریێن دوبارە حیسابکری بپشکنە.</value></data>
   <data name="Product name, category, selling price and unit cost are required. New products are active automatically." xml:space="preserve"><value>ناڤێ بەرهەمی، جۆر، بهایێ فرۆتنێ و تێچوونا ئێک دانەیێ پێدڤین. بەرهەمێن نوی ب شێوەیەکێ خودکار چالاکن.</value></data>
+  <data name="Enter this quantity." xml:space="preserve"><value>ڤی بڕی بنڤیسە.</value></data>
+  <data name="Enter the purchase-pack price." xml:space="preserve"><value>بهایێ پاکێتا کڕینێ بنڤیسە.</value></data>
+  <data name="Enter the usable batch output." xml:space="preserve"><value>ژمارا پشک یان دانەیێن چێکری یێن بکار دێن بنڤیسە.</value></data>
 </root>

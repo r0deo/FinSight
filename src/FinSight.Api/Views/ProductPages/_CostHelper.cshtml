@@ -14,19 +14,21 @@
 <p class="notice" data-cost-manual hidden>@T["Manual cost selected. Saving a manual cost removes the old ingredient breakdown."]</p>
 <details class="product-cost-helper" data-cost-helper open="@Model.HelperOpen">
 <summary>@T["Help me calculate this cost"]</summary>
+<span asp-validation-for="CostHelper"></span>
+<span asp-validation-for="CostHelper.Ingredients"></span>
 <p>@T["Enter one batch, not your whole menu. Review the estimate, choose Use this unit cost, then Save the product."]</p>
 <p>@T["Example: ingredients cost 12,000 IQD for 10 usable servings: 1,200 each. Add 200 packaging and explicitly 0 other costs: 1,400 IQD per serving."]</p>
 @for (var i = 0; i < Model.CostHelper.Ingredients.Count; i++) {
 <fieldset class="ingredient-row"><legend>@T["Ingredient"] @(i + 1)</legend>
-<div class="field"><label asp-for="CostHelper.Ingredients[i].Name">@T["Ingredient name"]</label><input asp-for="CostHelper.Ingredients[i].Name" maxlength="100" dir="auto" /></div>
+<div class="field"><label asp-for="CostHelper.Ingredients[i].Name">@T["Ingredient name"]</label><input asp-for="CostHelper.Ingredients[i].Name" maxlength="100" dir="auto" /><span asp-validation-for="CostHelper.Ingredients[i].Name"></span></div>
 <div class="field-grid">
-<div class="field"><label asp-for="CostHelper.Ingredients[i].PackQuantity">@T["Purchase-pack quantity"]</label><input asp-for="CostHelper.Ingredients[i].PackQuantity" type="text" inputmode="decimal" dir="ltr" /></div>
-<div class="field"><label asp-for="CostHelper.Ingredients[i].PackUnit">@T["Pack unit"]</label><select asp-for="CostHelper.Ingredients[i].PackUnit"><option value="">@T["Choose a unit"]</option>@foreach (var u in Enum.GetValues<IngredientUnit>()) { <option value="@u">@T[UnitLabel(u)]</option> }</select></div>
+<div class="field"><label asp-for="CostHelper.Ingredients[i].PackQuantity">@T["Purchase-pack quantity"]</label><input asp-for="CostHelper.Ingredients[i].PackQuantity" type="text" inputmode="decimal" dir="ltr" /><span asp-validation-for="CostHelper.Ingredients[i].PackQuantity"></span></div>
+<div class="field"><label asp-for="CostHelper.Ingredients[i].PackUnit">@T["Pack unit"]</label><select asp-for="CostHelper.Ingredients[i].PackUnit"><option value="">@T["Choose a unit"]</option>@foreach (var u in Enum.GetValues<IngredientUnit>()) { <option value="@u">@T[UnitLabel(u)]</option> }</select><span asp-validation-for="CostHelper.Ingredients[i].PackUnit"></span></div>
 </div>
-<div class="field"><label asp-for="CostHelper.Ingredients[i].PackPrice">@T["Purchase-pack price"] (<bdi>@Model.Currency</bdi>)</label><input asp-for="CostHelper.Ingredients[i].PackPrice" type="text" inputmode="decimal" dir="ltr" /></div>
+<div class="field"><label asp-for="CostHelper.Ingredients[i].PackPrice">@T["Purchase-pack price"] (<bdi>@Model.Currency</bdi>)</label><input asp-for="CostHelper.Ingredients[i].PackPrice" type="text" inputmode="decimal" dir="ltr" /><span asp-validation-for="CostHelper.Ingredients[i].PackPrice"></span></div>
 <div class="field-grid">
-<div class="field"><label asp-for="CostHelper.Ingredients[i].UsedQuantity">@T["Quantity used in this batch"]</label><input asp-for="CostHelper.Ingredients[i].UsedQuantity" type="text" inputmode="decimal" dir="ltr" /></div>
-<div class="field"><label asp-for="CostHelper.Ingredients[i].UsedUnit">@T["Used unit"]</label><select asp-for="CostHelper.Ingredients[i].UsedUnit"><option value="">@T["Choose a unit"]</option>@foreach (var u in Enum.GetValues<IngredientUnit>()) { <option value="@u">@T[UnitLabel(u)]</option> }</select></div>
+<div class="field"><label asp-for="CostHelper.Ingredients[i].UsedQuantity">@T["Quantity used in this batch"]</label><input asp-for="CostHelper.Ingredients[i].UsedQuantity" type="text" inputmode="decimal" dir="ltr" /><span asp-validation-for="CostHelper.Ingredients[i].UsedQuantity"></span></div>
+<div class="field"><label asp-for="CostHelper.Ingredients[i].UsedUnit">@T["Used unit"]</label><select asp-for="CostHelper.Ingredients[i].UsedUnit"><option value="">@T["Choose a unit"]</option>@foreach (var u in Enum.GetValues<IngredientUnit>()) { <option value="@u">@T[UnitLabel(u)]</option> }</select><span asp-validation-for="CostHelper.Ingredients[i].UsedUnit"></span></div>
 </div>
 @if (Model.CostHelper.Ingredients.Count > 1) {
 <button class="button button-quiet button-small" type="submit" name="costAction" value="remove:@i" formnovalidate>@T["Remove ingredient"]</button>
@@ -34,11 +36,11 @@
 </fieldset>
 }
 <p><button class="button button-quiet button-small" type="submit" name="costAction" value="add" formnovalidate>@T["Add ingredient"]</button></p>
-<div class="field"><label asp-for="CostHelper.UsableOutput">@T["Usable servings / items produced"]</label><input asp-for="CostHelper.UsableOutput" type="text" inputmode="decimal" dir="ltr" /></div>
+<div class="field"><label asp-for="CostHelper.UsableOutput">@T["Usable servings / items produced"]</label><input asp-for="CostHelper.UsableOutput" type="text" inputmode="decimal" dir="ltr" /><span asp-validation-for="CostHelper.UsableOutput"></span></div>
 <p class="muted">@T["Enter only usable output after discards. Discarded output is already accounted for; do not deduct it again."]</p>
 <div class="field-grid">
-<div class="field"><label asp-for="CostHelper.PackagingPerUnit">@T["Packaging per serving (optional)"]</label><input asp-for="CostHelper.PackagingPerUnit" type="text" inputmode="decimal" dir="ltr" /></div>
-<div class="field"><label asp-for="CostHelper.OtherVariableCostPerUnit">@T["Other variable costs per serving (optional)"]</label><input asp-for="CostHelper.OtherVariableCostPerUnit" type="text" inputmode="decimal" dir="ltr" /></div>
+<div class="field"><label asp-for="CostHelper.PackagingPerUnit">@T["Packaging per serving (optional)"]</label><input asp-for="CostHelper.PackagingPerUnit" type="text" inputmode="decimal" dir="ltr" /><span asp-validation-for="CostHelper.PackagingPerUnit"></span></div>
+<div class="field"><label asp-for="CostHelper.OtherVariableCostPerUnit">@T["Other variable costs per serving (optional)"]</label><input asp-for="CostHelper.OtherVariableCostPerUnit" type="text" inputmode="decimal" dir="ltr" /><span asp-validation-for="CostHelper.OtherVariableCostPerUnit"></span></div>
 </div>
 <p>@T["Leave optional costs blank to exclude them; enter 0 only when you know that cost is zero. All amounts use your business currency."]</p>
 <div class="form-actions">

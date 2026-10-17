@@ -23,12 +23,17 @@ public sealed class ProductCostForm
     [ModelBinder(BinderType = typeof(WebsiteNumberModelBinder))] public decimal? OtherVariableCostPerUnit { get; set; }
     public ProductCostInputs Inputs()
     {
-        if (!UsableOutput.HasValue || Ingredients.Any(x => x is null || string.IsNullOrWhiteSpace(x.Name)
-            || !x.PackQuantity.HasValue || !x.PackUnit.HasValue || !x.PackPrice.HasValue || !x.UsedQuantity.HasValue || !x.UsedUnit.HasValue))
-            throw new ProductCostValidationException("Complete every ingredient field and the usable batch output. Blank required amounts are not zero.");
-        return new(Ingredients.Select(x => new ProductCostIngredient(x.Name, x.PackQuantity!.Value, x.PackUnit!.Value,
-            x.PackPrice!.Value, x.UsedQuantity!.Value, x.UsedUnit!.Value)).ToArray(), UsableOutput.Value, PackagingPerUnit, OtherVariableCostPerUnit);
+        var output = Required(UsableOutput, "Enter the usable batch output.", nameof(UsableOutput));
+        return new(Ingredients.Select((x, i) => new ProductCostIngredient(x.Name,
+            Required(x.PackQuantity, "Enter this quantity.", $"Ingredients[{i}].PackQuantity"),
+            Required(x.PackUnit, "Choose a supported ingredient unit.", $"Ingredients[{i}].PackUnit"),
+            Required(x.PackPrice, "Enter the purchase-pack price.", $"Ingredients[{i}].PackPrice"),
+            Required(x.UsedQuantity, "Enter this quantity.", $"Ingredients[{i}].UsedQuantity"),
+            Required(x.UsedUnit, "Choose a supported ingredient unit.", $"Ingredients[{i}].UsedUnit"))).ToArray(),
+            output, PackagingPerUnit, OtherVariableCostPerUnit);
     }
+    private static T Required<T>(T? value, string message, string path) where T : struct =>
+        value ?? throw new ProductCostValidationException(message, path);
     public static ProductCostForm From(ProductCostInputs inputs) => new()
     {
         UsableOutput = inputs.UsableOutput, PackagingPerUnit = inputs.PackagingPerUnit, OtherVariableCostPerUnit = inputs.OtherVariableCostPerUnit,

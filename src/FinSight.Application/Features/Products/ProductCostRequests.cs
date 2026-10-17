@@ -12,7 +12,7 @@ public sealed class ProductCostInputsValidator : AbstractValidator<ProductCostIn
     public ProductCostInputsValidator() => RuleFor(x => x).Custom((inputs, context) =>
     {
         try { new ProductCostCalculator().Calculate(inputs); }
-        catch (ProductCostValidationException e) { context.AddFailure(e.Message); }
+        catch (ProductCostValidationException e) { context.AddFailure(e.FieldPath ?? string.Empty, e.Message); }
     });
 }
 public sealed class PreviewProductCostValidator : AbstractValidator<PreviewProductCostQuery>
