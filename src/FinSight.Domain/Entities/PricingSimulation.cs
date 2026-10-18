@@ -1,6 +1,7 @@
 using FinSight.Domain.Enums;
 using FinSight.Domain.Exceptions;
 using FinSight.Domain.Services;
+using FinSight.Domain.Models;
 
 namespace FinSight.Domain.Entities;
 
@@ -35,6 +36,8 @@ public sealed class PricingSimulation
     public string? ProductNameSnapshot { get; private set; }
 
     public int CalculationVersion { get; private set; }
+
+    public DiscountSimulationSnapshot? DiscountSnapshot { get; private set; }
 
     public decimal CurrentContribution { get; private set; }
 
@@ -171,6 +174,9 @@ public sealed class PricingSimulation
         EnsureValidUpdateTimestamp(updatedAtUtc);
         ArgumentNullException.ThrowIfNull(calculator);
 
+        if (DiscountSnapshot is not null)
+            throw new PricingSimulationConflictException("Use the discount editor to change a discount simulation.");
+
         Recalculate(
             proposedPrice,
             currentSalesQuantity,
@@ -178,6 +184,57 @@ public sealed class PricingSimulation
             updatedAtUtc,
             calculator);
         Version++;
+    }
+
+    public static PricingSimulation CreateDiscount(Guid id, Guid businessId, Guid productId,
+        Guid userId, DiscountInputs inputs, SalesPeriod period, string currency, string productName,
+        DateTime utcNow, DiscountSimulationCalculator calculator)
+    {
+        ThrowIfEmpty(id, nameof(id)); ThrowIfEmpty(businessId, nameof(businessId));
+        ThrowIfEmpty(productId, nameof(productId)); ThrowIfEmpty(userId, nameof(userId));
+        EnsureUtc(utcNow, nameof(utcNow));
+        if (!Enum.IsDefined(period)) throw new ArgumentOutOfRangeException(nameof(period));
+        if (string.IsNullOrWhiteSpace(currency) || currency.Trim().Length != Business.CurrencyLength)
+            throw new ArgumentException("A three-letter currency is required.", nameof(currency));
+        if (string.IsNullOrWhiteSpace(productName) || productName.Trim().Length > Product.MaxNameLength)
+            throw new ArgumentException("A product name is required.", nameof(productName));
+        var snapshot = calculator.Calculate(inputs);
+        var simulation = new PricingSimulation
+        {
+            Id = id, BusinessId = businessId, ProductId = productId, CreatedByUserId = userId,
+            CurrentPrice = inputs.CurrentPrice, UnitCost = inputs.UnitCost,
+            CurrencySnapshot = currency.Trim().ToUpperInvariant(), ProductNameSnapshot = productName.Trim(),
+            CreatedAtUtc = utcNow, UpdatedAtUtc = utcNow, Version = 1, CalculationVersion = 1
+        };
+        simulation.ApplyDiscount(snapshot, period);
+        return simulation;
+    }
+
+    public void UpdateDiscount(decimal percentage, int currentQuantity, int? expectedQuantity,
+        decimal? campaignCost, SalesPeriod period, DateTime utcNow, long expectedVersion,
+        DiscountSimulationCalculator calculator)
+    {
+        EnsureExpectedVersion(expectedVersion); EnsureMutable(); EnsureValidUpdateTimestamp(utcNow);
+        if (DiscountSnapshot is null) throw new PricingSimulationConflictException("This is not a discount simulation.");
+        if (!Enum.IsDefined(period)) throw new ArgumentOutOfRangeException(nameof(period));
+        var snapshot = calculator.Calculate(new(CurrentPrice, UnitCost, percentage, currentQuantity, expectedQuantity, campaignCost));
+        ApplyDiscount(snapshot, period);
+        Touch(utcNow);
+    }
+
+    private void ApplyDiscount(DiscountSimulationSnapshot snapshot, SalesPeriod period)
+    {
+        DiscountSnapshot = snapshot;
+        ProposedPrice = snapshot.Result.DiscountedPrice;
+        CurrentSalesQuantity = snapshot.Inputs.CurrentSalesQuantity;
+        ExpectedSalesQuantity = snapshot.Inputs.ExpectedSalesQuantity;
+        ComparisonPeriod = period;
+        CurrentContribution = snapshot.Result.CurrentContribution;
+        ProposedContribution = snapshot.Result.ScenarioContribution;
+        Difference = snapshot.Result.Difference;
+        IsProposedPriceBelowCost = snapshot.Result.IsBelowCost;
+        Recommendation = Difference.HasValue ? Difference > 0
+            ? FinSight.Domain.Enums.Recommendation.Recommended : FinSight.Domain.Enums.Recommendation.NotRecommended : null;
     }
 
     public void Archive(DateTime archivedAtUtc, long expectedVersion)

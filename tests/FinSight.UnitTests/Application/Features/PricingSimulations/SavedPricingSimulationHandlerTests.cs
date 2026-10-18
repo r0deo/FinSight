@@ -78,6 +78,7 @@ public class SavedPricingSimulationHandlerTests
         var result = await handler.Handle(new GetSavedDecisionQuery(simulation.Id), CancellationToken.None);
 
         Assert.Equal(businessId, repository.RequestedBusinessId);
+        Assert.NotNull(result.Decision);
         Assert.Equal(25, result.Decision.MinimumSalesToMaintainContribution);
         Assert.Equal("IQD", result.Currency);
         Assert.Null(result.Decision.ExpectedScenario);

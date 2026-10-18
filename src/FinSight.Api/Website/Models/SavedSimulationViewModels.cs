@@ -10,6 +10,6 @@ public sealed record SavedSimulationListViewModel(
 
 public sealed record SavedSimulationDetailViewModel(
     PricingSimulationResponse Simulation,
-    PricingDecisionResult Decision,
+    PricingDecisionResult? Decision,
     string Currency,
     string ProductName);

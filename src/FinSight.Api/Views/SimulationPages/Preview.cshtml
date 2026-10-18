@@ -3,6 +3,7 @@
 @using FinSight.Domain.Enums
 @{ ViewData["Title"] = T["Preview a price change"].Value; }
 <section class="panel message-panel simulation-panel">
+    <nav class="actions" aria-label="@T["Simulation type"]"><span aria-current="page">@T["Change selling price"]</span><a href="/simulations/discount?productId=@Model.ProductId">@T["Offer a discount"]</a></nav>
     <nav class="actions" aria-label="@T["Simulation tools"]"><a href="/simulations">@T["Saved simulation history"]</a><a href="/what-if?productId=@Model.ProductId">@T["What if conditions change?"]</a></nav>
     <p class="eyebrow">@T["EXPLORE BEFORE YOU CHANGE"]</p>
     <h1>@T["Preview a price change"]</h1>

@@ -31,8 +31,15 @@ public sealed class BusinessCostMigrationTests
                 INSERT INTO "Products" ("Id", "BusinessId", "Name", "Category", "Size", "SellingPrice", "UnitCost", "IsActive")
                 VALUES ({productId}, {businessId}, 'Coffee', 'Drinks', NULL, 4000, 1000, TRUE)
                 """);
-            old.PricingSimulations.Add(new PricingSimulation(pricingId, businessId, productId, userId,
-                4000, 1000, 4500, 100, 90, DateTime.UtcNow, new PricingSimulationCalculator()));
+            var created = DateTime.UtcNow;
+            await old.Database.ExecuteSqlInterpolatedAsync($"""
+                INSERT INTO "PricingSimulations" ("Id", "BusinessId", "ProductId", "CreatedByUserId",
+                    "CurrentPrice", "UnitCost", "ProposedPrice", "CurrentSalesQuantity", "ExpectedSalesQuantity",
+                    "CurrentContribution", "ProposedContribution", "Difference", "IsProposedPriceBelowCost",
+                    "Recommendation", "CreatedAtUtc", "UpdatedAtUtc", "Version")
+                VALUES ({pricingId}, {businessId}, {productId}, {userId}, 4000, 1000, 4500, 100, 90,
+                    300000, 315000, 15000, FALSE, 'Recommended', {created}, {created}, 1)
+                """);
             old.WhatIfSimulations.Add(new WhatIfSimulation(whatIfId, businessId, productId, userId, "Coffee", "IQD",
                 SalesPeriod.Month, new WhatIfInputs(4000,1000,100,CostShockInputMode.Percentage,20,null,10,null,null,null,null),
                 DateTime.UtcNow, new WhatIfCalculator(new PricingSimulationCalculator())));
@@ -54,6 +61,7 @@ public sealed class BusinessCostMigrationTests
         Assert.Null((await db.Products.SingleAsync(x => x.Id == productId)).CostBreakdown);
         var pricing = await db.PricingSimulations.SingleAsync(x => x.Id == pricingId);
         Assert.Equal(300000, pricing.CurrentContribution); Assert.Equal(315000, pricing.ProposedContribution);
+        Assert.Null(pricing.DiscountSnapshot);
         var whatIf = await db.WhatIfSimulations.SingleAsync(x => x.Id == whatIfId);
         Assert.Equal(252000, whatIf.Result.NoActionContribution);
         Assert.Equal(1000, whatIf.Inputs.CurrentUnitCost);

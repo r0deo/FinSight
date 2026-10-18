@@ -9,8 +9,17 @@
     <dl class="simulation-product-facts">
         <div><dt>@T["Current selling price"]</dt><dd><bdi dir="ltr">@Model.Simulation.CurrentPrice.ToString("N2") @Model.Currency</bdi></dd></div>
         <div><dt>@T["Unit cost"]</dt><dd><bdi dir="ltr">@Model.Simulation.UnitCost.ToString("N2") @Model.Currency</bdi></dd></div>
-        <div><dt>@T["Proposed price"]</dt><dd><bdi dir="ltr">@Model.Simulation.ProposedPrice.ToString("N2") @Model.Currency</bdi></dd></div>
+        <div><dt>@T[Model.Simulation.DiscountSnapshot is null ? "Proposed price" : "Discounted selling price"]</dt><dd><bdi dir="ltr">@Model.Simulation.ProposedPrice.ToString("N2") @Model.Currency</bdi></dd></div>
     </dl>
-    <partial name="_DecisionResult" model="@(new DecisionDisplayViewModel(Model.Decision, Model.Simulation.ComparisonPeriod, Model.Simulation.CurrentPrice, Model.Simulation.ProposedPrice, Model.Simulation.CurrentSalesQuantity, Model.Simulation.ExpectedSalesQuantity, Model.Simulation.DeclinePercentage, Model.Currency, true))" />
+    @if (Model.Simulation.DiscountSnapshot is { } discount)
+    {
+        <h2>@T["Discount simulation"]</h2>
+        <partial name="_DiscountResult" model="@(new DiscountDisplayViewModel(discount, Model.Simulation.ComparisonPeriod!.Value, Model.Currency))" />
+        @if (!Model.Simulation.IsArchived) { <a class="button" href="/simulations/@Model.Simulation.Id/discount/edit">@T["Edit discount simulation"]</a> }
+    }
+    else if (Model.Decision is { } decision)
+    {
+        <partial name="_DecisionResult" model="@(new DecisionDisplayViewModel(decision, Model.Simulation.ComparisonPeriod, Model.Simulation.CurrentPrice, Model.Simulation.ProposedPrice, Model.Simulation.CurrentSalesQuantity, Model.Simulation.ExpectedSalesQuantity, Model.Simulation.DeclinePercentage, Model.Currency, true))" />
+    }
     <p><a href="/simulations">@T["Back to history"]</a></p>
 </section>

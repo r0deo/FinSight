@@ -1,4 +1,6 @@
 using FinSight.Domain.Entities;
+using FinSight.Domain.Models;
+using System.Text.Json;
 using FinSight.Infrastructure.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -24,6 +26,10 @@ public sealed class PricingSimulationConfiguration
         builder.Property(simulation => simulation.CurrencySnapshot).HasMaxLength(3);
         builder.Property(simulation => simulation.ProductNameSnapshot).HasMaxLength(Product.MaxNameLength);
         builder.Property(simulation => simulation.CalculationVersion).HasDefaultValue(0);
+        builder.Property(x => x.DiscountSnapshot)
+            .HasConversion(x => JsonSerializer.Serialize(x, (JsonSerializerOptions?)null),
+                x => JsonSerializer.Deserialize<DiscountSimulationSnapshot>(x, (JsonSerializerOptions?)null)!)
+            .HasColumnType("text");
         builder.Property(simulation => simulation.Recommendation)
             .HasConversion<string>()
             .HasMaxLength(32);

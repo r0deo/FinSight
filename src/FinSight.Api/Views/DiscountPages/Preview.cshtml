@@ -1,0 +1,47 @@
+@model DiscountViewModel
+@using System.Globalization
+@{ ViewData["Title"] = T["Offer a discount"].Value;
+   var formUrl = Model.SimulationId.HasValue ? $"/simulations/{Model.SimulationId}/discount/edit" : "/simulations/discount";
+   var saveUrl = Model.SimulationId.HasValue ? $"/simulations/{Model.SimulationId}/discount/save" : "/simulations/discount/save"; }
+<section class="panel message-panel simulation-panel">
+    <nav class="actions" aria-label="@T["Simulation tools"]"><a href="/simulations/preview?productId=@Model.ProductId">@T["Change selling price"]</a><span aria-current="page">@T["Offer a discount"]</span><a href="/simulations">@T["Saved simulation history"]</a></nav>
+    <h1>@T["Offer a discount"]</h1><h2><bdi>@Model.ProductName</bdi></h2>
+    @if (Model.SimulationId.HasValue) { <p>@T["This result uses the prices and unit cost saved with the simulation, not today's product values."]</p> }
+    <dl class="simulation-product-facts">
+        <div><dt>@T["Current selling price"]</dt><dd><bdi dir="ltr">@Model.CurrentPrice.ToString("N2") @Model.Currency</bdi></dd></div>
+        <div><dt>@T["Unit cost"]</dt><dd><bdi dir="ltr">@Model.UnitCost.ToString("N2") @Model.Currency</bdi></dd></div>
+    </dl>
+    <p>@T["Both sales quantities must describe comparable periods of equal length. Expected sales are your assumption, not a forecast."]</p>
+    <form method="post" action="@formUrl" asp-antiforgery="true" data-discount-form>
+        <div asp-validation-summary="All" role="alert"></div>
+        <input asp-for="ProductId" type="hidden" /><input asp-for="Version" type="hidden" />
+        <div class="field-grid">
+            <div class="field"><label asp-for="DiscountPercentage"></label><input asp-for="DiscountPercentage" type="text" inputmode="decimal" dir="ltr" required /><span asp-validation-for="DiscountPercentage"></span></div>
+            <div class="field"><label asp-for="CurrentSalesQuantity"></label><input asp-for="CurrentSalesQuantity" type="text" inputmode="numeric" dir="ltr" required /><span asp-validation-for="CurrentSalesQuantity"></span></div>
+            <div class="field"><label asp-for="ExpectedSalesQuantity"></label><input asp-for="ExpectedSalesQuantity" type="text" inputmode="numeric" dir="ltr" /><span asp-validation-for="ExpectedSalesQuantity"></span><small>@T["Leave expected sales blank if you do not know."]</small></div>
+            <div class="field"><label asp-for="ComparisonPeriod"></label><select asp-for="ComparisonPeriod"><option value="Day">@T["day"]</option><option value="Week">@T["week"]</option><option value="Month">@T["month"]</option></select><span asp-validation-for="ComparisonPeriod"></span></div>
+            <div class="field"><label asp-for="CampaignCost"></label><input asp-for="CampaignCost" type="text" inputmode="decimal" dir="ltr" /><span asp-validation-for="CampaignCost"></span><small>@T["Only add extra campaign costs for this period that are not already in unit costs. Blank excludes them; 0 means no extra cost."]</small></div>
+        </div>
+        <button class="button" type="submit">@T["Calculate preview"]</button>
+    </form>
+    @if (ViewData.ModelState.IsValid && Model.Result is { } snapshot)
+    {
+        <result-modal id="discount-result" title="@T["Discount simulation"]" source-form="[data-discount-form]" return-focus="[data-discount-form] button[type=submit]" auto-open="true">
+            <partial name="_DiscountResult" model="@(new DiscountDisplayViewModel(snapshot, Model.ComparisonPeriod!.Value, Model.Currency))" />
+            <form method="post" action="@saveUrl" asp-antiforgery="true" data-discount-save>
+                <input type="hidden" name="ProductId" value="@Model.ProductId" />
+                <input type="hidden" name="Version" value="@Model.Version" />
+                <input type="hidden" name="DiscountPercentage" value="@snapshot.Inputs.DiscountPercentage.ToString(CultureInfo.InvariantCulture)" />
+                <input type="hidden" name="CurrentSalesQuantity" value="@snapshot.Inputs.CurrentSalesQuantity" />
+                <input type="hidden" name="ExpectedSalesQuantity" value="@snapshot.Inputs.ExpectedSalesQuantity" />
+                <input type="hidden" name="CampaignCost" value="@snapshot.Inputs.CampaignCost?.ToString(CultureInfo.InvariantCulture)" />
+                <input type="hidden" name="ComparisonPeriod" value="@Model.ComparisonPeriod" />
+                <input type="hidden" name="PreviewCurrentPrice" value="@snapshot.Inputs.CurrentPrice.ToString(CultureInfo.InvariantCulture)" />
+                <input type="hidden" name="PreviewUnitCost" value="@snapshot.Inputs.UnitCost.ToString(CultureInfo.InvariantCulture)" />
+                <button class="button" type="submit">@T["Save this simulation"]</button>
+                <small>@T["Saving is explicit. Preview alone never creates a history record."]</small>
+            </form>
+        </result-modal>
+    }
+    <p><a href="/simulations/discount">@T["Choose another product"]</a></p>
+</section>

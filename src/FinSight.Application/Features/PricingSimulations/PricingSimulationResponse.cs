@@ -28,6 +28,7 @@ public sealed record PricingSimulationResponse(
     string? ProductNameSnapshot,
     int CalculationVersion)
 {
+    public FinSight.Domain.Models.DiscountSimulationSnapshot? DiscountSnapshot { get; init; }
     public static PricingSimulationResponse FromSimulation(PricingSimulation simulation) => new(
         simulation.Id,
         simulation.ProductId,
@@ -51,5 +52,5 @@ public sealed record PricingSimulationResponse(
         simulation.DeclinePercentage,
         simulation.CurrencySnapshot,
         simulation.ProductNameSnapshot,
-        simulation.CalculationVersion);
+        simulation.CalculationVersion) { DiscountSnapshot = simulation.DiscountSnapshot };
 }

@@ -7,5 +7,5 @@ public sealed record GetSavedDecisionQuery(Guid SimulationId) : IRequest<SavedDe
 
 public sealed record SavedDecisionResponse(
     PricingSimulationResponse Simulation,
-    PricingDecisionResult Decision,
+    PricingDecisionResult? Decision,
     string Currency);

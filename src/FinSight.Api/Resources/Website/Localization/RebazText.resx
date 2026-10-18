@@ -578,4 +578,36 @@
   <data name="Enter the usable batch output." xml:space="preserve"><value>Enter the usable batch output.</value></data>
   <data name="Close results" xml:space="preserve"><value>Close results</value></data>
   <data name="View calculation results" xml:space="preserve"><value>View calculation results</value></data>
+  <data name="Offer a discount" xml:space="preserve"><value>Offer a discount</value></data>
+  <data name="Simulation type" xml:space="preserve"><value>Simulation type</value></data>
+  <data name="Discount simulation" xml:space="preserve"><value>Discount simulation</value></data>
+  <data name="Edit discount simulation" xml:space="preserve"><value>Edit discount simulation</value></data>
+  <data name="Discount percentage (%)" xml:space="preserve"><value>Discount percentage (%)</value></data>
+  <data name="Additional campaign cost (optional)" xml:space="preserve"><value>Additional campaign cost (optional)</value></data>
+  <data name="Both sales quantities must describe comparable periods of equal length. Expected sales are your assumption, not a forecast." xml:space="preserve"><value>Both sales quantities must describe comparable periods of equal length. Expected sales are your assumption, not a forecast.</value></data>
+  <data name="Leave expected sales blank if you do not know." xml:space="preserve"><value>Leave expected sales blank if you do not know.</value></data>
+  <data name="Only add extra campaign costs for this period that are not already in unit costs. Blank excludes them; 0 means no extra cost." xml:space="preserve"><value>Only add extra campaign costs for this period that are not already in unit costs. Blank excludes them; 0 means no extra cost.</value></data>
+  <data name="No active products are available for a discount simulation." xml:space="preserve"><value>No active products are available for a discount simulation.</value></data>
+  <data name="Discounted selling price" xml:space="preserve"><value>Discounted selling price</value></data>
+  <data name="Discounted contribution per unit" xml:space="preserve"><value>Discounted contribution per unit</value></data>
+  <data name="Campaign cost not included." xml:space="preserve"><value>Campaign cost not included.</value></data>
+  <data name="The discounted price is below the recorded unit cost. Each additional unit reduces contribution before campaign costs." xml:space="preserve"><value>The discounted price is below the recorded unit cost. Each additional unit reduces contribution before campaign costs.</value></data>
+  <data name="Each discounted unit contributes zero before campaign costs." xml:space="preserve"><value>Each discounted unit contributes zero before campaign costs.</value></data>
+  <data name="You need to sell at least {0} units during the same period to maintain the current amount remaining after recorded product costs." xml:space="preserve"><value>You need to sell at least {0} units during the same period to maintain the current amount remaining after recorded product costs.</value></data>
+  <data name="Additional units required" xml:space="preserve"><value>Additional units required</value></data>
+  <data name="Required sales increase" xml:space="preserve"><value>Required sales increase</value></data>
+  <data name="The current contribution is zero or negative. A normal maintenance threshold is not meaningful." xml:space="preserve"><value>The current contribution is zero or negative. A normal maintenance threshold is not meaningful.</value></data>
+  <data name="No sales quantity at this discounted margin can maintain the positive current contribution." xml:space="preserve"><value>No sales quantity at this discounted margin can maintain the positive current contribution.</value></data>
+  <data name="The required quantity exceeds the supported whole-number range." xml:space="preserve"><value>The required quantity exceeds the supported whole-number range.</value></data>
+  <data name="Scenario contribution after included campaign cost" xml:space="preserve"><value>Scenario contribution after included campaign cost</value></data>
+  <data name="Under your sales assumption, the discount increases contribution. This is not a prediction or guaranteed saving." xml:space="preserve"><value>Under your sales assumption, the discount increases contribution. This is not a prediction or guaranteed saving.</value></data>
+  <data name="Under your sales assumption, the discount does not increase contribution." xml:space="preserve"><value>Under your sales assumption, the discount does not increase contribution.</value></data>
+  <data name="No expected sales were entered. Scenario totals and a recommendation are not calculated." xml:space="preserve"><value>No expected sales were entered. Scenario totals and a recommendation are not calculated.</value></data>
+  <data name="Contribution is not net profit. Rent, monthly salaries and other unentered costs are excluded. Do not count expenses already included in unit costs again." xml:space="preserve"><value>Contribution is not net profit. Rent, monthly salaries and other unentered costs are excluded. Do not count expenses already included in unit costs again.</value></data>
+  <data name="Discounted prices are rounded to two decimals before calculating contribution and the required sales quantity." xml:space="preserve"><value>Discounted prices are rounded to two decimals before calculating contribution and the required sales quantity.</value></data>
+  <data name="Enter a discount greater than 0 and less than 100%, with at most four decimal places." xml:space="preserve"><value>Enter a discount greater than 0 and less than 100%, with at most four decimal places.</value></data>
+  <data name="Enter a positive whole number of current sales." xml:space="preserve"><value>Enter a positive whole number of current sales.</value></data>
+  <data name="Expected sales must be a non-negative whole number." xml:space="preserve"><value>Expected sales must be a non-negative whole number.</value></data>
+  <data name="These prices, quantities or campaign costs exceed the supported calculation range." xml:space="preserve"><value>These prices, quantities or campaign costs exceed the supported calculation range.</value></data>
+  <data name="Enter a non-negative amount with at most two decimal places within the supported range." xml:space="preserve"><value>Enter a non-negative amount with at most two decimal places within the supported range.</value></data>
 </root>

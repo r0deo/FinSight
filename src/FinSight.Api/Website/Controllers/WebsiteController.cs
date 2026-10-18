@@ -59,6 +59,7 @@ public abstract class WebsiteController : Controller
             "ProposedPrice" => "Proposed price", "CurrentSalesQuantity" => "Current sales quantity",
             "ExpectedSalesQuantity" => "Expected sales quantity", "Name" => "Product name",
             "DeclinePercentage" => "Illustrative sales decline (%)",
+            "DiscountPercentage" => "Discount percentage (%)", "CampaignCost" => "Additional campaign cost (optional)",
             "ComparisonPeriod" => "Comparison period",
             "CurrentQuantity" => "Current units sold", "SalesDeclinePercent" => "Sales decline (%)",
             "CostIncreasePercent" => "Cost increase (%)", "NewUnitCost" => "New total unit cost",
@@ -72,6 +73,7 @@ public abstract class WebsiteController : Controller
         object Get(string name) => values is not null && values.TryGetValue(name, out var value) ? value : "";
         return error.ErrorCode switch
         {
+            "DiscountCalculation" => Text(error.ErrorMessage),
             "NotEmptyValidator" => Text("{0} must not be empty.", label),
             "EmailValidator" => Text("{0} is not a valid email address.", label),
             "MaximumLengthValidator" => Text("{0} must not be more than {1} characters.", label, Get("MaxLength")),

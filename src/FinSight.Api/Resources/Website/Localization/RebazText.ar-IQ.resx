@@ -578,4 +578,36 @@
   <data name="Enter the usable batch output." xml:space="preserve"><value>أدخل عدد الحصص أو القطع الصالحة الناتجة.</value></data>
   <data name="Close results" xml:space="preserve"><value>إغلاق النتائج</value></data>
   <data name="View calculation results" xml:space="preserve"><value>عرض نتائج الحساب</value></data>
+  <data name="Offer a discount" xml:space="preserve"><value>تقديم خصم</value></data>
+  <data name="Simulation type" xml:space="preserve"><value>نوع المحاكاة</value></data>
+  <data name="Discount simulation" xml:space="preserve"><value>محاكاة الخصم</value></data>
+  <data name="Edit discount simulation" xml:space="preserve"><value>تعديل محاكاة الخصم</value></data>
+  <data name="Discount percentage (%)" xml:space="preserve"><value>نسبة الخصم (%)</value></data>
+  <data name="Additional campaign cost (optional)" xml:space="preserve"><value>تكلفة الحملة الإضافية (اختيارية)</value></data>
+  <data name="Both sales quantities must describe comparable periods of equal length. Expected sales are your assumption, not a forecast." xml:space="preserve"><value>يجب أن تكون كميتا المبيعات لفترتين قابلتين للمقارنة ومتساويتين في المدة. المبيعات المتوقعة افتراض منك وليست تنبؤاً.</value></data>
+  <data name="Leave expected sales blank if you do not know." xml:space="preserve"><value>اترك المبيعات المتوقعة فارغة إن كنت لا تعرف.</value></data>
+  <data name="Only add extra campaign costs for this period that are not already in unit costs. Blank excludes them; 0 means no extra cost." xml:space="preserve"><value>أضف فقط تكاليف الحملة الإضافية لهذه الفترة غير المحتسبة في تكلفة الوحدة. ترك الحقل فارغاً يستبعدها؛ و0 يعني لا توجد تكلفة إضافية.</value></data>
+  <data name="No active products are available for a discount simulation." xml:space="preserve"><value>لا توجد منتجات فعالة لمحاكاة الخصم.</value></data>
+  <data name="Discounted selling price" xml:space="preserve"><value>سعر البيع بعد الخصم</value></data>
+  <data name="Discounted contribution per unit" xml:space="preserve"><value>المتبقي لكل وحدة بعد الخصم وتكلفة الوحدة</value></data>
+  <data name="Campaign cost not included." xml:space="preserve"><value>تكلفة الحملة غير مشمولة.</value></data>
+  <data name="The discounted price is below the recorded unit cost. Each additional unit reduces contribution before campaign costs." xml:space="preserve"><value>السعر بعد الخصم أقل من تكلفة الوحدة المسجلة. كل وحدة إضافية تقلل المبلغ المتبقي قبل تكاليف الحملة.</value></data>
+  <data name="Each discounted unit contributes zero before campaign costs." xml:space="preserve"><value>كل وحدة بعد الخصم لا تترك أي مبلغ بعد تكلفة الوحدة، وقبل تكاليف الحملة.</value></data>
+  <data name="You need to sell at least {0} units during the same period to maintain the current amount remaining after recorded product costs." xml:space="preserve"><value>تحتاج إلى بيع {0} وحدة على الأقل خلال الفترة نفسها للحفاظ على المبلغ الحالي المتبقي بعد تكاليف المنتج المسجلة.</value></data>
+  <data name="Additional units required" xml:space="preserve"><value>الوحدات الإضافية المطلوبة</value></data>
+  <data name="Required sales increase" xml:space="preserve"><value>زيادة المبيعات المطلوبة</value></data>
+  <data name="The current contribution is zero or negative. A normal maintenance threshold is not meaningful." xml:space="preserve"><value>المبلغ الحالي المتبقي بعد تكلفة المنتج يساوي صفراً أو سالب. لا يمكن استخدام حد الحفاظ المعتاد هنا.</value></data>
+  <data name="No sales quantity at this discounted margin can maintain the positive current contribution." xml:space="preserve"><value>بهذا المتبقي لكل وحدة بعد الخصم، لا توجد كمية مبيعات تحافظ على المبلغ الحالي الموجب.</value></data>
+  <data name="The required quantity exceeds the supported whole-number range." xml:space="preserve"><value>الكمية المطلوبة تتجاوز نطاق الأعداد الصحيحة المدعوم.</value></data>
+  <data name="Scenario contribution after included campaign cost" xml:space="preserve"><value>المتبقي في السيناريو بعد تكلفة الحملة المشمولة</value></data>
+  <data name="Under your sales assumption, the discount increases contribution. This is not a prediction or guaranteed saving." xml:space="preserve"><value>وفق افتراضك للمبيعات، يزيد الخصم المبلغ المتبقي. هذه ليست توقعات أو وفورات مضمونة.</value></data>
+  <data name="Under your sales assumption, the discount does not increase contribution." xml:space="preserve"><value>وفق افتراضك للمبيعات، لا يزيد الخصم المبلغ المتبقي.</value></data>
+  <data name="No expected sales were entered. Scenario totals and a recommendation are not calculated." xml:space="preserve"><value>لم تُدخل مبيعات متوقعة. لذلك لا تُحسب مجاميع السيناريو ولا تُقدَّم توصية.</value></data>
+  <data name="Contribution is not net profit. Rent, monthly salaries and other unentered costs are excluded. Do not count expenses already included in unit costs again." xml:space="preserve"><value>المبلغ المتبقي ليس صافي الربح. الإيجار والرواتب الشهرية والتكاليف الأخرى غير المدخلة غير مشمولة. لا تحتسب مجدداً مصاريف محسوبة في تكلفة الوحدة.</value></data>
+  <data name="Discounted prices are rounded to two decimals before calculating contribution and the required sales quantity." xml:space="preserve"><value>يُقرَّب السعر بعد الخصم إلى منزلتين عشريتين قبل حساب المبلغ المتبقي وكمية المبيعات المطلوبة.</value></data>
+  <data name="Enter a discount greater than 0 and less than 100%, with at most four decimal places." xml:space="preserve"><value>أدخل خصماً أكبر من 0 وأقل من 100%، بأربع منازل عشرية كحد أقصى.</value></data>
+  <data name="Enter a positive whole number of current sales." xml:space="preserve"><value>أدخل عدداً صحيحاً موجباً للمبيعات الحالية.</value></data>
+  <data name="Expected sales must be a non-negative whole number." xml:space="preserve"><value>يجب أن تكون المبيعات المتوقعة عدداً صحيحاً غير سالب.</value></data>
+  <data name="These prices, quantities or campaign costs exceed the supported calculation range." xml:space="preserve"><value>هذه الأسعار أو الكميات أو تكاليف الحملة تتجاوز نطاق الحساب المدعوم.</value></data>
+  <data name="Enter a non-negative amount with at most two decimal places within the supported range." xml:space="preserve"><value>أدخل مبلغاً غير سالب بمنزلتين عشريتين كحد أقصى ضمن النطاق المدعوم.</value></data>
 </root>

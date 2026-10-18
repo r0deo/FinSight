@@ -578,4 +578,36 @@
   <data name="Enter the usable batch output." xml:space="preserve"><value>ژمارا پشک یان دانەیێن چێکری یێن بکار دێن بنڤیسە.</value></data>
   <data name="Close results" xml:space="preserve"><value>داخستنا ئەنجامان</value></data>
   <data name="View calculation results" xml:space="preserve"><value>ئەنجامێن حیسابێ ببینە</value></data>
+  <data name="Offer a discount" xml:space="preserve"><value>داشکاندنێ پێشکێش بکە</value></data>
+  <data name="Simulation type" xml:space="preserve"><value>جۆرێ شبیه‌سازیێ</value></data>
+  <data name="Discount simulation" xml:space="preserve"><value>شبیه‌سازییا داشکاندنێ</value></data>
+  <data name="Edit discount simulation" xml:space="preserve"><value>دەستکاریکرنا شبیه‌سازییا داشکاندنێ</value></data>
+  <data name="Discount percentage (%)" xml:space="preserve"><value>ڕێژەیا داشکاندنێ (%)</value></data>
+  <data name="Additional campaign cost (optional)" xml:space="preserve"><value>تێچوونا زێدە یا کەمپەینێ (ب دڵێ تە)</value></data>
+  <data name="Both sales quantities must describe comparable periods of equal length. Expected sales are your assumption, not a forecast." xml:space="preserve"><value>هەردوو ژمارێن فرۆتنێ دڤێ بۆ دوو ماوەیێن هەڤقەد و بەراوردکرنێ بن. فرۆتنا چاوەڕێکری گریمانەیا تەیە، نە پێشبینییە.</value></data>
+  <data name="Leave expected sales blank if you do not know." xml:space="preserve"><value>ئەگەر تو نزانیت، فرۆتنا چاوەڕێکری ڤاڵا بهێلە.</value></data>
+  <data name="Only add extra campaign costs for this period that are not already in unit costs. Blank excludes them; 0 means no extra cost." xml:space="preserve"><value>بتنێ تێچوونێن زێدە یێن کەمپەینێ بۆ ڤێ ماوەیێ زێدە بکە، ئەوێن د تێچوونا دانەیێ دا نەهاتینە هژمارتن. ڤاڵا واتە نەهژمارتن؛ 0 واتە تێچوونا زێدە نینە.</value></data>
+  <data name="No active products are available for a discount simulation." xml:space="preserve"><value>هیچ بەرهەمێ چالاک بۆ شبیه‌سازییا داشکاندنێ نینە.</value></data>
+  <data name="Discounted selling price" xml:space="preserve"><value>بهایێ فرۆتنێ پشتی داشکاندنێ</value></data>
+  <data name="Discounted contribution per unit" xml:space="preserve"><value>پارەیێ ژ هەر دانەیەکێ پشتی داشکاندن و تێچوونا دانەیێ دمینیت</value></data>
+  <data name="Campaign cost not included." xml:space="preserve"><value>تێچوونا کەمپەینێ نەهاتیە هژمارتن.</value></data>
+  <data name="The discounted price is below the recorded unit cost. Each additional unit reduces contribution before campaign costs." xml:space="preserve"><value>بهایێ پشتی داشکاندنێ کێمترە ژ تێچوونا دانەیێ یا تۆمارکری. هەر دانەیەکا زێدە پارەیێ مای کێم دکەت، بەری تێچوونێن کەمپەینێ.</value></data>
+  <data name="Each discounted unit contributes zero before campaign costs." xml:space="preserve"><value>هەر دانەیەک پشتی داشکاندن و تێچوونا دانەیێ هیچ پارە ناهێلیت، بەری تێچوونێن کەمپەینێ.</value></data>
+  <data name="You need to sell at least {0} units during the same period to maintain the current amount remaining after recorded product costs." xml:space="preserve"><value>پێدڤییە ب کێمی {0} دانەیان د هەمان ماوەیێ دا بفرۆشی، دا پارەیێ نوکە پشتی تێچوونێن تۆمارکری یێن بەرهەمی دمینیت بپارێزی.</value></data>
+  <data name="Additional units required" xml:space="preserve"><value>دانەیێن زێدە یێن پێدڤی</value></data>
+  <data name="Required sales increase" xml:space="preserve"><value>زێدەبوونا فرۆتنێ یا پێدڤی</value></data>
+  <data name="The current contribution is zero or negative. A normal maintenance threshold is not meaningful." xml:space="preserve"><value>پارەیێ نوکە پشتی تێچوونا بەرهەمی دمینیت سفر یان نەرێنییە. سنوورێ ئاسایی یێ پاراستنێ ل ڤێرێ ناگونجیت.</value></data>
+  <data name="No sales quantity at this discounted margin can maintain the positive current contribution." xml:space="preserve"><value>ب ڤێ پارەیا مای ژ هەر دانەیێ پشتی داشکاندنێ، هیچ ژمارەیا فرۆتنێ نەشێت پارەیا نوکە یا ئەرێنی بپارێزیت.</value></data>
+  <data name="The required quantity exceeds the supported whole-number range." xml:space="preserve"><value>ژمارەیا پێدڤی ژ سنوورێ ژمارێن تەواو یێن پشتەڤانیکری دەرباز دبیت.</value></data>
+  <data name="Scenario contribution after included campaign cost" xml:space="preserve"><value>پارەیێ د سیناریۆیێ دا پشتی تێچوونا کەمپەینێ یا هژمارتی دمینیت</value></data>
+  <data name="Under your sales assumption, the discount increases contribution. This is not a prediction or guaranteed saving." xml:space="preserve"><value>ل دویڤ گریمانەیا تە یا فرۆتنێ، داشکاندن پارەیێ مای زێدە دکەت. ئەڤە نە پێشبینی یان پاشەکەفتەکا مسۆگەرە.</value></data>
+  <data name="Under your sales assumption, the discount does not increase contribution." xml:space="preserve"><value>ل دویڤ گریمانەیا تە یا فرۆتنێ، داشکاندن پارەیێ مای زێدە ناکەت.</value></data>
+  <data name="No expected sales were entered. Scenario totals and a recommendation are not calculated." xml:space="preserve"><value>فرۆتنا چاوەڕێکری نەهاتیە نڤیسین. کۆمێن سیناریۆیێ و ڕاسپاردە ناهێنە هژمارتن.</value></data>
+  <data name="Contribution is not net profit. Rent, monthly salaries and other unentered costs are excluded. Do not count expenses already included in unit costs again." xml:space="preserve"><value>پارەیێ مای نە قازانجێ سافییە. کرێ، مووچەیێن هەیڤانە و تێچوونێن دی یێن نەهاتی نڤیسین نەهژمارتی نە. مەسرەفێن د تێچوونا دانەیێ دا هژمارتی دووبارە نەهژمێرە.</value></data>
+  <data name="Discounted prices are rounded to two decimals before calculating contribution and the required sales quantity." xml:space="preserve"><value>بهایێ پشتی داشکاندنێ بۆ دوو ژمارێن دەهەکی دهێتە نزیککرن، بەری هژمارتنا پارەیێ مای و ژمارەیا فرۆتنێ یا پێدڤی.</value></data>
+  <data name="Enter a discount greater than 0 and less than 100%, with at most four decimal places." xml:space="preserve"><value>داشکاندنەکێ مەزنتر ژ 0 و بچووکتر ژ 100% بنڤیسە، ب هەتا چار ژمارێن دەهەکی.</value></data>
+  <data name="Enter a positive whole number of current sales." xml:space="preserve"><value>بۆ فرۆتنا نوکە ژمارەیەکا تەواو و ئەرێنی بنڤیسە.</value></data>
+  <data name="Expected sales must be a non-negative whole number." xml:space="preserve"><value>فرۆتنا چاوەڕێکری دڤێ ژمارەیەکا تەواو و نە نەرێنی بیت.</value></data>
+  <data name="These prices, quantities or campaign costs exceed the supported calculation range." xml:space="preserve"><value>ئەڤ بها، ژمارە یان تێچوونێن کەمپەینێ ژ سنوورێ هژمارتنێ یێ پشتەڤانیکری دەرباز دبن.</value></data>
+  <data name="Enter a non-negative amount with at most two decimal places within the supported range." xml:space="preserve"><value>بڕەکێ نە نەرێنی ب هەتا دوو ژمارێن دەهەکی د ناڤ سنوورێ پشتەڤانیکری دا بنڤیسە.</value></data>
 </root>
