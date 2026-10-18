@@ -77,7 +77,17 @@ public sealed class WhatIfPagesController(ISender sender, WhatIfPreviewProofServ
             or ArgumentOutOfRangeException or ArgumentException)
         {
             if (exception is ValidationException or RequestValidationException)
+            {
                 AddValidationErrors(exception);
+                // Application requests are nested; this website form is flat. Map only the
+                // displayed error keys, keeping validation rules and HTTP status unchanged.
+                foreach (var entry in ModelState.Where(x => x.Key.StartsWith("Request.", StringComparison.Ordinal)).ToArray())
+                {
+                    var messages = entry.Value!.Errors.Select(x => x.ErrorMessage).ToArray();
+                    ModelState.Remove(entry.Key);
+                    foreach (var message in messages) ModelState.AddModelError(entry.Key["Request.".Length..], message);
+                }
+            }
             else ModelState.AddModelError(string.Empty, Text("Please check the supplied values and try again."));
             return InvalidForm("Index", model);
         }

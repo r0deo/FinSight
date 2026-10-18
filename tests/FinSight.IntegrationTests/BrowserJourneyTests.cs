@@ -94,11 +94,26 @@ public sealed partial class BrowserJourneyTests(BrowserApiFactory factory) : ICl
         await page.GotoAsync($"/simulations/preview?productId={productId}");
         await page.Locator("#CurrentSalesQuantity").FillAsync("100");
         await page.Locator("#ProposedPrice").FillAsync("4500");
+        await page.Locator("#CurrentSalesQuantity").FillAsync("-1");
+        var invalidPricing = await page.RunAndWaitForResponseAsync(
+            () => page.Locator("[data-decision-form] button[type=submit]").ClickAsync(), r => r.Request.Method == "POST" && r.Url.EndsWith("/simulations/preview"));
+        Assert.Equal(400, invalidPricing.Status);
+        await Expect(page.Locator("#CurrentSalesQuantity")).ToBeFocusedAsync();
+        await Expect(page.Locator("dialog[open]")).ToHaveCountAsync(0);
+        await page.Locator("#CurrentSalesQuantity").FillAsync("100");
         await page.Locator("[data-decision-form] button[type=submit]").ClickAsync();
         await Expect(page.Locator("[data-decision-results]")).ToBeVisibleAsync();
+        await InspectResultModal(page, "pricing-result", "[data-decision-form]", "[data-decision-form] button[type=submit]", culture, width);
+        using (var scope = factory.Services.CreateScope())
+            Assert.False(await scope.ServiceProvider.GetRequiredService<FinSightDbContext>().PricingSimulations.AnyAsync(x => x.BusinessId == tenant));
+        await page.Locator("#ProposedPrice").FillAsync("4600");
+        await Expect(page.Locator("[data-result-open='pricing-result']")).ToBeHiddenAsync();
+        await page.Locator("[data-decision-form] button[type=submit]").ClickAsync();
+        await Expect(page.Locator("dialog[open] [name=ProposedPrice]")).ToHaveValueAsync("4600");
         await page.Locator("[data-decision-save] button").ClickAsync();
         await page.WaitForURLAsync(url => System.Text.RegularExpressions.Regex.IsMatch(url, @"/simulations/[a-f0-9-]{36}$"));
         await Layout(page, culture, width, "pricing");
+        await Expect(page.Locator("dialog[open]")).ToHaveCountAsync(0);
         await page.GotoAsync($"/simulations/preview?productId={productId}");
         await page.Locator($"a[href='/what-if?productId={productId}']").ClickAsync();
         await Expect(page.Locator("#UsePriceResponse")).ToHaveCountAsync(0);
@@ -107,14 +122,25 @@ public sealed partial class BrowserJourneyTests(BrowserApiFactory factory) : ICl
         await page.Locator("#CurrentQuantity").FillAsync("100");
         await page.Locator("[data-preset=cost]").ClickAsync();
         await page.Locator("[data-preset=demand]").ClickAsync();
+        await page.Locator("#CurrentQuantity").FillAsync("-1");
+        var invalidWhatIf = await page.RunAndWaitForResponseAsync(
+            () => page.Locator("[data-what-if-form] button[type=submit]").ClickAsync(), r => r.Request.Method == "POST" && r.Url.EndsWith("/what-if/preview"));
+        Assert.Equal(400, invalidWhatIf.Status);
+        await Expect(page.Locator("#CurrentQuantity")).ToBeFocusedAsync();
+        await Expect(page.Locator("dialog[open]")).ToHaveCountAsync(0);
+        await page.Locator("#CurrentQuantity").FillAsync("100");
         await page.Locator("[data-what-if-form] button[type=submit]").ClickAsync();
         await Expect(page.Locator("[data-what-if-results]").First).ToBeVisibleAsync();
         await Layout(page, culture, width, "shock");
+        await InspectResultModal(page, "what-if-result", "[data-what-if-form]", "[data-what-if-form] button[type=submit]", culture, width);
+        using (var scope = factory.Services.CreateScope())
+            Assert.False(await scope.ServiceProvider.GetRequiredService<FinSightDbContext>().WhatIfSimulations.AnyAsync(x => x.BusinessId == tenant));
         await page.Locator("#UsePriceResponse").CheckAsync();
         await Expect(page.Locator("#AlternativePrice")).ToBeVisibleAsync();
         await page.Locator("#AlternativePrice").FillAsync("4500");
         await Expect(page.Locator("#AlternativePriceQuantity")).ToHaveValueAsync("90");
         await Expect(page.Locator("[data-what-if-save]")).ToBeHiddenAsync();
+        await Expect(page.Locator("[data-result-open='what-if-result']")).ToBeHiddenAsync();
         await page.Locator("[data-what-if-form] button[type=submit]").ClickAsync();
         await Expect(page.Locator("[data-what-if-save]")).ToBeVisibleAsync();
         await Layout(page, culture, width, "responses");
@@ -122,6 +148,7 @@ public sealed partial class BrowserJourneyTests(BrowserApiFactory factory) : ICl
         page.Request += (_, request) => { if (request.Method == "POST" && request.Url.EndsWith("/what-if/save")) saveRequests++; };
         await page.Locator("[data-what-if-save] button").ClickAsync(new() { ClickCount = 2 });
         await page.WaitForURLAsync(url => System.Text.RegularExpressions.Regex.IsMatch(url, @"/what-if/[a-f0-9-]{36}$"));
+        await Expect(page.Locator("dialog[open]")).ToHaveCountAsync(0);
         Assert.Equal(1, saveRequests);
         using (var scope = factory.Services.CreateScope())
         {
@@ -163,6 +190,20 @@ public sealed partial class BrowserJourneyTests(BrowserApiFactory factory) : ICl
         await Layout(page, culture, width, "cost-adjustment");
         await page.Locator("[data-cost-adjustment-result]").ScrollIntoViewIfNeededAsync();
         await page.ScreenshotAsync(new() { Path = Path.Combine(AppContext.BaseDirectory, "TestResults", "browser", $"{culture}-{width}-cost-adjustment-detail.png") });
+        await InspectResultModal(page, "cost-adjustment-result", "[data-cost-adjustment]", "[data-cost-adjustment] button[type=submit]", culture, width);
+        await page.Locator("#Percent").FillAsync("20");
+        await Expect(page.Locator("[data-result-open='cost-adjustment-result']")).ToBeHiddenAsync();
+        await page.Locator("[data-cost-adjustment] button").ClickAsync();
+        await Expect(page.Locator("dialog[open] [data-cost-adjustment-result]")).ToContainTextAsync(30m.ToString("N2", numberCulture));
+        await Expect(page.Locator("dialog[open] [data-cost-adjustment-result]")).ToContainTextAsync(120m.ToString("N2", numberCulture));
+        await page.Keyboard.PressAsync("Escape");
+        await page.Locator("#Percent").FillAsync("-1");
+        var invalidAdjustment = await page.RunAndWaitForResponseAsync(
+            () => page.Locator("[data-cost-adjustment] button").ClickAsync(), r => r.Request.Method == "POST" && r.Url.EndsWith("/business-costs/adjustment"));
+        Assert.Equal(400, invalidAdjustment.Status);
+        await Expect(page.Locator("dialog[open]")).ToHaveCountAsync(0);
+        await Expect(page.Locator("#Percent")).ToBeFocusedAsync();
+        await Expect(page.Locator("#adjustment-percent-error")).ToBeVisibleAsync();
         // Switching language from a POST result returns safely to the same month, never to a POST-only URL.
         await page.Locator("#site-language").SelectOptionAsync(culture == "en" ? "ar-IQ" : "en");
         await page.WaitForURLAsync("**/business-costs?month=2026-10");
@@ -181,7 +222,7 @@ public sealed partial class BrowserJourneyTests(BrowserApiFactory factory) : ICl
             Assert.Equal(new DateOnly(2026,10,1), entry.Month);
             Assert.NotNull((await scope.ServiceProvider.GetRequiredService<FinSightDbContext>().BusinessCostMonths.SingleAsync(x => x.BusinessId == tenant)).ReviewedAtUtc);
         }
-        Assert.True(errors.Count == 0, string.Join(Environment.NewLine, errors));
+        Assert.All(errors, error => Assert.True(error.Contains("Failed to load resource") && error.Contains("400"), error));
         if (culture == "en" && width == 1440)
         {
             // Failure paths use the real server, not a mocked success/error response.

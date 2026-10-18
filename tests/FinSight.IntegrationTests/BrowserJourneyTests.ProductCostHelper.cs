@@ -72,6 +72,8 @@ public sealed partial class BrowserJourneyTests
         var fieldError = page.Locator("[data-valmsg-for='CostHelper.Ingredients[0].PackQuantity']");
         await Expect(fieldError).ToBeVisibleAsync();
         Assert.False(string.IsNullOrWhiteSpace(await fieldError.InnerTextAsync()));
+        await Expect(page.Locator("[name='CostHelper.Ingredients[0].PackQuantity']")).ToBeFocusedAsync();
+        await Expect(page.Locator("dialog[open]")).ToHaveCountAsync(0);
         Assert.All(await page.Locator(".validation-summary-errors li").AllTextContentsAsync(), text => Assert.False(string.IsNullOrWhiteSpace(text)));
         await Expect(page.Locator("[name='CostHelper.Ingredients[0].PackUnit']")).ToHaveValueAsync("Kilogram");
         await Expect(page.Locator("[name='CostHelper.Ingredients[0].PackPrice']")).ToHaveValueAsync("12000");
@@ -81,7 +83,18 @@ public sealed partial class BrowserJourneyTests
         await Expect(page.Locator("[data-product-cost-result]")).ToBeVisibleAsync();
         await Expect(page.Locator(".validation-summary-errors")).ToHaveCountAsync(0);
         await Layout(page, culture, width, "product-cost-review");
+        await InspectResultModal(page, "product-cost-result", "[data-product-form]", "button[value=calculate]", culture, width);
+        using (var scope = factory.Services.CreateScope())
+            Assert.False(await scope.ServiceProvider.GetRequiredService<FinSightDbContext>().Products.AnyAsync(x => x.BusinessId == tenant));
+        await page.Locator("[name='CostHelper.PackagingPerUnit']").FillAsync("300");
+        await Expect(page.Locator("[data-result-open='product-cost-result']")).ToBeHiddenAsync();
+        await page.Locator("button[value=calculate]").ClickAsync();
+        await Expect(page.Locator("dialog[open] [data-product-cost-result]")).ToContainTextAsync(1500m.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo(culture)));
+        await page.Keyboard.PressAsync("Escape");
+        await page.Locator("[name='CostHelper.PackagingPerUnit']").FillAsync("200");
+        await page.Locator("button[value=calculate]").ClickAsync();
         await page.Locator("button[value=use]").ClickAsync();
+        await Expect(page.Locator("dialog[open]")).ToHaveCountAsync(0);
         await Expect(page.Locator("#UnitCost")).ToHaveValueAsync("1400");
         using (var scope = factory.Services.CreateScope())
             Assert.False(await scope.ServiceProvider.GetRequiredService<FinSightDbContext>().Products.AnyAsync(x => x.BusinessId == tenant));
@@ -96,6 +109,7 @@ public sealed partial class BrowserJourneyTests
             id = saved.Id; Assert.Equal(1400m, saved.UnitCost); Assert.NotNull(saved.CostBreakdown);
         }
         await page.GotoAsync($"/products/{id}/edit");
+        await Expect(page.Locator("dialog[open]")).ToHaveCountAsync(0);
         await page.Locator("[data-cost-helper] summary").ClickAsync();
         await Expect(page.Locator("[name='CostHelper.Ingredients[0].Name']")).ToHaveValueAsync("Rice");
         await page.Locator("[name='CostHelper.Ingredients[0].PackPrice']").FillAsync("18000");

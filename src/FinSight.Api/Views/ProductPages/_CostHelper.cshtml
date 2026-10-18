@@ -48,7 +48,12 @@
 <button class="button button-quiet" type="submit" name="costAction" value="cancel" formnovalidate>@T["Cancel calculation"]</button>
 <button class="button button-quiet" type="submit" name="costAction" value="manual" formnovalidate>@T["Keep manual unit cost"]</button>
 </div>
-@if (Model.CostPreview is { } preview) {
+<p>@T["This estimate covers only the ingredients and optional variable costs you entered, not every business cost or net profit."]</p>
+<p>@T["Keep monthly rent and salaries in Business Costs. They are not automatically allocated to this product."] <a href="/business-costs">@T["Business costs"]</a></p>
+</details>
+@if (ViewData.ModelState.IsValid && Model.CostPreview is { } preview) {
+<result-modal id="product-cost-result" title="@T["Estimated unit cost"]" source-form="[data-product-form]" return-focus="[data-product-form] button[value=calculate]"
+    auto-open="@(ViewData.ModelState.IsValid && Model.HelperOpen && Context.Request.Method == "POST" && Context.Request.Form["costAction"] == "calculate")">
 <section class="notice" data-product-cost-result aria-live="polite"><h2>@T["Estimated unit cost"]: <bdi dir="ltr">@Money(preview.Result.EstimatedUnitCost) @Model.Currency</bdi></h2>
 <ul>@for (var i = 0; i < preview.Inputs.Ingredients.Count; i++) { <li><bdi>@preview.Inputs.Ingredients[i].Name</bdi>: <bdi dir="ltr">@Money(preview.Result.IngredientCosts[i]) @Model.Currency</bdi></li> }</ul>
 <p>@T["Total ingredients used in batch"]: <bdi dir="ltr">@Money(preview.Result.TotalIngredientCost) @Model.Currency</bdi></p>
@@ -57,9 +62,9 @@
 <p>@T["Packaging per serving (optional)"]: @if (preview.Inputs.PackagingPerUnit is { } packaging) { <bdi dir="ltr">@Money(packaging) @Model.Currency</bdi> } else { @T["Not entered — excluded, not assumed zero"] }</p>
 <p>@T["Other variable costs per serving (optional)"]: @if (preview.Inputs.OtherVariableCostPerUnit is { } other) { <bdi dir="ltr">@Money(other) @Model.Currency</bdi> } else { @T["Not entered — excluded, not assumed zero"] }</p>
 <p>@T["Displayed amounts are rounded to two decimals. Calculations keep precision until the final unit cost is rounded."]</p>
+<p>@T["This estimate covers only the ingredients and optional variable costs you entered, not every business cost or net profit."]</p>
+<p>@T["Keep monthly rent and salaries in Business Costs. They are not automatically allocated to this product."]</p>
 <button class="button" type="submit" name="costAction" value="use" formnovalidate>@T["Use this unit cost"]</button>
 </section>
+</result-modal>
 }
-<p>@T["This estimate covers only the ingredients and optional variable costs you entered, not every business cost or net profit."]</p>
-<p>@T["Keep monthly rent and salaries in Business Costs. They are not automatically allocated to this product."] <a href="/business-costs">@T["Business costs"]</a></p>
-</details>

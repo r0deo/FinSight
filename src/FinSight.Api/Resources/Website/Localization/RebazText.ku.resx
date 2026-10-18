@@ -576,4 +576,6 @@
   <data name="Enter this quantity." xml:space="preserve"><value>ڤی بڕی بنڤیسە.</value></data>
   <data name="Enter the purchase-pack price." xml:space="preserve"><value>بهایێ پاکێتا کڕینێ بنڤیسە.</value></data>
   <data name="Enter the usable batch output." xml:space="preserve"><value>ژمارا پشک یان دانەیێن چێکری یێن بکار دێن بنڤیسە.</value></data>
+  <data name="Close results" xml:space="preserve"><value>داخستنا ئەنجامان</value></data>
+  <data name="View calculation results" xml:space="preserve"><value>ئەنجامێن حیسابێ ببینە</value></data>
 </root>

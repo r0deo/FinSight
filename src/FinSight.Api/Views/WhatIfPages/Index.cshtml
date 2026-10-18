@@ -33,6 +33,7 @@
         <fieldset class="what-if-fieldset" data-cost-assumption><legend>@T["How will unit cost change?"]</legend>
             <label class="checkbox-label"><input type="radio" asp-for="CostInputMode" value="Percentage" checked="@(Model.CostInputMode == CostShockInputMode.Percentage)" /> @T["Cost increase percentage"]</label>
             <label class="checkbox-label"><input type="radio" asp-for="CostInputMode" value="NewUnitCost" checked="@(Model.CostInputMode == CostShockInputMode.NewUnitCost)" /> @T["Resulting new unit cost"]</label>
+            <span asp-validation-for="CostInputMode"></span>
             <div class="field-grid">
                 <div class="field" data-cost-percent><label for="CostIncreasePercent">@T["Cost increase (%)"]</label><input asp-for="CostIncreasePercent" type="text" inputmode="decimal" dir="ltr" /><span asp-validation-for="CostIncreasePercent"></span></div>
                 <div class="field" data-cost-direct><label for="NewUnitCost">@T["New total unit cost"]</label><input asp-for="NewUnitCost" type="text" inputmode="decimal" dir="ltr" /><span asp-validation-for="NewUnitCost"></span></div>
@@ -41,21 +42,6 @@
             <button type="button" class="button button-quiet" data-preset="cost">@T["Illustration only: 20% higher unit cost"]</button>
         </fieldset>
         <div class="field" data-month-context><label for="ContextMonth">@T["Monthly cost context (optional; monthly simulations only)"]</label><input asp-for="ContextMonth" type="month" min="2000-01" max="2100-12" dir="ltr" /><span asp-validation-for="ContextMonth"></span></div>
-        @if (Model.Result is not null)
-        {
-            <div data-what-if-results>
-            <h2>@T["3. Understand the impact"]</h2>
-            @if (Model.CostContext is not null) { <partial name="_SimulationCostContext" model="Model.CostContext" /> }
-            <partial name="_WhatIfResult" model="@(new WhatIfDisplayViewModel(Model.ProductName, Model.Currency, Model.Period,
-                new(Model.CurrentPrice, Model.CurrentUnitCost, Model.CurrentQuantity!.Value, Model.CostInputMode,
-                    Model.CostInputMode == CostShockInputMode.Percentage ? Model.CostIncreasePercent : null,
-                    Model.CostInputMode == CostShockInputMode.NewUnitCost ? Model.NewUnitCost : null,
-                    Model.SalesDeclinePercent!.Value, Model.UsePriceResponse ? Model.AlternativePrice : null,
-                    Model.UsePriceResponse ? Model.AlternativePriceQuantity : null,
-                    Model.UseSupplierResponse ? Model.AlternativeSupplierCost : null,
-                    Model.UseSupplierResponse ? Model.AlternativeSupplierQuantity : null), Model.Result, false))" />
-            </div>
-        }
         @if (Model.Result is not null || Model.UsePriceResponse || Model.UseSupplierResponse)
         {
         <fieldset class="what-if-fieldset"><legend>@T["Possible responses (optional)"]</legend>
@@ -77,9 +63,21 @@
         <button class="button" type="submit">@T[Model.Result is null ? "Show impact" : "Compare responses"]</button>
     </form>
     <p data-what-if-stale hidden class="notice" role="status">@T["Assumptions changed. Calculate again before saving."]</p>
-    @if (Model.Result is { } result)
+    @if (ViewData.ModelState.IsValid && Model.Result is { } result)
     {
+        <result-modal id="what-if-result" title="@T["What if conditions change?"]" source-form="[data-what-if-form]" return-focus="[data-what-if-form] button[type=submit]" auto-open="@ViewData.ModelState.IsValid">
         <div data-what-if-results>
+            <h2>@T["3. Understand the impact"]</h2>
+            @if (Model.CostContext is not null) { <partial name="_SimulationCostContext" model="Model.CostContext" /> }
+            <partial name="_WhatIfResult" model="@(new WhatIfDisplayViewModel(Model.ProductName, Model.Currency, Model.Period,
+                new(Model.CurrentPrice, Model.CurrentUnitCost, Model.CurrentQuantity!.Value, Model.CostInputMode,
+                    Model.CostInputMode == CostShockInputMode.Percentage ? Model.CostIncreasePercent : null,
+                    Model.CostInputMode == CostShockInputMode.NewUnitCost ? Model.NewUnitCost : null,
+                    Model.SalesDeclinePercent!.Value, Model.UsePriceResponse ? Model.AlternativePrice : null,
+                    Model.UsePriceResponse ? Model.AlternativePriceQuantity : null,
+                    Model.UseSupplierResponse ? Model.AlternativeSupplierCost : null,
+                    Model.UseSupplierResponse ? Model.AlternativeSupplierQuantity : null), result, false))" />
+            <p>@T["4. Explore a response"] — @T["Possible responses (optional)"]</p>
             <form method="post" action="/what-if/save" asp-antiforgery="true" data-what-if-save>
                 <input type="hidden" name="ProductId" value="@Model.ProductId" />
                 <input type="hidden" name="Concern" value="@Model.Concern" />
@@ -105,6 +103,7 @@
                 <button class="button" type="submit">@T["Save this what-if scenario"]</button>
             </form>
         </div>
+        </result-modal>
     }
     <p><a href="/what-if/history">@T["Saved what-if history"]</a> · <a href="/what-if">@T["Choose another product"]</a></p>
 </section>

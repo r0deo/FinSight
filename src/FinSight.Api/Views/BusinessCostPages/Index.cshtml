@@ -53,12 +53,15 @@ else { <p>@T["No percentage is shown because the previous recorded operating amo
 <p>@T["Choose your own assumption. This is conditional arithmetic, not predicted savings or net profit. No entries or simulations will change."]</p>
 @if (Model.AdjustmentForm.Categories.Count > 0) { <partial name="_AdjustmentForm" model="Model.AdjustmentForm" /> }
 else { <p>@T["Record an operating cost first to try an adjustment."]</p> }
-@if (Model.Adjustment is { } adjustment) {
+@if (ViewData.ModelState.IsValid && Model.Adjustment is { } adjustment) {
+<result-modal id="cost-adjustment-result" title="@T["Conditional result — if your assumption holds"]" source-form="[data-cost-adjustment]" return-focus="[data-cost-adjustment] button[type=submit]" auto-open="@ViewData.ModelState.IsValid">
 <div class="notice" data-cost-adjustment-result role="status"><h3>@T["Conditional result — if your assumption holds"]</h3>
+<p><bdi dir="ltr">@month</bdi> · @T["Choose your own assumption. This is conditional arithmetic, not predicted savings or net profit. No entries or simulations will change."]</p>
 <p>@T[CostLabels.Category(adjustment.Category)]: <bdi dir="ltr">@adjustment.CategoryAmount.ToString("N2") @Model.Currency</bdi> · <bdi dir="ltr">@adjustment.Percent.ToString("N2")%</bdi></p>
 <p>@T["Potential monthly saving"]: <bdi dir="ltr">@adjustment.PotentialSaving.ToString("N2") @Model.Currency</bdi></p>
 <p>@T["Revised recorded operating total"]: <bdi dir="ltr">@adjustment.RevisedRecordedTotal.ToString("N2") @Model.Currency</bdi></p>
 <p>@T["This includes any estimates in the selected category. It excludes inventory purchases and unrecorded costs."]</p></div>
+</result-modal>
 }
 </section>
 <section class="notice"><h2>@T["Commonly forgotten costs — review checklist"]</h2>

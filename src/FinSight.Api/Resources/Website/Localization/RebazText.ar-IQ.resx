@@ -576,4 +576,6 @@
   <data name="Enter this quantity." xml:space="preserve"><value>أدخل هذه الكمية.</value></data>
   <data name="Enter the purchase-pack price." xml:space="preserve"><value>أدخل سعر عبوة الشراء.</value></data>
   <data name="Enter the usable batch output." xml:space="preserve"><value>أدخل عدد الحصص أو القطع الصالحة الناتجة.</value></data>
+  <data name="Close results" xml:space="preserve"><value>إغلاق النتائج</value></data>
+  <data name="View calculation results" xml:space="preserve"><value>عرض نتائج الحساب</value></data>
 </root>

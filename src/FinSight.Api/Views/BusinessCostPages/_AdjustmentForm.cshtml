@@ -1,10 +1,14 @@
 @model CostAdjustmentForm
+@{
+    var globalError = ViewData.ModelState[string.Empty]?.Errors.FirstOrDefault()?.ErrorMessage;
+    var categoryError = globalError is not null && !Model.Categories.Contains(Model.Category);
+}
 <form method="post" action="/business-costs/adjustment" asp-antiforgery="true" class="filters" data-cost-adjustment>
     <input type="hidden" asp-for="Month" />
     <div class="field"><label for="cost-category">@T["Operating-cost category"]</label>
-    <select asp-for="Category" id="cost-category">
+    <select asp-for="Category" id="cost-category" aria-invalid="@(categoryError ? "true" : null)" aria-describedby="adjustment-category-error">
         @foreach (var category in Model.Categories) { <option value="@category">@T[CostLabels.Category(category)]</option> }
-    </select></div>
-    <div class="field"><label asp-for="Percent"></label><input asp-for="Percent" id="Percent" type="text" inputmode="decimal" dir="ltr" required /></div>
+    </select><span asp-validation-for="Category"></span><span id="adjustment-category-error" class="field-validation-error">@(categoryError ? globalError : null)</span></div>
+    <div class="field"><label asp-for="Percent"></label><input asp-for="Percent" id="Percent" type="text" inputmode="decimal" dir="ltr" required aria-invalid="@(globalError is not null && !categoryError ? "true" : null)" aria-describedby="adjustment-percent-error" /><span asp-validation-for="Percent"></span><span id="adjustment-percent-error" class="field-validation-error">@(!categoryError ? globalError : null)</span></div>
     <button type="submit" class="button button-quiet">@T["Calculate assumed saving"]</button>
 </form>

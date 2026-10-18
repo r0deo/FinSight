@@ -576,4 +576,6 @@
   <data name="Enter this quantity." xml:space="preserve"><value>Enter this quantity.</value></data>
   <data name="Enter the purchase-pack price." xml:space="preserve"><value>Enter the purchase-pack price.</value></data>
   <data name="Enter the usable batch output." xml:space="preserve"><value>Enter the usable batch output.</value></data>
+  <data name="Close results" xml:space="preserve"><value>Close results</value></data>
+  <data name="View calculation results" xml:space="preserve"><value>View calculation results</value></data>
 </root>

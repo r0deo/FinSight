@@ -932,4 +932,19 @@ legend {
 .product-cost-helper .form-actions { flex-wrap:wrap; }
 .product-cost-helper [data-product-cost-result] { overflow-wrap:anywhere; }
 input[type="month"], textarea { max-width:100%; min-width:0; }
+/* One result dialog for all calculators; ordinary pages and saved histories stay pages. */
+.result-reopen { margin-block:16px; }
+dialog.result-modal { inline-size:min(960px, calc(100vw - 24px)); max-inline-size:calc(100vw - 24px); max-block-size:calc(100dvh - 24px); padding:0; margin:auto; border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); color:var(--text); box-shadow:0 20px 80px #0009; overflow:hidden; }
+dialog.result-modal[open] { display:flex; flex-direction:column; }
+.result-modal::backdrop { background:#000b; }
+.result-modal-header { display:flex; flex-shrink:0; align-items:center; justify-content:space-between; gap:16px; padding:16px 20px; border-block-end:1px solid var(--border); }
+.result-modal-header h2 { margin:0; font-size:clamp(18px, 3vw, 26px); overflow-wrap:anywhere; }
+.result-modal-header button { flex-shrink:0; }
+.result-modal-body { padding:clamp(16px, 3vw, 28px); min-block-size:0; overflow-y:auto; overscroll-behavior:contain; overflow-wrap:anywhere; }
+.result-modal-body > :first-child { margin-block-start:0; }
+.result-modal-open { overflow:hidden; }
+@media (max-width:480px) {
+    .result-modal-header { align-items:flex-start; flex-wrap:wrap; gap:10px; padding:14px; }
+    .result-modal-header button { margin-inline-start:auto; }
+}
 [hidden] { display:none !important; }

@@ -30,8 +30,9 @@
         <div class="field" data-month-context><label for="ContextMonth">@T["Monthly cost context (optional; monthly simulations only)"]</label><input asp-for="ContextMonth" type="month" min="2000-01" max="2100-12" dir="ltr" /><span asp-validation-for="ContextMonth"></span></div>
         <button class="button" type="submit">@T["Calculate preview"]</button>
     </form>
-    @if (Model.Result is { } decision)
+    @if (ViewData.ModelState.IsValid && Model.Result is { } decision)
     {
+        <result-modal id="pricing-result" title="@T["Preview a price change"]" source-form="[data-decision-form]" return-focus="[data-decision-form] button[type=submit]" auto-open="@ViewData.ModelState.IsValid">
         <div data-decision-results>
             @if (Model.CostContext is not null) { <partial name="_SimulationCostContext" model="Model.CostContext" /> }
             <partial name="_DecisionResult" model="@(new DecisionDisplayViewModel(decision, Model.ComparisonPeriod, Model.CurrentPrice, Model.ProposedPrice, Model.CurrentSalesQuantity, Model.ExpectedSalesQuantity, Model.DeclinePercentage, Model.Currency))" />
@@ -49,6 +50,7 @@
                 <small>@T["Saving is explicit. Preview alone never creates a history record."]</small>
             </form>
         </div>
+        </result-modal>
     }
     <p><a href="/simulations">@T["Saved simulation history"]</a> · <a href="/products">@T["Choose another product"]</a></p>
     <p><a href="/business-costs">@T["Business costs"]</a> — @T["A full business operating result requires sales and costs across the business for the same period."]</p>
