@@ -64,7 +64,7 @@ public partial class WebsiteTests
             ["returnUrl"] = "/business-costs?month=2026-11" }, "/business-costs?month=2026-11");
         Assert.Equal("/business-costs?month=2026-11", response.Headers.Location!.OriginalString);
         var html = WebUtility.HtmlDecode(await browser.GetStringAsync(response.Headers.Location));
-        Assert.Contains("تكاليف النشاط", html);
+        Assert.Contains("تكاليف العمل", html);
         Assert.Contains("2026-11", html);
     }
     [Fact]

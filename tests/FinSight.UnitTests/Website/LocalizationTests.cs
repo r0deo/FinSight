@@ -53,6 +53,8 @@ public class LocalizationTests
             Assert.Equal("Only English fallback", text["Only English fallback"].Value);
             CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo(WebsiteCultures.Arabic);
             Assert.Equal("المنتجات", text["Products"].Value);
+            Assert.Equal("تكاليف العمل", text["Business costs"].Value);
+            Assert.Equal("اسم العمل التجاري", text["Business name"].Value);
             Assert.Contains("تأكيد", emailText["ConfirmationSubject"].Value);
         }
         finally { CultureInfo.CurrentUICulture = previous; }

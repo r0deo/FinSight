@@ -18,12 +18,12 @@
   <data name="Know your menu." xml:space="preserve"><value>تعرّف على قائمتك.</value></data>
   <data name="Know your numbers." xml:space="preserve"><value>وافهم أرقامك.</value></data>
   <data name="Bring your products, selling prices, and unit costs into one simple workspace. Built for the people behind the counter." xml:space="preserve"><value>اجمع منتجاتك وأسعار بيعها وتكلفة الوحدة في مكان عمل بسيط واحد. صُمم لأصحاب المطاعم والمقاهي.</value></data>
-  <data name="Set up your business" xml:space="preserve"><value>أنشئ نشاطك التجاري</value></data>
+  <data name="Set up your business" xml:space="preserve"><value>أنشئ عملك التجاري</value></data>
   <data name="Already a member? Log in" xml:space="preserve"><value>لديك حساب؟ سجّل الدخول</value></data>
   <data name="YOUR FIRST FEW MINUTES" xml:space="preserve"><value>خطواتك الأولى</value></data>
   <data name="Less setup." xml:space="preserve"><value>إعداد أقل.</value></data>
   <data name="More clarity." xml:space="preserve"><value>وضوح أكثر.</value></data>
-  <data name="Create your business" xml:space="preserve"><value>أنشئ نشاطك التجاري</value></data>
+  <data name="Create your business" xml:space="preserve"><value>أنشئ عملك التجاري</value></data>
   <data name="One workspace for your restaurant or café." xml:space="preserve"><value>مساحة عمل واحدة لمطعمك أو مقهاك.</value></data>
   <data name="Secure your account" xml:space="preserve"><value>أمّن حسابك</value></data>
   <data name="Use Google, or confirm your email when email registration is available." xml:space="preserve"><value>استخدم Google أو أكّد بريدك الإلكتروني عندما يتوفر التسجيل بالبريد.</value></data>
@@ -43,12 +43,12 @@
   <data name="Decide with context" xml:space="preserve"><value>اتخذ قرارك عن معرفة</value></data>
   <data name="A preview is an estimate, not a guarantee of future sales. It never changes your product or saves a simulation." xml:space="preserve"><value>المعاينة تقدير وليست ضماناً للمبيعات المستقبلية. لا تغيّر المنتج ولا تحفظ المحاكاة.</value></data>
   <data name="Welcome back" xml:space="preserve"><value>أهلاً بعودتك</value></data>
-  <data name="YOUR BUSINESS, IN FOCUS" xml:space="preserve"><value>نشاطك في متناولك</value></data>
+  <data name="YOUR BUSINESS, IN FOCUS" xml:space="preserve"><value>عملك في متناولك</value></data>
   <data name="Welcome" xml:space="preserve"><value>أهلاً</value></data>
   <data name="back." xml:space="preserve"><value>بعودتك.</value></data>
   <data name="Pick up where you left off. Your menu is ready when you are." xml:space="preserve"><value>تابع من حيث توقفت. قائمتك بانتظارك.</value></data>
   <data name="Log in to Rebaz" xml:space="preserve"><value>تسجيل الدخول إلى ريباز</value></data>
-  <data name="Use your confirmed business account." xml:space="preserve"><value>استخدم حساب نشاطك التجاري المؤكّد.</value></data>
+  <data name="Use your confirmed business account." xml:space="preserve"><value>استخدم حساب عملك التجاري المؤكّد.</value></data>
   <data name="Sign in to continue. Your previous session may have expired." xml:space="preserve"><value>سجّل الدخول للمتابعة. ربما انتهت جلستك السابقة.</value></data>
   <data name="New to Rebaz?" xml:space="preserve"><value>جديد على ريباز؟</value></data>
   <data name="Resend confirmation email" xml:space="preserve"><value>إعادة إرسال رسالة التأكيد</value></data>
@@ -57,19 +57,19 @@
   <data name="MAKE ROOM FOR CLARITY" xml:space="preserve"><value>ابدأ بصورة أوضح</value></data>
   <data name="Your menu." xml:space="preserve"><value>قائمتك.</value></data>
   <data name="Your workspace." xml:space="preserve"><value>مساحة عملك.</value></data>
-  <data name="Sign in with Google and tell us about your business. Email registration also requires email confirmation when available." xml:space="preserve"><value>سجّل باستخدام Google وأخبرنا عن نشاطك. التسجيل بالبريد يتطلب تأكيد البريد عندما يكون متاحاً.</value></data>
-  <data name="You&apos;ll be the Owner of this business. Existing Owners and Managers can use the login page." xml:space="preserve"><value>ستكون مالك هذا النشاط. يمكن للمالكين والمديرين الحاليين استخدام صفحة تسجيل الدخول.</value></data>
-  <data name="Business details" xml:space="preserve"><value>بيانات النشاط التجاري</value></data>
+  <data name="Sign in with Google and tell us about your business. Email registration also requires email confirmation when available." xml:space="preserve"><value>سجّل باستخدام Google وأخبرنا عن عملك. التسجيل بالبريد يتطلب تأكيد البريد عندما يكون متاحاً.</value></data>
+  <data name="You&apos;ll be the Owner of this business. Existing Owners and Managers can use the login page." xml:space="preserve"><value>ستكون مالك هذا العمل. يمكن للمالكين والمديرين الحاليين استخدام صفحة تسجيل الدخول.</value></data>
+  <data name="Business details" xml:space="preserve"><value>بيانات العمل التجاري</value></data>
   <data name="e.g. Olive &amp; Bean Café" xml:space="preserve"><value>مثلاً: مقهى الزيتون والبُن</value></data>
   <data name="City or address" xml:space="preserve"><value>المدينة أو العنوان</value></data>
   <data name="Three-letter currency code, such as IQD, USD, or EUR." xml:space="preserve"><value>رمز العملة من ثلاثة أحرف، مثل IQD أو USD أو EUR.</value></data>
-  <data name="Business phone number or email" xml:space="preserve"><value>رقم هاتف النشاط أو بريده الإلكتروني</value></data>
+  <data name="Business phone number or email" xml:space="preserve"><value>رقم هاتف العمل أو بريده الإلكتروني</value></data>
   <data name="Your Owner account" xml:space="preserve"><value>حساب المالك</value></data>
   <data name="At least 8 characters, including uppercase, lowercase, a number, and a symbol." xml:space="preserve"><value>ثمانية أحرف على الأقل، تشمل حرفاً كبيراً وصغيراً ورقماً ورمزاً.</value></data>
-  <data name="Create business" xml:space="preserve"><value>إنشاء النشاط التجاري</value></data>
+  <data name="Create business" xml:space="preserve"><value>إنشاء العمل التجاري</value></data>
   <data name="Already registered?" xml:space="preserve"><value>لديك حساب بالفعل؟</value></data>
   <data name="Check your email" xml:space="preserve"><value>تحقق من بريدك الإلكتروني</value></data>
-  <data name="BUSINESS CREATED" xml:space="preserve"><value>تم إنشاء النشاط التجاري</value></data>
+  <data name="BUSINESS CREATED" xml:space="preserve"><value>تم إنشاء العمل التجاري</value></data>
   <data name="One more step." xml:space="preserve"><value>بقيت خطوة واحدة.</value></data>
   <data name="Check your inbox for the Rebaz confirmation email. Open the link, then log in to add your first product." xml:space="preserve"><value>تحقق من بريدك بحثاً عن رسالة تأكيد ريباز. افتح الرابط، ثم سجّل الدخول لإضافة منتجك الأول.</value></data>
   <data name="If you don&apos;t see it, check your spam folder. Your account needs a confirmed email before you can sign in." xml:space="preserve"><value>إذا لم تجد الرسالة، فتفقد البريد غير المرغوب فيه. يجب تأكيد بريدك قبل تسجيل الدخول.</value></data>
@@ -101,13 +101,13 @@
   <data name="Account settings" xml:space="preserve"><value>إعدادات الحساب</value></data>
   <data name="YOUR ACCOUNT" xml:space="preserve"><value>حسابك</value></data>
   <data name="Google connected" xml:space="preserve"><value>حساب Google مرتبط</value></data>
-  <data name="You can sign in with your connected Google account. Your business and role stay the same." xml:space="preserve"><value>يمكنك الدخول بحساب Google المرتبط. نشاطك وصلاحياتك لا تتغير.</value></data>
+  <data name="You can sign in with your connected Google account. Your business and role stay the same." xml:space="preserve"><value>يمكنك الدخول بحساب Google المرتبط. عملك وصلاحياتك لا تتغير.</value></data>
   <data name="Connect Google" xml:space="preserve"><value>ربط Google</value></data>
-  <data name="Optionally use Google to sign in to this account. This does not create another business or change your role." xml:space="preserve"><value>يمكنك اختيار تسجيل الدخول بهذا الحساب عبر Google. لن يُنشأ نشاط آخر ولن تتغير صلاحياتك.</value></data>
+  <data name="Optionally use Google to sign in to this account. This does not create another business or change your role." xml:space="preserve"><value>يمكنك اختيار تسجيل الدخول بهذا الحساب عبر Google. لن يُنشأ عمل آخر ولن تتغير صلاحياتك.</value></data>
   <data name="Google is not connected. Connecting Google is currently unavailable." xml:space="preserve"><value>Google غير مرتبط. الربط غير متاح حالياً.</value></data>
   <data name="Back to home" xml:space="preserve"><value>العودة للرئيسية</value></data>
-  <data name="FINISH YOUR BUSINESS SETUP" xml:space="preserve"><value>أكمل إعداد نشاطك</value></data>
-  <data name="Tell us about your business." xml:space="preserve"><value>أخبرنا عن نشاطك التجاري.</value></data>
+  <data name="FINISH YOUR BUSINESS SETUP" xml:space="preserve"><value>أكمل إعداد عملك</value></data>
+  <data name="Tell us about your business." xml:space="preserve"><value>أخبرنا عن عملك التجاري.</value></data>
   <data name="Signing up as" xml:space="preserve"><value>التسجيل بالبريد</value></data>
   <data name="Complete these details to create your Owner account." xml:space="preserve"><value>أكمل هذه البيانات لإنشاء حساب المالك.</value></data>
   <data name="Three-letter code, such as IQD or USD." xml:space="preserve"><value>رمز من ثلاثة أحرف، مثل IQD أو USD.</value></data>
@@ -131,7 +131,7 @@
   <data name="Back to products" xml:space="preserve"><value>العودة للمنتجات</value></data>
   <data name="KEEP YOUR MENU UP TO DATE" xml:space="preserve"><value>حدّث قائمتك</value></data>
   <data name="BUILD YOUR PRODUCT LIST" xml:space="preserve"><value>أنشئ قائمة منتجاتك</value></data>
-  <data name="Start with the details. Prices and costs use your business currency." xml:space="preserve"><value>ابدأ بالتفاصيل. الأسعار والتكاليف بعملة نشاطك التجاري.</value></data>
+  <data name="Start with the details. Prices and costs use your business currency." xml:space="preserve"><value>ابدأ بالتفاصيل. الأسعار والتكاليف بعملة عملك التجاري.</value></data>
   <data name="Product name" xml:space="preserve"><value>اسم المنتج</value></data>
   <data name="e.g. Cappuccino" xml:space="preserve"><value>مثلاً: كابتشينو</value></data>
   <data name="e.g. Coffee" xml:space="preserve"><value>مثلاً: قهوة</value></data>
@@ -144,7 +144,7 @@
   <data name="Cancel" xml:space="preserve"><value>إلغاء</value></data>
   <data name="A little detail goes a long way." xml:space="preserve"><value>التفاصيل الصغيرة تساعدك كثيراً.</value></data>
   <data name="is what a customer pays for one unit." xml:space="preserve"><value>هو ما يدفعه الزبون مقابل وحدة واحدة.</value></data>
-  <data name="is what it costs your business to make or buy that unit." xml:space="preserve"><value>هي تكلفة صنع أو شراء تلك الوحدة لنشاطك.</value></data>
+  <data name="is what it costs your business to make or buy that unit." xml:space="preserve"><value>هي تكلفة صنع أو شراء تلك الوحدة لعملك.</value></data>
   <data name="All fields except size are required. New products are active automatically." xml:space="preserve"><value>كل الحقول مطلوبة عدا الحجم. المنتجات الجديدة تكون نشطة تلقائياً.</value></data>
   <data name="YOUR MENU, ORGANIZED" xml:space="preserve"><value>قائمتك منظمة</value></data>
   <data name="Manage what you sell, its price, and its cost." xml:space="preserve"><value>أدر منتجاتك وأسعارها وتكاليفها.</value></data>
@@ -160,7 +160,7 @@
   <data name="Add your first product with its selling price and unit cost." xml:space="preserve"><value>أضف منتجك الأول مع سعر بيعه وتكلفة وحدته.</value></data>
   <data name="You can also include inactive products using the filter above." xml:space="preserve"><value>يمكنك أيضاً إظهار المنتجات غير النشطة باستخدام الفلتر أعلاه.</value></data>
   <data name="Product count" xml:space="preserve"><value>{0} منتج</value></data>
-  <data name="Amounts in your business currency" xml:space="preserve"><value>المبالغ بعملة نشاطك التجاري</value></data>
+  <data name="Amounts in your business currency" xml:space="preserve"><value>المبالغ بعملة عملك التجاري</value></data>
   <data name="Products with selling price, unit cost, status and actions" xml:space="preserve"><value>منتجات مع سعر البيع وتكلفة الوحدة والحالة والإجراءات</value></data>
   <data name="Product" xml:space="preserve"><value>المنتج</value></data>
   <data name="Status" xml:space="preserve"><value>الحالة</value></data>
@@ -218,7 +218,7 @@
   <data name="Product deactivated. It remains in your history and can be reactivated." xml:space="preserve"><value>تم إيقاف المنتج. سيبقى في السجل ويمكن إعادة تنشيطه.</value></data>
   <data name="Product reactivated." xml:space="preserve"><value>تمت إعادة تنشيط المنتج.</value></data>
   <data name="Choose an active product and select Preview price change. No simulation is saved." xml:space="preserve"><value>اختر منتجاً نشطاً ثم معاينة تغيير السعر. لن تُحفظ أي محاكاة.</value></data>
-  <data name="Google sign-in linked to your existing account. Your business and role have not changed." xml:space="preserve"><value>تم ربط Google بحسابك الحالي. نشاطك وصلاحياتك لم يتغيرا.</value></data>
+  <data name="Google sign-in linked to your existing account. Your business and role have not changed." xml:space="preserve"><value>تم ربط Google بحسابك الحالي. عملك وصلاحياتك لم يتغيرا.</value></data>
   <data name="Email registration is temporarily unavailable. Please use Google registration." xml:space="preserve"><value>التسجيل بالبريد غير متاح مؤقتاً. استخدم التسجيل عبر Google.</value></data>
   <data name="Unable to sign in." xml:space="preserve"><value>تعذر تسجيل الدخول.</value></data>
   <data name="Unable to sign in. Check your email and password and confirm your email first." xml:space="preserve"><value>تعذر تسجيل الدخول. تحقق من البريد وكلمة المرور وأكّد بريدك أولاً.</value></data>
@@ -229,10 +229,10 @@
   <data name="Passwords do not match." xml:space="preserve"><value>كلمتا المرور غير متطابقتين.</value></data>
   <data name="{0} cannot be negative." xml:space="preserve"><value>لا يمكن أن تكون قيمة {0} سالبة.</value></data>
   <data name="Enter a valid number without grouping separators." xml:space="preserve"><value>أدخل رقماً صحيحاً دون فواصل الآلاف. استخدم . أو ٫ للفاصلة العشرية.</value></data>
-  <data name="Business name" xml:space="preserve"><value>اسم النشاط التجاري</value></data>
+  <data name="Business name" xml:space="preserve"><value>اسم العمل التجاري</value></data>
   <data name="Location" xml:space="preserve"><value>الموقع</value></data>
   <data name="Currency" xml:space="preserve"><value>العملة</value></data>
-  <data name="Business contact information" xml:space="preserve"><value>معلومات الاتصال بالنشاط</value></data>
+  <data name="Business contact information" xml:space="preserve"><value>معلومات الاتصال بالعمل</value></data>
   <data name="Email" xml:space="preserve"><value>البريد الإلكتروني</value></data>
   <data name="Password" xml:space="preserve"><value>كلمة المرور</value></data>
   <data name="Confirm password" xml:space="preserve"><value>تأكيد كلمة المرور</value></data>
@@ -261,7 +261,7 @@
   <data name="week" xml:space="preserve"><value>أسبوع</value></data>
   <data name="month" xml:space="preserve"><value>شهر</value></data>
   <data name="Current selling price" xml:space="preserve"><value>سعر البيع الحالي</value></data>
-  <data name="Business currency" xml:space="preserve"><value>عملة النشاط</value></data>
+  <data name="Business currency" xml:space="preserve"><value>عملة العمل</value></data>
   <data name="Example: 33 sales in one selected period." xml:space="preserve"><value>مثال: 33 عملية بيع خلال الفترة المختارة.</value></data>
   <data name="10% is illustrative, not a prediction." xml:space="preserve"><value>نسبة 10% مثال توضيحي وليست توقعاً.</value></data>
   <data name="I don't know expected sales" xml:space="preserve"><value>لا أعرف المبيعات المتوقعة</value></data>
@@ -303,8 +303,8 @@
   <data name="Higher contribution" xml:space="preserve"><value>مساهمة أعلى</value></data>
   <data name="Lower contribution" xml:space="preserve"><value>مساهمة أقل</value></data>
   <data name="Unchanged contribution" xml:space="preserve"><value>المساهمة دون تغيير</value></data>
-  <data name="Contribution means sales minus the unit costs entered here, before other business expenses." xml:space="preserve"><value>المساهمة تعني المبيعات ناقص تكاليف الوحدات المدخلة هنا، قبل مصاريف النشاط الأخرى.</value></data>
-  <data name="This is not a business break-even point because fixed costs are not included." xml:space="preserve"><value>هذا ليس حد تعادل النشاط لأن التكاليف الثابتة غير مشمولة.</value></data>
+  <data name="Contribution means sales minus the unit costs entered here, before other business expenses." xml:space="preserve"><value>المساهمة تعني المبيعات ناقص تكاليف الوحدات المدخلة هنا، قبل مصاريف العمل الأخرى.</value></data>
+  <data name="This is not a business break-even point because fixed costs are not included." xml:space="preserve"><value>هذا ليس حد تعادل العمل لأن التكاليف الثابتة غير مشمولة.</value></data>
   <data name="Save this simulation" xml:space="preserve"><value>احفظ هذه المحاكاة</value></data>
   <data name="Saving is explicit. Preview alone never creates a history record." xml:space="preserve"><value>الحفظ يتم بطلب منك. المعاينة وحدها لا تنشئ سجلاً.</value></data>
   <data name="Pricing simulation saved." xml:space="preserve"><value>حُفظت محاكاة السعر.</value></data>
@@ -333,7 +333,7 @@
   <data name="This older record did not save a comparison period. Its prices, unit cost, and quantities are historical snapshots." xml:space="preserve"><value>هذا السجل القديم لم يحفظ فترة المقارنة. أسعاره وتكلفة الوحدة وكمياته هي نسخ تاريخية.</value></data>
   <data name="All scenario amounts are per {0}." xml:space="preserve"><value>كل مبالغ السيناريوهات تخص كل {0}.</value></data>
   <data name="We couldn't find that record" xml:space="preserve"><value>لم نجد هذا السجل</value></data>
-  <data name="It may be unavailable or belong to another business." xml:space="preserve"><value>قد يكون غير متاح أو تابعاً لنشاط آخر.</value></data>
+  <data name="It may be unavailable or belong to another business." xml:space="preserve"><value>قد يكون غير متاح أو تابعاً لعمل آخر.</value></data>
   <data name="This simulation changed" xml:space="preserve"><value>تغيّرت هذه المحاكاة</value></data>
   <data name="Recalculate the preview, then save it again." xml:space="preserve"><value>احسب المعاينة من جديد، ثم احفظها مرة أخرى.</value></data>
   <data name="Please check the supplied values and try again." xml:space="preserve"><value>راجع القيم التي أدخلتها وحاول مرة أخرى.</value></data>
@@ -387,7 +387,7 @@
   <data name="No maintenance threshold: the original contribution is zero or negative." xml:space="preserve"><value>لا حدّ للمحافظة على المساهمة: المبلغ الأصلي المتبقي صفر أو سالب.</value></data>
   <data name="No maintenance threshold: this option has no positive contribution per unit." xml:space="preserve"><value>لا حدّ للمحافظة على المساهمة: هذا الخيار لا يترك مبلغاً موجباً لكل وحدة.</value></data>
   <data name="The units needed exceed the supported quantity range." xml:space="preserve"><value>عدد الوحدات المطلوب يتجاوز النطاق المدعوم.</value></data>
-  <data name="Higher or lower contribution under these assumptions is not a guarantee or net profit. The maintenance threshold is not business break-even." xml:space="preserve"><value>ارتفاع أو انخفاض المبلغ المتبقي وفق هذه الافتراضات ليس ضماناً ولا ربحاً صافياً. حدّ المحافظة على المساهمة ليس نقطة تعادل النشاط.</value></data>
+  <data name="Higher or lower contribution under these assumptions is not a guarantee or net profit. The maintenance threshold is not business break-even." xml:space="preserve"><value>ارتفاع أو انخفاض المبلغ المتبقي وفق هذه الافتراضات ليس ضماناً ولا ربحاً صافياً. حدّ المحافظة على المساهمة ليس نقطة تعادل العمل.</value></data>
   <data name="Save this what-if scenario" xml:space="preserve"><value>احفظ سيناريو «ماذا لو؟»</value></data>
   <data name="Saved what-if history" xml:space="preserve"><value>سجل سيناريوهات «ماذا لو؟» المحفوظة</value></data>
   <data name="Back to what-if history" xml:space="preserve"><value>العودة إلى سجل «ماذا لو؟»</value></data>
@@ -416,7 +416,7 @@
   <data name="Higher contribution under these assumptions" xml:space="preserve"><value>مبلغ متبقٍّ أعلى وفق هذه الافتراضات</value></data>
   <data name="Lower contribution under these assumptions" xml:space="preserve"><value>مبلغ متبقٍّ أقل وفق هذه الافتراضات</value></data>
   <data name="Same contribution under these assumptions" xml:space="preserve"><value>المبلغ المتبقي نفسه وفق هذه الافتراضات</value></data>
-  <data name="Business costs" xml:space="preserve"><value>تكاليف النشاط</value></data>
+  <data name="Business costs" xml:space="preserve"><value>تكاليف العمل</value></data>
   <data name="Labor / wages" xml:space="preserve"><value>العمل / الأجور</value></data>
   <data name="Rent" xml:space="preserve"><value>الإيجار</value></data>
   <data name="Electricity / generator / fuel" xml:space="preserve"><value>الكهرباء / المولدة / الوقود</value></data>
@@ -436,13 +436,13 @@
   <data name="Save cost entry" xml:space="preserve"><value>حفظ التكلفة</value></data>
   <data name="Edit cost entry" xml:space="preserve"><value>تعديل التكلفة</value></data>
   <data name="Add cost entry" xml:space="preserve"><value>إضافة تكلفة</value></data>
-  <data name="Amounts use your business currency. Enter one specific month." xml:space="preserve"><value>المبالغ بعملة نشاطك. أدخل شهراً محدداً.</value></data>
+  <data name="Amounts use your business currency. Enter one specific month." xml:space="preserve"><value>المبالغ بعملة عملك. أدخل شهراً محدداً.</value></data>
   <data name="Delete cost entry?" xml:space="preserve"><value>حذف هذه التكلفة؟</value></data>
   <data name="Delete cost entry" xml:space="preserve"><value>حذف التكلفة</value></data>
   <data name="This removes the cost entry permanently. Saved simulations are unchanged." xml:space="preserve"><value>سيُحذف سجل التكلفة نهائياً. لن تتغير المحاكاة المحفوظة.</value></data>
   <data name="Entered operating costs by category" xml:space="preserve"><value>تكاليف التشغيل المدخلة حسب الفئة</value></data>
-  <data name="Largest entered categories first. Actual and estimated amounts are separate; this is not a complete business result." xml:space="preserve"><value>الفئات الأكبر أولاً. المبالغ الفعلية والتقديرية منفصلة؛ هذه ليست نتيجة كاملة للنشاط.</value></data>
-  <data name="No costs entered for this month. This does not mean your business has no costs." xml:space="preserve"><value>لم تُدخل تكاليف لهذا الشهر. هذا لا يعني أن نشاطك بلا تكاليف.</value></data>
+  <data name="Largest entered categories first. Actual and estimated amounts are separate; this is not a complete business result." xml:space="preserve"><value>الفئات الأكبر أولاً. المبالغ الفعلية والتقديرية منفصلة؛ هذه ليست نتيجة كاملة للعمل.</value></data>
+  <data name="No costs entered for this month. This does not mean your business has no costs." xml:space="preserve"><value>لم تُدخل تكاليف لهذا الشهر. هذا لا يعني أن عملك بلا تكاليف.</value></data>
   <data name="Inventory purchases — separate" xml:space="preserve"><value>مشتريات المخزون — منفصلة</value></data>
   <data name="Unresolved inclusion entries" xml:space="preserve"><value>سجلات لم يُحسم احتسابها ضمن تكلفة الوحدة</value></data>
   <data name="Included costs are not deducted again. Unsure means unresolved, not zero. No monthly cost is deducted from product contribution here." xml:space="preserve"><value>التكاليف المحسوبة لا تُخصم مرة أخرى. غير متأكد تعني غير محسومة، وليست صفراً. لا تُخصم أي تكلفة شهرية من المبلغ المتبقي بعد تكلفة المنتج هنا.</value></data>
@@ -450,8 +450,8 @@
   <data name="Cost entries" xml:space="preserve"><value>سجلات التكاليف</value></data>
   <data name="Avoid counting the same cost twice" xml:space="preserve"><value>تجنب احتساب نفس التكلفة مرتين</value></data>
   <data name="Unit costs describe the cost associated with each product unit. Monthly operating costs may continue even when sales change. Buying inventory is not the same as consuming or selling it." xml:space="preserve"><value>تكلفة الوحدة ترتبط بكل وحدة منتج. قد تستمر تكاليف التشغيل الشهرية حتى مع تغير المبيعات. شراء المخزون ليس استهلاكه أو بيعه.</value></data>
-  <data name="Check missing categories, estimates, and Unsure entries. A full business operating result requires sales and costs across the business for the same period." xml:space="preserve"><value>راجع الفئات الناقصة والتقديرات والسجلات غير المحسومة. النتيجة التشغيلية الكاملة تحتاج مبيعات وتكاليف النشاط كله لنفس الفترة.</value></data>
-  <data name="A full business operating result requires sales and costs across the business for the same period." xml:space="preserve"><value>النتيجة التشغيلية الكاملة تحتاج مبيعات وتكاليف النشاط كله لنفس الفترة.</value></data>
+  <data name="Check missing categories, estimates, and Unsure entries. A full business operating result requires sales and costs across the business for the same period." xml:space="preserve"><value>راجع الفئات الناقصة والتقديرات والسجلات غير المحسومة. النتيجة التشغيلية الكاملة تحتاج مبيعات وتكاليف العمل كله لنفس الفترة.</value></data>
+  <data name="A full business operating result requires sales and costs across the business for the same period." xml:space="preserve"><value>النتيجة التشغيلية الكاملة تحتاج مبيعات وتكاليف العمل كله لنفس الفترة.</value></data>
   <data name="Cost entry added." xml:space="preserve"><value>تمت إضافة التكلفة.</value></data>
   <data name="Cost entry updated." xml:space="preserve"><value>تم تعديل التكلفة.</value></data>
   <data name="Cost entry deleted." xml:space="preserve"><value>تم حذف التكلفة.</value></data>
@@ -474,12 +474,12 @@
   <data name="Show impact" xml:space="preserve"><value>عرض الأثر</value></data>
   <data name="3. Understand the impact" xml:space="preserve"><value>3. افهم الأثر</value></data>
   <data name="Monthly cost context (optional; monthly simulations only)" xml:space="preserve"><value>سياق تكاليف الشهر (اختياري؛ للمحاكاة الشهرية فقط)</value></data>
-  <data name="Business-wide monthly context — not deducted from this product" xml:space="preserve"><value>سياق شهري للنشاط كله — لا يُخصم من هذا المنتج</value></data>
+  <data name="Business-wide monthly context — not deducted from this product" xml:space="preserve"><value>سياق شهري للعمل كله — لا يُخصم من هذا المنتج</value></data>
   <data name="This is current entered information for the selected month, not part of the saved calculation snapshot." xml:space="preserve"><value>هذه المعلومات المدخلة حالياً للشهر المختار، وليست جزءاً من لقطة الحساب المحفوظة.</value></data>
   <data name="Under these assumptions, the amount remaining after product costs falls from {0} to {1} per {2}, a decrease of {3}." xml:space="preserve"><value>بهذه الافتراضات، ينخفض المبلغ المتبقي بعد تكلفة المنتج من {0} إلى {1} لكل {2}، بانخفاض {3}.</value></data>
   <data name="Under these assumptions, contribution changes from {0} to {1} per {2}." xml:space="preserve"><value>بهذه الافتراضات، يتغير المبلغ المتبقي بعد تكلفة المنتج من {0} إلى {1} لكل {2}.</value></data>
   <data name="The amount remaining is {0} below zero." xml:space="preserve"><value>المبلغ المتبقي أقل من الصفر بمقدار {0}.</value></data>
-  <data name="Contribution is revenue minus the unit costs entered here. Some wages or delivery may already be in those unit costs. Other business costs are not deducted." xml:space="preserve"><value>المبلغ المتبقي هو الإيراد ناقص تكاليف الوحدات المدخلة هنا. قد تتضمن تكلفة الوحدة بعض الأجور أو التوصيل. التكاليف الأخرى للنشاط غير مخصومة.</value></data>
+  <data name="Contribution is revenue minus the unit costs entered here. Some wages or delivery may already be in those unit costs. Other business costs are not deducted." xml:space="preserve"><value>المبلغ المتبقي هو الإيراد ناقص تكاليف الوحدات المدخلة هنا. قد تتضمن تكلفة الوحدة بعض الأجور أو التوصيل. التكاليف الأخرى للعمل غير مخصومة.</value></data>
   <data name="This option recovers {0} of the {1} decrease." xml:space="preserve"><value>هذا الخيار يعوض {0} من الانخفاض البالغ {1}.</value></data>
   <data name="It remains {0} below the original contribution." xml:space="preserve"><value>يبقى أقل من المبلغ المتبقي الأصلي بمقدار {0}.</value></data>
   <data name="It is {0} above the original contribution." xml:space="preserve"><value>يتجاوز المبلغ المتبقي الأصلي بمقدار {0}.</value></data>
@@ -501,7 +501,7 @@
   <data name="Only an owner can mark a month reviewed." xml:space="preserve"><value>المالك وحده يستطيع إقرار مراجعة الشهر.</value></data>
   <data name="Recorded operating costs" xml:space="preserve"><value>التكاليف التشغيلية المسجلة</value></data>
   <data name="Recorded total (actual + estimated)" xml:space="preserve"><value>المجموع المسجل (فعلي + تقديري)</value></data>
-  <data name="Only entered operating costs are counted. Inventory is separate. These figures are not business profit and must not be subtracted from a single product simulation." xml:space="preserve"><value>نحسب التكاليف التشغيلية المُدخلة فقط. المخزون منفصل. هذه الأرقام ليست ربح النشاط، ولا تُطرح من محاكاة منتج واحد.</value></data>
+  <data name="Only entered operating costs are counted. Inventory is separate. These figures are not business profit and must not be subtracted from a single product simulation." xml:space="preserve"><value>نحسب التكاليف التشغيلية المُدخلة فقط. المخزون منفصل. هذه الأرقام ليست ربح العمل، ولا تُطرح من محاكاة منتج واحد.</value></data>
   <data name="The largest recorded category is not a recommendation to cut staffing or change operations." xml:space="preserve"><value>كون الفئة هي الأكبر لا يعني توصية بتقليل الموظفين أو تغيير طريقة العمل.</value></data>
   <data name="Compared with the previous month" xml:space="preserve"><value>مقارنة بالشهر السابق</value></data>
   <data name="Caution: either month is not reviewed or contains estimates. Differences may reflect missing entries or changed estimates, not a real change in expenses." xml:space="preserve"><value>تنبيه: أحد الشهرين غير مُراجَع أو يحتوي على تقديرات. قد تعكس الفروق قيوداً ناقصة أو تقديرات تغيّرت، لا تغيّراً فعلياً في المصاريف.</value></data>
@@ -519,7 +519,7 @@
   <data name="Revised recorded operating total" xml:space="preserve"><value>مجموع التكاليف التشغيلية المسجلة بعد الافتراض</value></data>
   <data name="This includes any estimates in the selected category. It excludes inventory purchases and unrecorded costs." xml:space="preserve"><value>يشمل هذا أي تقديرات في الفئة المختارة. ولا يشمل مشتريات المخزون أو التكاليف غير المسجلة.</value></data>
   <data name="Commonly forgotten costs — review checklist" xml:space="preserve"><value>تكاليف يسهل نسيانها — قائمة للمراجعة</value></data>
-  <data name="Check whether each applies to your business. An absent category is unknown, not zero. Add only costs for this month and check whether materials are already in unit costs." xml:space="preserve"><value>تحقق مما ينطبق على نشاطك. الفئة الغائبة غير معروفة وليست صفراً. أضف تكاليف هذا الشهر فقط، وتحقق هل المواد محسوبة مسبقاً في تكلفة الوحدة.</value></data>
+  <data name="Check whether each applies to your business. An absent category is unknown, not zero. Add only costs for this month and check whether materials are already in unit costs." xml:space="preserve"><value>تحقق مما ينطبق على عملك. الفئة الغائبة غير معروفة وليست صفراً. أضف تكاليف هذا الشهر فقط، وتحقق هل المواد محسوبة مسبقاً في تكلفة الوحدة.</value></data>
   <data name="Entries recorded — check completeness" xml:space="preserve"><value>توجد قيود — تحقق من اكتمالها</value></data>
   <data name="No entries — check whether this applies" xml:space="preserve"><value>لا توجد قيود — تحقق إن كانت تنطبق</value></data>
   <data name="Operating-cost category" xml:space="preserve"><value>فئة التكلفة التشغيلية</value></data>
@@ -545,7 +545,7 @@
   <data name="Enter only usable output after discards. Discarded output is already accounted for; do not deduct it again." xml:space="preserve"><value>أدخل الناتج الصالح فقط بعد استبعاد التالف. الهدر محسوب ضمن هذا العدد؛ لا تخصمه مرة أخرى.</value></data>
   <data name="Packaging per serving (optional)" xml:space="preserve"><value>التغليف لكل حصة (اختياري)</value></data>
   <data name="Other variable costs per serving (optional)" xml:space="preserve"><value>تكاليف متغيرة أخرى لكل حصة (اختياري)</value></data>
-  <data name="Leave optional costs blank to exclude them; enter 0 only when you know that cost is zero. All amounts use your business currency." xml:space="preserve"><value>اترك التكاليف الاختيارية فارغة لاستبعادها؛ أدخل 0 فقط إذا كنت متأكداً أنها صفر. جميع المبالغ بعملة نشاطك.</value></data>
+  <data name="Leave optional costs blank to exclude them; enter 0 only when you know that cost is zero. All amounts use your business currency." xml:space="preserve"><value>اترك التكاليف الاختيارية فارغة لاستبعادها؛ أدخل 0 فقط إذا كنت متأكداً أنها صفر. جميع المبالغ بعملة عملك.</value></data>
   <data name="Calculate estimated cost" xml:space="preserve"><value>احسب التكلفة التقديرية</value></data>
   <data name="Cancel calculation" xml:space="preserve"><value>إلغاء الحساب</value></data>
   <data name="Keep manual unit cost" xml:space="preserve"><value>الاحتفاظ بتكلفة الوحدة اليدوية</value></data>
@@ -555,8 +555,8 @@
   <data name="Not entered — excluded, not assumed zero" xml:space="preserve"><value>لم تُدخل — مستبعدة وليست صفراً مفترضاً</value></data>
   <data name="Displayed amounts are rounded to two decimals. Calculations keep precision until the final unit cost is rounded." xml:space="preserve"><value>المبالغ المعروضة مقربة إلى منزلتين عشريتين. يحتفظ الحساب بالدقة حتى تقريب تكلفة الوحدة النهائية.</value></data>
   <data name="Use this unit cost" xml:space="preserve"><value>استخدم تكلفة الوحدة هذه</value></data>
-  <data name="This estimate covers only the ingredients and optional variable costs you entered, not every business cost or net profit." xml:space="preserve"><value>يشمل هذا التقدير المكونات والتكاليف المتغيرة الاختيارية التي أدخلتها فقط، وليس كل تكاليف النشاط ولا صافي الربح.</value></data>
-  <data name="Keep monthly rent and salaries in Business Costs. They are not automatically allocated to this product." xml:space="preserve"><value>أبقِ الإيجار والرواتب الشهرية في تكاليف النشاط. لا يتم توزيعها تلقائياً على هذا المنتج.</value></data>
+  <data name="This estimate covers only the ingredients and optional variable costs you entered, not every business cost or net profit." xml:space="preserve"><value>يشمل هذا التقدير المكونات والتكاليف المتغيرة الاختيارية التي أدخلتها فقط، وليس كل تكاليف العمل ولا صافي الربح.</value></data>
+  <data name="Keep monthly rent and salaries in Business Costs. They are not automatically allocated to this product." xml:space="preserve"><value>أبقِ الإيجار والرواتب الشهرية في تكاليف العمل. لا يتم توزيعها تلقائياً على هذا المنتج.</value></data>
   <data name="Grams (g)" xml:space="preserve"><value>غرام (g)</value></data>
   <data name="Kilograms (kg)" xml:space="preserve"><value>كيلوغرام (kg)</value></data>
   <data name="Millilitres (ml)" xml:space="preserve"><value>مليلتر (ml)</value></data>
