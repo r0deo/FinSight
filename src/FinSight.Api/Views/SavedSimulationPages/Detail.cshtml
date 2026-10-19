@@ -9,9 +9,15 @@
     <dl class="simulation-product-facts">
         <div><dt>@T["Current selling price"]</dt><dd><bdi dir="ltr">@Model.Simulation.CurrentPrice.ToString("N2") @Model.Currency</bdi></dd></div>
         <div><dt>@T["Unit cost"]</dt><dd><bdi dir="ltr">@Model.Simulation.UnitCost.ToString("N2") @Model.Currency</bdi></dd></div>
-        <div><dt>@T[Model.Simulation.DiscountSnapshot is null ? "Proposed price" : "Discounted selling price"]</dt><dd><bdi dir="ltr">@Model.Simulation.ProposedPrice.ToString("N2") @Model.Currency</bdi></dd></div>
+        <div><dt>@T[Model.Simulation.DeliverySnapshot is not null ? "Delivery unit price" : Model.Simulation.DiscountSnapshot is null ? "Proposed price" : "Discounted selling price"]</dt><dd><bdi dir="ltr">@Model.Simulation.ProposedPrice.ToString("N2") @Model.Currency</bdi></dd></div>
     </dl>
-    @if (Model.Simulation.DiscountSnapshot is { } discount)
+    @if (Model.Simulation.DeliverySnapshot is { } delivery)
+    {
+        <h2>@T["Delivery simulation"]</h2>
+        <partial name="_DeliveryResult" model="@(new DeliveryDisplayViewModel(delivery, Model.Currency))" />
+        @if (!Model.Simulation.IsArchived) { <a class="button" href="/simulations/@Model.Simulation.Id/delivery/edit">@T["Edit delivery simulation"]</a> }
+    }
+    else if (Model.Simulation.DiscountSnapshot is { } discount)
     {
         <h2>@T["Discount simulation"]</h2>
         <partial name="_DiscountResult" model="@(new DiscountDisplayViewModel(discount, Model.Simulation.ComparisonPeriod!.Value, Model.Currency))" />

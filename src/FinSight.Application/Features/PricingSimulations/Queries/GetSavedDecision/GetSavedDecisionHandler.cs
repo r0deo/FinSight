@@ -20,7 +20,7 @@ public sealed class GetSavedDecisionHandler(
         var simulation = await simulations.GetByIdAsync(request.SimulationId,
             currentUser.BusinessId, cancellationToken)
             ?? throw new NotFoundException(nameof(PricingSimulation), request.SimulationId);
-        if (simulation.DiscountSnapshot is not null)
+        if (simulation.DiscountSnapshot is not null || simulation.DeliverySnapshot is not null)
             return new(PricingSimulationResponse.FromSimulation(simulation), null, simulation.CurrencySnapshot!);
         var decision = calculator.Calculate(simulation.CurrentPrice, simulation.ProposedPrice,
             simulation.UnitCost, simulation.CurrentSalesQuantity,

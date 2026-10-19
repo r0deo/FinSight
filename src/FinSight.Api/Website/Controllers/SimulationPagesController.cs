@@ -16,12 +16,12 @@ namespace FinSight.Api.Website.Controllers;
 public sealed class SimulationPagesController(ISender sender) : WebsiteController
 {
     [HttpGet]
-    public async Task<IActionResult> Preview(Guid? productId, CancellationToken cancellationToken)
+    public async Task<IActionResult> Preview(Guid? productId, CancellationToken cancellationToken, int page = 1)
     {
         if (productId is null)
         {
-            TempData["Success"] = "Choose an active product and select Preview price change. No simulation is saved.";
-            return LocalRedirect("/products");
+            return View("~/Views/Shared/DecisionProductPicker.cshtml", new DecisionProductPickerViewModel("pricing",
+                await sender.Send(new FinSight.Application.Features.Products.Queries.GetProducts.GetProductsQuery(page), cancellationToken)));
         }
         var product = await sender.Send(new GetProductByIdQuery(productId.Value), cancellationToken);
         if (!product.IsActive) throw new NotFoundException(nameof(Product), productId.Value);

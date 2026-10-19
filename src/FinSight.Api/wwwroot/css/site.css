@@ -948,3 +948,17 @@ dialog.result-modal[open] { display:flex; flex-direction:column; }
     .result-modal-header button { margin-inline-start:auto; }
 }
 [hidden] { display:none !important; }
+.decision-cards { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:16px; margin-block:24px; }
+.decision-card { display:flex; flex-direction:column; align-items:flex-start; gap:12px; padding:20px; border:2px solid var(--border); border-radius:16px; background:var(--surface); text-decoration:none; min-inline-size:0; overflow-wrap:anywhere; }
+.decision-card strong { font-size:1.2rem; line-height:1.4; }
+.decision-card > span:not(.decision-selected) { color:var(--text-secondary); font-size:.95rem; line-height:1.6; }
+.message-panel.simulation-panel { max-width:1000px; }
+.decision-card.is-selected { border-color:var(--accent); }
+.decision-card:hover { border-color:var(--accent); text-decoration:none; }
+.decision-card:focus-visible { outline:3px solid var(--accent); outline-offset:4px; }
+.decision-selected { margin-block-start:auto; font-size:.85rem; font-weight:700; }
+.decision-secondary { margin-block-end:28px; flex-wrap:wrap; }
+.delivery-comparison { margin-block:24px; padding:16px; border:1px solid var(--border); border-radius:12px; }
+.delivery-comparison summary { cursor:pointer; font-weight:700; padding-block:8px; }
+@media (min-width:601px) and (max-width:850px) { .decision-cards { grid-template-columns:repeat(2, minmax(0, 1fr)); } }
+@media (max-width:600px) { .decision-cards { grid-template-columns:minmax(0, 1fr); } }

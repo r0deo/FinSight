@@ -1,0 +1,64 @@
+@model DeliveryViewModel
+@using System.Globalization
+@{ ViewData["Title"] = T["Simulate your financial decisions"].Value;
+   var formUrl = Model.SimulationId.HasValue ? $"/simulations/{Model.SimulationId}/delivery/edit" : "/simulations/delivery";
+   var saveUrl = Model.SimulationId.HasValue ? $"/simulations/{Model.SimulationId}/delivery/save" : "/simulations/delivery/save"; }
+<section class="panel message-panel simulation-panel">
+    <h1>@T["Simulate your financial decisions"]</h1>
+    <partial name="_DecisionCards" model="@(new DecisionCardsViewModel("delivery", Model.ProductId))" />
+    <h2>@T["Sell through a delivery app"]</h2><h3><bdi>@Model.ProductName</bdi></h3>
+    <p>@T["Model an order containing only this product. This is a manual estimate, not a connection to a delivery platform."]</p>
+    @if (Model.SimulationId.HasValue) { <p>@T["This result uses the prices and unit cost saved with the simulation, not today's product values."]</p> }
+    <dl class="simulation-product-facts">
+        <div><dt>@T["Current selling price"]</dt><dd><bdi dir="ltr">@Model.CurrentPrice.ToString("N2") @Model.Currency</bdi></dd></div>
+        <div><dt>@T["Unit cost"]</dt><dd><bdi dir="ltr">@Model.UnitCost.ToString("N2") @Model.Currency</bdi></dd></div>
+    </dl>
+    <form method="post" action="@formUrl" asp-antiforgery="true" data-delivery-form data-has-draft="@((Context.Request.Method == "POST").ToString().ToLowerInvariant())">
+        <div asp-validation-summary="All" role="alert"></div>
+        <input asp-for="ProductId" type="hidden" /><input asp-for="Version" type="hidden" />
+        <div class="field-grid">
+            <div class="field"><label asp-for="UnitsPerOrder"></label><input asp-for="UnitsPerOrder" type="text" inputmode="numeric" dir="ltr" required /><span asp-validation-for="UnitsPerOrder"></span></div>
+            <div class="field"><label asp-for="DeliveryUnitPrice"></label><input asp-for="DeliveryUnitPrice" type="text" inputmode="decimal" dir="ltr" required /><span asp-validation-for="DeliveryUnitPrice"></span></div>
+            <div class="field"><label asp-for="CommissionPercentage"></label><input asp-for="CommissionPercentage" type="text" inputmode="decimal" dir="ltr" required /><span asp-validation-for="CommissionPercentage"></span><small>@T["Use your contract's commission rate. Commission applies to delivery unit price multiplied by units per order."]</small></div>
+            <div class="field"><label asp-for="PackagingPerOrder"></label><input asp-for="PackagingPerOrder" type="text" inputmode="decimal" dir="ltr" required /><span asp-validation-for="PackagingPerOrder"></span><small>@T["Enter only extra packaging not already in unit cost. Enter 0 if none."]</small></div>
+            <div class="field"><label asp-for="OtherChargesPerOrder"></label><input asp-for="OtherChargesPerOrder" type="text" inputmode="decimal" dir="ltr" required /><span asp-validation-for="OtherChargesPerOrder"></span><small>@T["Do not repeat fees included in commission. Enter 0 if none."]</small></div>
+            <div class="field"><label asp-for="ComparisonPeriod"></label><select asp-for="ComparisonPeriod"><option value="Day">@T["day"]</option><option value="Week">@T["week"]</option><option value="Month">@T["month"]</option></select><span asp-validation-for="ComparisonPeriod"></span></div>
+            <div class="field"><label asp-for="FixedPeriodCost"></label><input asp-for="FixedPeriodCost" type="text" inputmode="decimal" dir="ltr" /><span asp-validation-for="FixedPeriodCost"></span><small>@T["Only extra fixed costs caused by this decision, not existing rent or salaries. Blank means unknown/excluded; 0 confirms none."]</small></div>
+        </div>
+        <details class="delivery-comparison" open="@(Model.CurrentDirectOrders.HasValue || Model.ExpectedDeliveryOrders.HasValue || Model.TransferredOrders.HasValue || !ViewData.ModelState.IsValid)">
+            <summary>@T["Compare the total impact (optional)"]</summary>
+            <p>@T["Use equal-length periods and the same units per order for direct and delivery orders. Transferred orders replace direct orders; they are not new sales."]</p>
+            <div class="field-grid">
+                <div class="field"><label asp-for="CurrentDirectOrders"></label><input asp-for="CurrentDirectOrders" type="text" inputmode="numeric" dir="ltr" /><span asp-validation-for="CurrentDirectOrders"></span></div>
+                <div class="field"><label asp-for="ExpectedDeliveryOrders"></label><input asp-for="ExpectedDeliveryOrders" type="text" inputmode="numeric" dir="ltr" /><span asp-validation-for="ExpectedDeliveryOrders"></span></div>
+                <div class="field"><label asp-for="TransferredOrders"></label><input asp-for="TransferredOrders" type="text" inputmode="numeric" dir="ltr" /><span asp-validation-for="TransferredOrders"></span><small>@T["Enter 0 only if you assume none would otherwise be direct orders. Leave unknown counts blank."]</small></div>
+            </div>
+            <p>@T["This comparison assumes direct demand is otherwise unchanged. Order counts are your assumptions, not predictions."]</p>
+        </details>
+        <button class="button" type="submit">@T["Calculate preview"]</button>
+    </form>
+    @if (ViewData.ModelState.IsValid && Model.Result is { } snapshot)
+    {
+        <result-modal id="delivery-result" title="@T["Delivery simulation"]" source-form="[data-delivery-form]" return-focus="[data-delivery-form] button[type=submit]" auto-open="true">
+            <partial name="_DeliveryResult" model="@(new DeliveryDisplayViewModel(snapshot, Model.Currency))" />
+            <form method="post" action="@saveUrl" asp-antiforgery="true" data-delivery-save>
+                <input type="hidden" name="ProductId" value="@Model.ProductId" /><input type="hidden" name="Version" value="@Model.Version" />
+                <input type="hidden" name="UnitsPerOrder" value="@snapshot.Inputs.UnitsPerOrder" />
+                <input type="hidden" name="DeliveryUnitPrice" value="@snapshot.Inputs.DeliveryUnitPrice.ToString(CultureInfo.InvariantCulture)" />
+                <input type="hidden" name="CommissionPercentage" value="@snapshot.Inputs.CommissionPercentage.ToString(CultureInfo.InvariantCulture)" />
+                <input type="hidden" name="PackagingPerOrder" value="@snapshot.Inputs.PackagingPerOrder.ToString(CultureInfo.InvariantCulture)" />
+                <input type="hidden" name="OtherChargesPerOrder" value="@snapshot.Inputs.OtherChargesPerOrder.ToString(CultureInfo.InvariantCulture)" />
+                <input type="hidden" name="FixedPeriodCost" value="@snapshot.Inputs.FixedPeriodCost?.ToString(CultureInfo.InvariantCulture)" />
+                <input type="hidden" name="ComparisonPeriod" value="@snapshot.Inputs.ComparisonPeriod" />
+                <input type="hidden" name="CurrentDirectOrders" value="@snapshot.Inputs.CurrentDirectOrders" />
+                <input type="hidden" name="ExpectedDeliveryOrders" value="@snapshot.Inputs.ExpectedDeliveryOrders" />
+                <input type="hidden" name="TransferredOrders" value="@snapshot.Inputs.TransferredOrders" />
+                <input type="hidden" name="PreviewCurrentPrice" value="@snapshot.CurrentPrice.ToString(CultureInfo.InvariantCulture)" />
+                <input type="hidden" name="PreviewUnitCost" value="@snapshot.UnitCost.ToString(CultureInfo.InvariantCulture)" />
+                <button class="button" type="submit">@T["Save this simulation"]</button>
+                <small>@T["Saving is explicit. Preview alone never creates a history record."]</small>
+            </form>
+        </result-modal>
+    }
+    <p><a href="/simulations/delivery">@T["Choose another product"]</a></p>
+</section>

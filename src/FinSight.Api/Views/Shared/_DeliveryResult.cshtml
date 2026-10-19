@@ -1,0 +1,45 @@
+@model DeliveryDisplayViewModel
+@using FinSight.Domain.Enums
+@{ var input = Model.Snapshot.Inputs; var result = Model.Snapshot.Result;
+   var period = input.ComparisonPeriod switch { SalesPeriod.Day => "day", SalesPeriod.Week => "week", _ => "month" }; }
+<div data-delivery-results>
+    <p>@T["Comparison period"]: @T[period] · @T["Units of this product per order"]: <bdi dir="ltr">@input.UnitsPerOrder</bdi></p>
+    <dl class="simulation-product-facts">
+        <div><dt>@T["Delivery product subtotal"]</dt><dd><bdi dir="ltr">@result.ProductSubtotal.ToString("N2") @Model.Currency</bdi></dd></div>
+        <div><dt>@T["Commission per order"] (<bdi dir="ltr">@input.CommissionPercentage.ToString("0.####")%</bdi>)</dt><dd data-delivery-commission><bdi dir="ltr">@result.CommissionPerOrder.ToString("N2") @Model.Currency</bdi></dd></div>
+        <div><dt>@T["Recorded product cost per order"]</dt><dd><bdi dir="ltr">@result.RecordedCostPerOrder.ToString("N2") @Model.Currency</bdi></dd></div>
+        <div><dt>@T["Additional packaging per order"]</dt><dd><bdi dir="ltr">@input.PackagingPerOrder.ToString("N2") @Model.Currency</bdi></dd></div>
+        <div><dt>@T["Other merchant-paid charges per order"]</dt><dd><bdi dir="ltr">@input.OtherChargesPerOrder.ToString("N2") @Model.Currency</bdi></dd></div>
+        <div><dt>@T["Amount remaining per delivery order"]</dt><dd data-delivery-contribution><bdi dir="ltr">@result.DeliveryContributionPerOrder.ToString("N2") @Model.Currency</bdi></dd></div>
+        <div><dt>@T["Amount remaining per equivalent direct order"]</dt><dd><bdi dir="ltr">@result.DirectContributionPerOrder.ToString("N2") @Model.Currency</bdi></dd></div>
+        <div><dt>@T["Additional fixed period cost (optional)"]</dt><dd>@if (input.FixedPeriodCost is { } cost) { <bdi dir="ltr">@cost.ToString("N2") @Model.Currency</bdi> } else { @T["Additional fixed costs are not included."] }</dd></div>
+    </dl>
+    @if (result.DeliveryContributionPerOrder < 0) { <p class="notice notice-warning">@T["Each modeled delivery order loses money before excluded overhead."]</p> }
+    @if (result.DeliveryContributionPerOrder == 0) { <p class="notice notice-warning">@T["No amount remains from each delivery order toward fixed costs."]</p> }
+    @if (result.ScenarioContribution is { } scenario)
+    {
+        <h3>@T["Period comparison"]</h3>
+        <dl class="simulation-product-facts">
+            <div><dt>@T["Current direct orders"]</dt><dd><bdi dir="ltr">@input.CurrentDirectOrders</bdi></dd></div>
+            <div><dt>@T["Expected delivery orders"]</dt><dd><bdi dir="ltr">@input.ExpectedDeliveryOrders</bdi></dd></div>
+            <div><dt>@T["New delivery orders"]</dt><dd><bdi dir="ltr">@result.NewDeliveryOrders</bdi></dd></div>
+            <div><dt>@T["Delivery orders transferred from direct sales"]</dt><dd><bdi dir="ltr">@input.TransferredOrders</bdi></dd></div>
+            <div><dt>@T["Remaining direct orders"]</dt><dd><bdi dir="ltr">@result.RemainingDirectOrders</bdi></dd></div>
+            <div><dt>@T["Current period contribution"]</dt><dd><bdi dir="ltr">@result.BaselineContribution?.ToString("N2") @Model.Currency</bdi></dd></div>
+            <div><dt>@T["Scenario contribution after entered additional fixed costs"]</dt><dd data-delivery-scenario><bdi dir="ltr">@scenario.ToString("N2") @Model.Currency</bdi></dd></div>
+            <div><dt>@T["Difference"]</dt><dd data-delivery-difference><bdi dir="ltr">@result.Difference?.ToString("N2") @Model.Currency</bdi></dd></div>
+        </dl>
+        <p>@T["This comparison assumes direct demand is otherwise unchanged. Order counts are your assumptions, not predictions."]</p>
+    }
+    else { <p class="notice notice-warning">@T["Enter current direct orders, expected delivery orders, and transferred orders to compare the period. No overall better/worse result is calculated while any count is unknown."]</p> }
+    <p>@T["A lower amount per delivery order does not by itself mean a worse period result. A positive amount per delivery order does not guarantee an improvement either."]</p>
+    <p class="form-guidance">@T["Contribution is not net profit. Rent, monthly salaries and other unentered costs are excluded. Do not count expenses already included in unit costs again."]</p>
+    <details><summary>@T["Model assumptions and limits"]</summary>
+        <ul>
+            <li>@T["One product only, using the specified units per order for both channels; not a mixed basket."]</li>
+            <li>@T["Commission applies to the product subtotal, not a different contractual fee basis. Fees are rounded to two decimals before totals are calculated."]</li>
+            <li>@T["Taxes, refunds, promotions, and charges not entered are excluded. No demand or capacity is predicted."]</li>
+            <li>@T["Only transferred orders reduce direct orders. Remaining direct orders are not charged delivery commission or packaging."]</li>
+        </ul>
+    </details>
+</div>

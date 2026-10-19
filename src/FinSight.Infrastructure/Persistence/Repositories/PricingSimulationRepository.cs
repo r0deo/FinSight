@@ -38,7 +38,7 @@ public sealed class PricingSimulationRepository(FinSightDbContext dbContext)
             simulation => simulation.Id == simulationId && simulation.BusinessId == businessId
                 && simulation.DeletedAtUtc == null && simulation.ExpectedSalesQuantity != null
                 && simulation.ProposedContribution != null && simulation.Difference != null
-                && simulation.Recommendation != null && simulation.DiscountSnapshot == null,
+                && simulation.Recommendation != null && simulation.DiscountSnapshot == null && simulation.DeliverySnapshot == null,
             cancellationToken);
 
     public Task<PricingSimulation?> GetByIdForUpdateAsync(
@@ -90,7 +90,7 @@ public sealed class PricingSimulationRepository(FinSightDbContext dbContext)
             simulation.BusinessId == businessId && simulation.DeletedAtUtc == null
             && simulation.ExpectedSalesQuantity != null
             && simulation.ProposedContribution != null && simulation.Difference != null
-            && simulation.Recommendation != null && simulation.DiscountSnapshot == null);
+            && simulation.Recommendation != null && simulation.DiscountSnapshot == null && simulation.DeliverySnapshot == null);
         if (!includeArchived)
             query = query.Where(simulation => simulation.ArchivedAtUtc == null);
         var totalCount = await query.CountAsync(cancellationToken);

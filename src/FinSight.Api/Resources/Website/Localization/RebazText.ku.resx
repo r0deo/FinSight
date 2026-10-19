@@ -5,7 +5,7 @@
   <data name="Main navigation" xml:space="preserve"><value>رێنیشاندەرا سەرەکی</value></data>
   <data name="Home" xml:space="preserve"><value>سەرەکی</value></data>
   <data name="Products" xml:space="preserve"><value>بەرهەم</value></data>
-  <data name="Simulations" xml:space="preserve"><value>تاقیکرنا نرخان</value></data>
+  <data name="Simulations" xml:space="preserve"><value>تاقیکرن</value></data>
   <data name="Account" xml:space="preserve"><value>هەژمار</value></data>
   <data name="Log out" xml:space="preserve"><value>دەرکەفتن</value></data>
   <data name="Log in" xml:space="preserve"><value>چوونا ژوور</value></data>
@@ -378,7 +378,7 @@
   <data name="Total unit costs" xml:space="preserve"><value>کۆی تێچوونا دانەیان</value></data>
   <data name="Left after unit costs" xml:space="preserve"><value>پارەیێ پشتی تێچوونا دانەیان دمینیت</value></data>
   <data name="Keep current price under this scenario" xml:space="preserve"><value>نرخێ نوکە د ڤی بارودۆخی دا بهێلە</value></data>
-  <data name="Change selling price" xml:space="preserve"><value>نرخێ فرۆتنێ بگوهۆڕە</value></data>
+  <data name="Change selling price" xml:space="preserve"><value>بهایێ فرۆتنێ بگوهۆڕە</value></data>
   <data name="Alternative supplier" xml:space="preserve"><value>دابینکەرەکێ دی</value></data>
   <data name="Change from original" xml:space="preserve"><value>جیاوازی ل گەل بارێ سەرەتایی</value></data>
   <data name="Change from no action" xml:space="preserve"><value>جیاوازی ل گەل نەکرنا هیچ کارەکی</value></data>
@@ -610,4 +610,64 @@
   <data name="Expected sales must be a non-negative whole number." xml:space="preserve"><value>فرۆتنا چاوەڕێکری دڤێ ژمارەیەکا تەواو و نە نەرێنی بیت.</value></data>
   <data name="These prices, quantities or campaign costs exceed the supported calculation range." xml:space="preserve"><value>ئەڤ بها، ژمارە یان تێچوونێن کەمپەینێ ژ سنوورێ هژمارتنێ یێ پشتەڤانیکری دەرباز دبن.</value></data>
   <data name="Enter a non-negative amount with at most two decimal places within the supported range." xml:space="preserve"><value>بڕەکێ نە نەرێنی ب هەتا دوو ژمارێن دەهەکی د ناڤ سنوورێ پشتەڤانیکری دا بنڤیسە.</value></data>
+  <data name="Simulate your financial decisions" xml:space="preserve"><value>بڕیارێن خۆ یێن دارایی تاقی بکە</value></data>
+  <data name="Sell through a delivery app" xml:space="preserve"><value>ب رێکا ئەپەکا گەهاندنێ بفرۆشە</value></data>
+  <data name="Compare the current price with a proposed price." xml:space="preserve"><value>بهایێ نوکە ل گەل بهایێ پێشنیارکری بەراورد بکە.</value></data>
+  <data name="See how many additional sales you need to offset a discount." xml:space="preserve"><value>ببینە چەند فرۆتنێن زێدە پێدڤین بۆ قەرەبووکرنا داشکاندنێ.</value></data>
+  <data name="See what remains after product costs, commission, and additional delivery-related costs." xml:space="preserve"><value>ببینە پشتی لێچوونا بەرهەمی، کۆمسیۆن و لێچوونێن زێدە یێن گەهاندنێ چەند دمینیت.</value></data>
+  <data name="Selected decision" xml:space="preserve"><value>بڕیارا هەلبژارتی</value></data>
+  <data name="Switching decisions will discard your unsaved inputs. Continue?" xml:space="preserve"><value>گوهۆڕینا بڕیارێ دێ زانیاریێن نەهاتیە پاراستن ژێبەت. بەردەوام بی؟</value></data>
+  <data name="No active products are available for simulation." xml:space="preserve"><value>چ بەرهەمێن چالاک بۆ تاقیکرنێ نینن.</value></data>
+  <data name="Start with one product, record its price and cost, then explore your financial decisions." xml:space="preserve"><value>ب بەرهەمەکی دەست پێ بکە، بها و لێچوونا وی تۆمار بکە، پاشی بڕیارێن خۆ یێن دارایی تاقی بکە.</value></data>
+  <data name="Keep your menu up to date and explore your next financial decision." xml:space="preserve"><value>لیستا بەرهەمێن خۆ نوو بکە و بڕیارا خۆ یا دارایی یا داهاتی تاقی بکە.</value></data>
+  <data name="Compare a price change, a discount, or delivery-platform sales using your own assumptions." xml:space="preserve"><value>ب گورەی گریمانێن خۆ گوهۆڕینا بها، داشکاندن یان فرۆتنا ب ئەپێ گەهاندنێ بەراورد بکە.</value></data>
+  <data name="Preview a decision, then save it explicitly to keep a snapshot here." xml:space="preserve"><value>بڕیارەکێ تاقی بکە، پاشی ب خۆ بپارێزە دا وێنەکا زانیاری و ئەنجامان ل ڤێرێ بمینیت.</value></data>
+  <data name="Simulation saved." xml:space="preserve"><value>تاقیکرن هاتە پاراستن.</value></data>
+  <data name="Delivery simulation" xml:space="preserve"><value>تاقیکرنا فرۆتنا ب گەهاندنێ</value></data>
+  <data name="Edit delivery simulation" xml:space="preserve"><value>تاقیکرنا گەهاندنێ بگوهۆڕە</value></data>
+  <data name="Units of this product per order" xml:space="preserve"><value>ژمارا یەکەیێن ڤی بەرهەمی د هەر داخوازیەکێ دا</value></data>
+  <data name="Delivery unit price" xml:space="preserve"><value>بهایێ یەکەیێ ل ئەپێ گەهاندنێ</value></data>
+  <data name="Platform commission (%)" xml:space="preserve"><value>کۆمسیۆنا ئەپێ (%)</value></data>
+  <data name="Additional packaging per order" xml:space="preserve"><value>لێچوونا پاکەتکرنا زێدە بۆ هەر داخوازیەکێ</value></data>
+  <data name="Other merchant-paid charges per order" xml:space="preserve"><value>خەرجیێن دی یێن تو ددەی بۆ هەر داخوازیەکێ</value></data>
+  <data name="Additional fixed period cost (optional)" xml:space="preserve"><value>لێچوونا ثابت یا زێدە بۆ ماوەی (ئەگەر تە بڤێت)</value></data>
+  <data name="Current direct orders" xml:space="preserve"><value>داخوازیێن راستەوخۆ یێن نوکە</value></data>
+  <data name="Expected delivery orders" xml:space="preserve"><value>داخوازیێن گەهاندنێ یێن پێشبینیکری</value></data>
+  <data name="Delivery orders transferred from direct sales" xml:space="preserve"><value>داخوازیێن گەهاندنێ یێن بەری نوکە دێ راستەوخۆ بن</value></data>
+  <data name="Model an order containing only this product. This is a manual estimate, not a connection to a delivery platform." xml:space="preserve"><value>ئەم داخوازیەکێ دژمێرین یا تەنێ ڤی بەرهەمی تێدا هەی. ئەڤە خەمڵاندنەکا دەستییە، نە گرێدانە ب ئەپێ گەهاندنێ ڤە.</value></data>
+  <data name="Use your contract's commission rate. Commission applies to delivery unit price multiplied by units per order." xml:space="preserve"><value>رێژەیا کۆمسیۆنێ یا گرێبەستا خۆ بەکار بینە. کۆمسیۆن ل سەر بهایێ یەکەیێ ل ئەپێ جار ژمارا یەکەیان د داخوازیێ دا دهێتە ژمارتن.</value></data>
+  <data name="Enter only extra packaging not already in unit cost. Enter 0 if none." xml:space="preserve"><value>تەنێ پاکەتکرنا زێدە یا نە د لێچوونا یەکەیێ دا بنڤیسە. ئەگەر نینە 0 بنڤیسە.</value></data>
+  <data name="Do not repeat fees included in commission. Enter 0 if none." xml:space="preserve"><value>خەرجیێن د کۆمسیۆنێ دا دووبارە نەکە. ئەگەر نینن 0 بنڤیسە.</value></data>
+  <data name="Only extra fixed costs caused by this decision, not existing rent or salaries. Blank means unknown/excluded; 0 confirms none." xml:space="preserve"><value>تەنێ لێچوونێن ثابت یێن زێدە ژبەر ڤێ بڕیارێ، نە کرێ و مووچەیێن نوکە. ڤاڵا واتە نەدیار/نەهاتیە ژمارتن؛ 0 پشتڕاست دکەت کو نینن.</value></data>
+  <data name="Compare the total impact (optional)" xml:space="preserve"><value>کاریگەرییا تەمامیا ماوەی بەراورد بکە (ئەگەر تە بڤێت)</value></data>
+  <data name="Use equal-length periods and the same units per order for direct and delivery orders. Transferred orders replace direct orders; they are not new sales." xml:space="preserve"><value>ماوەیێن وەکهەڤ و هەمان ژمارا یەکەیان بۆ داخوازیێن راستەوخۆ و گەهاندنێ بەکار بینە. داخوازیێن ڤەگوهاستی جهێ داخوازیێن راستەوخۆ دگرن؛ نە فرۆتنێن نوونە.</value></data>
+  <data name="Enter 0 only if you assume none would otherwise be direct orders. Leave unknown counts blank." xml:space="preserve"><value>تەنێ دەمێ تە گریمان کر هیچ ژ وان دێ راستەوخۆ نەبن 0 بنڤیسە. ژمارێن نەدیار ڤاڵا بهێلە.</value></data>
+  <data name="This comparison assumes direct demand is otherwise unchanged. Order counts are your assumptions, not predictions." xml:space="preserve"><value>ئەڤ بەراوردە گریمان دکەت داخوازییا راستەوخۆ ژ ئەگەرەکێ دی ناگوهۆڕیت. ژمارێن داخوازیان گریمانێن تەنە، نە پێشبینی نە.</value></data>
+  <data name="Delivery product subtotal" xml:space="preserve"><value>کۆیێ بهایێ بەرهەمی د داخوازییا گەهاندنێ دا</value></data>
+  <data name="Commission per order" xml:space="preserve"><value>کۆمسیۆن بۆ هەر داخوازیەکێ</value></data>
+  <data name="Recorded product cost per order" xml:space="preserve"><value>لێچوونا تۆمارکری یا بەرهەمی بۆ هەر داخوازیەکێ</value></data>
+  <data name="Amount remaining per delivery order" xml:space="preserve"><value>پارەیا مایی بۆ هەر داخوازیەکا گەهاندنێ</value></data>
+  <data name="Amount remaining per equivalent direct order" xml:space="preserve"><value>پارەیا مایی بۆ هەر داخوازیەکا راستەوخۆ یا وەکهەڤ</value></data>
+  <data name="Additional fixed costs are not included." xml:space="preserve"><value>لێچوونێن ثابت یێن زێدە نەهاتیە ژمارتن.</value></data>
+  <data name="Each modeled delivery order loses money before excluded overhead." xml:space="preserve"><value>هەر داخوازیەکا گەهاندنێ د ڤی نموونەی دا زیانێ دکەت بەری لێچوونێن گشتی یێن نەهاتیە ژمارتن.</value></data>
+  <data name="No amount remains from each delivery order toward fixed costs." xml:space="preserve"><value>ژ هەر داخوازیەکا گەهاندنێ چ پارە بۆ لێچوونێن ثابت نامینیت.</value></data>
+  <data name="Period comparison" xml:space="preserve"><value>بەراوردکرنا ماوەی</value></data>
+  <data name="New delivery orders" xml:space="preserve"><value>داخوازیێن نوو یێن گەهاندنێ</value></data>
+  <data name="Remaining direct orders" xml:space="preserve"><value>داخوازیێن راستەوخۆ یێن مایی</value></data>
+  <data name="Current period contribution" xml:space="preserve"><value>پارەیا مایی بۆ ماوەیا نوکە پشتی لێچوونا بەرهەمی</value></data>
+  <data name="Scenario contribution after entered additional fixed costs" xml:space="preserve"><value>پارەیا مایی د سیناریۆیێ دا پشتی لێچوونێن ثابت یێن زێدە یێن هاتینە نڤیسین</value></data>
+  <data name="Enter current direct orders, expected delivery orders, and transferred orders to compare the period. No overall better/worse result is calculated while any count is unknown." xml:space="preserve"><value>داخوازیێن راستەوخۆ یێن نوکە، یێن گەهاندنێ یێن پێشبینیکری و یێن ڤەگوهاستی بنڤیسە بۆ بەراوردکرنا ماوەی. هەتا ژمارەک نەدیار بیت ئەنجامەکێ گشتی یێ باشتر یان خرابتر ناهێتە ژمارتن.</value></data>
+  <data name="A lower amount per delivery order does not by itself mean a worse period result. A positive amount per delivery order does not guarantee an improvement either." xml:space="preserve"><value>پارەیەکا کێمتر بۆ هەر داخوازیەکا گەهاندنێ ب تەنێ ناگەهینیت ئەنجاما ماوەی خرابترە. پارەیەکا ئەرێنی بۆ هەر داخوازیێ ژی باشترکرنێ مسۆگەر ناکەت.</value></data>
+  <data name="Model assumptions and limits" xml:space="preserve"><value>گریمان و سنوورێن نموونەی</value></data>
+  <data name="One product only, using the specified units per order for both channels; not a mixed basket." xml:space="preserve"><value>تەنێ بەرهەمەک، ب هەمان ژمارا یەکەیان بۆ هەر داخوازیێ د هەردوو رێکان دا؛ نە سەبەتەکا تێکەلە.</value></data>
+  <data name="Commission applies to the product subtotal, not a different contractual fee basis. Fees are rounded to two decimals before totals are calculated." xml:space="preserve"><value>کۆمسیۆن ل سەر کۆیێ بهایێ بەرهەمی دهێتە ژمارتن، نە ل سەر بنگەهەکێ دی یێ گرێبەستێ. خەرجی بەری ژمارتنا کۆیان بۆ دوو خانەیێن دەهەکی دهێنە گردکرن.</value></data>
+  <data name="Taxes, refunds, promotions, and charges not entered are excluded. No demand or capacity is predicted." xml:space="preserve"><value>باج، ڤەگەڕاندن، ئۆفەر و خەرجیێن نەهاتینە نڤیسین نەهاتیە ژمارتن. داخوازی یان شیان ناهێنە پێشبینیکرن.</value></data>
+  <data name="Only transferred orders reduce direct orders. Remaining direct orders are not charged delivery commission or packaging." xml:space="preserve"><value>تەنێ داخوازیێن ڤەگوهاستی یێن راستەوخۆ کێم دکەن. کۆمسیۆن و پاکەتکرنا گەهاندنێ ژ داخوازیێن راستەوخۆ یێن مایی ناهێنە کێمکرن.</value></data>
+  <data name="Enter the delivery assumptions." xml:space="preserve"><value>گریمانێن گەهاندنێ بنڤیسە.</value></data>
+  <data name="Enter a positive whole number of units per order." xml:space="preserve"><value>ژمارەکا تەمام یا مەزنتر ژ سفرێ بۆ یەکەیێن هەر داخوازیێ بنڤیسە.</value></data>
+  <data name="Enter a delivery unit price greater than zero." xml:space="preserve"><value>بهایەکێ یەکەیێ ل ئەپێ مەزنتر ژ سفرێ بنڤیسە.</value></data>
+  <data name="Enter commission from 0 to 100%, with at most four decimal places." xml:space="preserve"><value>کۆمسیۆنێ ژ 0 هەتا 100% بنڤیسە، ب زێدەترین چار خانەیێن دەهەکی.</value></data>
+  <data name="Transferred orders cannot exceed current direct orders or expected delivery orders." xml:space="preserve"><value>داخوازیێن ڤەگوهاستی نابیت ژ یێن راستەوخۆ یێن نوکە یان یێن گەهاندنێ یێن پێشبینیکری زێدەتر بن.</value></data>
+  <data name="These prices, order counts or charges exceed the supported calculation range." xml:space="preserve"><value>ئەڤ بها، ژمارێن داخوازیان یان خەرجی ژ سنوورێ ژمارتنێ زێدەترن.</value></data>
+  <data name="Enter a non-negative whole number of orders." xml:space="preserve"><value>ژمارەکا تەمام یا داخوازیان بنڤیسە یا نە کێمتر ژ سفرێ بیت.</value></data>
 </root>

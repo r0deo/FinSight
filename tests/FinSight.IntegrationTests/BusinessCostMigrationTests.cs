@@ -62,6 +62,7 @@ public sealed class BusinessCostMigrationTests
         var pricing = await db.PricingSimulations.SingleAsync(x => x.Id == pricingId);
         Assert.Equal(300000, pricing.CurrentContribution); Assert.Equal(315000, pricing.ProposedContribution);
         Assert.Null(pricing.DiscountSnapshot);
+        Assert.Null(pricing.DeliverySnapshot);
         var whatIf = await db.WhatIfSimulations.SingleAsync(x => x.Id == whatIfId);
         Assert.Equal(252000, whatIf.Result.NoActionContribution);
         Assert.Equal(1000, whatIf.Inputs.CurrentUnitCost);

@@ -38,6 +38,7 @@ public sealed class PricingSimulation
     public int CalculationVersion { get; private set; }
 
     public DiscountSimulationSnapshot? DiscountSnapshot { get; private set; }
+    public DeliverySimulationSnapshot? DeliverySnapshot { get; private set; }
 
     public decimal CurrentContribution { get; private set; }
 
@@ -176,6 +177,8 @@ public sealed class PricingSimulation
 
         if (DiscountSnapshot is not null)
             throw new PricingSimulationConflictException("Use the discount editor to change a discount simulation.");
+        if (DeliverySnapshot is not null)
+            throw new PricingSimulationConflictException("Use the delivery editor to change a delivery simulation.");
 
         Recalculate(
             proposedPrice,
@@ -233,6 +236,55 @@ public sealed class PricingSimulation
         ProposedContribution = snapshot.Result.ScenarioContribution;
         Difference = snapshot.Result.Difference;
         IsProposedPriceBelowCost = snapshot.Result.IsBelowCost;
+        Recommendation = Difference.HasValue ? Difference > 0
+            ? FinSight.Domain.Enums.Recommendation.Recommended : FinSight.Domain.Enums.Recommendation.NotRecommended : null;
+    }
+
+    public static PricingSimulation CreateDelivery(Guid id, Guid businessId, Guid productId, Guid userId,
+        decimal currentPrice, decimal unitCost, DeliveryAssumptions inputs, string currency, string productName,
+        DateTime utcNow, DeliverySimulationCalculator calculator)
+    {
+        ThrowIfEmpty(id, nameof(id)); ThrowIfEmpty(businessId, nameof(businessId));
+        ThrowIfEmpty(productId, nameof(productId)); ThrowIfEmpty(userId, nameof(userId));
+        EnsureUtc(utcNow, nameof(utcNow)); ArgumentNullException.ThrowIfNull(calculator);
+        if (string.IsNullOrWhiteSpace(currency) || currency.Trim().Length != Business.CurrencyLength)
+            throw new ArgumentException("A three-letter currency is required.", nameof(currency));
+        if (string.IsNullOrWhiteSpace(productName) || productName.Trim().Length > Product.MaxNameLength)
+            throw new ArgumentException("A product name is required.", nameof(productName));
+        var snapshot = calculator.Calculate(currentPrice, unitCost, inputs);
+        var simulation = new PricingSimulation
+        {
+            Id = id, BusinessId = businessId, ProductId = productId, CreatedByUserId = userId,
+            CurrentPrice = currentPrice, UnitCost = unitCost, CurrencySnapshot = currency.Trim().ToUpperInvariant(),
+            ProductNameSnapshot = productName.Trim(), CreatedAtUtc = utcNow, UpdatedAtUtc = utcNow,
+            Version = 1, CalculationVersion = 1
+        };
+        simulation.ApplyDelivery(snapshot);
+        return simulation;
+    }
+
+    public void UpdateDelivery(DeliveryAssumptions inputs, DateTime utcNow, long expectedVersion, DeliverySimulationCalculator calculator)
+    {
+        EnsureExpectedVersion(expectedVersion); EnsureMutable(); EnsureValidUpdateTimestamp(utcNow);
+        ArgumentNullException.ThrowIfNull(calculator);
+        if (DeliverySnapshot is null) throw new PricingSimulationConflictException("This is not a delivery simulation.");
+        ApplyDelivery(calculator.Calculate(CurrentPrice, UnitCost, inputs));
+        Touch(utcNow);
+    }
+
+    private void ApplyDelivery(DeliverySimulationSnapshot snapshot)
+    {
+        DeliverySnapshot = snapshot;
+        ComparisonPeriod = snapshot.Inputs.ComparisonPeriod;
+        ProposedPrice = snapshot.Inputs.DeliveryUnitPrice;
+        // Legacy columns are never used to display delivery results. The dedicated snapshot
+        // preserves nullable order counts/totals instead of inventing a period comparison.
+        CurrentSalesQuantity = snapshot.Inputs.CurrentDirectOrders ?? 0;
+        ExpectedSalesQuantity = snapshot.Inputs.ExpectedDeliveryOrders;
+        CurrentContribution = snapshot.Result.BaselineContribution ?? 0;
+        ProposedContribution = snapshot.Result.ScenarioContribution;
+        Difference = snapshot.Result.Difference;
+        IsProposedPriceBelowCost = snapshot.Inputs.DeliveryUnitPrice < UnitCost;
         Recommendation = Difference.HasValue ? Difference > 0
             ? FinSight.Domain.Enums.Recommendation.Recommended : FinSight.Domain.Enums.Recommendation.NotRecommended : null;
     }

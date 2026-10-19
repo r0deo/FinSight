@@ -23,6 +23,7 @@ public static class DependencyInjection
         services.AddSingleton<PricingSimulationCalculator>();
         services.AddSingleton<PricingDecisionCalculator>();
         services.AddSingleton<DiscountSimulationCalculator>();
+        services.AddSingleton<DeliverySimulationCalculator>();
         services.AddSingleton<WhatIfCalculator>();
 
         return services;

@@ -2,12 +2,12 @@
 @using FinSight.Domain.Enums
 @{ ViewData["Title"] = T["Saved simulation history"].Value; }
 <section class="panel simulation-panel">
-    <nav class="actions" aria-label="@T["Simulation type"]"><a href="/simulations/preview">@T["Change selling price"]</a><a href="/simulations/discount">@T["Offer a discount"]</a></nav>
-    <nav class="actions" aria-label="@T["Simulation tools"]"><a href="/what-if">@T["What if conditions change?"]</a><a href="/what-if/history">@T["Saved what-if history"]</a></nav>
+    <partial name="_DecisionCards" model="@(new DecisionCardsViewModel(""))" />
+    <p><a href="/what-if/history">@T["Saved what-if history"]</a></p>
     <div class="page-heading"><div><p class="eyebrow">@T["YOUR DECISIONS"]</p><h1>@T["Saved simulation history"]</h1></div><a class="button button-quiet" href="/products">@T["Preview another product"]</a></div>
     <form method="get" action="/simulations" class="filters"><label class="checkbox-label"><input type="checkbox" name="includeArchived" value="true" checked="@Model.IncludeArchived" /> @T["Include archived"]</label><button class="button button-quiet button-small" type="submit">@T["Apply filter"]</button></form>
     @if (Model.Page.Items.Count == 0)
-    { <div class="empty-state"><h2>@T["No saved simulations yet"]</h2><p>@T["Preview a price change, then save it explicitly to keep a snapshot here."]</p><a class="button" href="/products">@T["Choose a product"]</a></div> }
+    { <div class="empty-state"><h2>@T["No saved simulations yet"]</h2><p>@T["Preview a decision, then save it explicitly to keep a snapshot here."]</p><a class="button" href="/simulations/preview">@T["Choose a product"]</a></div> }
     else
     {
         <div class="saved-simulation-list">
@@ -16,7 +16,8 @@
             var period = item.ComparisonPeriod switch { SalesPeriod.Day => T["day"].Value, SalesPeriod.Week => T["week"].Value, SalesPeriod.Month => T["month"].Value, _ => T["Period not specified"].Value };
             <article class="saved-simulation-card">
                 @if (item.DiscountSnapshot is not null) { <span class="status-label">@T["Discount simulation"]</span> }
-                <div><h2><a href="/simulations/@item.Id"><bdi>@(item.ProductNameSnapshot ?? T["Historical product"].Value)</bdi></a></h2><p>@T[item.DiscountSnapshot is null ? "Proposed price" : "Discounted selling price"]: <bdi dir="ltr">@item.ProposedPrice.ToString("N2") @(item.CurrencySnapshot ?? "")</bdi> · @period</p></div>
+                @if (item.DeliverySnapshot is not null) { <span class="status-label">@T["Delivery simulation"]</span> }
+                <div><h2><a href="/simulations/@item.Id"><bdi>@(item.ProductNameSnapshot ?? T["Historical product"].Value)</bdi></a></h2><p>@T[item.DeliverySnapshot is not null ? "Delivery unit price" : item.DiscountSnapshot is null ? "Proposed price" : "Discounted selling price"]: <bdi dir="ltr">@item.ProposedPrice.ToString("N2") @(item.CurrencySnapshot ?? "")</bdi> · @period</p></div>
                 <div><time datetime="@item.CreatedAtUtc.ToString("O")">@item.CreatedAtUtc.ToString("d") UTC</time>@if (item.IsArchived) { <span class="status-label">@T["Archived"]</span> }</div>
             </article>
         }

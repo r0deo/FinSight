@@ -21,7 +21,7 @@ public sealed class DiscountPagesController(ISender sender) : WebsiteController
     public async Task<IActionResult> Preview(Guid? productId, int page = 1, CancellationToken cancellationToken = default)
     {
         if (productId is null)
-            return View("ChooseProduct", await sender.Send(new GetProductsQuery(page), cancellationToken));
+            return View("~/Views/Shared/DecisionProductPicker.cshtml", new DecisionProductPickerViewModel("discount", await sender.Send(new GetProductsQuery(page), cancellationToken)));
         var model = new DiscountViewModel { ProductId = productId.Value };
         await Load(model, null, cancellationToken);
         return View("Preview", model);
@@ -84,7 +84,7 @@ public sealed class DiscountPagesController(ISender sender) : WebsiteController
                     model.ComparisonPeriod!.Value, model.PreviewCurrentPrice!.Value, model.PreviewUnitCost!.Value), cancellationToken);
                 id = saved.Id;
             }
-            TempData["Success"] = "Pricing simulation saved.";
+            TempData["Success"] = "Simulation saved.";
             return LocalRedirect($"/simulations/{id}");
         }
         catch (ValidationException exception) { AddValidationErrors(exception); return InvalidForm("Preview", model); }

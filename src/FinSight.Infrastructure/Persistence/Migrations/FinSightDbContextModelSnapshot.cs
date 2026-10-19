@@ -176,6 +176,9 @@ namespace FinSight.Infrastructure.Persistence.Migrations
                     b.Property<DateTime?>("DeletedAtUtc")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("DeliverySnapshot")
+                        .HasColumnType("text");
+
                     b.Property<decimal?>("Difference")
                         .HasPrecision(18, 2)
                         .HasColumnType("numeric(18,2)");

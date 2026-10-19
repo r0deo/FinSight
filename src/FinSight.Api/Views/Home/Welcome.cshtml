@@ -5,19 +5,19 @@
         <p class="eyebrow">@T["YOUR BUSINESS WORKSPACE"]</p><h1>@T["Welcome to"] <span class="accent">Rebaz.</span></h1>
         @if (Model.TotalCount == 0)
         {
-            <p class="lead">@T["Start with one product. Enter its selling price and unit cost, then test how a price change could affect your contribution."]</p>
+            <p class="lead">@T["Start with one product, record its price and cost, then explore your financial decisions."]</p>
             <div class="actions"><a class="button" href="/products/create">@T["Add your first product"]</a></div>
         }
         else
         {
-            <p class="lead">@T["Keep your menu up to date and explore your next price change."]</p>
-            <div class="actions"><a class="button" href="/products">@T["Manage products"]</a><a class="button button-secondary" href="/simulations/preview">@T["Run a pricing simulation"]</a></div>
+            <p class="lead">@T["Keep your menu up to date and explore your next financial decision."]</p>
+            <div class="actions"><a class="button" href="/products">@T["Manage products"]</a><a class="button button-secondary" href="/simulations/preview">@T["Simulate your financial decisions"]</a></div>
         }
     </div>
     <aside class="getting-started"><h2>@T["From cost to confidence"]</h2>
         <ol class="steps">
             <li><span>@T["Know your costs"]</span><p>@T["Record the unit cost and selling price of each product."]</p></li>
-            <li><span>@T["Explore a change"]</span><p>@T["Compare contribution at a proposed price and expected sales quantity."]</p></li>
+            <li><span>@T["Explore a change"]</span><p>@T["Compare a price change, a discount, or delivery-platform sales using your own assumptions."]</p></li>
             <li><span>@T["Decide with context"]</span><p>@T["A preview is an estimate, not a guarantee of future sales. It never changes your product or saves a simulation."]</p></li>
         </ol>
     </aside>

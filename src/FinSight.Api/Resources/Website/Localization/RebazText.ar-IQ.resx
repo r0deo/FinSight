@@ -5,7 +5,7 @@
   <data name="Main navigation" xml:space="preserve"><value>التنقل الرئيسي</value></data>
   <data name="Home" xml:space="preserve"><value>الرئيسية</value></data>
   <data name="Products" xml:space="preserve"><value>المنتجات</value></data>
-  <data name="Simulations" xml:space="preserve"><value>محاكاة الأسعار</value></data>
+  <data name="Simulations" xml:space="preserve"><value>المحاكاة</value></data>
   <data name="Account" xml:space="preserve"><value>الحساب</value></data>
   <data name="Log out" xml:space="preserve"><value>تسجيل الخروج</value></data>
   <data name="Log in" xml:space="preserve"><value>تسجيل الدخول</value></data>
@@ -378,7 +378,7 @@
   <data name="Total unit costs" xml:space="preserve"><value>مجموع تكاليف الوحدات</value></data>
   <data name="Left after unit costs" xml:space="preserve"><value>المتبقي بعد تكاليف الوحدات</value></data>
   <data name="Keep current price under this scenario" xml:space="preserve"><value>الإبقاء على السعر الحالي في هذا السيناريو</value></data>
-  <data name="Change selling price" xml:space="preserve"><value>تغيير سعر البيع</value></data>
+  <data name="Change selling price" xml:space="preserve"><value>غيّر سعر البيع</value></data>
   <data name="Alternative supplier" xml:space="preserve"><value>مورّد بديل</value></data>
   <data name="Change from original" xml:space="preserve"><value>الفرق عن الوضع الأصلي</value></data>
   <data name="Change from no action" xml:space="preserve"><value>الفرق عن عدم اتخاذ إجراء</value></data>
@@ -578,7 +578,7 @@
   <data name="Enter the usable batch output." xml:space="preserve"><value>أدخل عدد الحصص أو القطع الصالحة الناتجة.</value></data>
   <data name="Close results" xml:space="preserve"><value>إغلاق النتائج</value></data>
   <data name="View calculation results" xml:space="preserve"><value>عرض نتائج الحساب</value></data>
-  <data name="Offer a discount" xml:space="preserve"><value>تقديم خصم</value></data>
+  <data name="Offer a discount" xml:space="preserve"><value>قدّم خصم</value></data>
   <data name="Simulation type" xml:space="preserve"><value>نوع المحاكاة</value></data>
   <data name="Discount simulation" xml:space="preserve"><value>محاكاة الخصم</value></data>
   <data name="Edit discount simulation" xml:space="preserve"><value>تعديل محاكاة الخصم</value></data>
@@ -610,4 +610,64 @@
   <data name="Expected sales must be a non-negative whole number." xml:space="preserve"><value>يجب أن تكون المبيعات المتوقعة عدداً صحيحاً غير سالب.</value></data>
   <data name="These prices, quantities or campaign costs exceed the supported calculation range." xml:space="preserve"><value>هذه الأسعار أو الكميات أو تكاليف الحملة تتجاوز نطاق الحساب المدعوم.</value></data>
   <data name="Enter a non-negative amount with at most two decimal places within the supported range." xml:space="preserve"><value>أدخل مبلغاً غير سالب بمنزلتين عشريتين كحد أقصى ضمن النطاق المدعوم.</value></data>
+  <data name="Simulate your financial decisions" xml:space="preserve"><value>جرّب قراراتك المالية</value></data>
+  <data name="Sell through a delivery app" xml:space="preserve"><value>بيع عبر تطبيق توصيل</value></data>
+  <data name="Compare the current price with a proposed price." xml:space="preserve"><value>قارن السعر الحالي بسعر مقترح.</value></data>
+  <data name="See how many additional sales you need to offset a discount." xml:space="preserve"><value>شوف كم بيعة إضافية تحتاج لتعويض الخصم.</value></data>
+  <data name="See what remains after product costs, commission, and additional delivery-related costs." xml:space="preserve"><value>شوف المبلغ المتبقي بعد تكلفة المنتج والعمولة وتكاليف التوصيل الإضافية.</value></data>
+  <data name="Selected decision" xml:space="preserve"><value>القرار المحدد</value></data>
+  <data name="Switching decisions will discard your unsaved inputs. Continue?" xml:space="preserve"><value>تغيير نوع المحاكاة سيحذف المدخلات غير المحفوظة. هل تريد المتابعة؟</value></data>
+  <data name="No active products are available for simulation." xml:space="preserve"><value>لا توجد منتجات فعّالة للمحاكاة.</value></data>
+  <data name="Start with one product, record its price and cost, then explore your financial decisions." xml:space="preserve"><value>ابدأ بمنتج واحد، سجّل سعره وتكلفته، ثم جرّب قراراتك المالية.</value></data>
+  <data name="Keep your menu up to date and explore your next financial decision." xml:space="preserve"><value>حدّث قائمة منتجاتك وجرّب قرارك المالي القادم.</value></data>
+  <data name="Compare a price change, a discount, or delivery-platform sales using your own assumptions." xml:space="preserve"><value>قارن تغيير السعر أو الخصم أو البيع عبر تطبيق توصيل حسب افتراضاتك.</value></data>
+  <data name="Preview a decision, then save it explicitly to keep a snapshot here." xml:space="preserve"><value>جرّب قراراً، ثم احفظه بنفسك للاحتفاظ بنسخة من مدخلاته ونتائجه هنا.</value></data>
+  <data name="Simulation saved." xml:space="preserve"><value>تم حفظ المحاكاة.</value></data>
+  <data name="Delivery simulation" xml:space="preserve"><value>محاكاة البيع عبر التوصيل</value></data>
+  <data name="Edit delivery simulation" xml:space="preserve"><value>تعديل محاكاة التوصيل</value></data>
+  <data name="Units of this product per order" xml:space="preserve"><value>عدد وحدات هذا المنتج في الطلب</value></data>
+  <data name="Delivery unit price" xml:space="preserve"><value>سعر الوحدة على تطبيق التوصيل</value></data>
+  <data name="Platform commission (%)" xml:space="preserve"><value>عمولة التطبيق (%)</value></data>
+  <data name="Additional packaging per order" xml:space="preserve"><value>التغليف الإضافي لكل طلب</value></data>
+  <data name="Other merchant-paid charges per order" xml:space="preserve"><value>رسوم أخرى تدفعها أنت لكل طلب</value></data>
+  <data name="Additional fixed period cost (optional)" xml:space="preserve"><value>تكلفة ثابتة إضافية للفترة (اختياري)</value></data>
+  <data name="Current direct orders" xml:space="preserve"><value>الطلبات المباشرة الحالية</value></data>
+  <data name="Expected delivery orders" xml:space="preserve"><value>طلبات التوصيل المتوقعة</value></data>
+  <data name="Delivery orders transferred from direct sales" xml:space="preserve"><value>طلبات التوصيل التي كانت ستكون طلبات مباشرة</value></data>
+  <data name="Model an order containing only this product. This is a manual estimate, not a connection to a delivery platform." xml:space="preserve"><value>نحسب طلباً يحتوي على هذا المنتج فقط. هذا تقدير يدوي، وليس ربطاً بتطبيق توصيل.</value></data>
+  <data name="Use your contract's commission rate. Commission applies to delivery unit price multiplied by units per order." xml:space="preserve"><value>استخدم نسبة العمولة في عقدك. تُحسب العمولة على سعر الوحدة في التطبيق مضروباً بعدد الوحدات في الطلب.</value></data>
+  <data name="Enter only extra packaging not already in unit cost. Enter 0 if none." xml:space="preserve"><value>أدخل فقط التغليف الإضافي غير المشمول بتكلفة الوحدة. أدخل 0 إذا لا يوجد.</value></data>
+  <data name="Do not repeat fees included in commission. Enter 0 if none." xml:space="preserve"><value>لا تكرر الرسوم المشمولة بالعمولة. أدخل 0 إذا لا توجد.</value></data>
+  <data name="Only extra fixed costs caused by this decision, not existing rent or salaries. Blank means unknown/excluded; 0 confirms none." xml:space="preserve"><value>فقط تكاليف ثابتة إضافية بسبب هذا القرار، وليس الإيجار أو الرواتب الحالية. تركه فارغاً يعني غير معروف/غير محسوب؛ و0 يؤكد عدم وجود تكلفة إضافية.</value></data>
+  <data name="Compare the total impact (optional)" xml:space="preserve"><value>قارن التأثير على الفترة كاملة (اختياري)</value></data>
+  <data name="Use equal-length periods and the same units per order for direct and delivery orders. Transferred orders replace direct orders; they are not new sales." xml:space="preserve"><value>استخدم فترتين متساويتين ونفس عدد الوحدات في الطلب المباشر والتوصيل. الطلبات المنتقلة تحل محل الطلبات المباشرة وليست مبيعات جديدة.</value></data>
+  <data name="Enter 0 only if you assume none would otherwise be direct orders. Leave unknown counts blank." xml:space="preserve"><value>أدخل 0 فقط إذا افترضت أن لا طلب منها كان سيكون مباشراً. اترك الأعداد غير المعروفة فارغة.</value></data>
+  <data name="This comparison assumes direct demand is otherwise unchanged. Order counts are your assumptions, not predictions." xml:space="preserve"><value>تفترض المقارنة أن الطلب المباشر لا يتغير لسبب آخر. أعداد الطلبات هي افتراضاتك وليست تنبؤات.</value></data>
+  <data name="Delivery product subtotal" xml:space="preserve"><value>مجموع سعر المنتج في طلب التوصيل</value></data>
+  <data name="Commission per order" xml:space="preserve"><value>العمولة لكل طلب</value></data>
+  <data name="Recorded product cost per order" xml:space="preserve"><value>تكلفة المنتج المسجلة لكل طلب</value></data>
+  <data name="Amount remaining per delivery order" xml:space="preserve"><value>المبلغ المتبقي لكل طلب توصيل</value></data>
+  <data name="Amount remaining per equivalent direct order" xml:space="preserve"><value>المبلغ المتبقي لكل طلب مباشر مماثل</value></data>
+  <data name="Additional fixed costs are not included." xml:space="preserve"><value>التكاليف الثابتة الإضافية غير مشمولة.</value></data>
+  <data name="Each modeled delivery order loses money before excluded overhead." xml:space="preserve"><value>كل طلب توصيل في هذا النموذج يحقق خسارة قبل التكاليف العامة غير المشمولة.</value></data>
+  <data name="No amount remains from each delivery order toward fixed costs." xml:space="preserve"><value>لا يتبقى من طلب التوصيل أي مبلغ لتغطية التكاليف الثابتة.</value></data>
+  <data name="Period comparison" xml:space="preserve"><value>مقارنة الفترة</value></data>
+  <data name="New delivery orders" xml:space="preserve"><value>طلبات توصيل جديدة</value></data>
+  <data name="Remaining direct orders" xml:space="preserve"><value>الطلبات المباشرة المتبقية</value></data>
+  <data name="Current period contribution" xml:space="preserve"><value>المبلغ المتبقي للفترة الحالية بعد تكلفة المنتج</value></data>
+  <data name="Scenario contribution after entered additional fixed costs" xml:space="preserve"><value>المبلغ المتبقي في السيناريو بعد التكاليف الثابتة الإضافية المُدخلة</value></data>
+  <data name="Enter current direct orders, expected delivery orders, and transferred orders to compare the period. No overall better/worse result is calculated while any count is unknown." xml:space="preserve"><value>أدخل الطلبات المباشرة الحالية وطلبات التوصيل المتوقعة والطلبات المنتقلة لمقارنة الفترة. لا نحكم أن النتيجة الكلية أفضل أو أسوأ إذا كان أي عدد غير معروف.</value></data>
+  <data name="A lower amount per delivery order does not by itself mean a worse period result. A positive amount per delivery order does not guarantee an improvement either." xml:space="preserve"><value>المبلغ الأقل لكل طلب توصيل لا يعني وحده أن نتيجة الفترة أسوأ. والمبلغ الموجب لكل طلب لا يضمن تحسّن النتيجة أيضاً.</value></data>
+  <data name="Model assumptions and limits" xml:space="preserve"><value>افتراضات النموذج وحدوده</value></data>
+  <data name="One product only, using the specified units per order for both channels; not a mixed basket." xml:space="preserve"><value>منتج واحد فقط، بنفس عدد الوحدات المحدد لكل طلب في الطريقتين؛ وليس سلة منتجات متنوعة.</value></data>
+  <data name="Commission applies to the product subtotal, not a different contractual fee basis. Fees are rounded to two decimals before totals are calculated." xml:space="preserve"><value>تُحسب العمولة على مجموع سعر المنتج، وليس على أساس آخر في العقد. تُقرّب الرسوم لمنزلتين عشريتين قبل حساب المجاميع.</value></data>
+  <data name="Taxes, refunds, promotions, and charges not entered are excluded. No demand or capacity is predicted." xml:space="preserve"><value>الضرائب والاسترجاعات والعروض والرسوم التي لم تُدخل غير مشمولة. لا نتنبأ بالطلب أو القدرة التشغيلية.</value></data>
+  <data name="Only transferred orders reduce direct orders. Remaining direct orders are not charged delivery commission or packaging." xml:space="preserve"><value>فقط الطلبات المنتقلة تقلل الطلبات المباشرة. لا نخصم عمولة التوصيل أو تغليفه من الطلبات المباشرة المتبقية.</value></data>
+  <data name="Enter the delivery assumptions." xml:space="preserve"><value>أدخل افتراضات التوصيل.</value></data>
+  <data name="Enter a positive whole number of units per order." xml:space="preserve"><value>أدخل عدداً صحيحاً أكبر من صفر للوحدات في الطلب.</value></data>
+  <data name="Enter a delivery unit price greater than zero." xml:space="preserve"><value>أدخل سعراً للوحدة على التطبيق أكبر من صفر.</value></data>
+  <data name="Enter commission from 0 to 100%, with at most four decimal places." xml:space="preserve"><value>أدخل عمولة من 0 إلى 100% وبأربع منازل عشرية كحد أقصى.</value></data>
+  <data name="Transferred orders cannot exceed current direct orders or expected delivery orders." xml:space="preserve"><value>الطلبات المنتقلة لا يمكن أن تتجاوز الطلبات المباشرة الحالية أو طلبات التوصيل المتوقعة.</value></data>
+  <data name="These prices, order counts or charges exceed the supported calculation range." xml:space="preserve"><value>هذه الأسعار أو أعداد الطلبات أو الرسوم تتجاوز نطاق الحساب المدعوم.</value></data>
+  <data name="Enter a non-negative whole number of orders." xml:space="preserve"><value>أدخل عدداً صحيحاً للطلبات لا يقل عن صفر.</value></data>
 </root>

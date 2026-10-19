@@ -30,6 +30,10 @@ public sealed class PricingSimulationConfiguration
             .HasConversion(x => JsonSerializer.Serialize(x, (JsonSerializerOptions?)null),
                 x => JsonSerializer.Deserialize<DiscountSimulationSnapshot>(x, (JsonSerializerOptions?)null)!)
             .HasColumnType("text");
+        builder.Property(x => x.DeliverySnapshot)
+            .HasConversion(x => JsonSerializer.Serialize(x, (JsonSerializerOptions?)null),
+                x => JsonSerializer.Deserialize<DeliverySimulationSnapshot>(x, (JsonSerializerOptions?)null)!)
+            .HasColumnType("text");
         builder.Property(simulation => simulation.Recommendation)
             .HasConversion<string>()
             .HasMaxLength(32);

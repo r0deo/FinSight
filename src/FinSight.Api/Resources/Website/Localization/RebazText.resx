@@ -610,4 +610,64 @@
   <data name="Expected sales must be a non-negative whole number." xml:space="preserve"><value>Expected sales must be a non-negative whole number.</value></data>
   <data name="These prices, quantities or campaign costs exceed the supported calculation range." xml:space="preserve"><value>These prices, quantities or campaign costs exceed the supported calculation range.</value></data>
   <data name="Enter a non-negative amount with at most two decimal places within the supported range." xml:space="preserve"><value>Enter a non-negative amount with at most two decimal places within the supported range.</value></data>
+  <data name="Simulate your financial decisions" xml:space="preserve"><value>Simulate your financial decisions</value></data>
+  <data name="Sell through a delivery app" xml:space="preserve"><value>Sell through a delivery app</value></data>
+  <data name="Compare the current price with a proposed price." xml:space="preserve"><value>Compare the current price with a proposed price.</value></data>
+  <data name="See how many additional sales you need to offset a discount." xml:space="preserve"><value>See how many additional sales you need to offset a discount.</value></data>
+  <data name="See what remains after product costs, commission, and additional delivery-related costs." xml:space="preserve"><value>See what remains after product costs, commission, and additional delivery-related costs.</value></data>
+  <data name="Selected decision" xml:space="preserve"><value>Selected decision</value></data>
+  <data name="Switching decisions will discard your unsaved inputs. Continue?" xml:space="preserve"><value>Switching decisions will discard your unsaved inputs. Continue?</value></data>
+  <data name="No active products are available for simulation." xml:space="preserve"><value>No active products are available for simulation.</value></data>
+  <data name="Start with one product, record its price and cost, then explore your financial decisions." xml:space="preserve"><value>Start with one product, record its price and cost, then explore your financial decisions.</value></data>
+  <data name="Keep your menu up to date and explore your next financial decision." xml:space="preserve"><value>Keep your menu up to date and explore your next financial decision.</value></data>
+  <data name="Compare a price change, a discount, or delivery-platform sales using your own assumptions." xml:space="preserve"><value>Compare a price change, a discount, or delivery-platform sales using your own assumptions.</value></data>
+  <data name="Preview a decision, then save it explicitly to keep a snapshot here." xml:space="preserve"><value>Preview a decision, then save it explicitly to keep a snapshot here.</value></data>
+  <data name="Simulation saved." xml:space="preserve"><value>Simulation saved.</value></data>
+  <data name="Delivery simulation" xml:space="preserve"><value>Delivery simulation</value></data>
+  <data name="Edit delivery simulation" xml:space="preserve"><value>Edit delivery simulation</value></data>
+  <data name="Units of this product per order" xml:space="preserve"><value>Units of this product per order</value></data>
+  <data name="Delivery unit price" xml:space="preserve"><value>Delivery unit price</value></data>
+  <data name="Platform commission (%)" xml:space="preserve"><value>Platform commission (%)</value></data>
+  <data name="Additional packaging per order" xml:space="preserve"><value>Additional packaging per order</value></data>
+  <data name="Other merchant-paid charges per order" xml:space="preserve"><value>Other merchant-paid charges per order</value></data>
+  <data name="Additional fixed period cost (optional)" xml:space="preserve"><value>Additional fixed period cost (optional)</value></data>
+  <data name="Current direct orders" xml:space="preserve"><value>Current direct orders</value></data>
+  <data name="Expected delivery orders" xml:space="preserve"><value>Expected delivery orders</value></data>
+  <data name="Delivery orders transferred from direct sales" xml:space="preserve"><value>Delivery orders transferred from direct sales</value></data>
+  <data name="Model an order containing only this product. This is a manual estimate, not a connection to a delivery platform." xml:space="preserve"><value>Model an order containing only this product. This is a manual estimate, not a connection to a delivery platform.</value></data>
+  <data name="Use your contract's commission rate. Commission applies to delivery unit price multiplied by units per order." xml:space="preserve"><value>Use your contract's commission rate. Commission applies to delivery unit price multiplied by units per order.</value></data>
+  <data name="Enter only extra packaging not already in unit cost. Enter 0 if none." xml:space="preserve"><value>Enter only extra packaging not already in unit cost. Enter 0 if none.</value></data>
+  <data name="Do not repeat fees included in commission. Enter 0 if none." xml:space="preserve"><value>Do not repeat fees included in commission. Enter 0 if none.</value></data>
+  <data name="Only extra fixed costs caused by this decision, not existing rent or salaries. Blank means unknown/excluded; 0 confirms none." xml:space="preserve"><value>Only extra fixed costs caused by this decision, not existing rent or salaries. Blank means unknown/excluded; 0 confirms none.</value></data>
+  <data name="Compare the total impact (optional)" xml:space="preserve"><value>Compare the total impact (optional)</value></data>
+  <data name="Use equal-length periods and the same units per order for direct and delivery orders. Transferred orders replace direct orders; they are not new sales." xml:space="preserve"><value>Use equal-length periods and the same units per order for direct and delivery orders. Transferred orders replace direct orders; they are not new sales.</value></data>
+  <data name="Enter 0 only if you assume none would otherwise be direct orders. Leave unknown counts blank." xml:space="preserve"><value>Enter 0 only if you assume none would otherwise be direct orders. Leave unknown counts blank.</value></data>
+  <data name="This comparison assumes direct demand is otherwise unchanged. Order counts are your assumptions, not predictions." xml:space="preserve"><value>This comparison assumes direct demand is otherwise unchanged. Order counts are your assumptions, not predictions.</value></data>
+  <data name="Delivery product subtotal" xml:space="preserve"><value>Delivery product subtotal</value></data>
+  <data name="Commission per order" xml:space="preserve"><value>Commission per order</value></data>
+  <data name="Recorded product cost per order" xml:space="preserve"><value>Recorded product cost per order</value></data>
+  <data name="Amount remaining per delivery order" xml:space="preserve"><value>Amount remaining per delivery order</value></data>
+  <data name="Amount remaining per equivalent direct order" xml:space="preserve"><value>Amount remaining per equivalent direct order</value></data>
+  <data name="Additional fixed costs are not included." xml:space="preserve"><value>Additional fixed costs are not included.</value></data>
+  <data name="Each modeled delivery order loses money before excluded overhead." xml:space="preserve"><value>Each modeled delivery order loses money before excluded overhead.</value></data>
+  <data name="No amount remains from each delivery order toward fixed costs." xml:space="preserve"><value>No amount remains from each delivery order toward fixed costs.</value></data>
+  <data name="Period comparison" xml:space="preserve"><value>Period comparison</value></data>
+  <data name="New delivery orders" xml:space="preserve"><value>New delivery orders</value></data>
+  <data name="Remaining direct orders" xml:space="preserve"><value>Remaining direct orders</value></data>
+  <data name="Current period contribution" xml:space="preserve"><value>Current period contribution</value></data>
+  <data name="Scenario contribution after entered additional fixed costs" xml:space="preserve"><value>Scenario contribution after entered additional fixed costs</value></data>
+  <data name="Enter current direct orders, expected delivery orders, and transferred orders to compare the period. No overall better/worse result is calculated while any count is unknown." xml:space="preserve"><value>Enter current direct orders, expected delivery orders, and transferred orders to compare the period. No overall better/worse result is calculated while any count is unknown.</value></data>
+  <data name="A lower amount per delivery order does not by itself mean a worse period result. A positive amount per delivery order does not guarantee an improvement either." xml:space="preserve"><value>A lower amount per delivery order does not by itself mean a worse period result. A positive amount per delivery order does not guarantee an improvement either.</value></data>
+  <data name="Model assumptions and limits" xml:space="preserve"><value>Model assumptions and limits</value></data>
+  <data name="One product only, using the specified units per order for both channels; not a mixed basket." xml:space="preserve"><value>One product only, using the specified units per order for both channels; not a mixed basket.</value></data>
+  <data name="Commission applies to the product subtotal, not a different contractual fee basis. Fees are rounded to two decimals before totals are calculated." xml:space="preserve"><value>Commission applies to the product subtotal, not a different contractual fee basis. Fees are rounded to two decimals before totals are calculated.</value></data>
+  <data name="Taxes, refunds, promotions, and charges not entered are excluded. No demand or capacity is predicted." xml:space="preserve"><value>Taxes, refunds, promotions, and charges not entered are excluded. No demand or capacity is predicted.</value></data>
+  <data name="Only transferred orders reduce direct orders. Remaining direct orders are not charged delivery commission or packaging." xml:space="preserve"><value>Only transferred orders reduce direct orders. Remaining direct orders are not charged delivery commission or packaging.</value></data>
+  <data name="Enter the delivery assumptions." xml:space="preserve"><value>Enter the delivery assumptions.</value></data>
+  <data name="Enter a positive whole number of units per order." xml:space="preserve"><value>Enter a positive whole number of units per order.</value></data>
+  <data name="Enter a delivery unit price greater than zero." xml:space="preserve"><value>Enter a delivery unit price greater than zero.</value></data>
+  <data name="Enter commission from 0 to 100%, with at most four decimal places." xml:space="preserve"><value>Enter commission from 0 to 100%, with at most four decimal places.</value></data>
+  <data name="Transferred orders cannot exceed current direct orders or expected delivery orders." xml:space="preserve"><value>Transferred orders cannot exceed current direct orders or expected delivery orders.</value></data>
+  <data name="These prices, order counts or charges exceed the supported calculation range." xml:space="preserve"><value>These prices, order counts or charges exceed the supported calculation range.</value></data>
+  <data name="Enter a non-negative whole number of orders." xml:space="preserve"><value>Enter a non-negative whole number of orders.</value></data>
 </root>

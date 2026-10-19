@@ -73,7 +73,7 @@ public abstract class WebsiteController : Controller
         object Get(string name) => values is not null && values.TryGetValue(name, out var value) ? value : "";
         return error.ErrorCode switch
         {
-            "DiscountCalculation" => Text(error.ErrorMessage),
+            "DiscountCalculation" or "DeliveryCalculation" => Text(error.ErrorMessage),
             "NotEmptyValidator" => Text("{0} must not be empty.", label),
             "EmailValidator" => Text("{0} is not a valid email address.", label),
             "MaximumLengthValidator" => Text("{0} must not be more than {1} characters.", label, Get("MaxLength")),

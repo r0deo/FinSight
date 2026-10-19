@@ -1,18 +1,19 @@
 @model DiscountViewModel
 @using System.Globalization
-@{ ViewData["Title"] = T["Offer a discount"].Value;
+@{ ViewData["Title"] = T["Simulate your financial decisions"].Value;
    var formUrl = Model.SimulationId.HasValue ? $"/simulations/{Model.SimulationId}/discount/edit" : "/simulations/discount";
    var saveUrl = Model.SimulationId.HasValue ? $"/simulations/{Model.SimulationId}/discount/save" : "/simulations/discount/save"; }
 <section class="panel message-panel simulation-panel">
-    <nav class="actions" aria-label="@T["Simulation tools"]"><a href="/simulations/preview?productId=@Model.ProductId">@T["Change selling price"]</a><span aria-current="page">@T["Offer a discount"]</span><a href="/simulations">@T["Saved simulation history"]</a></nav>
-    <h1>@T["Offer a discount"]</h1><h2><bdi>@Model.ProductName</bdi></h2>
+    <h1>@T["Simulate your financial decisions"]</h1>
+    <partial name="_DecisionCards" model="@(new DecisionCardsViewModel("discount", Model.ProductId))" />
+    <h2>@T["Offer a discount"]</h2><h3><bdi>@Model.ProductName</bdi></h3>
     @if (Model.SimulationId.HasValue) { <p>@T["This result uses the prices and unit cost saved with the simulation, not today's product values."]</p> }
     <dl class="simulation-product-facts">
         <div><dt>@T["Current selling price"]</dt><dd><bdi dir="ltr">@Model.CurrentPrice.ToString("N2") @Model.Currency</bdi></dd></div>
         <div><dt>@T["Unit cost"]</dt><dd><bdi dir="ltr">@Model.UnitCost.ToString("N2") @Model.Currency</bdi></dd></div>
     </dl>
     <p>@T["Both sales quantities must describe comparable periods of equal length. Expected sales are your assumption, not a forecast."]</p>
-    <form method="post" action="@formUrl" asp-antiforgery="true" data-discount-form>
+    <form method="post" action="@formUrl" asp-antiforgery="true" data-discount-form data-has-draft="@((Context.Request.Method == "POST").ToString().ToLowerInvariant())">
         <div asp-validation-summary="All" role="alert"></div>
         <input asp-for="ProductId" type="hidden" /><input asp-for="Version" type="hidden" />
         <div class="field-grid">

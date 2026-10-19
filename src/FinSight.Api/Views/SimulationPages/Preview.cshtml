@@ -1,12 +1,12 @@
 @model PreviewSimulationViewModel
 @using System.Globalization
 @using FinSight.Domain.Enums
-@{ ViewData["Title"] = T["Preview a price change"].Value; }
+@{ ViewData["Title"] = T["Simulate your financial decisions"].Value; }
 <section class="panel message-panel simulation-panel">
-    <nav class="actions" aria-label="@T["Simulation type"]"><span aria-current="page">@T["Change selling price"]</span><a href="/simulations/discount?productId=@Model.ProductId">@T["Offer a discount"]</a></nav>
-    <nav class="actions" aria-label="@T["Simulation tools"]"><a href="/simulations">@T["Saved simulation history"]</a><a href="/what-if?productId=@Model.ProductId">@T["What if conditions change?"]</a></nav>
+    <h1>@T["Simulate your financial decisions"]</h1>
+    <partial name="_DecisionCards" model="@(new DecisionCardsViewModel("pricing", Model.ProductId))" />
     <p class="eyebrow">@T["EXPLORE BEFORE YOU CHANGE"]</p>
-    <h1>@T["Preview a price change"]</h1>
+    <h2>@T["Preview a price change"]</h2>
     <h2><bdi>@Model.ProductName</bdi></h2>
     <p>@T["Compare sales over the same period. This preview never saves a simulation or changes your product."]</p>
     <dl class="simulation-product-facts">
@@ -14,7 +14,7 @@
         <div><dt>@T["Unit cost"]</dt><dd><bdi dir="ltr">@Model.UnitCost.ToString("N2") @Model.Currency</bdi></dd></div>
         <div><dt>@T["Business currency"]</dt><dd><bdi dir="ltr">@Model.Currency</bdi></dd></div>
     </dl>
-    <form method="post" asp-action="Preview" data-decision-form>
+    <form method="post" asp-action="Preview" data-decision-form data-has-draft="@((Context.Request.Method == "POST").ToString().ToLowerInvariant())">
         <div asp-validation-summary="All" role="alert"></div>
         <input asp-for="ProductId" type="hidden" />
         <div class="field-grid">
