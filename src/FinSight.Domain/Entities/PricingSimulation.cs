@@ -37,6 +37,10 @@ public sealed class PricingSimulation
 
     public int CalculationVersion { get; private set; }
 
+    public SimulationCostContext? CostContext { get; private set; }
+    public decimal? AdditionalDecisionCost { get; private set; }
+    public void CaptureCostContext(SimulationCostContext context) { EnsureMutable(); CostContext = context; }
+
     public DiscountSimulationSnapshot? DiscountSnapshot { get; private set; }
     public DeliverySimulationSnapshot? DeliverySnapshot { get; private set; }
 
@@ -118,7 +122,7 @@ public sealed class PricingSimulation
         string currencySnapshot,
         string productNameSnapshot,
         DateTime createdAtUtc,
-        PricingDecisionCalculator decisionCalculator)
+        PricingDecisionCalculator decisionCalculator, decimal? additionalDecisionCost = null)
     {
         ThrowIfEmpty(id, nameof(id));
         ThrowIfEmpty(businessId, nameof(businessId));
@@ -134,7 +138,8 @@ public sealed class PricingSimulation
             throw new ArgumentException("A product name is required.", nameof(productNameSnapshot));
 
         var decision = decisionCalculator.Calculate(currentPrice, proposedPrice, unitCost,
-            currentSalesQuantity, expectedSalesQuantity, declinePercentage);
+            currentSalesQuantity, expectedSalesQuantity, declinePercentage, additionalDecisionCost);
+        AdditionalDecisionCost = additionalDecisionCost;
         Id = id;
         BusinessId = businessId;
         ProductId = productId;
@@ -389,10 +394,15 @@ public sealed class PricingSimulation
         CurrentSalesQuantity = currentSalesQuantity;
         ExpectedSalesQuantity = expectedSalesQuantity;
         CurrentContribution = result.CurrentContribution;
-        ProposedContribution = result.ProposedContribution;
-        Difference = result.Difference;
+        ProposedContribution = result.ProposedContribution - (AdditionalDecisionCost ?? 0);
+        Difference = ProposedContribution - CurrentContribution;
         IsProposedPriceBelowCost = result.IsBelowCost;
-        Recommendation = result.Recommendation;
+        Recommendation = Difference > 0 ? FinSight.Domain.Enums.Recommendation.Recommended : FinSight.Domain.Enums.Recommendation.NotRecommended;
+        if (CostContext is not null)
+            CostContext = SimulationCostCalculator.Recalculate(CostContext, CurrentContribution,
+                new PricingDecisionCalculator(calculator).Calculate(CurrentPrice, proposedPrice, UnitCost, currentSalesQuantity,
+                    expectedSalesQuantity, DeclinePercentage, AdditionalDecisionCost).Scenarios
+                    .Select(x => new ContributionOption(x.Kind.ToString(), x.Contribution)).ToArray());
         UpdatedAtUtc = updatedAtUtc;
     }
 

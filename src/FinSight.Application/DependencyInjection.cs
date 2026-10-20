@@ -24,6 +24,7 @@ public static class DependencyInjection
         services.AddSingleton<PricingDecisionCalculator>();
         services.AddSingleton<DiscountSimulationCalculator>();
         services.AddSingleton<DeliverySimulationCalculator>();
+        services.AddScoped<FinSight.Application.Features.BusinessCosts.SimulationCostContextService>();
         services.AddSingleton<WhatIfCalculator>();
 
         return services;

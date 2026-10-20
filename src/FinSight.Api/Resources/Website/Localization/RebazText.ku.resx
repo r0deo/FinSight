@@ -670,4 +670,62 @@
   <data name="Transferred orders cannot exceed current direct orders or expected delivery orders." xml:space="preserve"><value>داخوازیێن ڤەگوهاستی نابیت ژ یێن راستەوخۆ یێن نوکە یان یێن گەهاندنێ یێن پێشبینیکری زێدەتر بن.</value></data>
   <data name="These prices, order counts or charges exceed the supported calculation range." xml:space="preserve"><value>ئەڤ بها، ژمارێن داخوازیان یان خەرجی ژ سنوورێ ژمارتنێ زێدەترن.</value></data>
   <data name="Enter a non-negative whole number of orders." xml:space="preserve"><value>ژمارەکا تەمام یا داخوازیان بنڤیسە یا نە کێمتر ژ سفرێ بیت.</value></data>
+  <data name="Financial decisions" xml:space="preserve"><value>بڕیارێن خۆ یێن دارایی تاقی بکە</value></data>
+  <data name="Saved history" xml:space="preserve"><value>تاقیکرنێن پاراستی</value></data>
+  <data name="Compare a price change, a discount, or delivery sales." xml:space="preserve"><value>گوهۆڕینا بها، داشکاندن یان فرۆتنا ب گەهاندنێ بەراورد بکە.</value></data>
+  <data name="Explore changes in costs or demand and possible responses." xml:space="preserve"><value>گوهۆڕینێن لێچوون یان داخوازیێ و چارەیێن گونجای تاقی بکە.</value></data>
+  <data name="Reopen the decisions and assumptions you explicitly saved." xml:space="preserve"><value>بڕیار و گریمانێن تە ب خۆ پاراستین دووبارە ڤەکە.</value></data>
+  <data name="Current section" xml:space="preserve"><value>بەشێ نوکە</value></data>
+  <data name="Shared business costs (optional)" xml:space="preserve"><value>لێچوونێن هەڤپشک یێن کاری (ئەگەر تە بڤێت)</value></data>
+  <data name="Include my recorded business costs" xml:space="preserve"><value>لێچوونێن تۆمارکری یێن کارێ من ب ڤێ تاقیکرنێ ڤە گرێ بدە</value></data>
+  <data name="Rent, salaries, and electricity support your whole business, not just this product. Linking is optional; you can review costs and estimate this product's share." xml:space="preserve"><value>کرێ، مووچە و کارەبا خزمەتا تەمامیا کارێ تە دکەن، نە تەنێ ڤی بەرهەمی. گرێدان هەلبژاردەیە؛ تو دشێی لێچوونان ببینی و پشکا ڤی بەرهەمی بخەمڵینی.</value></data>
+  <data name="Why is this optional?" xml:space="preserve"><value>بۆچی ئەڤە هەلبژاردەیە؟</value></data>
+  <data name="Not linking does not mean these expenses do not exist. Assigning all of them to one product can mislead. Additional costs caused by this decision belong in its own cost fields, regardless of this switch." xml:space="preserve"><value>نەگرێدان ناگەهینیت ئەڤ لێچوونە نینن. دانانا هەمییان ل سەر بەرهەمەکی دشێت بەڵەتیێ دروست بکەت. لێچوونێن زێدە ژبەر ڤێ بڕیارێ د خانەیێن خۆ دا بنڤیسە، ب گرێدانێ یان بێ گرێدان.</value></data>
+  <data name="Recorded cost month" xml:space="preserve"><value>هەیڤا لێچوونێن تۆمارکری</value></data>
+  <data name="Monthly comparisons use this recorded month without conversion. Daily and weekly comparisons show monthly costs as context only." xml:space="preserve"><value>بەراوردکرنا هەیڤانە ڤێ هەیڤێ بێ ڤەگوهۆڕین بەکار دئینیت. بەراوردێن رۆژانە و هەفتانە لێچوونێن هەیڤانە تەنێ بۆ زانیاریێ نیشان ددەن.</value></data>
+  <data name="Estimate this product's share of these costs" xml:space="preserve"><value>پشکەکا خەمڵاندی یا ڤی بەرهەمی ژ ڤان لێچوونان بژمێرە</value></data>
+  <data name="Product allocation (%)" xml:space="preserve"><value>پشکا بەرهەمی (%)</value></data>
+  <data name="I confirm the included costs recur and are not already in unit costs or this decision's expenses." xml:space="preserve"><value>ئەز پشتڕاست دکەم ئەو لێچوونێن هاتینە ژمارتن دووبارە دبن و نە د لێچوونا یەکەیێ یان خەرجیێن ڤێ بڕیارێ دا نە.</value></data>
+  <data name="This percentage is your estimate. Review the breakdown before confirming. Equipment and one-time purchases must not be included. Without confirmation, costs remain context only." xml:space="preserve"><value>ئەڤ رێژە خەمڵاندنا تەیە. بەری پشتڕاستکرنێ وردەکاریان ببینە. ئامێر و کرینێن تەنێ جارەکێ تێدا نەبن. بێ پشتڕاستکرن لێچوون تەنێ بۆ زانیاریێ دمینن.</value></data>
+  <data name="Do not allocate the same expense more than once across products. Rebaz does not verify a business-wide allocation plan." xml:space="preserve"><value>هەمان خەرجی پتر ژ جارەکێ ل سەر بەرهەمان دابەش نەکە. Rebaz پلانا دابەشکرنێ یا تەمامیا کاری پشتڕاست ناکەت.</value></data>
+  <data name="Manage recorded business costs (opens a new tab)" xml:space="preserve"><value>رێڤەبرنا لێچوونێن تۆمارکری یێن کاری (د تابەکا نوو دا ڤەدبیت)</value></data>
+  <data name="Business-cost context was not captured with this older simulation. This does not mean costs were zero." xml:space="preserve"><value>زانیاریێن لێچوونێن کاری ل گەل ڤێ تاقیکرنا کەڤن نەهاتینە پاراستن. ئەڤە ناگەهینیت لێچوون سفر بوون.</value></data>
+  <data name="This result excludes shared business costs such as rent, monthly salaries, and electricity. It is not your business's net profit." xml:space="preserve"><value>ئەڤ ئەنجامە لێچوونێن هەڤپشک یێن کاری وەک کرێ، مووچەیێن هەیڤانە و کارەبا ناگرێت. ئەڤە نە قازانجێ خالص یێ کارێ تەیە.</value></data>
+  <data name="Recorded business-cost context" xml:space="preserve"><value>زانیاریێن لێچوونێن تۆمارکری یێن کاری</value></data>
+  <data name="No business costs recorded. Missing entries do not mean zero expenses. You can continue without an adjustment." xml:space="preserve"><value>چ لێچوونێن کاری نەهاتینە تۆمارکرن. کێمبوونا تۆماران ناگەهینیت خەرجی سفرن. تو دشێی بێ کێمکرنا پشکێ بەردەوام بی.</value></data>
+  <data name="Recorded eligible cost basis" xml:space="preserve"><value>بنەمایێ لێچوونێن تۆمارکری یێن گونجای بۆ پشکێ</value></data>
+  <data name="No eligible cost basis is available." xml:space="preserve"><value>چ بنەمایێ لێچوونێن گونجای بۆ ژمارتنێ نینە.</value></data>
+  <data name="The owner marked this month reviewed; this is not verified accounting completeness." xml:space="preserve"><value>خودانێ کاری ڤێ هەیڤێ وەک پێداچووی دیار کرییە؛ ئەڤە نە پشتڕاستکرنا تەمامییا حسابانە.</value></data>
+  <data name="This month's recorded costs have not been marked reviewed. Expenses may be missing." xml:space="preserve"><value>لێچوونێن ڤێ هەیڤێ نەهاتینە دیارکرن وەک پێداچووی. دبیت هەندەک خەرجی کێم بن.</value></data>
+  <data name="The recorded month contains estimates, not only actual amounts." xml:space="preserve"><value>هەیڤا تۆمارکری خەمڵاندنان دگرێت، نە تەنێ بڕێن راستەقینە.</value></data>
+  <data name="Included and excluded cost breakdown" xml:space="preserve"><value>وردەکاریێن لێچوونێن هاتین و نەهاتینە ژمارتن</value></data>
+  <data name="Only rent, wages, electricity/fuel and utilities marked not included in unit cost are candidates. Inventory, transport, maintenance, other, and included/unsure entries are excluded. Recurrence and overlap need your review." xml:space="preserve"><value>تەنێ کرێ، مووچە، کارەبا/سووتەمەنی و خزمەتگوزاریێن دیارکری وەک نە د لێچوونا یەکەیێ دا، کاندیدن. کۆگا، ڤەگوهاستن، چاککرن، یێن دی و تۆمارێن ناڤ لێچوونا یەکەیێ یان نەدیار دهێنە دەرئێخستن. دووبارەبوون و تێکەلبوونێ ب خۆ پێدا بچۆ.</value></data>
+  <data name="Included in context basis" xml:space="preserve"><value>د بنەمایێ زانیاریێ دا هاتیە ژمارتن</value></data>
+  <data name="Excluded from allocation" xml:space="preserve"><value>ژ دابەشکرنا پشکێ هاتیە دەرئێخستن</value></data>
+  <data name="Basis: the selected recorded month, without proration. Use contribution from a comparable month." xml:space="preserve"><value>بنەما: هەیڤا تۆمارکری یا هەلبژارتی، بێ دابەشکرنا دەمی. پارەیا مایی یا بەرهەمی ژ هەیڤەکا گونجای بۆ بەراوردێ بەکار بینە.</value></data>
+  <data name="Monthly costs are context only: no reliable daily/weekly conversion is available. No allocation is deducted." xml:space="preserve"><value>لێچوونێن هەیڤانە تەنێ بۆ زانیاریێ نە: چ ڤەگوهۆڕینەکا باوەرپێکری یا رۆژانە/هەفتانە نینە. چ پشک ناهێتە کێمکرن.</value></data>
+  <data name="Complete the period comparison first. Shared monthly costs cannot be deducted from a single order." xml:space="preserve"><value>پێشی بەراوردکرنا ماوەی تەمام بکە. لێچوونێن هەڤپشک یێن هەیڤێ ژ داخوازیەکێ ناهێنە کێمکرن.</value></data>
+  <data name="The non-overlapping recurring basis is unconfirmed. No allocation is deducted." xml:space="preserve"><value>تە پشتڕاست نەکرییە کو بنەما دووبارە دبیت و تێکەلی لێچوونێن دی نابیت. چ پشک نەهاتیە کێمکرن.</value></data>
+  <data name="Estimated remainder after allocated business costs" xml:space="preserve"><value>پارەیا خەمڵاندی یا مایی پشتی پشکا بەرهەمی ژ لێچوونێن کاری</value></data>
+  <data name="Allocated amount" xml:space="preserve"><value>بڕێ پشکێ</value></data>
+  <data name="Current remainder after allocation" xml:space="preserve"><value>پارەیا مایی یا نوکە پشتی پشکێ</value></data>
+  <data name="Not calculated: expected quantity is unknown." xml:space="preserve"><value>نەهاتیە ژمارتن: ژمارا پێشبینیکری نەدیارە.</value></data>
+  <data name="The same estimated allocation is deducted from both alternatives, so it does not change the decision's incremental difference." xml:space="preserve"><value>هەمان پشکا خەمڵاندی ژ هەردوو هەلبژاردان دهێتە کێمکرن، لەورا جوداهییا زێدە یا بڕیارێ ناگوهۆڕیت.</value></data>
+  <data name="A negative allocated remainder does not prove the whole business is losing money or that this product should be removed. Allocated rent and salaries may remain even if it is removed." xml:space="preserve"><value>پارەیا نەرێنی یا مایی پشتی پشکێ ناسەلمینیت کو تەمامیا کاری زیانێ دکەت یان پێدڤییە بەرهەم بهێتە لابردن. کرێ و مووچە دبیت بمینن تەنانەت ئەگەر بەرهەم بهێتە لابردن.</value></data>
+  <data name="Costs are shown separately as context, not deducted. This product's contribution helps cover shared expenses." xml:space="preserve"><value>لێچوون جودا تەنێ بۆ زانیاریێ دهێنە نیشاندان، نە کێمکرن. پارەیا مایی ژ ڤی بەرهەمی هاریکارە بۆ داپۆشینا خەرجیێن هەڤپشک.</value></data>
+  <data name="An allocation is an assumption, not net profit. Costs may be missing or overlap; Rebaz cannot automatically verify manual records or allocations across products." xml:space="preserve"><value>دابەشکرن گریمانەیە، نە قازانجێ خالصە. لێچوون دشێن کێم یان تێکەل بن؛ Rebaz نەتوانیت بخۆکار تۆمارێن دەستی یان دابەشکرنێ ل سەر بەرهەمان پشتڕاست بکەت.</value></data>
+  <data name="Additional decision cost for this period (optional)" xml:space="preserve"><value>لێچوونا زێدە ژبەر بڕیارێ بۆ ڤێ ماوەیێ (ئەگەر تە بڤێت)</value></data>
+  <data name="Only extra expenses caused by this decision for the selected period. Do not repeat existing bills or unit costs. Blank excludes unknown costs; 0 confirms none." xml:space="preserve"><value>تەنێ خەرجیێن زێدە ژبەر ڤێ بڕیارێ بۆ ماوەیا هەلبژارتی. فاتوورەیێن نوکە یان لێچوونا یەکەیێ دووبارە نەکە. ڤاڵا لێچوونێن نەدیار دەر دئێخیت؛ 0 پشتڕاست دکەت کو نینن.</value></data>
+  <data name="Additional decision costs are unknown or excluded." xml:space="preserve"><value>لێچوونێن زێدە یێن بڕیارێ نەدیارن یان نەهاتینە ژمارتن.</value></data>
+  <data name="Scenario contributions and minimum-sales thresholds include this additional cost once; it does not reduce the current contribution." xml:space="preserve"><value>پارەیێن مایی یێن سیناریۆیێ و کێمترین سنوورێ فرۆتنێ ڤێ لێچوونا زێدە تەنێ جارەکێ دگرن؛ پارەیا مایی یا نوکە کێم ناکەت.</value></data>
+  <data name="Enter an allocation percentage from 0 to 100 with at most two decimal places." xml:space="preserve"><value>رێژەکا پشکێ ژ 0 هەتا 100 ب زێدەترین دوو خانەیێن دەهەکی بنڤیسە.</value></data>
+  <data name="These amounts exceed the supported calculation range." xml:space="preserve"><value>ئەڤ بڕە ژ سنوورێ ژمارتنا پشتەڤانی کری زێدەترن.</value></data>
+  <data name="If sales stay the same" xml:space="preserve"><value>ئەگەر فرۆتن وەک خۆ بمینیت</value></data>
+  <data name="If sales decrease" xml:space="preserve"><value>ئەگەر فرۆتن کێم ببیت</value></data>
+  <data name="Keep the current price" xml:space="preserve"><value>بهایێ نوکە بپارێزە</value></data>
+  <data name="Wages" xml:space="preserve"><value>مووچە</value></data>
+  <data name="Electricity / fuel" xml:space="preserve"><value>کارەبا / سووتەمەنی</value></data>
+  <data name="Utilities" xml:space="preserve"><value>ئاڤ و ئینتەرنێت و خزمەتگوزاری</value></data>
+  <data name="Left after product and decision costs" xml:space="preserve"><value>پارەیێ پشتی تێچوونا بەرهەمی و بریارێ دمینیت</value></data>
+  <data name="This is a product contribution threshold, not a whole-business break-even point." xml:space="preserve"><value>ئەڤە سنوورێ پاراستنا پشکا بەرهەمییە، نە خاڵا یەکسانبوونا داهات و تێچوونا هەمی کاری.</value></data>
 </root>

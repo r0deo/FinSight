@@ -1,0 +1,8 @@
+@model FinSight.Domain.Models.SimulationCostContext
+@using System.Globalization
+<input type="hidden" name="LinkCosts" value="@Model.Settings.Enabled.ToString().ToLowerInvariant()" />
+<input type="hidden" name="CostMonth" value="@Model.Settings.Month?.ToString("yyyy-MM")" />
+<input type="hidden" name="AllocateCosts" value="@Model.Settings.Allocate.ToString().ToLowerInvariant()" />
+<input type="hidden" name="AllocationPercentage" value="@Model.Settings.Percentage?.ToString(CultureInfo.InvariantCulture)" />
+<input type="hidden" name="ConfirmCostBasis" value="@Model.Settings.ConfirmBasis.ToString().ToLowerInvariant()" />
+<input type="hidden" name="CostBasis" value="@Model.BasisFingerprint" />

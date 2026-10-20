@@ -4,9 +4,9 @@
     var products = (GetProductsResponse)ViewData["ProductPage"]!;
 }
 <section class="panel simulation-panel">
+    <partial name="_SimulationNavigation" model="@(new DecisionCardsViewModel("what-if"))" />
     <p class="eyebrow">@T["EXPLORE A SHOCK"]</p>
     <h1>@T["What if conditions change?"]</h1>
-    <p><a href="/simulations">@T["Saved simulation history"]</a></p>
     <p>@T["Choose an active product to explore a cost or sales shock."]</p>
     @if (products.Items.Count == 0)
     {

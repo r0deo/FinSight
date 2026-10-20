@@ -28,7 +28,7 @@ public partial class WebsiteTests
         var productFields = ProductFields(name, "5000"); productFields["UnitCost"] = "3000";
         Assert.Equal(HttpStatusCode.Redirect, (await Submit(owner, "/products/create", productFields)).StatusCode);
         var product = await FindProduct(name); var url = $"/simulations/discount?productId={product.Id}";
-        Assert.Contains("/simulations/discount", await owner.GetStringAsync("/simulations"));
+        Assert.Contains("/simulations/preview", await owner.GetStringAsync("/simulations"));
         await Submit(owner, "/culture", new() { ["culture"] = culture, ["returnUrl"] = url }, url);
         var fields = new Dictionary<string, string> { ["ProductId"] = product.Id.ToString(),
             ["DiscountPercentage"] = "10", ["CurrentSalesQuantity"] = "100", ["ExpectedSalesQuantity"] = "140",

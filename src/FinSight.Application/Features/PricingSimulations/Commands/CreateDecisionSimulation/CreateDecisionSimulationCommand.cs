@@ -11,4 +11,7 @@ public sealed record CreateDecisionSimulationCommand(
     SalesPeriod ComparisonPeriod,
     int DeclinePercentage,
     decimal PreviewCurrentPrice,
-    decimal PreviewUnitCost) : IRequest<PricingSimulationResponse>;
+    decimal PreviewUnitCost) : FinSight.Application.Features.BusinessCosts.CostLinkedRequest, IRequest<PricingSimulationResponse>
+{
+    public decimal? AdditionalDecisionCost { get; init; }
+}

@@ -1,6 +1,7 @@
 @model SavedSimulationDetailViewModel
 @{ ViewData["Title"] = T["Saved simulation"].Value; }
 <section class="panel simulation-panel">
+    <partial name="_SimulationNavigation" model="@(new DecisionCardsViewModel("history", Model.Simulation.ProductId))" />
     <p class="eyebrow">@T["SAVED SNAPSHOT"]</p>
     <h1>@T["Saved simulation"]</h1>
     <h2><bdi>@Model.ProductName</bdi></h2>
@@ -28,4 +29,5 @@
         <partial name="_DecisionResult" model="@(new DecisionDisplayViewModel(decision, Model.Simulation.ComparisonPeriod, Model.Simulation.CurrentPrice, Model.Simulation.ProposedPrice, Model.Simulation.CurrentSalesQuantity, Model.Simulation.ExpectedSalesQuantity, Model.Simulation.DeclinePercentage, Model.Currency, true))" />
     }
     <p><a href="/simulations">@T["Back to history"]</a></p>
+    <partial name="_LinkedCostResult" model="@(new CostContextDisplayModel(Model.Simulation.CostContext, Model.Currency))" />
 </section>

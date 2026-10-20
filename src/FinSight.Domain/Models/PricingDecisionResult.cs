@@ -19,6 +19,7 @@ public sealed record PricingDecisionResult(
     bool IsProposedPriceBelowCost,
     IReadOnlyList<PricingScenarioResult> Scenarios)
 {
+    public decimal? AdditionalDecisionCost { get; init; }
     public PricingScenarioResult? ExpectedScenario =>
         Scenarios.FirstOrDefault(scenario => scenario.Kind == PricingScenarioKind.ExpectedSales);
 }

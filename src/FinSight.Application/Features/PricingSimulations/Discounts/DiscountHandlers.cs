@@ -36,7 +36,7 @@ public sealed class PreviewSavedDiscountHandler(IPricingSimulationRepository sim
 
 public sealed class CreateDiscountHandler(IProductRepository products, IPricingSimulationRepository simulations,
     IBusinessCurrencyReader currencies, ICurrentUserContext user, DiscountSimulationCalculator calculator,
-    TimeProvider clock) : IRequestHandler<CreateDiscountCommand, PricingSimulationResponse>
+    TimeProvider clock, FinSight.Application.Features.BusinessCosts.SimulationCostContextService? costContext = null) : IRequestHandler<CreateDiscountCommand, PricingSimulationResponse>
 {
     public async Task<PricingSimulationResponse> Handle(CreateDiscountCommand request, CancellationToken ct)
     {
@@ -51,6 +51,8 @@ public sealed class CreateDiscountHandler(IProductRepository products, IPricingS
             product.Id, user.UserId, new(product.SellingPrice, product.UnitCost, request.DiscountPercentage,
                 request.CurrentSalesQuantity, request.ExpectedSalesQuantity, request.CampaignCost),
             request.ComparisonPeriod, currency, product.Name, clock.GetUtcNow().UtcDateTime, calculator));
+        simulation.CaptureCostContext(await FinSight.Application.Features.BusinessCosts.SimulationCostContextService.Capture(costContext, request.CostLink, simulation.ComparisonPeriod!.Value,
+            simulation.DiscountSnapshot!.Result.CurrentContribution, [new ContributionOption("Proposed contribution", simulation.ProposedContribution)], ct, request.CostBasis, true));
         await simulations.AddAsync(simulation, ct);
         await simulations.SaveChangesAsync(ct);
         return PricingSimulationResponse.FromSimulation(simulation);
@@ -58,7 +60,7 @@ public sealed class CreateDiscountHandler(IProductRepository products, IPricingS
 }
 
 public sealed class UpdateDiscountHandler(IPricingSimulationRepository simulations, ICurrentUserContext user,
-    DiscountSimulationCalculator calculator, TimeProvider clock)
+    DiscountSimulationCalculator calculator, TimeProvider clock, FinSight.Application.Features.BusinessCosts.SimulationCostContextService? costContext = null)
     : IRequestHandler<UpdateDiscountCommand, PricingSimulationVersionResponse>
 {
     public async Task<PricingSimulationVersionResponse> Handle(UpdateDiscountCommand request, CancellationToken ct)
@@ -73,6 +75,8 @@ public sealed class UpdateDiscountHandler(IPricingSimulationRepository simulatio
                 clock.GetUtcNow().UtcDateTime, request.Version, calculator);
             return true;
         });
+        simulation.CaptureCostContext(await FinSight.Application.Features.BusinessCosts.SimulationCostContextService.Capture(costContext, request.CostLink, simulation.ComparisonPeriod!.Value,
+            simulation.DiscountSnapshot!.Result.CurrentContribution, [new ContributionOption("Proposed contribution", simulation.ProposedContribution)], ct, request.CostBasis, true));
         await simulations.SaveChangesAsync(ct);
         return new(simulation.Version);
     }

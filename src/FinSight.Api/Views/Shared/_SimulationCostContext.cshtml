@@ -1,7 +1,0 @@
-@model BusinessCostsViewModel
-<details class="notice"><summary>@T["Business-wide monthly context — not deducted from this product"]</summary>
-<p>@T["This is current entered information for the selected month, not part of the saved calculation snapshot."]</p>
-<partial name="_BusinessCostSummary" model="Model" />
-<p>@T["A full business operating result requires sales and costs across the business for the same period."]</p>
-<a href="/business-costs?month=@Model.Summary.Month.ToString("yyyy-MM")">@T["Business costs"]</a>
-</details>

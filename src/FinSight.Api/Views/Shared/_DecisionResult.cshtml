@@ -11,6 +11,8 @@
 }
 <section class="decision-results" aria-label="@T["Calculation result"]" role="status">
     <h2>@(Model.IsHistorical ? T["Saved result"] : T["Preview result"])</h2>
+    <p>@T["Additional decision cost for this period (optional)"]: @if (d.AdditionalDecisionCost is { } extra) { <bdi dir="ltr" data-decision-cost>@extra.ToString("N2") @Model.Currency</bdi> } else { @T["Additional decision costs are unknown or excluded."] }</p>
+    @if (d.AdditionalDecisionCost.HasValue) { <p>@T["Scenario contributions and minimum-sales thresholds include this additional cost once; it does not reduce the current contribution."]</p> }
     <div class="decision-answer">
         <p class="eyebrow">@T["Minimum units sold to maintain your current contribution"]</p>
         @if (d.ThresholdStatus == MaintenanceThresholdStatus.Available)
@@ -55,7 +57,7 @@
             else if (expected.Difference < 0) { @T["At the {0} units sold you entered, contribution is lower by {1} {2}. The period was not saved.", expected.Quantity.ToString("N0"), (-expected.Difference).ToString("N2"), Model.Currency] }
             else { @T["At the {0} units sold you entered, contribution is unchanged.", expected.Quantity.ToString("N0")] }
         </p>
-        @if (Model.CurrentPrice == Model.ProposedPrice)
+        @if (Model.CurrentPrice == Model.ProposedPrice && d.AdditionalDecisionCost is null or 0)
         { <p>@T["The price is unchanged; any difference comes from the sales quantity you assumed."]</p> }
     }
     else { <p class="decision-summary">@T["No expected sales were entered, so there is no personal forecast or overall recommendation."]</p> }
@@ -63,7 +65,7 @@
     @if (Model.Period.HasValue) { <p>@T["All scenario amounts are per {0}.", period]</p> }
         <p>@T["The decline scenario is an illustration, not a demand prediction. Fractional units are rounded down."]</p>
     <div class="table-scroll"><table class="scenario-table">
-        <thead><tr><th scope="col">@T["Scenario"]</th><th scope="col">@T["Units sold"]</th><th scope="col">@T["Revenue"]</th><th scope="col">@T["Entered unit costs"]</th><th scope="col">@T["Left after unit costs"]</th><th scope="col">@T["Difference"]</th><th scope="col">@T["Compared with today"]</th></tr></thead>
+        <thead><tr><th scope="col">@T["Scenario"]</th><th scope="col">@T["Units sold"]</th><th scope="col">@T["Revenue"]</th><th scope="col">@T["Entered unit costs"]</th><th scope="col">@T["Left after unit costs"]</th>@if (d.AdditionalDecisionCost.HasValue) { <th scope="col">@T["Left after product and decision costs"]</th> }<th scope="col">@T["Difference"]</th><th scope="col">@T["Compared with today"]</th></tr></thead>
         <tbody>
         @foreach (var scenario in d.Scenarios)
         {
@@ -79,7 +81,8 @@
                 <td data-label="@T["Units sold"]"><bdi dir="ltr">@scenario.Quantity.ToString("N0")</bdi></td>
                 <td data-label="@T["Revenue"]"><bdi dir="ltr">@scenario.Revenue.ToString("N2") @Model.Currency</bdi></td>
                 <td data-label="@T["Entered unit costs"]"><bdi dir="ltr">@scenario.TotalUnitCosts.ToString("N2") @Model.Currency</bdi></td>
-                <td data-label="@T["Left after unit costs"]"><bdi dir="ltr">@scenario.Contribution.ToString("N2") @Model.Currency</bdi></td>
+                <td data-label="@T["Left after unit costs"]"><bdi dir="ltr">@((scenario.Revenue - scenario.TotalUnitCosts).ToString("N2")) @Model.Currency</bdi></td>
+                @if (d.AdditionalDecisionCost.HasValue) { <td data-label="@T["Left after product and decision costs"]"><bdi dir="ltr">@scenario.Contribution.ToString("N2") @Model.Currency</bdi></td> }
                 <td data-label="@T["Difference"]"><bdi dir="ltr">@((scenario.Difference > 0 ? "+" : "") + scenario.Difference.ToString("N2")) @Model.Currency</bdi></td>
                 <td data-label="@T["Compared with today"]">@comparison</td>
             </tr>
@@ -94,6 +97,6 @@
         { <p>@T["All quantities refer to the selected period. Unit cost is assumed unchanged. Expected sales are your assumption, not a prediction."]</p> }
         else
         { <p>@T["This older record did not save a comparison period. Its prices, unit cost, and quantities are historical snapshots."]</p> }
-        <p>@T["This is not a business break-even point because fixed costs are not included."]</p>
+        <p>@T["This is a product contribution threshold, not a whole-business break-even point."]</p>
     </div>
 </section>

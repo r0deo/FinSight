@@ -35,13 +35,16 @@
             </div>
             <p>@T["This comparison assumes direct demand is otherwise unchanged. Order counts are your assumptions, not predictions."]</p>
         </details>
+        <partial name="_CostLinkForm" model="Model" />
         <button class="button" type="submit">@T["Calculate preview"]</button>
     </form>
     @if (ViewData.ModelState.IsValid && Model.Result is { } snapshot)
     {
         <result-modal id="delivery-result" title="@T["Delivery simulation"]" source-form="[data-delivery-form]" return-focus="[data-delivery-form] button[type=submit]" auto-open="true">
             <partial name="_DeliveryResult" model="@(new DeliveryDisplayViewModel(snapshot, Model.Currency))" />
+            <partial name="_LinkedCostResult" model="@(new CostContextDisplayModel(Model.CostContext, Model.Currency))" />
             <form method="post" action="@saveUrl" asp-antiforgery="true" data-delivery-save>
+                @if (Model.CostContext is not null) { <partial name="_CostLinkHidden" model="Model.CostContext" /> }
                 <input type="hidden" name="ProductId" value="@Model.ProductId" /><input type="hidden" name="Version" value="@Model.Version" />
                 <input type="hidden" name="UnitsPerOrder" value="@snapshot.Inputs.UnitsPerOrder" />
                 <input type="hidden" name="DeliveryUnitPrice" value="@snapshot.Inputs.DeliveryUnitPrice.ToString(CultureInfo.InvariantCulture)" />

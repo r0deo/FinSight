@@ -8,10 +8,10 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace FinSight.Api.Website.Models;
 
-public sealed class PreviewSimulationViewModel
+public sealed class PreviewSimulationViewModel : CostLinkForm
 {
-    public string? ContextMonth { get; set; }
-    [BindNever, ValidateNever] public BusinessCostsViewModel? CostContext { get; set; }
+    [Display(Name = "Additional decision cost for this period (optional)"), ModelBinder(BinderType = typeof(WebsiteNumberModelBinder))]
+    public decimal? AdditionalDecisionCost { get; set; }
     public Guid ProductId { get; set; }
 
     [Display(Name = "Proposed price"), Range(typeof(decimal), "0", "79228162514264337593543950335",
@@ -43,8 +43,9 @@ public sealed class PreviewSimulationViewModel
     [BindNever, ValidateNever] public PricingDecisionResult? Result { get; set; }
 }
 
-public sealed class SaveDecisionViewModel
+public sealed class SaveDecisionViewModel : CostLinkForm
 {
+    [ModelBinder(BinderType = typeof(WebsiteNumberModelBinder))] public decimal? AdditionalDecisionCost { get; set; }
     public Guid ProductId { get; set; }
     [ModelBinder(BinderType = typeof(WebsiteNumberModelBinder))]
     public decimal ProposedPrice { get; set; }

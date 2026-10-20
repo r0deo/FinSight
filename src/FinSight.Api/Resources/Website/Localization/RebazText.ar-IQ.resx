@@ -670,4 +670,62 @@
   <data name="Transferred orders cannot exceed current direct orders or expected delivery orders." xml:space="preserve"><value>الطلبات المنتقلة لا يمكن أن تتجاوز الطلبات المباشرة الحالية أو طلبات التوصيل المتوقعة.</value></data>
   <data name="These prices, order counts or charges exceed the supported calculation range." xml:space="preserve"><value>هذه الأسعار أو أعداد الطلبات أو الرسوم تتجاوز نطاق الحساب المدعوم.</value></data>
   <data name="Enter a non-negative whole number of orders." xml:space="preserve"><value>أدخل عدداً صحيحاً للطلبات لا يقل عن صفر.</value></data>
+  <data name="Financial decisions" xml:space="preserve"><value>جرّب قراراتك المالية</value></data>
+  <data name="Saved history" xml:space="preserve"><value>المحاكاة المحفوظة</value></data>
+  <data name="Compare a price change, a discount, or delivery sales." xml:space="preserve"><value>قارن تغيير السعر أو الخصم أو البيع عبر التوصيل.</value></data>
+  <data name="Explore changes in costs or demand and possible responses." xml:space="preserve"><value>جرّب تغيّر التكاليف أو الطلب والخيارات الممكنة.</value></data>
+  <data name="Reopen the decisions and assumptions you explicitly saved." xml:space="preserve"><value>راجع القرارات والافتراضات التي حفظتها بنفسك.</value></data>
+  <data name="Current section" xml:space="preserve"><value>القسم الحالي</value></data>
+  <data name="Shared business costs (optional)" xml:space="preserve"><value>مصاريف العمل المشتركة (اختياري)</value></data>
+  <data name="Include my recorded business costs" xml:space="preserve"><value>اربط تكاليف نشاطي بهذه المحاكاة</value></data>
+  <data name="Rent, salaries, and electricity support your whole business, not just this product. Linking is optional; you can review costs and estimate this product's share." xml:space="preserve"><value>الإيجار والرواتب والكهرباء تخدم عملك كله، مو هذا المنتج وحده. الربط اختياري؛ تگدر تراجع المصاريف وتحدد حصة تقديرية لهذا المنتج.</value></data>
+  <data name="Why is this optional?" xml:space="preserve"><value>ليش الربط اختياري؟</value></data>
+  <data name="Not linking does not mean these expenses do not exist. Assigning all of them to one product can mislead. Additional costs caused by this decision belong in its own cost fields, regardless of this switch." xml:space="preserve"><value>عدم الربط ما يعني أن هاي المصاريف غير موجودة. تحميلها كلها على منتج واحد ممكن يضللك. التكاليف الإضافية بسبب القرار تبقى بحقولها الخاصة سواء فعّلت الربط أو لا.</value></data>
+  <data name="Recorded cost month" xml:space="preserve"><value>شهر التكاليف المسجلة</value></data>
+  <data name="Monthly comparisons use this recorded month without conversion. Daily and weekly comparisons show monthly costs as context only." xml:space="preserve"><value>المقارنة الشهرية تستخدم الشهر المحدد بدون تحويل. المقارنات اليومية والأسبوعية تعرض التكاليف الشهرية للمعلومة فقط.</value></data>
+  <data name="Estimate this product's share of these costs" xml:space="preserve"><value>احسب حصة تقديرية لهذا المنتج من هاي المصاريف</value></data>
+  <data name="Product allocation (%)" xml:space="preserve"><value>حصة المنتج (%)</value></data>
+  <data name="I confirm the included costs recur and are not already in unit costs or this decision's expenses." xml:space="preserve"><value>أؤكد أن المصاريف المشمولة متكررة وغير محسوبة ضمن تكلفة الوحدة أو مصاريف هذا القرار.</value></data>
+  <data name="This percentage is your estimate. Review the breakdown before confirming. Equipment and one-time purchases must not be included. Without confirmation, costs remain context only." xml:space="preserve"><value>النسبة تقديرك أنت. راجع التفاصيل قبل التأكيد. لا تشمل المعدات والمشتريات لمرة واحدة. بدون التأكيد تبقى المصاريف للمعلومة فقط.</value></data>
+  <data name="Do not allocate the same expense more than once across products. Rebaz does not verify a business-wide allocation plan." xml:space="preserve"><value>لا توزّع نفس المصروف أكثر من مرة بين المنتجات. ريباز ما يتحقق من خطة توزيع مصاريف العمل كله.</value></data>
+  <data name="Manage recorded business costs (opens a new tab)" xml:space="preserve"><value>إدارة تكاليف العمل المسجلة (يفتح تبويباً جديداً)</value></data>
+  <data name="Business-cost context was not captured with this older simulation. This does not mean costs were zero." xml:space="preserve"><value>لم تُحفظ معلومات مصاريف العمل مع هذه المحاكاة القديمة. هذا لا يعني أن المصاريف كانت صفراً.</value></data>
+  <data name="This result excludes shared business costs such as rent, monthly salaries, and electricity. It is not your business's net profit." xml:space="preserve"><value>هذه النتيجة لا تشمل مصاريف العمل المشتركة مثل الإيجار والرواتب الشهرية والكهرباء. وهي ليست صافي ربح عملك.</value></data>
+  <data name="Recorded business-cost context" xml:space="preserve"><value>معلومات مصاريف العمل المسجلة</value></data>
+  <data name="No business costs recorded. Missing entries do not mean zero expenses. You can continue without an adjustment." xml:space="preserve"><value>لا توجد تكاليف عمل مسجلة. نقص السجلات لا يعني أن المصاريف صفر. تگدر تكمل بدون خصم حصة.</value></data>
+  <data name="Recorded eligible cost basis" xml:space="preserve"><value>المصاريف المسجلة المؤهلة كأساس للحصة</value></data>
+  <data name="No eligible cost basis is available." xml:space="preserve"><value>لا يوجد أساس مصاريف مؤهل للحساب.</value></data>
+  <data name="The owner marked this month reviewed; this is not verified accounting completeness." xml:space="preserve"><value>المالك أعلن مراجعة هذا الشهر؛ هذا ليس تدقيقاً باكتمال الحسابات.</value></data>
+  <data name="This month's recorded costs have not been marked reviewed. Expenses may be missing." xml:space="preserve"><value>لم تُعلن مراجعة مصاريف هذا الشهر. قد توجد مصاريف ناقصة.</value></data>
+  <data name="The recorded month contains estimates, not only actual amounts." xml:space="preserve"><value>الشهر المسجل يحتوي تقديرات، مو فقط مبالغ فعلية.</value></data>
+  <data name="Included and excluded cost breakdown" xml:space="preserve"><value>تفاصيل المصاريف المشمولة والمستبعدة</value></data>
+  <data name="Only rent, wages, electricity/fuel and utilities marked not included in unit cost are candidates. Inventory, transport, maintenance, other, and included/unsure entries are excluded. Recurrence and overlap need your review." xml:space="preserve"><value>الأساس المرشح يشمل فقط الإيجار والأجور والكهرباء/الوقود والخدمات المصنفة غير مشمولة بتكلفة الوحدة. نستبعد المخزون والنقل والصيانة وأخرى والسجلات المشمولة أو غير المؤكدة. راجع التكرار والتداخل بنفسك.</value></data>
+  <data name="Included in context basis" xml:space="preserve"><value>مشمول في أساس المقارنة</value></data>
+  <data name="Excluded from allocation" xml:space="preserve"><value>مستبعد من الحصة</value></data>
+  <data name="Basis: the selected recorded month, without proration. Use contribution from a comparable month." xml:space="preserve"><value>الأساس: الشهر المسجل المحدد، بدون توزيع زمني. استخدم مساهمة المنتج من شهر قابل للمقارنة.</value></data>
+  <data name="Monthly costs are context only: no reliable daily/weekly conversion is available. No allocation is deducted." xml:space="preserve"><value>التكاليف الشهرية للمعلومة فقط: ما عندنا أساس موثوق لتحويلها يومياً أو أسبوعياً. لا نخصم أي حصة.</value></data>
+  <data name="Complete the period comparison first. Shared monthly costs cannot be deducted from a single order." xml:space="preserve"><value>أكمل مقارنة الفترة أولاً. لا يمكن خصم مصاريف الشهر المشتركة من طلب واحد.</value></data>
+  <data name="The non-overlapping recurring basis is unconfirmed. No allocation is deducted." xml:space="preserve"><value>لم تؤكد أن الأساس متكرر وغير متداخل مع تكاليف أخرى. لم نخصم حصة.</value></data>
+  <data name="Estimated remainder after allocated business costs" xml:space="preserve"><value>المتبقي التقديري بعد حصة المنتج من مصاريف النشاط</value></data>
+  <data name="Allocated amount" xml:space="preserve"><value>مبلغ الحصة</value></data>
+  <data name="Current remainder after allocation" xml:space="preserve"><value>المتبقي الحالي بعد الحصة</value></data>
+  <data name="Not calculated: expected quantity is unknown." xml:space="preserve"><value>لم يُحسب: الكمية المتوقعة غير معروفة.</value></data>
+  <data name="The same estimated allocation is deducted from both alternatives, so it does not change the decision's incremental difference." xml:space="preserve"><value>نخصم نفس الحصة التقديرية من الخيارين، لذلك لا تغيّر الفرق الإضافي الناتج عن القرار.</value></data>
+  <data name="A negative allocated remainder does not prove the whole business is losing money or that this product should be removed. Allocated rent and salaries may remain even if it is removed." xml:space="preserve"><value>المتبقي السالب بعد الحصة لا يثبت أن كل العمل خاسر أو أن المنتج لازم ينحذف. الإيجار والرواتب قد تبقى حتى لو أوقفت المنتج.</value></data>
+  <data name="Costs are shown separately as context, not deducted. This product's contribution helps cover shared expenses." xml:space="preserve"><value>المصاريف معروضة منفصلة للمعلومة ولا تُخصم. المبلغ المتبقي من المنتج يساعد بتغطية مصاريف العمل المشتركة.</value></data>
+  <data name="An allocation is an assumption, not net profit. Costs may be missing or overlap; Rebaz cannot automatically verify manual records or allocations across products." xml:space="preserve"><value>الحصة افتراض، وليست صافي ربح. قد تكون المصاريف ناقصة أو متداخلة؛ ريباز ما يگدر يتحقق تلقائياً من السجلات اليدوية أو التوزيع بين المنتجات.</value></data>
+  <data name="Additional decision cost for this period (optional)" xml:space="preserve"><value>تكلفة إضافية بسبب القرار لهذه الفترة (اختياري)</value></data>
+  <data name="Only extra expenses caused by this decision for the selected period. Do not repeat existing bills or unit costs. Blank excludes unknown costs; 0 confirms none." xml:space="preserve"><value>فقط المصاريف الإضافية بسبب القرار للفترة المحددة. لا تكرر الفواتير الحالية أو تكلفة الوحدة. الفراغ يستبعد التكاليف غير المعروفة؛ و0 يؤكد عدم وجودها.</value></data>
+  <data name="Additional decision costs are unknown or excluded." xml:space="preserve"><value>تكاليف القرار الإضافية غير معروفة أو غير مشمولة.</value></data>
+  <data name="Scenario contributions and minimum-sales thresholds include this additional cost once; it does not reduce the current contribution." xml:space="preserve"><value>مبالغ السيناريو والحد الأدنى للمبيعات تشمل هذه التكلفة مرة واحدة؛ لا تقلل المبلغ المتبقي الحالي.</value></data>
+  <data name="Enter an allocation percentage from 0 to 100 with at most two decimal places." xml:space="preserve"><value>أدخل نسبة حصة من 0 إلى 100 وبمنزلتين عشريتين كحد أقصى.</value></data>
+  <data name="These amounts exceed the supported calculation range." xml:space="preserve"><value>هذه المبالغ تتجاوز نطاق الحساب المدعوم.</value></data>
+  <data name="If sales stay the same" xml:space="preserve"><value>إذا بقيت المبيعات نفسها</value></data>
+  <data name="If sales decrease" xml:space="preserve"><value>إذا انخفضت المبيعات</value></data>
+  <data name="Keep the current price" xml:space="preserve"><value>الإبقاء على السعر الحالي</value></data>
+  <data name="Wages" xml:space="preserve"><value>الأجور والرواتب</value></data>
+  <data name="Electricity / fuel" xml:space="preserve"><value>الكهرباء / الوقود</value></data>
+  <data name="Utilities" xml:space="preserve"><value>الماء والإنترنت والخدمات</value></data>
+  <data name="Left after product and decision costs" xml:space="preserve"><value>المتبقي بعد تكاليف المنتج والقرار</value></data>
+  <data name="This is a product contribution threshold, not a whole-business break-even point." xml:space="preserve"><value>هذا حد للمحافظة على مساهمة المنتج، وليس نقطة تعادل للعمل كله.</value></data>
 </root>

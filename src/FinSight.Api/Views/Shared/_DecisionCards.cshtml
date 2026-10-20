@@ -1,4 +1,5 @@
 @model DecisionCardsViewModel
+<partial name="_SimulationNavigation" model="@(new DecisionCardsViewModel("financial", Model.ProductId))" />
 @{
     var cards = new[] {
         (Id: "pricing", Title: "Change selling price", Description: "Compare the current price with a proposed price.", Icon: "M4 16l5-5 4 3 7-10 M14 4h6v6"),
@@ -17,8 +18,4 @@
             @if (selected) { <span class="decision-selected"><span aria-hidden="true">✓ </span>@T["Selected decision"]</span> }
         </a>
     }
-</nav>
-<nav class="actions decision-secondary" aria-label="@T["Simulation tools"]">
-    <a href="/what-if@(Model.ProductId.HasValue ? $"?productId={Model.ProductId}" : "")">@T["What if conditions change?"]</a>
-    <a href="/simulations">@T["Saved simulation history"]</a>
 </nav>

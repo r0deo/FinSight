@@ -13,7 +13,7 @@ public sealed class CreateDecisionSimulationHandler(
     IPricingSimulationRepository simulations,
     ICurrentUserContext currentUser,
     PricingDecisionCalculator calculator,
-    TimeProvider clock) : IRequestHandler<CreateDecisionSimulationCommand, PricingSimulationResponse>
+    TimeProvider clock, FinSight.Application.Features.BusinessCosts.SimulationCostContextService? costContext = null) : IRequestHandler<CreateDecisionSimulationCommand, PricingSimulationResponse>
 {
     public async Task<PricingSimulationResponse> Handle(
         CreateDecisionSimulationCommand request, CancellationToken cancellationToken)
@@ -29,7 +29,12 @@ public sealed class CreateDecisionSimulationHandler(
         var simulation = new PricingSimulation(Guid.NewGuid(), businessId, product.Id,
             currentUser.UserId, product.SellingPrice, product.UnitCost, request.ProposedPrice,
             request.CurrentSalesQuantity, request.ExpectedSalesQuantity, request.ComparisonPeriod,
-            request.DeclinePercentage, currency, product.Name, clock.GetUtcNow().UtcDateTime, calculator);
+            request.DeclinePercentage, currency, product.Name, clock.GetUtcNow().UtcDateTime, calculator, request.AdditionalDecisionCost);
+        var decision = calculator.Calculate(product.SellingPrice, request.ProposedPrice, product.UnitCost,
+            request.CurrentSalesQuantity, request.ExpectedSalesQuantity, request.DeclinePercentage, request.AdditionalDecisionCost);
+        simulation.CaptureCostContext(await FinSight.Application.Features.BusinessCosts.SimulationCostContextService.Capture(costContext, request.CostLink, request.ComparisonPeriod,
+            decision.CurrentContribution, decision.Scenarios.Select(x => new FinSight.Domain.Models.ContributionOption(x.Kind.ToString(), x.Contribution)).ToArray(),
+            cancellationToken, request.CostBasis, true));
         await simulations.AddAsync(simulation, cancellationToken);
         await simulations.SaveChangesAsync(cancellationToken);
         return PricingSimulationResponse.FromSimulation(simulation);

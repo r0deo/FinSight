@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace FinSight.Api.Website.Models;
 
-public sealed class DeliveryViewModel
+public sealed class DeliveryViewModel : CostLinkForm
 {
     public Guid ProductId { get; set; }
     [Required(ErrorMessage = "{0} is required."), Display(Name = "Units of this product per order"), ModelBinder(BinderType = typeof(WebsiteNumberModelBinder))]

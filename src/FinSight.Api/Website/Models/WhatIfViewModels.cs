@@ -9,11 +9,9 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace FinSight.Api.Website.Models;
 
-public sealed class WhatIfFormViewModel
+public sealed class WhatIfFormViewModel : CostLinkForm
 {
     public WhatIfConcern Concern { get; set; } = WhatIfConcern.Both;
-    public string? ContextMonth { get; set; }
-    [BindNever, ValidateNever] public BusinessCostsViewModel? CostContext { get; set; }
     public Guid ProductId { get; set; }
     [Required, Display(Name = "Current units sold")]
     [ModelBinder(BinderType = typeof(WebsiteNumberModelBinder))]

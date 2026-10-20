@@ -9,7 +9,7 @@ using MediatR;
 namespace FinSight.Application.Features.WhatIf;
 
 public sealed record SaveWhatIfCommand(WhatIfRequest Request, decimal PreviewPrice,
-    decimal PreviewCost, Guid? SaveId = null) : IRequest<WhatIfResponse>;
+    decimal PreviewCost, Guid? SaveId = null) : FinSight.Application.Features.BusinessCosts.CostLinkedRequest, IRequest<WhatIfResponse>;
 
 public sealed class SaveWhatIfValidator : AbstractValidator<SaveWhatIfCommand>
 {
@@ -23,7 +23,7 @@ public sealed class SaveWhatIfValidator : AbstractValidator<SaveWhatIfCommand>
 
 public sealed class SaveWhatIfHandler(IProductRepository products, IBusinessCurrencyReader currencies,
     IWhatIfSimulationRepository simulations, ICurrentUserContext user,
-    WhatIfCalculator calculator, TimeProvider clock) : IRequestHandler<SaveWhatIfCommand, WhatIfResponse>
+    WhatIfCalculator calculator, TimeProvider clock, FinSight.Application.Features.BusinessCosts.SimulationCostContextService? costContext = null) : IRequestHandler<SaveWhatIfCommand, WhatIfResponse>
 {
     public async Task<WhatIfResponse> Handle(SaveWhatIfCommand command,
         CancellationToken cancellationToken)
@@ -33,7 +33,14 @@ public sealed class SaveWhatIfHandler(IProductRepository products, IBusinessCurr
         if (command.SaveId is { } saveId)
         {
             var existing = await simulations.GetByIdAsync(saveId, user.BusinessId, cancellationToken);
-            if (existing is not null) return WhatIfResponse.From(existing);
+            if (existing is not null)
+            {
+                var settings = (command.CostLink ?? new()).Normalize();
+                if (settings != (existing.CostContext?.Settings ?? new())
+                    || (!string.IsNullOrEmpty(command.CostBasis) && command.CostBasis != existing.CostContext?.BasisFingerprint))
+                    throw new PricingSimulationConflictException("Costs or assumptions changed. Calculate again before saving.");
+                return WhatIfResponse.From(existing);
+            }
         }
         var product = await products.GetActiveByIdAsync(request.ProductId, user.BusinessId,
             cancellationToken) ?? throw new NotFoundException(nameof(Product), request.ProductId);
@@ -46,6 +53,9 @@ public sealed class SaveWhatIfHandler(IProductRepository products, IBusinessCurr
         var simulation = new WhatIfSimulation(command.SaveId ?? Guid.NewGuid(), user.BusinessId, product.Id,
             user.UserId, product.Name, currency, request.Period, inputs,
             clock.GetUtcNow().UtcDateTime, calculator);
+        simulation.CaptureCostContext(await FinSight.Application.Features.BusinessCosts.SimulationCostContextService.Capture(costContext, command.CostLink, request.Period,
+            simulation.Result.BaselineContribution, simulation.Result.Options.Select(x => new FinSight.Domain.Models.ContributionOption(x.Kind.ToString(), x.Contribution)).ToArray(),
+            cancellationToken, command.CostBasis, true));
         await simulations.AddAsync(simulation, cancellationToken);
         await simulations.SaveChangesAsync(cancellationToken);
         return WhatIfResponse.From(simulation);

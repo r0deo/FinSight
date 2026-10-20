@@ -38,7 +38,9 @@ public sealed class DeliveryPagesController(ISender sender) : WebsiteController
             OtherChargesPerOrder = input.OtherChargesPerOrder, FixedPeriodCost = input.FixedPeriodCost,
             ComparisonPeriod = input.ComparisonPeriod, CurrentDirectOrders = input.CurrentDirectOrders,
             ExpectedDeliveryOrders = input.ExpectedDeliveryOrders, TransferredOrders = input.TransferredOrders, Version = saved.Version };
+        model.RestoreCostSettings(saved.CostContext);
         await Load(model, id, cancellationToken);
+        NormalizeCostLink(model);
         return View("Preview", model);
     }
 
@@ -47,15 +49,19 @@ public sealed class DeliveryPagesController(ISender sender) : WebsiteController
     public async Task<IActionResult> Calculate(DeliveryViewModel model, Guid? id, CancellationToken cancellationToken)
     {
         await Load(model, id, cancellationToken);
+        NormalizeCostLink(model);
         if (!ModelState.IsValid) return InvalidForm("Preview", model);
         try
         {
             model.Result = id.HasValue
                 ? await sender.Send(new PreviewSavedDeliveryQuery(id.Value, model.Inputs(), model.Version), cancellationToken)
                 : await sender.Send(new PreviewDeliveryQuery(model.ProductId, model.Inputs()), cancellationToken);
+            model.CostContext = await sender.Send(new FinSight.Application.Features.BusinessCosts.PreviewCostContextQuery(
+                model.CostOptions(), model.ComparisonPeriod!.Value, model.Result.Result.BaselineContribution,
+                [new FinSight.Domain.Models.ContributionOption("Proposed contribution", model.Result.Result.ScenarioContribution)]), cancellationToken);
             return View("Preview", model);
         }
-        catch (ValidationException exception) { AddValidationErrors(exception); return InvalidForm("Preview", model); }
+        catch (ValidationException exception) { model.Result = null; model.CostContext = null; AddValidationErrors(exception); return InvalidForm("Preview", model); }
     }
 
     [HttpPost("/simulations/delivery/save")]
@@ -63,16 +69,17 @@ public sealed class DeliveryPagesController(ISender sender) : WebsiteController
     public async Task<IActionResult> Save(DeliveryViewModel model, Guid? id, CancellationToken cancellationToken)
     {
         await Load(model, id, cancellationToken);
+        NormalizeCostLink(model);
         if (!id.HasValue && (!model.PreviewCurrentPrice.HasValue || !model.PreviewUnitCost.HasValue))
             ModelState.AddModelError("", Text("Recalculate the preview, then save it again."));
         if (!ModelState.IsValid) return InvalidForm("Preview", model);
         try
         {
-            if (id.HasValue) await sender.Send(new UpdateDeliveryCommand(id.Value, model.Inputs(), model.Version), cancellationToken);
+            if (id.HasValue) await sender.Send(new UpdateDeliveryCommand(id.Value, model.Inputs(), model.Version) { CostLink = model.CostOptions(), CostBasis = model.CostBasis }, cancellationToken);
             else
             {
                 var saved = await sender.Send(new CreateDeliveryCommand(model.ProductId, model.Inputs(),
-                    model.PreviewCurrentPrice!.Value, model.PreviewUnitCost!.Value), cancellationToken);
+                    model.PreviewCurrentPrice!.Value, model.PreviewUnitCost!.Value) { CostLink = model.CostOptions(), CostBasis = model.CostBasis }, cancellationToken);
                 id = saved.Id;
             }
             TempData["Success"] = "Simulation saved.";

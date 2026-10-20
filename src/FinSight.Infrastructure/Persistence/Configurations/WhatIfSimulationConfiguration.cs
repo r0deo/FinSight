@@ -11,6 +11,10 @@ public sealed class WhatIfSimulationConfiguration : IEntityTypeConfiguration<Wha
 {
     public void Configure(EntityTypeBuilder<WhatIfSimulation> builder)
     {
+        builder.Property(x => x.CostContext)
+            .HasConversion(x => JsonSerializer.Serialize(x, (JsonSerializerOptions?)null),
+                x => JsonSerializer.Deserialize<SimulationCostContext>(x, (JsonSerializerOptions?)null)!)
+            .HasColumnType("text");
         builder.HasKey(x => x.Id);
         builder.Property(x => x.ProductNameSnapshot).HasMaxLength(Product.MaxNameLength).IsRequired();
         builder.Property(x => x.CurrencySnapshot).HasMaxLength(Business.CurrencyLength).IsRequired();

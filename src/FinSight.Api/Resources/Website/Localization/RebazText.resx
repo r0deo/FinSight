@@ -670,4 +670,62 @@
   <data name="Transferred orders cannot exceed current direct orders or expected delivery orders." xml:space="preserve"><value>Transferred orders cannot exceed current direct orders or expected delivery orders.</value></data>
   <data name="These prices, order counts or charges exceed the supported calculation range." xml:space="preserve"><value>These prices, order counts or charges exceed the supported calculation range.</value></data>
   <data name="Enter a non-negative whole number of orders." xml:space="preserve"><value>Enter a non-negative whole number of orders.</value></data>
+  <data name="Financial decisions" xml:space="preserve"><value>Financial decisions</value></data>
+  <data name="Saved history" xml:space="preserve"><value>Saved history</value></data>
+  <data name="Compare a price change, a discount, or delivery sales." xml:space="preserve"><value>Compare a price change, a discount, or delivery sales.</value></data>
+  <data name="Explore changes in costs or demand and possible responses." xml:space="preserve"><value>Explore changes in costs or demand and possible responses.</value></data>
+  <data name="Reopen the decisions and assumptions you explicitly saved." xml:space="preserve"><value>Reopen the decisions and assumptions you explicitly saved.</value></data>
+  <data name="Current section" xml:space="preserve"><value>Current section</value></data>
+  <data name="Shared business costs (optional)" xml:space="preserve"><value>Shared business costs (optional)</value></data>
+  <data name="Include my recorded business costs" xml:space="preserve"><value>Include my recorded business costs</value></data>
+  <data name="Rent, salaries, and electricity support your whole business, not just this product. Linking is optional; you can review costs and estimate this product's share." xml:space="preserve"><value>Rent, salaries, and electricity support your whole business, not just this product. Linking is optional; you can review costs and estimate this product's share.</value></data>
+  <data name="Why is this optional?" xml:space="preserve"><value>Why is this optional?</value></data>
+  <data name="Not linking does not mean these expenses do not exist. Assigning all of them to one product can mislead. Additional costs caused by this decision belong in its own cost fields, regardless of this switch." xml:space="preserve"><value>Not linking does not mean these expenses do not exist. Assigning all of them to one product can mislead. Additional costs caused by this decision belong in its own cost fields, regardless of this switch.</value></data>
+  <data name="Recorded cost month" xml:space="preserve"><value>Recorded cost month</value></data>
+  <data name="Monthly comparisons use this recorded month without conversion. Daily and weekly comparisons show monthly costs as context only." xml:space="preserve"><value>Monthly comparisons use this recorded month without conversion. Daily and weekly comparisons show monthly costs as context only.</value></data>
+  <data name="Estimate this product's share of these costs" xml:space="preserve"><value>Estimate this product's share of these costs</value></data>
+  <data name="Product allocation (%)" xml:space="preserve"><value>Product allocation (%)</value></data>
+  <data name="I confirm the included costs recur and are not already in unit costs or this decision's expenses." xml:space="preserve"><value>I confirm the included costs recur and are not already in unit costs or this decision's expenses.</value></data>
+  <data name="This percentage is your estimate. Review the breakdown before confirming. Equipment and one-time purchases must not be included. Without confirmation, costs remain context only." xml:space="preserve"><value>This percentage is your estimate. Review the breakdown before confirming. Equipment and one-time purchases must not be included. Without confirmation, costs remain context only.</value></data>
+  <data name="Do not allocate the same expense more than once across products. Rebaz does not verify a business-wide allocation plan." xml:space="preserve"><value>Do not allocate the same expense more than once across products. Rebaz does not verify a business-wide allocation plan.</value></data>
+  <data name="Manage recorded business costs (opens a new tab)" xml:space="preserve"><value>Manage recorded business costs (opens a new tab)</value></data>
+  <data name="Business-cost context was not captured with this older simulation. This does not mean costs were zero." xml:space="preserve"><value>Business-cost context was not captured with this older simulation. This does not mean costs were zero.</value></data>
+  <data name="This result excludes shared business costs such as rent, monthly salaries, and electricity. It is not your business's net profit." xml:space="preserve"><value>This result excludes shared business costs such as rent, monthly salaries, and electricity. It is not your business's net profit.</value></data>
+  <data name="Recorded business-cost context" xml:space="preserve"><value>Recorded business-cost context</value></data>
+  <data name="No business costs recorded. Missing entries do not mean zero expenses. You can continue without an adjustment." xml:space="preserve"><value>No business costs recorded. Missing entries do not mean zero expenses. You can continue without an adjustment.</value></data>
+  <data name="Recorded eligible cost basis" xml:space="preserve"><value>Recorded eligible cost basis</value></data>
+  <data name="No eligible cost basis is available." xml:space="preserve"><value>No eligible cost basis is available.</value></data>
+  <data name="The owner marked this month reviewed; this is not verified accounting completeness." xml:space="preserve"><value>The owner marked this month reviewed; this is not verified accounting completeness.</value></data>
+  <data name="This month's recorded costs have not been marked reviewed. Expenses may be missing." xml:space="preserve"><value>This month's recorded costs have not been marked reviewed. Expenses may be missing.</value></data>
+  <data name="The recorded month contains estimates, not only actual amounts." xml:space="preserve"><value>The recorded month contains estimates, not only actual amounts.</value></data>
+  <data name="Included and excluded cost breakdown" xml:space="preserve"><value>Included and excluded cost breakdown</value></data>
+  <data name="Only rent, wages, electricity/fuel and utilities marked not included in unit cost are candidates. Inventory, transport, maintenance, other, and included/unsure entries are excluded. Recurrence and overlap need your review." xml:space="preserve"><value>Only rent, wages, electricity/fuel and utilities marked not included in unit cost are candidates. Inventory, transport, maintenance, other, and included/unsure entries are excluded. Recurrence and overlap need your review.</value></data>
+  <data name="Included in context basis" xml:space="preserve"><value>Included in context basis</value></data>
+  <data name="Excluded from allocation" xml:space="preserve"><value>Excluded from allocation</value></data>
+  <data name="Basis: the selected recorded month, without proration. Use contribution from a comparable month." xml:space="preserve"><value>Basis: the selected recorded month, without proration. Use contribution from a comparable month.</value></data>
+  <data name="Monthly costs are context only: no reliable daily/weekly conversion is available. No allocation is deducted." xml:space="preserve"><value>Monthly costs are context only: no reliable daily/weekly conversion is available. No allocation is deducted.</value></data>
+  <data name="Complete the period comparison first. Shared monthly costs cannot be deducted from a single order." xml:space="preserve"><value>Complete the period comparison first. Shared monthly costs cannot be deducted from a single order.</value></data>
+  <data name="The non-overlapping recurring basis is unconfirmed. No allocation is deducted." xml:space="preserve"><value>The non-overlapping recurring basis is unconfirmed. No allocation is deducted.</value></data>
+  <data name="Estimated remainder after allocated business costs" xml:space="preserve"><value>Estimated remainder after allocated business costs</value></data>
+  <data name="Allocated amount" xml:space="preserve"><value>Allocated amount</value></data>
+  <data name="Current remainder after allocation" xml:space="preserve"><value>Current remainder after allocation</value></data>
+  <data name="Not calculated: expected quantity is unknown." xml:space="preserve"><value>Not calculated: expected quantity is unknown.</value></data>
+  <data name="The same estimated allocation is deducted from both alternatives, so it does not change the decision's incremental difference." xml:space="preserve"><value>The same estimated allocation is deducted from both alternatives, so it does not change the decision's incremental difference.</value></data>
+  <data name="A negative allocated remainder does not prove the whole business is losing money or that this product should be removed. Allocated rent and salaries may remain even if it is removed." xml:space="preserve"><value>A negative allocated remainder does not prove the whole business is losing money or that this product should be removed. Allocated rent and salaries may remain even if it is removed.</value></data>
+  <data name="Costs are shown separately as context, not deducted. This product's contribution helps cover shared expenses." xml:space="preserve"><value>Costs are shown separately as context, not deducted. This product's contribution helps cover shared expenses.</value></data>
+  <data name="An allocation is an assumption, not net profit. Costs may be missing or overlap; Rebaz cannot automatically verify manual records or allocations across products." xml:space="preserve"><value>An allocation is an assumption, not net profit. Costs may be missing or overlap; Rebaz cannot automatically verify manual records or allocations across products.</value></data>
+  <data name="Additional decision cost for this period (optional)" xml:space="preserve"><value>Additional decision cost for this period (optional)</value></data>
+  <data name="Only extra expenses caused by this decision for the selected period. Do not repeat existing bills or unit costs. Blank excludes unknown costs; 0 confirms none." xml:space="preserve"><value>Only extra expenses caused by this decision for the selected period. Do not repeat existing bills or unit costs. Blank excludes unknown costs; 0 confirms none.</value></data>
+  <data name="Additional decision costs are unknown or excluded." xml:space="preserve"><value>Additional decision costs are unknown or excluded.</value></data>
+  <data name="Scenario contributions and minimum-sales thresholds include this additional cost once; it does not reduce the current contribution." xml:space="preserve"><value>Scenario contributions and minimum-sales thresholds include this additional cost once; it does not reduce the current contribution.</value></data>
+  <data name="Enter an allocation percentage from 0 to 100 with at most two decimal places." xml:space="preserve"><value>Enter an allocation percentage from 0 to 100 with at most two decimal places.</value></data>
+  <data name="These amounts exceed the supported calculation range." xml:space="preserve"><value>These amounts exceed the supported calculation range.</value></data>
+  <data name="If sales stay the same" xml:space="preserve"><value>If sales stay the same</value></data>
+  <data name="If sales decrease" xml:space="preserve"><value>If sales decrease</value></data>
+  <data name="Keep the current price" xml:space="preserve"><value>Keep the current price</value></data>
+  <data name="Wages" xml:space="preserve"><value>Wages</value></data>
+  <data name="Electricity / fuel" xml:space="preserve"><value>Electricity / fuel</value></data>
+  <data name="Utilities" xml:space="preserve"><value>Utilities</value></data>
+  <data name="Left after product and decision costs" xml:space="preserve"><value>Left after product and decision costs</value></data>
+  <data name="This is a product contribution threshold, not a whole-business break-even point." xml:space="preserve"><value>This is a product contribution threshold, not a whole-business break-even point.</value></data>
 </root>

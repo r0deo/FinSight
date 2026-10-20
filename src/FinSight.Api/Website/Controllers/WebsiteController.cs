@@ -73,7 +73,7 @@ public abstract class WebsiteController : Controller
         object Get(string name) => values is not null && values.TryGetValue(name, out var value) ? value : "";
         return error.ErrorCode switch
         {
-            "DiscountCalculation" or "DeliveryCalculation" => Text(error.ErrorMessage),
+            "DiscountCalculation" or "DeliveryCalculation" or "CostContext" => Text(error.ErrorMessage),
             "NotEmptyValidator" => Text("{0} must not be empty.", label),
             "EmailValidator" => Text("{0} is not a valid email address.", label),
             "MaximumLengthValidator" => Text("{0} must not be more than {1} characters.", label, Get("MaxLength")),
@@ -85,6 +85,20 @@ public abstract class WebsiteController : Controller
             "InclusiveBetweenValidator" => Text("{0} must be between {1} and {2}.", label, Get("From"), Get("To")),
             _ => Text("Please check the highlighted fields and try again.")
         };
+    }
+
+    protected void NormalizeCostLink(FinSight.Api.Website.Models.CostLinkForm model)
+    {
+        if (!model.LinkCosts)
+        {
+            model.AllocateCosts = false; model.CostMonth = null;
+            ModelState.Remove(nameof(model.CostMonth)); ModelState.Remove(nameof(model.AllocateCosts));
+        }
+        if (!model.AllocateCosts)
+        {
+            model.AllocationPercentage = null; model.ConfirmCostBasis = false;
+            ModelState.Remove(nameof(model.AllocationPercentage)); ModelState.Remove(nameof(model.ConfirmCostBasis));
+        }
     }
 
     protected ViewResult InvalidForm(string viewName, object model)

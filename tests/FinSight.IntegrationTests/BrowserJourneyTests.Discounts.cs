@@ -54,6 +54,7 @@ public sealed partial class BrowserJourneyTests
         await page.WaitForURLAsync(url => !url.Contains("/account/login"), new() { WaitUntil = WaitUntilState.DOMContentLoaded });
         await page.GotoAsync("/simulations");
         await Expect(page.Locator("header a[href='/simulations/discount']")).ToHaveCountAsync(0);
+        await page.Locator("main .simulation-destination[href='/simulations/preview']").ClickAsync();
         await page.Locator("main a[href='/simulations/discount']").ClickAsync();
         await page.Locator($"a[href='/simulations/discount?productId={productId}']").ClickAsync();
         await Layout(page, culture, width, "discount-inputs");

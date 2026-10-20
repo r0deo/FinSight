@@ -12,6 +12,11 @@ public sealed class PricingSimulationConfiguration
 {
     public void Configure(EntityTypeBuilder<PricingSimulation> builder)
     {
+        builder.Property(x => x.CostContext)
+            .HasConversion(x => JsonSerializer.Serialize(x, (JsonSerializerOptions?)null),
+                x => JsonSerializer.Deserialize<SimulationCostContext>(x, (JsonSerializerOptions?)null)!)
+            .HasColumnType("text");
+        builder.Property(x => x.AdditionalDecisionCost).HasPrecision(18, 2);
         builder.HasKey(simulation => simulation.Id);
 
         builder.Property(simulation => simulation.CurrentPrice).HasPrecision(18, 2);

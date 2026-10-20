@@ -2,6 +2,7 @@
 @using FinSight.Domain.Enums
 @{ ViewData["Title"] = T["Saved what-if history"].Value; }
 <section class="panel simulation-panel">
+    <partial name="_SimulationNavigation" model="@(new DecisionCardsViewModel("history"))" />
     <div class="page-heading"><div><p class="eyebrow">@T["YOUR DECISIONS"]</p><h1>@T["Saved what-if history"]</h1></div><a class="button button-quiet" href="/what-if">@T["Explore a new scenario"]</a></div>
     @if (Model.Items.Count == 0)
     { <div class="empty-state"><h2>@T["No saved what-if scenarios yet"]</h2><p>@T["Compare assumptions, then save explicitly to keep a snapshot here."]</p><a class="button" href="/what-if">@T["Choose a product"]</a></div> }

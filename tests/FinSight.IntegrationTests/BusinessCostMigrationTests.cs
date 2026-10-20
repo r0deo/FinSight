@@ -40,10 +40,18 @@ public sealed class BusinessCostMigrationTests
                 VALUES ({pricingId}, {businessId}, {productId}, {userId}, 4000, 1000, 4500, 100, 90,
                     300000, 315000, 15000, FALSE, 'Recommended', {created}, {created}, 1)
                 """);
-            old.WhatIfSimulations.Add(new WhatIfSimulation(whatIfId, businessId, productId, userId, "Coffee", "IQD",
+            var legacyWhatIf = new WhatIfSimulation(whatIfId, businessId, productId, userId, "Coffee", "IQD",
                 SalesPeriod.Month, new WhatIfInputs(4000,1000,100,CostShockInputMode.Percentage,20,null,10,null,null,null,null),
-                DateTime.UtcNow, new WhatIfCalculator(new PricingSimulationCalculator())));
-            await old.SaveChangesAsync();
+                created, new WhatIfCalculator(new PricingSimulationCalculator()));
+            var inputs = System.Text.Json.JsonSerializer.Serialize(legacyWhatIf.Inputs);
+            var result = System.Text.Json.JsonSerializer.Serialize(legacyWhatIf.Result);
+            await old.Database.ExecuteSqlInterpolatedAsync($"""
+                INSERT INTO "WhatIfSimulations" ("Id", "BusinessId", "ProductId", "CreatedByUserId",
+                    "ProductNameSnapshot", "CurrencySnapshot", "Period", "Inputs", "Result",
+                    "CalculationVersion", "CreatedAtUtc", "UpdatedAtUtc", "Version")
+                VALUES ({whatIfId}, {businessId}, {productId}, {userId}, 'Coffee', 'IQD', 'Month',
+                    {inputs}, {result}, 1, {created}, {created}, 1)
+                """);
             await old.GetService<IMigrator>().MigrateAsync("20261013163254_AddBusinessCosts");
             old.BusinessCosts.Add(new BusinessCost(Guid.NewGuid(), businessId, "Legacy rent", BusinessCostCategory.Rent,
                 123, new(2026, 9, 1), CostCertainty.Actual, UnitCostInclusion.No, "Preserve this entry"));
@@ -63,7 +71,9 @@ public sealed class BusinessCostMigrationTests
         Assert.Equal(300000, pricing.CurrentContribution); Assert.Equal(315000, pricing.ProposedContribution);
         Assert.Null(pricing.DiscountSnapshot);
         Assert.Null(pricing.DeliverySnapshot);
+        Assert.Null(pricing.CostContext); Assert.Null(pricing.AdditionalDecisionCost);
         var whatIf = await db.WhatIfSimulations.SingleAsync(x => x.Id == whatIfId);
+        Assert.Null(whatIf.CostContext);
         Assert.Equal(252000, whatIf.Result.NoActionContribution);
         Assert.Equal(1000, whatIf.Inputs.CurrentUnitCost);
         db.BusinessCosts.Add(new BusinessCost(Guid.NewGuid(), businessId, "Rent", BusinessCostCategory.Rent,

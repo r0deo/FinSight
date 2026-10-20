@@ -1,0 +1,19 @@
+@model CostLinkForm
+<fieldset class="cost-link-section" data-cost-link>
+    <legend>@T["Shared business costs (optional)"]</legend>
+    <label class="checkbox-label"><input asp-for="LinkCosts" type="checkbox" /> @T["Include my recorded business costs"]</label>
+    <p>@T["Rent, salaries, and electricity support your whole business, not just this product. Linking is optional; you can review costs and estimate this product's share."]</p>
+    <details><summary>@T["Why is this optional?"]</summary><p>@T["Not linking does not mean these expenses do not exist. Assigning all of them to one product can mislead. Additional costs caused by this decision belong in its own cost fields, regardless of this switch."]</p></details>
+    <div data-linked-fields>
+        <div class="field"><label asp-for="CostMonth">@T["Recorded cost month"]</label><input asp-for="CostMonth" type="month" min="2000-01" max="2100-12" dir="ltr" /><span asp-validation-for="CostMonth"></span></div>
+        <p>@T["Monthly comparisons use this recorded month without conversion. Daily and weekly comparisons show monthly costs as context only."]</p>
+        <label class="checkbox-label"><input asp-for="AllocateCosts" type="checkbox" /> @T["Estimate this product's share of these costs"]</label>
+        <div data-allocation-fields>
+            <div class="field"><label asp-for="AllocationPercentage">@T["Product allocation (%)"]</label><input asp-for="AllocationPercentage" type="text" inputmode="decimal" dir="ltr" /><span asp-validation-for="AllocationPercentage"></span></div>
+            <label class="checkbox-label"><input asp-for="ConfirmCostBasis" type="checkbox" /> @T["I confirm the included costs recur and are not already in unit costs or this decision's expenses."]</label>
+            <p>@T["This percentage is your estimate. Review the breakdown before confirming. Equipment and one-time purchases must not be included. Without confirmation, costs remain context only."]</p>
+            <p>@T["Do not allocate the same expense more than once across products. Rebaz does not verify a business-wide allocation plan."]</p>
+        </div>
+        <p><a href="/business-costs" target="_blank" rel="noopener">@T["Manage recorded business costs (opens a new tab)"]</a></p>
+    </div>
+</fieldset>

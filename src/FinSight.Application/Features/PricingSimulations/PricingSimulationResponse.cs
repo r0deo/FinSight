@@ -29,6 +29,8 @@ public sealed record PricingSimulationResponse(
     int CalculationVersion)
 {
     public FinSight.Domain.Models.DiscountSimulationSnapshot? DiscountSnapshot { get; init; }
+    public FinSight.Domain.Models.SimulationCostContext? CostContext { get; init; }
+    public decimal? AdditionalDecisionCost { get; init; }
     public FinSight.Domain.Models.DeliverySimulationSnapshot? DeliverySnapshot { get; init; }
     public static PricingSimulationResponse FromSimulation(PricingSimulation simulation) => new(
         simulation.Id,
@@ -53,5 +55,5 @@ public sealed record PricingSimulationResponse(
         simulation.DeclinePercentage,
         simulation.CurrencySnapshot,
         simulation.ProductNameSnapshot,
-        simulation.CalculationVersion) { DiscountSnapshot = simulation.DiscountSnapshot, DeliverySnapshot = simulation.DeliverySnapshot };
+        simulation.CalculationVersion) { DiscountSnapshot = simulation.DiscountSnapshot, DeliverySnapshot = simulation.DeliverySnapshot, CostContext = simulation.CostContext, AdditionalDecisionCost = simulation.AdditionalDecisionCost };
 }

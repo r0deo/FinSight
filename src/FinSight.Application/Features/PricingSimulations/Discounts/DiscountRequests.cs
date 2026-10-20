@@ -22,11 +22,11 @@ public sealed record PreviewDiscountQuery(Guid ProductId, decimal DiscountPercen
 
 public sealed record CreateDiscountCommand(Guid ProductId, decimal DiscountPercentage, int CurrentSalesQuantity,
     int? ExpectedSalesQuantity, decimal? CampaignCost, SalesPeriod ComparisonPeriod,
-    decimal PreviewCurrentPrice, decimal PreviewUnitCost) : IRequest<PricingSimulationResponse>, IDiscountRequest;
+    decimal PreviewCurrentPrice, decimal PreviewUnitCost) : FinSight.Application.Features.BusinessCosts.CostLinkedRequest, IRequest<PricingSimulationResponse>, IDiscountRequest;
 
 public sealed record UpdateDiscountCommand(Guid SimulationId, decimal DiscountPercentage, int CurrentSalesQuantity,
     int? ExpectedSalesQuantity, decimal? CampaignCost, SalesPeriod ComparisonPeriod, long Version)
-    : IRequest<PricingSimulationVersionResponse>, IDiscountRequest;
+    : FinSight.Application.Features.BusinessCosts.CostLinkedRequest, IRequest<PricingSimulationVersionResponse>, IDiscountRequest;
 
 public sealed record PreviewSavedDiscountQuery(Guid SimulationId, decimal DiscountPercentage, int CurrentSalesQuantity,
     int? ExpectedSalesQuantity, decimal? CampaignCost, SalesPeriod ComparisonPeriod, long Version)

@@ -24,7 +24,7 @@ public sealed class GetSavedDecisionHandler(
             return new(PricingSimulationResponse.FromSimulation(simulation), null, simulation.CurrencySnapshot!);
         var decision = calculator.Calculate(simulation.CurrentPrice, simulation.ProposedPrice,
             simulation.UnitCost, simulation.CurrentSalesQuantity,
-            simulation.ExpectedSalesQuantity, simulation.DeclinePercentage);
+            simulation.ExpectedSalesQuantity, simulation.DeclinePercentage, simulation.AdditionalDecisionCost);
         // Stored totals remain authoritative; never consult current product financials.
         var scenarios = decision.Scenarios.Select(scenario =>
             scenario.Kind == PricingScenarioKind.ExpectedSales

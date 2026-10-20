@@ -25,7 +25,7 @@ public partial class WebsiteTests
         var fields = new Dictionary<string,string>
         {
             ["ProductId"] = product.Id.ToString(), ["CurrentQuantity"] = "100",
-            ["Concern"] = "Supplier", ["Period"] = "Month", ["ContextMonth"] = "2026-10",
+            ["Concern"] = "Supplier", ["Period"] = "Month", ["LinkCosts"] = "true", ["CostMonth"] = "2026-10",
             ["CostInputMode"] = "Percentage", ["CostIncreasePercent"] = "20",
             ["SalesDeclinePercent"] = "stale-hidden", ["NewUnitCost"] = "stale-hidden",
             ["AlternativePrice"] = "stale-hidden", ["AlternativePriceQuantity"] = "stale-hidden"
@@ -34,7 +34,7 @@ public partial class WebsiteTests
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         var html = WebUtility.HtmlDecode(await response.Content.ReadAsStringAsync());
         Assert.Contains("280,000.00", html); Assert.Contains("12,345.00", html);
-        Assert.Contains("not part of the saved calculation snapshot", html);
+        Assert.Contains("Costs are shown separately as context, not deducted.", html);
         fields["Concern"] = "Demand"; fields["SalesDeclinePercent"] = "10";
         fields["CostIncreasePercent"] = "stale-hidden"; fields["CostInputMode"] = "invalid-hidden";
         response = await Submit(browser, "/what-if/preview", fields, url);
@@ -42,7 +42,7 @@ public partial class WebsiteTests
         Assert.Contains("270,000.00", await response.Content.ReadAsStringAsync());
         fields["Period"] = "Week";
         response = await Submit(browser, "/what-if/preview", fields, url);
-        Assert.DoesNotContain("12,345.00", await response.Content.ReadAsStringAsync());
+        Assert.Contains("Monthly costs are context only", await response.Content.ReadAsStringAsync());
         fields["Concern"] = "999";
         Assert.Equal(HttpStatusCode.BadRequest, (await Submit(browser, "/what-if/preview", fields, url)).StatusCode);
         using var scope = factory.Services.CreateScope();

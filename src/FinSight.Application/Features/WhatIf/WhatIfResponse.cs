@@ -8,7 +8,8 @@ public sealed record WhatIfResponse(Guid Id, Guid ProductId, string ProductName,
     string Currency, SalesPeriod Period, WhatIfInputs Inputs, WhatIfResult Result,
     DateTime CreatedAtUtc, long Version)
 {
+    public SimulationCostContext? CostContext { get; init; }
     public static WhatIfResponse From(WhatIfSimulation value) => new(value.Id,
         value.ProductId, value.ProductNameSnapshot, value.CurrencySnapshot,
-        value.Period, value.Inputs, value.Result, value.CreatedAtUtc, value.Version);
+        value.Period, value.Inputs, value.Result, value.CreatedAtUtc, value.Version) { CostContext = value.CostContext };
 }

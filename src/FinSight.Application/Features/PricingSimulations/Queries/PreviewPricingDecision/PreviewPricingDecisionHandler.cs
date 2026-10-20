@@ -23,7 +23,7 @@ public sealed class PreviewPricingDecisionHandler(
             ?? throw new InvalidOperationException("The current business is unavailable.");
         var decision = calculator.Calculate(product.SellingPrice, request.ProposedPrice,
             product.UnitCost, request.CurrentSalesQuantity, request.ExpectedSalesQuantity,
-            request.DeclinePercentage);
+            request.DeclinePercentage, request.AdditionalDecisionCost);
         return new PricingDecisionPreviewResponse(product.Name, product.SellingPrice,
             product.UnitCost, currency, decision);
     }

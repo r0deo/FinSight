@@ -32,7 +32,7 @@ public sealed class PreviewSavedDeliveryHandler(IPricingSimulationRepository sim
 }
 public sealed class CreateDeliveryHandler(IProductRepository products, IPricingSimulationRepository simulations,
     IBusinessCurrencyReader currencies, ICurrentUserContext user, DeliverySimulationCalculator calculator,
-    TimeProvider clock) : IRequestHandler<CreateDeliveryCommand, PricingSimulationResponse>
+    TimeProvider clock, FinSight.Application.Features.BusinessCosts.SimulationCostContextService? costContext = null) : IRequestHandler<CreateDeliveryCommand, PricingSimulationResponse>
 {
     public async Task<PricingSimulationResponse> Handle(CreateDeliveryCommand request, CancellationToken ct)
     {
@@ -46,12 +46,14 @@ public sealed class CreateDeliveryHandler(IProductRepository products, IPricingS
         var simulation = DeliveryValidation.Run(() => PricingSimulation.CreateDelivery(Guid.NewGuid(), businessId, product.Id,
             user.UserId, product.SellingPrice, product.UnitCost, request.Inputs, currency, product.Name,
             clock.GetUtcNow().UtcDateTime, calculator));
+        simulation.CaptureCostContext(await FinSight.Application.Features.BusinessCosts.SimulationCostContextService.Capture(costContext, request.CostLink, simulation.ComparisonPeriod!.Value,
+            simulation.DeliverySnapshot!.Result.BaselineContribution, [new ContributionOption("Proposed contribution", simulation.ProposedContribution)], ct, request.CostBasis, true));
         await simulations.AddAsync(simulation, ct); await simulations.SaveChangesAsync(ct);
         return PricingSimulationResponse.FromSimulation(simulation);
     }
 }
 public sealed class UpdateDeliveryHandler(IPricingSimulationRepository simulations, ICurrentUserContext user,
-    DeliverySimulationCalculator calculator, TimeProvider clock) : IRequestHandler<UpdateDeliveryCommand, PricingSimulationVersionResponse>
+    DeliverySimulationCalculator calculator, TimeProvider clock, FinSight.Application.Features.BusinessCosts.SimulationCostContextService? costContext = null) : IRequestHandler<UpdateDeliveryCommand, PricingSimulationVersionResponse>
 {
     public async Task<PricingSimulationVersionResponse> Handle(UpdateDeliveryCommand request, CancellationToken ct)
     {
@@ -59,6 +61,8 @@ public sealed class UpdateDeliveryHandler(IPricingSimulationRepository simulatio
         if (simulation is null || simulation.IsDeleted || simulation.DeliverySnapshot is null)
             throw new NotFoundException(nameof(PricingSimulation), request.SimulationId);
         DeliveryValidation.Run(() => { simulation.UpdateDelivery(request.Inputs, clock.GetUtcNow().UtcDateTime, request.Version, calculator); return true; });
+        simulation.CaptureCostContext(await FinSight.Application.Features.BusinessCosts.SimulationCostContextService.Capture(costContext, request.CostLink, simulation.ComparisonPeriod!.Value,
+            simulation.DeliverySnapshot!.Result.BaselineContribution, [new ContributionOption("Proposed contribution", simulation.ProposedContribution)], ct, request.CostBasis, true));
         await simulations.SaveChangesAsync(ct);
         return new(simulation.Version);
     }

@@ -5,7 +5,7 @@
     ViewData["Title"] = T["What if conditions change?"].Value;
 }
 <section class="panel simulation-panel">
-    <nav class="actions" aria-label="@T["Simulation tools"]"><a href="/simulations/preview?productId=@Model.ProductId">@T["Preview a price change"]</a><a href="/simulations">@T["Saved simulation history"]</a></nav>
+    <partial name="_SimulationNavigation" model="@(new DecisionCardsViewModel("what-if", Model.ProductId))" />
     <p class="eyebrow">@T["EXPLORE A SHOCK"]</p>
     <h1>@T["What if conditions change?"]</h1>
     <h2><bdi>@Model.ProductName</bdi></h2>
@@ -15,7 +15,7 @@
         <div><dt>@T["Unit cost"]</dt><dd><bdi dir="ltr">@Model.CurrentUnitCost.ToString("N2") @Model.Currency</bdi></dd></div>
         <div><dt>@T["Business currency"]</dt><dd><bdi dir="ltr">@Model.Currency</bdi></dd></div>
     </dl>
-    <form method="post" action="/what-if/preview" asp-antiforgery="true" data-what-if-form>
+    <form method="post" action="/what-if/preview" asp-antiforgery="true" data-what-if-form data-has-draft="@((Context.Request.Method == "POST").ToString().ToLowerInvariant())">
         <div asp-validation-summary="All" role="alert"></div>
         <input asp-for="ProductId" type="hidden" />
         <h2>@T["1. Choose your concern"]</h2>
@@ -41,7 +41,6 @@
             <small>@T["If exchange rates affect only part of your cost, enter the resulting total unit cost. Rebaz does not apply an exchange-rate change to every cost."]</small>
             <button type="button" class="button button-quiet" data-preset="cost">@T["Illustration only: 20% higher unit cost"]</button>
         </fieldset>
-        <div class="field" data-month-context><label for="ContextMonth">@T["Monthly cost context (optional; monthly simulations only)"]</label><input asp-for="ContextMonth" type="month" min="2000-01" max="2100-12" dir="ltr" /><span asp-validation-for="ContextMonth"></span></div>
         @if (Model.Result is not null || Model.UsePriceResponse || Model.UseSupplierResponse)
         {
         <fieldset class="what-if-fieldset"><legend>@T["Possible responses (optional)"]</legend>
@@ -60,6 +59,7 @@
             <small data-supplier-note>@T["Enter the complete alternative unit cost. The original increase is not added again; quality and reliability are not evaluated."]</small>
         </fieldset>
         }
+        <partial name="_CostLinkForm" model="Model" />
         <button class="button" type="submit">@T[Model.Result is null ? "Show impact" : "Compare responses"]</button>
     </form>
     <p data-what-if-stale hidden class="notice" role="status">@T["Assumptions changed. Calculate again before saving."]</p>
@@ -68,7 +68,6 @@
         <result-modal id="what-if-result" title="@T["What if conditions change?"]" source-form="[data-what-if-form]" return-focus="[data-what-if-form] button[type=submit]" auto-open="@ViewData.ModelState.IsValid">
         <div data-what-if-results>
             <h2>@T["3. Understand the impact"]</h2>
-            @if (Model.CostContext is not null) { <partial name="_SimulationCostContext" model="Model.CostContext" /> }
             <partial name="_WhatIfResult" model="@(new WhatIfDisplayViewModel(Model.ProductName, Model.Currency, Model.Period,
                 new(Model.CurrentPrice, Model.CurrentUnitCost, Model.CurrentQuantity!.Value, Model.CostInputMode,
                     Model.CostInputMode == CostShockInputMode.Percentage ? Model.CostIncreasePercent : null,
@@ -78,7 +77,9 @@
                     Model.UseSupplierResponse ? Model.AlternativeSupplierCost : null,
                     Model.UseSupplierResponse ? Model.AlternativeSupplierQuantity : null), result, false))" />
             <p>@T["4. Explore a response"] — @T["Possible responses (optional)"]</p>
+            <partial name="_LinkedCostResult" model="@(new CostContextDisplayModel(Model.CostContext, Model.Currency))" />
             <form method="post" action="/what-if/save" asp-antiforgery="true" data-what-if-save>
+                @if (Model.CostContext is not null) { <partial name="_CostLinkHidden" model="Model.CostContext" /> }
                 <input type="hidden" name="ProductId" value="@Model.ProductId" />
                 <input type="hidden" name="Concern" value="@Model.Concern" />
                 <input type="hidden" name="CurrentQuantity" value="@Model.CurrentQuantity" />
@@ -105,6 +106,6 @@
         </div>
         </result-modal>
     }
-    <p><a href="/what-if/history">@T["Saved what-if history"]</a> · <a href="/what-if">@T["Choose another product"]</a></p>
+    <p><a href="/what-if">@T["Choose another product"]</a></p>
 </section>
 <script src="~/js/what-if.js" asp-append-version="true" defer></script>

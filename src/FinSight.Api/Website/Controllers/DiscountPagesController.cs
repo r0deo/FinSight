@@ -39,7 +39,9 @@ public sealed class DiscountPagesController(ISender sender) : WebsiteController
         model.CampaignCost = snapshot.Inputs.CampaignCost;
         model.ComparisonPeriod = saved.Simulation.ComparisonPeriod;
         model.Version = saved.Simulation.Version;
+        model.RestoreCostSettings(saved.Simulation.CostContext);
         await Load(model, id, cancellationToken);
+        NormalizeCostLink(model);
         return View("Preview", model);
     }
 
@@ -48,6 +50,7 @@ public sealed class DiscountPagesController(ISender sender) : WebsiteController
     public async Task<IActionResult> Calculate(DiscountViewModel model, Guid? id, CancellationToken cancellationToken)
     {
         await Load(model, id, cancellationToken);
+        NormalizeCostLink(model);
         if (!ModelState.IsValid) return InvalidForm("Preview", model);
         try
         {
@@ -58,9 +61,12 @@ public sealed class DiscountPagesController(ISender sender) : WebsiteController
                 : await sender.Send(new PreviewDiscountQuery(model.ProductId, model.DiscountPercentage!.Value,
                     model.CurrentSalesQuantity!.Value, model.ExpectedSalesQuantity, model.CampaignCost,
                     model.ComparisonPeriod!.Value), cancellationToken);
+            model.CostContext = await sender.Send(new FinSight.Application.Features.BusinessCosts.PreviewCostContextQuery(
+                model.CostOptions(), model.ComparisonPeriod!.Value, model.Result.Result.CurrentContribution,
+                [new FinSight.Domain.Models.ContributionOption("Proposed contribution", model.Result.Result.ScenarioContribution)]), cancellationToken);
             return View("Preview", model);
         }
-        catch (ValidationException exception) { AddValidationErrors(exception); return InvalidForm("Preview", model); }
+        catch (ValidationException exception) { model.Result = null; model.CostContext = null; AddValidationErrors(exception); return InvalidForm("Preview", model); }
     }
 
     [HttpPost("/simulations/discount/save")]
@@ -68,6 +74,7 @@ public sealed class DiscountPagesController(ISender sender) : WebsiteController
     public async Task<IActionResult> Save(DiscountViewModel model, Guid? id, CancellationToken cancellationToken)
     {
         await Load(model, id, cancellationToken);
+        NormalizeCostLink(model);
         if (!id.HasValue && (!model.PreviewCurrentPrice.HasValue || !model.PreviewUnitCost.HasValue))
             ModelState.AddModelError("", Text("Recalculate the preview, then save it again."));
         if (!ModelState.IsValid) return InvalidForm("Preview", model);
@@ -76,12 +83,12 @@ public sealed class DiscountPagesController(ISender sender) : WebsiteController
             if (id.HasValue)
                 await sender.Send(new UpdateDiscountCommand(id.Value, model.DiscountPercentage!.Value,
                     model.CurrentSalesQuantity!.Value, model.ExpectedSalesQuantity, model.CampaignCost,
-                    model.ComparisonPeriod!.Value, model.Version), cancellationToken);
+                    model.ComparisonPeriod!.Value, model.Version) { CostLink = model.CostOptions(), CostBasis = model.CostBasis }, cancellationToken);
             else
             {
                 var saved = await sender.Send(new CreateDiscountCommand(model.ProductId, model.DiscountPercentage!.Value,
                     model.CurrentSalesQuantity!.Value, model.ExpectedSalesQuantity, model.CampaignCost,
-                    model.ComparisonPeriod!.Value, model.PreviewCurrentPrice!.Value, model.PreviewUnitCost!.Value), cancellationToken);
+                    model.ComparisonPeriod!.Value, model.PreviewCurrentPrice!.Value, model.PreviewUnitCost!.Value) { CostLink = model.CostOptions(), CostBasis = model.CostBasis }, cancellationToken);
                 id = saved.Id;
             }
             TempData["Success"] = "Simulation saved.";

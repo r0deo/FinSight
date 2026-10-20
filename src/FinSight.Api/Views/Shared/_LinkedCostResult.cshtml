@@ -1,0 +1,59 @@
+@model CostContextDisplayModel
+@using FinSight.Domain.Enums
+@{
+    string Label(string key) => key switch {
+        "SameSales" => "If sales stay the same", "LowerSales" => "If sales decrease", "ExpectedSales" => "Your expected sales",
+        "KeepCurrentPrice" => "Keep the current price", "ChangeSellingPrice" => "Change selling price", "AlternativeSupplier" => "Alternative supplier", _ => key };
+    string Category(BusinessCostCategory category) => category switch { BusinessCostCategory.Labor => "Wages", BusinessCostCategory.Rent => "Rent",
+        BusinessCostCategory.Energy => "Electricity / fuel", BusinessCostCategory.WaterInternet => "Utilities", BusinessCostCategory.Transport => "Transport",
+        BusinessCostCategory.Maintenance => "Maintenance", BusinessCostCategory.Inventory => "Inventory / raw-material purchases", _ => "Other" };
+}
+<section class="linked-cost-result" data-linked-cost-result>
+@if (Model.Context is not { } context)
+{
+    <p>@T["Business-cost context was not captured with this older simulation. This does not mean costs were zero."]</p>
+}
+else if (!context.Settings.Enabled)
+{
+    <p data-costs-excluded>@T["This result excludes shared business costs such as rent, monthly salaries, and electricity. It is not your business's net profit."]</p>
+}
+else
+{
+    <h3>@T["Recorded business-cost context"]</h3>
+    <p>@T["Recorded cost month"]: <bdi dir="ltr">@context.Settings.Month?.ToString("yyyy-MM")</bdi></p>
+    @if (context.Entries.Count == 0) { <p class="notice notice-warning">@T["No business costs recorded. Missing entries do not mean zero expenses. You can continue without an adjustment."]</p> }
+    else
+    {
+        <p>@T["Recorded eligible cost basis"]: @if (context.RecordedBasis is { } basis) { <bdi dir="ltr" data-overhead-total>@basis.ToString("N2") @Model.Currency</bdi> } else { @T["No eligible cost basis is available."] }</p>
+        <p>@T[context.MonthReviewed ? "The owner marked this month reviewed; this is not verified accounting completeness." : "This month's recorded costs have not been marked reviewed. Expenses may be missing."]</p>
+        @if (context.HasEstimates) { <p class="notice notice-warning">@T["The recorded month contains estimates, not only actual amounts."]</p> }
+        <details><summary>@T["Included and excluded cost breakdown"]</summary>
+            <p>@T["Only rent, wages, electricity/fuel and utilities marked not included in unit cost are candidates. Inventory, transport, maintenance, other, and included/unsure entries are excluded. Recurrence and overlap need your review."]</p>
+            @foreach (var group in context.Entries.GroupBy(x => x.Category))
+            {
+                <h4>@T[Category(group.Key)]</h4>
+                <p>@T["Included in context basis"]: <bdi dir="ltr">@group.Where(x => x.Eligible).Sum(x => x.Amount).ToString("N2") @Model.Currency</bdi> · @T["Excluded from allocation"]: <bdi dir="ltr">@group.Where(x => !x.Eligible).Sum(x => x.Amount).ToString("N2") @Model.Currency</bdi></p>
+                <ul>@foreach (var entry in group) { <li><bdi>@entry.Name</bdi>: <bdi dir="ltr">@entry.Amount.ToString("N2") @Model.Currency</bdi> — @T[entry.Eligible ? "Included in context basis" : "Excluded from allocation"] · @T[entry.Certainty == CostCertainty.Actual ? "Actual" : "Estimated"]</li> }</ul>
+            }
+        </details>
+    }
+    <p>@T[context.Period == SalesPeriod.Month ? "Basis: the selected recorded month, without proration. Use contribution from a comparable month." : "Monthly costs are context only: no reliable daily/weekly conversion is available. No allocation is deducted."]</p>
+    @if (context.Limitation == "NoPeriodComparison") { <p>@T["Complete the period comparison first. Shared monthly costs cannot be deducted from a single order."]</p> }
+    @if (context.Limitation == "UnconfirmedBasis") { <p>@T["The non-overlapping recurring basis is unconfirmed. No allocation is deducted."]</p> }
+    @if (context.AllocationAmount is { } allocation)
+    {
+        <h3>@T["Estimated remainder after allocated business costs"]</h3>
+        <p>@T["Product allocation (%)"]: <bdi dir="ltr">@context.Settings.Percentage?.ToString("0.##")%</bdi> · @T["Allocated amount"]: <bdi dir="ltr" data-allocation-amount>@allocation.ToString("N2") @Model.Currency</bdi></p>
+        <dl class="simulation-product-facts">
+            <div><dt>@T["Current remainder after allocation"]</dt><dd data-current-remainder><bdi dir="ltr">@context.CurrentRemainder?.ToString("N2") @Model.Currency</bdi></dd></div>
+            @foreach (var option in context.Options)
+            { <div><dt>@T[Label(option.Label)]</dt><dd data-proposed-remainder>@if (option.Remainder is { } value) { <bdi dir="ltr">@value.ToString("N2") @Model.Currency</bdi> } else { @T["Not calculated: expected quantity is unknown."] }</dd></div> }
+        </dl>
+        <p>@T["The same estimated allocation is deducted from both alternatives, so it does not change the decision's incremental difference."]</p>
+        <p>@T["A negative allocated remainder does not prove the whole business is losing money or that this product should be removed. Allocated rent and salaries may remain even if it is removed."]</p>
+    }
+    else { <p>@T["Costs are shown separately as context, not deducted. This product's contribution helps cover shared expenses."]</p> }
+    <p>@T["An allocation is an assumption, not net profit. Costs may be missing or overlap; Rebaz cannot automatically verify manual records or allocations across products."]</p>
+    <p><a href="/business-costs?month=@context.Settings.Month?.ToString("yyyy-MM")" target="_blank" rel="noopener">@T["Manage recorded business costs (opens a new tab)"]</a></p>
+}
+</section>

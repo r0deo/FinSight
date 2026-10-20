@@ -134,6 +134,10 @@ namespace FinSight.Infrastructure.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<decimal?>("AdditionalDecisionCost")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("numeric(18,2)");
+
                     b.Property<DateTime?>("ArchivedAtUtc")
                         .HasColumnType("timestamp with time zone");
 
@@ -148,6 +152,9 @@ namespace FinSight.Infrastructure.Persistence.Migrations
                     b.Property<string>("ComparisonPeriod")
                         .HasMaxLength(16)
                         .HasColumnType("character varying(16)");
+
+                    b.Property<string>("CostContext")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("timestamp with time zone");
@@ -288,6 +295,9 @@ namespace FinSight.Infrastructure.Persistence.Migrations
 
                     b.Property<int>("CalculationVersion")
                         .HasColumnType("integer");
+
+                    b.Property<string>("CostContext")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("timestamp with time zone");

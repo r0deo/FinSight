@@ -41,6 +41,7 @@ public sealed class WhatIfPagesController(ISender sender, WhatIfPreviewProofServ
     {
         await Populate(model, cancellationToken);
         Normalize(model);
+        NormalizeCostLink(model);
         ValidateMode(model);
         if (!ModelState.IsValid) return InvalidForm("Index", model);
         try
@@ -61,21 +62,16 @@ public sealed class WhatIfPagesController(ISender sender, WhatIfPreviewProofServ
                 ModelState.Remove(nameof(model.AlternativeSupplierQuantity));
             }
             model.Result = response.Result;
-            if (model.Period == SalesPeriod.Month && !string.IsNullOrEmpty(model.ContextMonth))
-            {
-                if (!BusinessCostForm.TryMonth(model.ContextMonth, out var month))
-                {
-                    ModelState.AddModelError(nameof(model.ContextMonth), Text("Choose a month between 2000 and 2100."));
-                    return InvalidForm("Index", model);
-                }
-                model.CostContext = new(await sender.Send(new FinSight.Application.Features.BusinessCosts.GetBusinessCostsQuery(month), cancellationToken), model.Currency);
-            }
+            model.CostContext = await sender.Send(new FinSight.Application.Features.BusinessCosts.PreviewCostContextQuery(
+                model.CostOptions(), model.Period, response.Result.BaselineContribution,
+                response.Result.Options.Select(x => new FinSight.Domain.Models.ContributionOption(x.Kind.ToString(), x.Contribution)).ToArray()), cancellationToken);
             model.PreviewProof = proof.Create(model.ToRequest(), model.CurrentPrice, model.CurrentUnitCost);
             return View("Index", model);
         }
         catch (Exception exception) when (exception is ValidationException or RequestValidationException
             or ArgumentOutOfRangeException or ArgumentException)
         {
+            model.Result = null; model.CostContext = null; model.PreviewProof = null;
             if (exception is ValidationException or RequestValidationException)
             {
                 AddValidationErrors(exception);
@@ -98,13 +94,14 @@ public sealed class WhatIfPagesController(ISender sender, WhatIfPreviewProofServ
         CancellationToken cancellationToken)
     {
         Normalize(model);
+        NormalizeCostLink(model);
         ValidateMode(model);
         if (!ModelState.IsValid) return BadRequest();
         if (!proof.Matches(model.PreviewProof, model.ToRequest(), model.PreviewPrice, model.PreviewCost))
             throw new PricingSimulationConflictException("Recalculate the preview before saving.");
         var saved = await sender.Send(new SaveWhatIfCommand(model.ToRequest(),
             model.PreviewPrice, model.PreviewCost,
-            new Guid(System.Security.Cryptography.SHA256.HashData(System.Text.Encoding.UTF8.GetBytes(model.PreviewProof!)).AsSpan(0, 16))), cancellationToken);
+            new Guid(System.Security.Cryptography.SHA256.HashData(System.Text.Encoding.UTF8.GetBytes(model.PreviewProof!)).AsSpan(0, 16))) { CostLink = model.CostOptions(), CostBasis = model.CostBasis }, cancellationToken);
         TempData["Success"] = "What-if scenario saved.";
         return LocalRedirect($"/what-if/{saved.Id}");
     }

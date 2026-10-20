@@ -11,8 +11,11 @@ public sealed class PricingDecisionCalculator(PricingSimulationCalculator calcul
         decimal unitCost,
         int currentSalesQuantity,
         int? expectedSalesQuantity,
-        int? declinePercentage)
+        int? declinePercentage, decimal? additionalDecisionCost = null)
     {
+        if (additionalDecisionCost is < 0 or > DeliverySimulationCalculator.MaximumMoney
+            || (additionalDecisionCost.HasValue && decimal.Round(additionalDecisionCost.Value, 2) != additionalDecisionCost))
+            throw new ArgumentOutOfRangeException(nameof(additionalDecisionCost));
         if (declinePercentage is < 0 or > 100)
             throw new ArgumentOutOfRangeException(nameof(declinePercentage));
         if (expectedSalesQuantity is < 0)
@@ -32,7 +35,7 @@ public sealed class PricingDecisionCalculator(PricingSimulationCalculator calcul
         }
         var currentContribution = baseline.CurrentContribution;
         var proposedUnitContribution = proposedPrice - unitCost;
-        var (status, minimum) = MaintenanceThreshold(currentContribution, proposedUnitContribution);
+        var (status, minimum) = MaintenanceThreshold(currentContribution > 0 ? currentContribution + (additionalDecisionCost ?? 0) : currentContribution, proposedUnitContribution);
 
         var scenarios = new List<PricingScenarioResult>(3);
         AddScenario(PricingScenarioKind.SameSales, currentSalesQuantity);
@@ -50,7 +53,7 @@ public sealed class PricingDecisionCalculator(PricingSimulationCalculator calcul
             minimum.HasValue && currentSalesQuantity > 0
                 ? (decimal)(minimum.Value - currentSalesQuantity) * 100 / currentSalesQuantity
                 : null,
-            baseline.IsBelowCost, scenarios);
+            baseline.IsBelowCost, scenarios) { AdditionalDecisionCost = additionalDecisionCost };
 
         void AddScenario(PricingScenarioKind kind, int quantity)
         {
@@ -60,7 +63,7 @@ public sealed class PricingDecisionCalculator(PricingSimulationCalculator calcul
                     currentSalesQuantity, quantity);
                 scenarios.Add(new PricingScenarioResult(kind, quantity,
                     proposedPrice * quantity, unitCost * quantity,
-                    result.ProposedContribution, result.Difference));
+                    result.ProposedContribution - (additionalDecisionCost ?? 0), result.Difference - (additionalDecisionCost ?? 0)));
             }
             catch (OverflowException)
             {

@@ -13,6 +13,8 @@ public sealed class WhatIfSimulation
     public string ProductNameSnapshot { get; private set; } = null!;
     public string CurrencySnapshot { get; private set; } = null!;
     public SalesPeriod Period { get; private set; }
+    public SimulationCostContext? CostContext { get; private set; }
+    public void CaptureCostContext(SimulationCostContext context) => CostContext = context;
     public WhatIfInputs Inputs { get; private set; } = null!;
     public WhatIfResult Result { get; private set; } = null!;
     public int CalculationVersion { get; private set; }

@@ -11,9 +11,9 @@ public interface IDeliveryRequest { DeliveryAssumptions Inputs { get; } }
 public sealed record PreviewDeliveryQuery(Guid ProductId, DeliveryAssumptions Inputs) : IRequest<DeliverySimulationSnapshot>, IDeliveryRequest;
 public sealed record PreviewSavedDeliveryQuery(Guid SimulationId, DeliveryAssumptions Inputs, long Version) : IRequest<DeliverySimulationSnapshot>, IDeliveryRequest;
 public sealed record CreateDeliveryCommand(Guid ProductId, DeliveryAssumptions Inputs, decimal PreviewCurrentPrice, decimal PreviewUnitCost)
-    : IRequest<PricingSimulationResponse>, IDeliveryRequest;
+    : FinSight.Application.Features.BusinessCosts.CostLinkedRequest, IRequest<PricingSimulationResponse>, IDeliveryRequest;
 public sealed record UpdateDeliveryCommand(Guid SimulationId, DeliveryAssumptions Inputs, long Version)
-    : IRequest<PricingSimulationVersionResponse>, IDeliveryRequest;
+    : FinSight.Application.Features.BusinessCosts.CostLinkedRequest, IRequest<PricingSimulationVersionResponse>, IDeliveryRequest;
 
 public abstract class DeliveryValidator<T> : AbstractValidator<T> where T : IDeliveryRequest
 {

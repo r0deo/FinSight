@@ -45,6 +45,7 @@ public sealed class SimulationPagesController(ISender sender) : WebsiteControlle
         model.UnitCost = product.UnitCost;
         model.Currency = await sender.Send(new GetBusinessCurrencyQuery(), cancellationToken);
         model.Result = null;
+        NormalizeCostLink(model);
         if (model.UnknownExpectedSales)
         {
             model.ExpectedSalesQuantity = null;
@@ -68,21 +69,16 @@ public sealed class SimulationPagesController(ISender sender) : WebsiteControlle
         {
             var preview = await sender.Send(new PreviewPricingDecisionQuery(model.ProductId,
                 model.ProposedPrice, model.CurrentSalesQuantity, model.ExpectedSalesQuantity,
-                model.DeclinePercentage!.Value), cancellationToken);
+                model.DeclinePercentage!.Value) { AdditionalDecisionCost = model.AdditionalDecisionCost }, cancellationToken);
             model.Result = preview.Decision;
-            if (model.ComparisonPeriod == FinSight.Domain.Enums.SalesPeriod.Month && !string.IsNullOrEmpty(model.ContextMonth))
-            {
-                if (!BusinessCostForm.TryMonth(model.ContextMonth, out var month))
-                {
-                    ModelState.AddModelError(nameof(model.ContextMonth), Text("Choose a month between 2000 and 2100."));
-                    return InvalidForm("Preview", model);
-                }
-                model.CostContext = new(await sender.Send(new FinSight.Application.Features.BusinessCosts.GetBusinessCostsQuery(month), cancellationToken), model.Currency);
-            }
+            model.CostContext = await sender.Send(new FinSight.Application.Features.BusinessCosts.PreviewCostContextQuery(
+                model.CostOptions(), model.ComparisonPeriod, preview.Decision.CurrentContribution,
+                preview.Decision.Scenarios.Select(x => new FinSight.Domain.Models.ContributionOption(x.Kind.ToString(), x.Contribution)).ToArray()), cancellationToken);
             return View(model);
         }
         catch (Exception exception) when (exception is ValidationException or RequestValidationException)
         {
+            model.Result = null; model.CostContext = null;
             AddValidationErrors(exception);
             return InvalidForm("Preview", model);
         }
@@ -91,11 +87,12 @@ public sealed class SimulationPagesController(ISender sender) : WebsiteControlle
     [HttpPost("save")]
     public async Task<IActionResult> Save(SaveDecisionViewModel model, CancellationToken cancellationToken)
     {
+        NormalizeCostLink(model);
         if (!ModelState.IsValid) return BadRequest();
         var saved = await sender.Send(new CreateDecisionSimulationCommand(model.ProductId,
             model.ProposedPrice, model.CurrentSalesQuantity, model.ExpectedSalesQuantity,
             model.ComparisonPeriod, model.DeclinePercentage, model.PreviewCurrentPrice,
-            model.PreviewUnitCost), cancellationToken);
+            model.PreviewUnitCost) { AdditionalDecisionCost = model.AdditionalDecisionCost, CostLink = model.CostOptions(), CostBasis = model.CostBasis }, cancellationToken);
         TempData["Success"] = "Pricing simulation saved.";
         return LocalRedirect($"/simulations/{saved.Id}");
     }

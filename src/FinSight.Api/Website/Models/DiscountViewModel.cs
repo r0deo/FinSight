@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace FinSight.Api.Website.Models;
 
-public sealed class DiscountViewModel
+public sealed class DiscountViewModel : CostLinkForm
 {
     public Guid ProductId { get; set; }
     [Required(ErrorMessage = "{0} is required."), Display(Name = "Discount percentage (%)")]

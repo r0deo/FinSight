@@ -8,7 +8,10 @@ public sealed record PreviewPricingDecisionQuery(
     decimal ProposedPrice,
     int CurrentSalesQuantity,
     int? ExpectedSalesQuantity,
-    int DeclinePercentage) : IRequest<PricingDecisionPreviewResponse>;
+    int DeclinePercentage) : IRequest<PricingDecisionPreviewResponse>
+{
+    public decimal? AdditionalDecisionCost { get; init; }
+}
 
 public sealed record PricingDecisionPreviewResponse(
     string ProductName,
