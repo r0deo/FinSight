@@ -1,8 +1,7 @@
 @model DecisionCardsViewModel
 @{ var suffix = Model.ProductId.HasValue ? $"?productId={Model.ProductId}" : "";
-   var financialSuffix = suffix + (Model.ProductId.HasValue && Model.Selected == "financial" && Context.Request.Query["chooseDecision"] == "true" ? "&chooseDecision=true" : "");
    var destinations = new[] {
-       (Id: "financial", Title: "Try decisions", Url: "/simulations/preview" + financialSuffix),
+       (Id: "financial", Title: "Try decisions", Url: "/simulations/preview"),
        (Id: "what-if", Title: "What if?", Url: "/what-if" + suffix),
        (Id: "history", Title: "Saved simulations", Url: "/simulations") }; }
 <nav class="simulation-navigation" aria-label="@T["Simulation tools"]" data-simulation-navigation data-discard-warning="@T["Switching decisions will discard your unsaved inputs. Continue?"]">

@@ -5,8 +5,6 @@
 <section class="panel message-panel simulation-panel">
     <h1>@T["Simulate your financial decisions"]</h1>
     <partial name="_DecisionWorkspace" model="@(new DecisionWorkspaceViewModel("pricing", Model.ProductId, Model.ProductName))" />
-    @if (Context.Request.Query["chooseDecision"] != "true")
-    {
     <h2>@T["Preview a price change"]</h2>
     <p>@T["Compare sales over the same period. This preview never saves a simulation or changes your product."]</p>
     <dl class="simulation-product-facts">
@@ -57,6 +55,5 @@
         </result-modal>
     }
     <p><a href="/business-costs">@T["Business costs"]</a> — @T["A full business operating result requires sales and costs across the business for the same period."]</p>
-    }
 </section>
 <script src="~/js/simulation-preview.js" asp-append-version="true" defer></script>

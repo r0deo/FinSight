@@ -6,8 +6,6 @@
 <section class="panel message-panel simulation-panel">
     <h1>@T["Simulate your financial decisions"]</h1>
     <partial name="_DecisionWorkspace" model="@(new DecisionWorkspaceViewModel("discount", Model.ProductId, Model.ProductName, Model.SimulationId.HasValue))" />
-    @if (Context.Request.Query["chooseDecision"] != "true" || Model.SimulationId.HasValue)
-    {
     <h2>@T["Offer a discount"]</h2>
     @if (Model.SimulationId.HasValue) { <p>@T["This result uses the prices and unit cost saved with the simulation, not today's product values."]</p> }
     <dl class="simulation-product-facts">
@@ -48,6 +46,5 @@
                 <small>@T["Saving is explicit. Preview alone never creates a history record."]</small>
             </form>
         </result-modal>
-    }
     }
 </section>

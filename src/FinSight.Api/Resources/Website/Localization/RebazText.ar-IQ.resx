@@ -745,4 +745,15 @@
   <data name="Explore a lower price." xml:space="preserve"><value>جرّب سعرًا مخفّضًا.</value></data>
   <data name="Account for app fees." xml:space="preserve"><value>احسب رسوم التطبيق.</value></data>
   <data name="Choose a decision to continue." xml:space="preserve"><value>اختر قرارًا للمتابعة.</value></data>
+  <data name="Choose a product and a decision to start." xml:space="preserve"><value>اختر منتجًا وقرارًا للبدء.</value></data>
+  <data name="Choose a product to continue." xml:space="preserve"><value>اختر منتجًا للمتابعة.</value></data>
+  <data name="Ready. Start simulation to enter your assumptions." xml:space="preserve"><value>جاهز. ابدأ المحاكاة لإدخال افتراضاتك.</value></data>
+  <data name="Start simulation" xml:space="preserve"><value>ابدأ المحاكاة</value></data>
+  <data name="Enable JavaScript to choose a product and decision on this page." xml:space="preserve"><value>فعّل JavaScript لاختيار المنتج والقرار في هذه الصفحة.</value></data>
+  <data name="Viewing month" xml:space="preserve"><value>الشهر المعروض</value></data>
+  <data name="Add cost" xml:space="preserve"><value>أضف تكلفة</value></data>
+  <data name="Recorded amounts only, not business profit. Inventory is separate; these costs are not automatically deducted from a product simulation." xml:space="preserve"><value>هذه مبالغ مسجّلة فقط وليست ربح العمل. المشتريات المخزنية منفصلة، ولا تُخصم هذه التكاليف تلقائيًا من محاكاة منتج.</value></data>
+  <data name="Cost details" xml:space="preserve"><value>تفاصيل التكلفة</value></data>
+  <data name="Month review" xml:space="preserve"><value>مراجعة الشهر</value></data>
+  <data name="Category breakdown and accounting notes" xml:space="preserve"><value>التفصيل حسب الفئة وملاحظات محاسبية</value></data>
 </root>

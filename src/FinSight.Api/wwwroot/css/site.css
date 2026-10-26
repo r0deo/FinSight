@@ -632,6 +632,12 @@ legend {
 .row-actions form {
     margin:0;
 }
+.product-panel .row-actions { gap:12px; }
+.product-panel .row-actions a,.product-panel .row-actions .text-button {
+    display:inline-flex; align-items:center; justify-content:center; min-height:42px;
+    padding:8px 12px; border:1px solid var(--control-border); border-radius:8px; text-decoration:none;
+}
+.product-panel .row-actions a:hover,.product-panel .row-actions .text-button:hover { background:var(--surface-hover); }
 .row-actions a,.text-button {
     font-size:13px;
     font-weight:600;
@@ -929,6 +935,34 @@ legend {
 .business-cost-workspace .filters > .field { min-inline-size:0; flex:1 1 12rem; }
 .business-cost-workspace .cost-checklist { padding-inline-start:1.25rem; }
 .business-cost-workspace .cost-checklist li { margin-block:0.4rem; }
+.cost-month-toolbar { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; margin-block:20px; }
+.cost-month-toolbar .filters { margin:0; border:0; flex:1 1 300px; max-width:520px; }
+.cost-month-toolbar .field { margin:0; }
+.cost-month-summary { display:grid; grid-template-columns:1.6fr 1fr; gap:20px; padding:20px; background:var(--background); border:1px solid var(--border); border-radius:12px; }
+.cost-month-summary h2,.cost-month-summary h3 { font-size:1.1rem; }
+.cost-total-amount { font-size:clamp(1.5rem,4vw,2rem); font-weight:700; margin-block:12px 4px; overflow-wrap:anywhere; }
+.cost-amount-breakdown { display:flex; flex-wrap:wrap; gap:16px 28px; margin-block:16px 0; }
+.cost-amount-breakdown dt { color:var(--text-secondary); }
+.cost-amount-breakdown dd { margin:4px 0 0; overflow-wrap:anywhere; }
+.cost-estimate-note { color:var(--warning); }
+.cost-summary-note { color:var(--text-secondary); font-size:.9rem; margin-block:12px 28px; }
+.cost-entry-list { display:grid; gap:12px; margin-block:16px 24px; }
+.cost-entry { display:grid; grid-template-columns:minmax(0,1fr) auto auto; align-items:start; gap:12px 20px; padding:16px; border:1px solid var(--border); border-radius:10px; }
+.cost-entry h3 { font-size:1.05rem; margin:0; }
+.cost-entry p { margin-block:6px; }
+.cost-entry-name,.cost-entry-amount { min-width:0; overflow-wrap:anywhere; }
+.cost-entry-amount { display:grid; justify-items:end; gap:8px; }
+.cost-entry-actions { display:flex; flex-wrap:wrap; gap:8px; }
+.cost-estimated { background:var(--warning-surface); color:var(--warning); border:1px solid var(--warning-border); }
+.cost-entry-details { grid-column:1 / -1; color:var(--text-secondary); font-size:.9rem; }
+.cost-entry-details summary,.cost-explanation summary { cursor:pointer; padding-block:8px; }
+.cost-explanation { margin-block:16px; padding:8px 16px; border:1px solid var(--border); border-radius:8px; }
+.cost-explanation > summary { font-size:.95rem; font-weight:600; }
+@media(max-width:700px) {
+    .cost-month-summary,.cost-entry { grid-template-columns:minmax(0,1fr); }
+    .cost-entry-amount { justify-items:start; }
+    .cost-month-toolbar > a { width:100%; text-align:center; }
+}
 .product-cost-helper { margin-block:20px; padding-block:16px; border-block:1px solid var(--border); }
 .product-cost-helper summary { color:var(--accent); cursor:pointer; font-weight:700; }
 .product-cost-helper .ingredient-row { min-inline-size:0; margin-block:16px; padding:16px; border:1px solid var(--border); border-radius:12px; }
@@ -983,6 +1017,18 @@ a.decision-card.is-selected:hover { color:var(--accent); }
 .decision-product-summary > div { display:grid; gap:4px; min-inline-size:0; overflow-wrap:anywhere; }
 .decision-product-summary .muted { font-size:.85rem; }
 .decision-product-summary strong { color:var(--text); }
+.launcher-group { border:0; padding:0; margin:0; min-inline-size:0; }
+.launcher-group .decision-step { padding:0; }
+.launcher-choice { cursor:pointer; position:relative; }
+.launcher-choice input[type=radio] { inline-size:20px; block-size:20px; flex-shrink:0; accent-color:var(--accent); }
+.decision-product-option.launcher-choice { justify-content:flex-start; }
+.decision-card.launcher-choice { display:grid; grid-template-columns:auto minmax(0,1fr); align-items:center; gap:8px; }
+.decision-card.launcher-choice > span { grid-column:2; }
+.launcher-choice:has(input:checked) { border-color:var(--accent); background:var(--background); }
+.launcher-choice:has(input:focus-visible) { outline:3px solid var(--accent); outline-offset:3px; }
+.launcher-start { margin-block:16px; }
+.launcher-start p { font-size:.95rem; color:var(--text-secondary); }
+.launcher-start button:disabled { background:var(--surface-active); color:var(--text-secondary); border-color:var(--control-border); cursor:not-allowed; opacity:1; }
 .simulation-panel input,.simulation-panel select { scroll-margin-block-start:150px; }
 .decision-secondary { margin-block-end:28px; flex-wrap:wrap; }
 .delivery-comparison { margin-block:24px; padding:16px; border:1px solid var(--border); border-radius:12px; }

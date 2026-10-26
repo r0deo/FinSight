@@ -745,4 +745,15 @@
   <data name="Explore a lower price." xml:space="preserve"><value>نرخەکێ کێمتر تاقی بکە.</value></data>
   <data name="Account for app fees." xml:space="preserve"><value>کرێیێن ئەپی بژمێرە.</value></data>
   <data name="Choose a decision to continue." xml:space="preserve"><value>بۆ بەردەوامبوونێ بڕیارەکێ هەلبژێرە.</value></data>
+  <data name="Choose a product and a decision to start." xml:space="preserve"><value>بۆ دەستپێکرنێ بەرهەمەکێ و بڕیارەکێ هەلبژێرە.</value></data>
+  <data name="Choose a product to continue." xml:space="preserve"><value>بۆ بەردەوامبوونێ بەرهەمەکێ هەلبژێرە.</value></data>
+  <data name="Ready. Start simulation to enter your assumptions." xml:space="preserve"><value>ئامادەیە. شبیه‌سازییێ دەست پێ بکە بۆ نڤیسینا گریمانێن خۆ.</value></data>
+  <data name="Start simulation" xml:space="preserve"><value>شبیه‌سازییێ دەست پێ بکە</value></data>
+  <data name="Enable JavaScript to choose a product and decision on this page." xml:space="preserve"><value>JavaScript چالاک بکە بۆ هەلبژارتنا بەرهەمی و بڕیاری ل ڤێ لاپەڕێ.</value></data>
+  <data name="Viewing month" xml:space="preserve"><value>هەیڤا نیشاندای</value></data>
+  <data name="Add cost" xml:space="preserve"><value>تێچوونەکێ زێدە بکە</value></data>
+  <data name="Recorded amounts only, not business profit. Inventory is separate; these costs are not automatically deducted from a product simulation." xml:space="preserve"><value>ئەڤە بتنێ بڕێن تۆمارکری نە، نە قازانجێ کاری. کڕینێن کۆگەهێ جودا نە؛ ئەڤ تێچوونە بخۆکار ژ شبیه‌سازیا بەرهەمەکێ ناهێنە کێمکرن.</value></data>
+  <data name="Cost details" xml:space="preserve"><value>وردەکارییێن تێچوونێ</value></data>
+  <data name="Month review" xml:space="preserve"><value>پێداچوونا هەیڤێ</value></data>
+  <data name="Category breakdown and accounting notes" xml:space="preserve"><value>وردەکاری ب گۆرەی جۆری و تێبینییێن ژمێریاریێ</value></data>
 </root>

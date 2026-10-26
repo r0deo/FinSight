@@ -178,6 +178,7 @@ public sealed partial class BrowserJourneyTests(BrowserApiFactory factory) : ICl
         await page.Locator("main form button[type=submit]").ClickAsync();
         await page.WaitForURLAsync("**/business-costs?month=2026-10");
         await Layout(page, culture, width, "costs");
+        await page.Locator("[data-month-review] > summary").ClickAsync();
         await page.Locator("[data-cost-review] button").ClickAsync();
         await page.WaitForURLAsync("**/business-costs?month=2026-10");
         await Expect(page.Locator("[data-cost-review] input[name=reviewed]")).ToHaveValueAsync("false");

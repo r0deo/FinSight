@@ -44,8 +44,6 @@
                         <td data-label="@T["Status"]"><span class="badge @(product.IsActive ? "badge-active" : "badge-inactive")">@T[product.IsActive ? "Active" : "Inactive"]</span></td>
                         <td data-label="@T["Actions"]"><div class="row-actions">
                             <a asp-action="Edit" asp-route-id="@product.Id" aria-label="@T["Edit product named", product.Name]">@T["Edit"]</a>
-                            @if (product.IsActive)
-                            { <a href="/simulations/preview?productId=@product.Id">@T["Preview price change"]</a> }
                             <form asp-action="@(product.IsActive ? "Deactivate" : "Reactivate")" asp-route-id="@product.Id" method="post" data-confirm="@T[product.IsActive ? "Deactivate this product? It will remain in history." : "Reactivate this product?"]">
                                 <button class="text-button" type="submit" aria-label="@T[product.IsActive ? "Deactivate product named" : "Reactivate product named", product.Name]">@T[product.IsActive ? "Deactivate" : "Reactivate"]</button>
                             </form>

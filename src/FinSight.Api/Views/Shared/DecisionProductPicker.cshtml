@@ -1,25 +1,48 @@
 @model DecisionProductPickerViewModel
 @{ ViewData["Title"] = T["Simulate your financial decisions"].Value;
-   var route = DecisionCardsViewModel.Route(Model.Decision); }
+   var route = DecisionCardsViewModel.Route(Model.Decision);
+   var choices = new[] { ("pricing", "Price", "Compare selling prices."), ("discount", "Discount", "Explore a lower price."), ("delivery", "Delivery app", "Account for app fees.") }; }
 <section class="panel simulation-panel">
     <h1>@T["Simulate your financial decisions"]</h1>
     <partial name="_SimulationNavigation" model="@(new DecisionCardsViewModel("financial"))" />
-    <section class="decision-product-picker" aria-labelledby="product-step">
-        <h2 id="product-step" class="decision-step">@T["Step 1: Choose a product"]</h2>
-        <p>@T["Choose a product to start. Then select Price, Discount, or Delivery app."]</p>
-        @if (Model.Products.Items.Count == 0) { <p>@T["No active products are available for simulation."]</p><a class="button" href="/products">@T["Manage products"]</a> }
-        <div class="decision-product-options">
-        @foreach (var product in Model.Products.Items)
-        {
-            <a class="decision-product-option" href="@route?productId=@product.Id&amp;chooseDecision=true">
-                <strong><bdi>@product.Name</bdi></strong><span>@T["Choose this product"] <span aria-hidden="true" class="directional-icon">→</span></span>
-            </a>
-        }
+    <form method="get" action="@route" data-simulation-launcher
+          data-missing-both="@T["Choose a product and a decision to start."]"
+          data-missing-product="@T["Choose a product to continue."]"
+          data-missing-decision="@T["Choose a decision to continue."]"
+          data-ready="@T["Ready. Start simulation to enter your assumptions."]">
+        <fieldset class="launcher-group decision-product-picker">
+            <legend class="decision-step">@T["Step 1: Choose a product"]</legend>
+            @if (Model.Products.Items.Count == 0) { <p>@T["No active products are available for simulation."]</p><a class="button" href="/products">@T["Manage products"]</a> }
+            <div class="decision-product-options">
+            @foreach (var product in Model.Products.Items)
+            {
+                <label class="decision-product-option launcher-choice">
+                    <input type="radio" name="productId" value="@product.Id" required />
+                    <strong><bdi>@product.Name</bdi></strong>
+                </label>
+            }
+            </div>
+            <nav class="pagination" aria-label="@T["Pagination"]">
+                @if (Model.Products.Page > 1) { <a href="@route?page=@(Model.Products.Page - 1)">@T["Previous"]</a> }
+                @if (Model.Products.Page < Model.Products.TotalPages) { <a href="@route?page=@(Model.Products.Page + 1)">@T["Next"]</a> }
+            </nav>
+        </fieldset>
+        <fieldset class="launcher-group">
+            <legend class="decision-step">@T["Step 2: Choose a decision"]</legend>
+            <div class="decision-cards">
+            @foreach (var (decision, title, description) in choices)
+            {
+                <label class="decision-card launcher-choice">
+                    <input type="radio" name="decision" value="@decision" data-route="@DecisionCardsViewModel.Route(decision)" required />
+                    <strong>@T[title]</strong><span>@T[description]</span>
+                </label>
+            }
+            </div>
+        </fieldset>
+        <div class="launcher-start">
+            <button class="button" type="submit" data-start-simulation disabled aria-describedby="launcher-status">@T["Start simulation"]</button>
+            <p id="launcher-status" role="status" aria-live="polite">@T["Choose a product and a decision to start."]</p>
         </div>
-        <nav class="pagination" aria-label="@T["Pagination"]">
-            @if (Model.Products.Page > 1) { <a href="@route?page=@(Model.Products.Page - 1)">@T["Previous"]</a> }
-            @if (Model.Products.Page < Model.Products.TotalPages) { <a href="@route?page=@(Model.Products.Page + 1)">@T["Next"]</a> }
-        </nav>
-    </section>
-    <partial name="_DecisionCards" model="@(new DecisionCardsViewModel(Model.Decision))" />
+        <noscript><p>@T["Enable JavaScript to choose a product and decision on this page."]</p></noscript>
+    </form>
 </section>

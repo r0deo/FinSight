@@ -745,4 +745,15 @@
   <data name="Explore a lower price." xml:space="preserve"><value>Explore a lower price.</value></data>
   <data name="Account for app fees." xml:space="preserve"><value>Account for app fees.</value></data>
   <data name="Choose a decision to continue." xml:space="preserve"><value>Choose a decision to continue.</value></data>
+  <data name="Choose a product and a decision to start." xml:space="preserve"><value>Choose a product and a decision to start.</value></data>
+  <data name="Choose a product to continue." xml:space="preserve"><value>Choose a product to continue.</value></data>
+  <data name="Ready. Start simulation to enter your assumptions." xml:space="preserve"><value>Ready. Start simulation to enter your assumptions.</value></data>
+  <data name="Start simulation" xml:space="preserve"><value>Start simulation</value></data>
+  <data name="Enable JavaScript to choose a product and decision on this page." xml:space="preserve"><value>Enable JavaScript to choose a product and decision on this page.</value></data>
+  <data name="Viewing month" xml:space="preserve"><value>Viewing month</value></data>
+  <data name="Add cost" xml:space="preserve"><value>Add cost</value></data>
+  <data name="Recorded amounts only, not business profit. Inventory is separate; these costs are not automatically deducted from a product simulation." xml:space="preserve"><value>Recorded amounts only, not business profit. Inventory is separate; these costs are not automatically deducted from a product simulation.</value></data>
+  <data name="Cost details" xml:space="preserve"><value>Cost details</value></data>
+  <data name="Month review" xml:space="preserve"><value>Month review</value></data>
+  <data name="Category breakdown and accounting notes" xml:space="preserve"><value>Category breakdown and accounting notes</value></data>
 </root>

@@ -20,7 +20,7 @@ namespace FinSight.IntegrationTests;
 
 // Presentation-only fixtures render the real Razor views and run real browser JS.
 // They do not replace the PostgreSQL tests for authorization, calculation or saving.
-public sealed class DecisionWorkspacePresentationTests(PublicPagesFactory factory) : IClassFixture<PublicPagesFactory>
+public sealed partial class DecisionWorkspacePresentationTests(PublicPagesFactory factory) : IClassFixture<PublicPagesFactory>
 {
     [Theory]
     [InlineData("en", 1440)]
@@ -40,9 +40,6 @@ public sealed class DecisionWorkspacePresentationTests(PublicPagesFactory factor
         var pricing = await Render("SimulationPages/Preview", "SimulationPages", "/simulations/preview",
             new PreviewSimulationViewModel { ProductId = id, ProductName = name, Currency = "IQD", CurrentPrice = 4000,
                 UnitCost = 1000, ProposedPrice = 4000, UnknownExpectedSales = true }, culture);
-        var chooseDecision = await Render("SimulationPages/Preview", "SimulationPages", "/simulations/preview",
-            new PreviewSimulationViewModel { ProductId = id, ProductName = name, Currency = "IQD",
-                CurrentPrice = 4000, UnitCost = 1000 }, culture, choosing: true);
         var discount = await Render("DiscountPages/Preview", "DiscountPages", "/simulations/discount",
             new DiscountViewModel { ProductId = id, ProductName = name, Currency = "IQD", CurrentPrice = 4000, UnitCost = 1000 }, culture);
         var delivery = await Render("DeliveryPages/Preview", "DeliveryPages", "/simulations/delivery",
@@ -64,7 +61,7 @@ public sealed class DecisionWorkspacePresentationTests(PublicPagesFactory factor
             var uri = new Uri(route.Request.Url);
             string? html = uri.AbsolutePath switch
             {
-                "/simulations/preview" => uri.Query.Contains("chooseDecision=true") ? chooseDecision : uri.Query.Contains("productId") ? pricing : picker,
+                "/simulations/preview" => uri.Query.Contains("productId=") ? pricing : picker,
                 "/simulations/discount" => discount,
                 "/simulations/delivery" => delivery,
                 "/what-if" => whatIf,
@@ -79,21 +76,20 @@ public sealed class DecisionWorkspacePresentationTests(PublicPagesFactory factor
         await Expect(page.Locator(".simulation-destination[aria-current=page]")).ToHaveCountAsync(1);
         await Expect(page.Locator(".decision-selected")).ToHaveCountAsync(0);
         await Expect(page.Locator(".decision-card[aria-current]")).ToHaveCountAsync(0);
-        await Expect(page.Locator(".decision-card[aria-disabled=true]")).ToHaveCountAsync(3);
+        await Expect(page.Locator("[data-start-simulation]")).ToBeDisabledAsync();
+        Assert.False(string.IsNullOrWhiteSpace(await page.Locator("#launcher-status").InnerTextAsync()));
         await Expect(page.Locator(".decision-product-option bdi")).ToHaveTextAsync(name);
         await Expect(page.Locator(".pagination a")).ToHaveAttributeAsync("href", "/simulations/preview?page=2");
         var pickerBox = (await page.Locator(".decision-product-picker").BoundingBoxAsync())!;
         var cardsBox = (await page.Locator(".decision-cards").BoundingBoxAsync())!;
         Assert.True(pickerBox.Y < cardsBox.Y);
         await CheckLayout(page, culture, width, "picker");
-        await page.Locator(".decision-product-option").ClickAsync();
-        await page.WaitForURLAsync($"**/simulations/preview?productId={id}&chooseDecision=true");
-        await Expect(page.Locator(".decision-card[aria-current]")).ToHaveCountAsync(0);
+        await page.Locator($"input[name=productId][value='{id}']").CheckAsync();
+        await Expect(page.Locator("[data-start-simulation]")).ToBeDisabledAsync();
         await Expect(page.Locator("[data-decision-form], [data-discount-form], [data-delivery-form], dialog")).ToHaveCountAsync(0);
-        await Expect(page.Locator(".decision-product-summary bdi")).ToHaveTextAsync(name);
-        await CheckLayout(page, culture, width, "choose-decision");
-        await page.Locator(".decision-card[data-decision-link='pricing']").ClickAsync();
-        await page.WaitForURLAsync($"**/simulations/preview?productId={id}");
+        await page.Locator("input[name=decision][value=pricing]").CheckAsync();
+        await Expect(page.Locator("[data-start-simulation]")).ToBeEnabledAsync();
+        await CheckLayout(page, culture, width, "ready-to-start");
         foreach (var (decision, route, form) in new[]
         {
             ("pricing", "/simulations/preview", "data-decision-form"),
@@ -101,11 +97,11 @@ public sealed class DecisionWorkspacePresentationTests(PublicPagesFactory factor
             ("delivery", "/simulations/delivery", "data-delivery-form")
         })
         {
-            if (decision != "pricing")
-            {
-                await page.Locator($".decision-card[data-decision-link='{decision}']").ClickAsync();
-                await page.WaitForURLAsync($"**{route}?productId={id}");
-            }
+            await page.GotoAsync("/simulations/preview");
+            await Expect(page.Locator($"input[name=productId][value='{id}']")).ToBeCheckedAsync();
+            await page.Locator($"input[name=decision][value='{decision}']").CheckAsync();
+            await page.Locator("[data-start-simulation]").ClickAsync();
+            await page.WaitForURLAsync($"**{route}?productId={id}");
             await Expect(page.Locator(".decision-product-summary bdi")).ToHaveTextAsync(name);
             await Expect(page.Locator(".decision-card[aria-current=page]")).ToHaveCountAsync(1);
             await Expect(page.Locator(".decision-card[aria-current=page]")).ToHaveAttributeAsync("data-decision-link", decision);
@@ -118,6 +114,10 @@ public sealed class DecisionWorkspacePresentationTests(PublicPagesFactory factor
             Assert.Equal("rgb(48, 57, 68)", await neutral.EvaluateAsync<string>("e => getComputedStyle(e).borderTopColor"));
             await CheckLayout(page, culture, width, decision);
         }
+        // Bookmarks created by the previous UI still open the existing form directly.
+        await page.GotoAsync($"/simulations/preview?productId={id}&chooseDecision=true");
+        await Expect(page.Locator("[data-decision-form]")).ToHaveCountAsync(1);
+        await page.GotoAsync($"/simulations/delivery?productId={id}");
         await page.Locator("#CommissionPercentage").FillAsync("25");
         EventHandler<IDialog> dismiss = async (_, dialog) => await dialog.DismissAsync();
         page.Dialog += dismiss;
@@ -140,7 +140,7 @@ public sealed class DecisionWorkspacePresentationTests(PublicPagesFactory factor
         Assert.Empty(errors);
     }
 
-    private async Task<string> Render(string view, string controller, string path, object model, string culture, bool choosing = false)
+    private async Task<string> Render(string view, string controller, string path, object model, string culture, bool owner = false)
     {
         using var scope = factory.Services.CreateScope();
         var previous = CultureInfo.CurrentCulture;
@@ -154,8 +154,8 @@ public sealed class DecisionWorkspacePresentationTests(PublicPagesFactory factor
             var http = new DefaultHttpContext { RequestServices = scope.ServiceProvider };
             http.Request.Scheme = "https"; http.Request.Host = new HostString(new Uri(factory.Origin).Authority);
             http.Request.Path = path; http.Request.Method = "GET";
-            if (choosing) http.Request.QueryString = new QueryString("?chooseDecision=true");
-            http.User = new ClaimsPrincipal(new ClaimsIdentity([new Claim(ClaimTypes.Name, "Presentation fixture")], "fixture"));
+            http.User = new ClaimsPrincipal(new ClaimsIdentity([new Claim(ClaimTypes.Name, "Presentation fixture"),
+                new Claim(ClaimTypes.Role, owner ? "Owner" : "Manager")], "fixture"));
             accessor.HttpContext = http;
             var route = new RouteData();
             route.Values["controller"] = controller; route.Values["action"] = "Preview";
