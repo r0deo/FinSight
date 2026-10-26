@@ -1,21 +1,12 @@
 @model LoginViewModel
 @{ ViewData["Title"] = T["Welcome back"].Value; }
 <section class="auth-layout">
-    <div class="auth-intro"><p class="eyebrow">@T["YOUR BUSINESS, IN FOCUS"]</p><h1>@T["Welcome"]<br />@T["back."]</h1><p class="lead">@T["Pick up where you left off. Your menu is ready when you are."]</p></div>
+    <div class="auth-intro"><p class="eyebrow">@T["YOUR BUSINESS, IN FOCUS"]</p><h1>@T["Welcome"] <br />@T["back."]</h1><p class="lead">@T["Pick up where you left off. Your menu is ready when you are."]</p></div>
     <div class="panel auth-panel">
-        <h2>@T["Log in to Rebaz"]</h2><p class="muted">@T["Use your confirmed business account."]</p>
+        <h2>@T["Log in to Rebaz"]</h2><p class="muted">@T["Use your Google account to access Rebaz."]</p>
         @if (!string.IsNullOrEmpty(Context.Request.Query["returnUrl"]))
         { <p role="status">@T["Sign in to continue. Your previous session may have expired."]</p> }
+        <div asp-validation-summary="All" class="validation-summary" role="alert"></div>
         <partial name="_GoogleButton" />
-        <partial name="_EmailAvailability" />
-        <form asp-action="Login" method="post">
-            <div asp-validation-summary="All" class="validation-summary" role="alert"></div>
-            <input asp-for="ReturnUrl" type="hidden" />
-            <div class="field"><label asp-for="Email"></label><input asp-for="Email" autocomplete="username" inputmode="email" dir="ltr" /><span asp-validation-for="Email"></span></div>
-            <div class="field"><label asp-for="Password"></label><input asp-for="Password" autocomplete="current-password" /><span asp-validation-for="Password"></span></div>
-            <button class="button full-width" type="submit">@T["Log in"] <span class="directional-icon" aria-hidden="true">→</span></button>
-        </form>
-        <p class="form-footer">@T["New to Rebaz?"] <a href="/account/register">@T["Create your business"]</a></p>
-        <p><a href="/account/resend-confirmation">@T["Resend confirmation email"]</a></p>
     </div>
 </section>

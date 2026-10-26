@@ -48,9 +48,7 @@ public sealed partial class BrowserJourneyTests
         await page.GotoAsync("/account/login");
         await page.Locator("#site-language").SelectOptionAsync(culture);
         await Expect(page.Locator("html")).ToHaveAttributeAsync("lang", culture);
-        await page.Locator("#Email").FillAsync(email); await page.Locator("#Password").FillAsync("Password1!");
-        await page.Locator("main form button[type=submit]").ClickAsync();
-        await page.WaitForURLAsync(url => !url.Contains("/account/login"), new() { WaitUntil = WaitUntilState.DOMContentLoaded });
+        await SignInForJourney(page, email);
         await Expect(page.Locator("form[action='/account/logout']")).ToBeVisibleAsync();
         await page.GotoAsync("/products/create");
         // An estimate must work before the owner has completed any product details.

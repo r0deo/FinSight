@@ -1,30 +1,11 @@
 @model RegisterViewModel
-@inject Microsoft.Extensions.Options.IOptions<FinSight.Infrastructure.Identity.EmailOptions> EmailOptions
 @{ ViewData["Title"] = T["Create your business"].Value; }
 <section class="auth-layout register-layout">
-    <div class="auth-intro"><p class="eyebrow">@T["MAKE ROOM FOR CLARITY"]</p><h1>@T["Your menu."]<br />@T["Your workspace."]</h1><p class="lead">@T["Sign in with Google and tell us about your business. Email registration also requires email confirmation when available."]</p><p class="muted">@T["You'll be the Owner of this business. Existing Owners and Managers can use the login page."]</p></div>
+    <div class="auth-intro"><p class="eyebrow">@T["MAKE ROOM FOR CLARITY"]</p><h1>@T["Your menu."] <br />@T["Your workspace."]</h1><p class="lead">@T["Use your Google account to access Rebaz."]</p><p class="muted">@T["You'll be the Owner of this business. Existing Owners and Managers can use the login page."]</p></div>
     <div class="panel auth-panel">
         <h2>@T["Create your business"]</h2>
+        <div asp-validation-summary="All" class="validation-summary" role="alert"></div>
         <partial name="_GoogleButton" />
-        <partial name="_EmailAvailability" />
-        @if (EmailOptions.Value.Enabled)
-        {
-        <form asp-action="Register" method="post">
-            <div asp-validation-summary="All" class="validation-summary" role="alert"></div>
-            <fieldset><legend>@T["Business details"]</legend>
-                <div class="field"><label asp-for="BusinessName"></label><input asp-for="BusinessName" maxlength="100" autocomplete="organization" dir="auto" placeholder="@T["e.g. Olive & Bean Café"]" /><span asp-validation-for="BusinessName"></span></div>
-                <div class="field"><label asp-for="Location"></label><input asp-for="Location" maxlength="200" autocomplete="street-address" dir="auto" placeholder="@T["City or address"]" /><span asp-validation-for="Location"></span></div>
-                <div class="field"><label asp-for="Currency"></label><input asp-for="Currency" minlength="3" maxlength="3" dir="ltr" aria-describedby="currency-hint" /><small id="currency-hint">@T["Three-letter currency code, such as IQD, USD, or EUR."]</small><span asp-validation-for="Currency"></span></div>
-                <div class="field"><label asp-for="ContactInformation"></label><input asp-for="ContactInformation" maxlength="200" dir="auto" placeholder="@T["Business phone number or email"]" /><span asp-validation-for="ContactInformation"></span></div>
-            </fieldset>
-            <fieldset><legend>@T["Your Owner account"]</legend>
-                <div class="field"><label asp-for="Email"></label><input asp-for="Email" autocomplete="username" inputmode="email" dir="ltr" /><span asp-validation-for="Email"></span></div>
-                <div class="field"><label asp-for="Password"></label><input asp-for="Password" autocomplete="new-password" minlength="8" aria-describedby="password-hint" /><small id="password-hint">@T["At least 8 characters, including uppercase, lowercase, a number, and a symbol."]</small><span asp-validation-for="Password"></span></div>
-                <div class="field"><label asp-for="ConfirmPassword"></label><input asp-for="ConfirmPassword" autocomplete="new-password" /><span asp-validation-for="ConfirmPassword"></span></div>
-            </fieldset>
-            <button class="button full-width" type="submit">@T["Create business"] <span class="directional-icon" aria-hidden="true">→</span></button>
-        </form>
-        }
         <p class="form-footer">@T["Already registered?"] <a href="/account/login">@T["Log in"]</a></p>
     </div>
 </section>

@@ -49,9 +49,7 @@ public sealed partial class BrowserJourneyTests
         await page.GotoAsync("/account/login");
         await page.Locator("#site-language").SelectOptionAsync(culture);
         await Expect(page.Locator("html")).ToHaveAttributeAsync("lang", culture);
-        await page.Locator("#Email").FillAsync(email); await page.Locator("#Password").FillAsync("Password1!");
-        await page.Locator("main form button[type=submit]").ClickAsync();
-        await page.WaitForURLAsync(url => !url.Contains("/account/login"), new() { WaitUntil = WaitUntilState.DOMContentLoaded });
+        await SignInForJourney(page, email);
         await page.GotoAsync("/simulations");
         await Expect(page.Locator("header a[href='/simulations/discount']")).ToHaveCountAsync(0);
         await page.Locator("main .simulation-destination[href='/simulations/preview']").ClickAsync();

@@ -728,4 +728,5 @@
   <data name="Utilities" xml:space="preserve"><value>الماء والإنترنت والخدمات</value></data>
   <data name="Left after product and decision costs" xml:space="preserve"><value>المتبقي بعد تكاليف المنتج والقرار</value></data>
   <data name="This is a product contribution threshold, not a whole-business break-even point." xml:space="preserve"><value>هذا حد للمحافظة على مساهمة المنتج، وليس نقطة تعادل للعمل كله.</value></data>
+  <data name="Use your Google account to access Rebaz." xml:space="preserve"><value>استخدم حسابك في Google للدخول إلى Rebaz.</value></data>
 </root>

@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace FinSight.IntegrationTests;
 
-public class GoogleSignInTests(GoogleApiFactory factory) : IClassFixture<GoogleApiFactory>
+public partial class GoogleSignInTests(GoogleApiFactory factory) : IClassFixture<GoogleApiFactory>
 {
     [Fact]
     public async Task VerifiedGoogleIdentity_MustOnboardBeforeTenantAccess_AndRetriesDoNotDuplicateAccounts()
@@ -218,10 +218,10 @@ public class GoogleSignInTests(GoogleApiFactory factory) : IClassFixture<GoogleA
     }
 
     private async Task<HttpResponseMessage> RoundTrip(HttpClient browser, string subject, string email,
-        bool? verified = true, bool link = false, string returnUrl = "/home")
+        bool? verified = true, bool link = false, string returnUrl = "/home", string? formPage = null)
     {
         var start = await browser.Submit(link ? "/account/google/link" : "/account/google/start",
-            new() { ["ReturnUrl"] = returnUrl }, link ? "/account/settings" : "/account/login");
+            new() { ["ReturnUrl"] = returnUrl }, formPage ?? (link ? "/account/settings" : "/account/login"));
         Assert.Equal(HttpStatusCode.Redirect, start.StatusCode);
         var query = QueryHelpers.ParseQuery(start.Headers.Location!.Query);
         Assert.Equal("https://accounts.google.com", start.Headers.Location.GetLeftPart(UriPartial.Authority));
@@ -247,7 +247,7 @@ public class GoogleSignInTests(GoogleApiFactory factory) : IClassFixture<GoogleA
         { BaseAddress = new Uri("https://localhost:7080"), AllowAutoRedirect = false, HandleCookies = true });
         {
             var signup = await disabled.GetStringAsync("/account/register");
-            Assert.Contains("temporarily unavailable", signup);
+            Assert.DoesNotContain("Email registration and confirmation delivery", signup);
             Assert.Contains("Continue with Google", signup);
             Assert.DoesNotContain("name=\"Password\"", signup);
             var blockedEmail = $"blocked-{Guid.NewGuid():N}@example.com";

@@ -72,12 +72,11 @@ public sealed partial class BrowserJourneyTests(BrowserApiFactory factory) : ICl
         await page.GotoAsync("/account/login");
         await page.Locator("#site-language").SelectOptionAsync(culture);
         await Expect(page.Locator("html")).ToHaveAttributeAsync("lang", culture);
-        await page.Locator("#Email").FillAsync(email);
-        await page.Locator("#Password").FillAsync("Password1!");
-        await page.Locator("main form button[type=submit]").ClickAsync();
-        await page.WaitForURLAsync(url => !url.Contains("/account/login"), new() { WaitUntil = WaitUntilState.DOMContentLoaded });
+        await SignInForJourney(page, email);
         await Expect(page.Locator("form[action='/account/logout']")).ToBeVisibleAsync();
         await page.GotoAsync("/home");
+        await Expect(page.Locator(".getting-started")).ToHaveCountAsync(0);
+        await Layout(page, culture, width, "home-simplified");
         await Expect(page.Locator("header a[href='/what-if']")).ToHaveCountAsync(0);
         await Expect(page.Locator("main a[href='/what-if']")).ToHaveCountAsync(0);
         await page.GotoAsync("/products/create");
