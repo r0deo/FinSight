@@ -5,8 +5,10 @@
    var saveUrl = Model.SimulationId.HasValue ? $"/simulations/{Model.SimulationId}/discount/save" : "/simulations/discount/save"; }
 <section class="panel message-panel simulation-panel">
     <h1>@T["Simulate your financial decisions"]</h1>
-    <partial name="_DecisionCards" model="@(new DecisionCardsViewModel("discount", Model.ProductId))" />
-    <h2>@T["Offer a discount"]</h2><h3><bdi>@Model.ProductName</bdi></h3>
+    <partial name="_DecisionWorkspace" model="@(new DecisionWorkspaceViewModel("discount", Model.ProductId, Model.ProductName, Model.SimulationId.HasValue))" />
+    @if (Context.Request.Query["chooseDecision"] != "true" || Model.SimulationId.HasValue)
+    {
+    <h2>@T["Offer a discount"]</h2>
     @if (Model.SimulationId.HasValue) { <p>@T["This result uses the prices and unit cost saved with the simulation, not today's product values."]</p> }
     <dl class="simulation-product-facts">
         <div><dt>@T["Current selling price"]</dt><dd><bdi dir="ltr">@Model.CurrentPrice.ToString("N2") @Model.Currency</bdi></dd></div>
@@ -47,5 +49,5 @@
             </form>
         </result-modal>
     }
-    <p><a href="/simulations/discount">@T["Choose another product"]</a></p>
+    }
 </section>

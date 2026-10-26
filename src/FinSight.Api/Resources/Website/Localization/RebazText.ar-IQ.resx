@@ -729,4 +729,20 @@
   <data name="Left after product and decision costs" xml:space="preserve"><value>المتبقي بعد تكاليف المنتج والقرار</value></data>
   <data name="This is a product contribution threshold, not a whole-business break-even point." xml:space="preserve"><value>هذا حد للمحافظة على مساهمة المنتج، وليس نقطة تعادل للعمل كله.</value></data>
   <data name="Use your Google account to access Rebaz." xml:space="preserve"><value>استخدم حسابك في Google للدخول إلى Rebaz.</value></data>
+  <data name="Try decisions" xml:space="preserve"><value>جرّب القرارات</value></data>
+  <data name="Saved simulations" xml:space="preserve"><value>المحاكاة المحفوظة</value></data>
+  <data name="Step 1: Choose a product" xml:space="preserve"><value>الخطوة 1: اختر منتجًا</value></data>
+  <data name="Step 2: Choose a decision" xml:space="preserve"><value>الخطوة 2: اختر قرارًا</value></data>
+  <data name="Step 3: Enter assumptions and view the result" xml:space="preserve"><value>الخطوة 3: أدخل افتراضاتك واعرض النتيجة</value></data>
+  <data name="Choose a product to start. Then select Price, Discount, or Delivery app." xml:space="preserve"><value>اختر منتجًا للبدء، ثم اختر السعر أو الخصم أو تطبيق التوصيل.</value></data>
+  <data name="Choose this product" xml:space="preserve"><value>اختر هذا المنتج</value></data>
+  <data name="Selected product" xml:space="preserve"><value>المنتج المختار</value></data>
+  <data name="Saved product" xml:space="preserve"><value>المنتج المحفوظ</value></data>
+  <data name="Price" xml:space="preserve"><value>السعر</value></data>
+  <data name="Discount" xml:space="preserve"><value>الخصم</value></data>
+  <data name="Delivery app" xml:space="preserve"><value>تطبيق توصيل</value></data>
+  <data name="Compare selling prices." xml:space="preserve"><value>قارن أسعار البيع.</value></data>
+  <data name="Explore a lower price." xml:space="preserve"><value>جرّب سعرًا مخفّضًا.</value></data>
+  <data name="Account for app fees." xml:space="preserve"><value>احسب رسوم التطبيق.</value></data>
+  <data name="Choose a decision to continue." xml:space="preserve"><value>اختر قرارًا للمتابعة.</value></data>
 </root>

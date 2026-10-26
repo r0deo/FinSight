@@ -1,0 +1,20 @@
+@model DecisionWorkspaceViewModel
+@{ var choosing = Context.Request.Query["chooseDecision"] == "true" && !Model.IsSaved; }
+<partial name="_SimulationNavigation" model="@(new DecisionCardsViewModel("financial", Model.ProductId))" />
+<h2 class="decision-step">@T[Model.IsSaved ? "Saved product" : "Step 1: Choose a product"]</h2>
+<div class="decision-product-summary" data-product-selection data-discard-warning="@T["Switching decisions will discard your unsaved inputs. Continue?"]">
+    <div><span class="muted">@T["Selected product"]</span><strong><bdi>@Model.ProductName</bdi></strong></div>
+    @if (!Model.IsSaved)
+    {
+        <a class="button button-secondary button-small" href="@DecisionCardsViewModel.Route(Model.Decision)" data-decision-link="product">@T["Choose another product"]</a>
+    }
+</div>
+<partial name="_DecisionCards" model="@(new DecisionCardsViewModel(choosing ? "" : Model.Decision, Model.ProductId))" />
+@if (choosing)
+{
+    <p>@T["Choose a decision to continue."]</p>
+}
+else
+{
+    <h2 class="decision-step">@T["Step 3: Enter assumptions and view the result"]</h2>
+}

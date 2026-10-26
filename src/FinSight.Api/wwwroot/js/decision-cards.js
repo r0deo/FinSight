@@ -1,6 +1,6 @@
 (() => {
     const initialize = () => {
-        const cards = document.querySelectorAll('[data-decision-cards], [data-simulation-navigation]');
+        const cards = document.querySelectorAll('[data-decision-cards], [data-simulation-navigation], [data-product-selection]');
         const form = document.querySelector('[data-decision-form], [data-discount-form], [data-delivery-form], [data-what-if-form]');
         if (!cards.length) return;
         const values = () => form ? JSON.stringify([...new FormData(form)]) : '';

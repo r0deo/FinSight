@@ -10,3 +10,4 @@ public sealed record DecisionCardsViewModel(string Selected, Guid? ProductId = n
     };
 }
 public sealed record DecisionProductPickerViewModel(string Decision, GetProductsResponse Products);
+public sealed record DecisionWorkspaceViewModel(string Decision, Guid ProductId, string ProductName, bool IsSaved = false);

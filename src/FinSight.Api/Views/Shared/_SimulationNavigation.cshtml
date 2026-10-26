@@ -1,17 +1,14 @@
 @model DecisionCardsViewModel
 @{ var suffix = Model.ProductId.HasValue ? $"?productId={Model.ProductId}" : "";
+   var financialSuffix = suffix + (Model.ProductId.HasValue && Model.Selected == "financial" && Context.Request.Query["chooseDecision"] == "true" ? "&chooseDecision=true" : "");
    var destinations = new[] {
-       (Id: "financial", Title: "Financial decisions", Description: "Compare a price change, a discount, or delivery sales.", Url: "/simulations/preview" + suffix, Icon: "M4 18V6 M4 18h16 M7 14l4-4 4 2 5-7"),
-       (Id: "what-if", Title: "What if conditions change?", Description: "Explore changes in costs or demand and possible responses.", Url: "/what-if" + suffix, Icon: "M8 7a4 4 0 1 1 6 4c-2 1-2 2-2 4 M12 19v1"),
-       (Id: "history", Title: "Saved history", Description: "Reopen the decisions and assumptions you explicitly saved.", Url: "/simulations", Icon: "M5 4h14v16H5z M8 8h8 M8 12h8 M8 16h5") }; }
+       (Id: "financial", Title: "Try decisions", Url: "/simulations/preview" + financialSuffix),
+       (Id: "what-if", Title: "What if?", Url: "/what-if" + suffix),
+       (Id: "history", Title: "Saved simulations", Url: "/simulations") }; }
 <nav class="simulation-navigation" aria-label="@T["Simulation tools"]" data-simulation-navigation data-discard-warning="@T["Switching decisions will discard your unsaved inputs. Continue?"]">
 @foreach (var item in destinations)
 {
     var selected = item.Id == Model.Selected;
-    <a class="simulation-destination @(selected ? "is-selected" : "")" data-decision-link="@item.Id" href="@item.Url" aria-current="@(selected ? "page" : null)">
-        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="@item.Icon" /></svg>
-        <strong>@T[item.Title]</strong><span>@T[item.Description]</span>
-        @if (selected) { <span class="decision-selected">✓ @T["Current section"]</span> }
-    </a>
+    <a class="simulation-destination @(selected ? "is-selected" : "")" data-decision-link="@item.Id" href="@item.Url" aria-current="@(selected ? "page" : null)">@T[item.Title]</a>
 }
 </nav>

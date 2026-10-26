@@ -51,7 +51,21 @@ public sealed partial class BrowserJourneyTests
         await Expect(page.Locator("html")).ToHaveAttributeAsync("lang", culture);
         await SignInForJourney(page, email);
 
-        await page.GotoAsync($"/simulations/preview?productId={productId}");
+        await page.GotoAsync("/simulations/preview");
+        await Expect(page.Locator(".decision-card[aria-current]")).ToHaveCountAsync(0);
+        await Expect(page.Locator(".decision-card[aria-disabled=true]")).ToHaveCountAsync(3);
+        await Expect(page.Locator("dialog, [data-decision-results]")).ToHaveCountAsync(0);
+        var productChoice = page.Locator($".decision-product-option[href='/simulations/preview?productId={productId}&chooseDecision=true']");
+        await productChoice.ClickAsync();
+        await page.WaitForURLAsync($"**/simulations/preview?productId={productId}&chooseDecision=true");
+        await Expect(page.Locator(".decision-card[aria-current]")).ToHaveCountAsync(0);
+        await Expect(page.Locator("[data-decision-form], [data-discount-form], [data-delivery-form]")).ToHaveCountAsync(0);
+        await page.Locator(".decision-card[data-decision-link='pricing']").ClickAsync();
+        await page.WaitForURLAsync($"**/simulations/preview?productId={productId}");
+        await Expect(page.Locator(".decision-product-summary bdi")).ToBeVisibleAsync();
+        await Expect(page.Locator(".simulation-destination[aria-current=page]")).ToHaveCountAsync(1);
+        await Expect(page.Locator(".decision-selected")).ToHaveCountAsync(0);
+        await Expect(page.Locator("dialog, [data-decision-results]")).ToHaveCountAsync(0);
         await Expect(page.Locator(".decision-card")).ToHaveCountAsync(3);
         await Expect(page.Locator(".decision-card[aria-current='page']")).ToHaveCountAsync(1);
         await Expect(page.Locator("[data-decision-form]")).ToHaveCountAsync(1);

@@ -3,13 +3,23 @@
    var route = DecisionCardsViewModel.Route(Model.Decision); }
 <section class="panel simulation-panel">
     <h1>@T["Simulate your financial decisions"]</h1>
+    <partial name="_SimulationNavigation" model="@(new DecisionCardsViewModel("financial"))" />
+    <section class="decision-product-picker" aria-labelledby="product-step">
+        <h2 id="product-step" class="decision-step">@T["Step 1: Choose a product"]</h2>
+        <p>@T["Choose a product to start. Then select Price, Discount, or Delivery app."]</p>
+        @if (Model.Products.Items.Count == 0) { <p>@T["No active products are available for simulation."]</p><a class="button" href="/products">@T["Manage products"]</a> }
+        <div class="decision-product-options">
+        @foreach (var product in Model.Products.Items)
+        {
+            <a class="decision-product-option" href="@route?productId=@product.Id&amp;chooseDecision=true">
+                <strong><bdi>@product.Name</bdi></strong><span>@T["Choose this product"] <span aria-hidden="true" class="directional-icon">→</span></span>
+            </a>
+        }
+        </div>
+        <nav class="pagination" aria-label="@T["Pagination"]">
+            @if (Model.Products.Page > 1) { <a href="@route?page=@(Model.Products.Page - 1)">@T["Previous"]</a> }
+            @if (Model.Products.Page < Model.Products.TotalPages) { <a href="@route?page=@(Model.Products.Page + 1)">@T["Next"]</a> }
+        </nav>
+    </section>
     <partial name="_DecisionCards" model="@(new DecisionCardsViewModel(Model.Decision))" />
-    <h2>@T["Choose a product"]</h2>
-    @if (Model.Products.Items.Count == 0) { <p>@T["No active products are available for simulation."]</p><a class="button" href="/products">@T["Manage products"]</a> }
-    @foreach (var product in Model.Products.Items)
-    { <article class="saved-simulation-card"><a href="@route?productId=@product.Id"><bdi>@product.Name</bdi></a></article> }
-    <nav class="pagination" aria-label="@T["Pagination"]">
-        @if (Model.Products.Page > 1) { <a href="@route?page=@(Model.Products.Page - 1)">@T["Previous"]</a> }
-        @if (Model.Products.Page < Model.Products.TotalPages) { <a href="@route?page=@(Model.Products.Page + 1)">@T["Next"]</a> }
-    </nav>
 </section>

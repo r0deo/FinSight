@@ -1,21 +1,26 @@
 @model DecisionCardsViewModel
-<partial name="_SimulationNavigation" model="@(new DecisionCardsViewModel("financial", Model.ProductId))" />
 @{
     var cards = new[] {
-        (Id: "pricing", Title: "Change selling price", Description: "Compare the current price with a proposed price.", Icon: "M4 16l5-5 4 3 7-10 M14 4h6v6"),
-        (Id: "discount", Title: "Offer a discount", Description: "See how many additional sales you need to offset a discount.", Icon: "M5 19L19 5 M8 6a2 2 0 1 0-4 0 2 2 0 0 0 4 0 M20 18a2 2 0 1 0-4 0 2 2 0 0 0 4 0"),
-        (Id: "delivery", Title: "Sell through a delivery app", Description: "See what remains after product costs, commission, and additional delivery-related costs.", Icon: "M3 4h12v13H3z M15 9h4l3 4v4h-7 M8 18a2 2 0 1 0-4 0 2 2 0 0 0 4 0 M21 18a2 2 0 1 0-4 0 2 2 0 0 0 4 0")
+        (Id: "pricing", Title: "Price", Description: "Compare selling prices."),
+        (Id: "discount", Title: "Discount", Description: "Explore a lower price."),
+        (Id: "delivery", Title: "Delivery app", Description: "Account for app fees.")
     };
 }
+<h2 class="decision-step">@T["Step 2: Choose a decision"]</h2>
 <nav class="decision-cards" aria-label="@T["Simulation type"]" data-decision-cards data-discard-warning="@T["Switching decisions will discard your unsaved inputs. Continue?"]">
     @foreach (var card in cards)
     {
-        var selected = card.Id == Model.Selected;
-        var target = DecisionCardsViewModel.Route(card.Id) + (Model.ProductId.HasValue ? $"?productId={Model.ProductId}" : "");
-        <a class="decision-card @(selected ? "is-selected" : "")" href="@target" data-decision-link="@card.Id" aria-current="@(selected ? "page" : null)">
-            <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="@card.Icon" /></svg>
-            <strong>@T[card.Title]</strong><span>@T[card.Description]</span>
-            @if (selected) { <span class="decision-selected"><span aria-hidden="true">✓ </span>@T["Selected decision"]</span> }
-        </a>
+        var selected = Model.ProductId.HasValue && card.Id == Model.Selected;
+        var target = DecisionCardsViewModel.Route(card.Id) + $"?productId={Model.ProductId}";
+        if (Model.ProductId.HasValue)
+        {
+            <a class="decision-card @(selected ? "is-selected" : "")" href="@target" data-decision-link="@card.Id" aria-current="@(selected ? "page" : null)">
+                <strong>@T[card.Title]</strong><span>@T[card.Description]</span>
+            </a>
+        }
+        else
+        {
+            <span class="decision-card" aria-disabled="true"><strong>@T[card.Title]</strong><span>@T[card.Description]</span></span>
+        }
     }
 </nav>

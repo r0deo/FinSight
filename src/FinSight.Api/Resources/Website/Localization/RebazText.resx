@@ -729,4 +729,20 @@
   <data name="Left after product and decision costs" xml:space="preserve"><value>Left after product and decision costs</value></data>
   <data name="This is a product contribution threshold, not a whole-business break-even point." xml:space="preserve"><value>This is a product contribution threshold, not a whole-business break-even point.</value></data>
   <data name="Use your Google account to access Rebaz." xml:space="preserve"><value>Use your Google account to access Rebaz.</value></data>
+  <data name="Try decisions" xml:space="preserve"><value>Try decisions</value></data>
+  <data name="Saved simulations" xml:space="preserve"><value>Saved simulations</value></data>
+  <data name="Step 1: Choose a product" xml:space="preserve"><value>Step 1: Choose a product</value></data>
+  <data name="Step 2: Choose a decision" xml:space="preserve"><value>Step 2: Choose a decision</value></data>
+  <data name="Step 3: Enter assumptions and view the result" xml:space="preserve"><value>Step 3: Enter assumptions and view the result</value></data>
+  <data name="Choose a product to start. Then select Price, Discount, or Delivery app." xml:space="preserve"><value>Choose a product to start. Then select Price, Discount, or Delivery app.</value></data>
+  <data name="Choose this product" xml:space="preserve"><value>Choose this product</value></data>
+  <data name="Selected product" xml:space="preserve"><value>Selected product</value></data>
+  <data name="Saved product" xml:space="preserve"><value>Saved product</value></data>
+  <data name="Price" xml:space="preserve"><value>Price</value></data>
+  <data name="Discount" xml:space="preserve"><value>Discount</value></data>
+  <data name="Delivery app" xml:space="preserve"><value>Delivery app</value></data>
+  <data name="Compare selling prices." xml:space="preserve"><value>Compare selling prices.</value></data>
+  <data name="Explore a lower price." xml:space="preserve"><value>Explore a lower price.</value></data>
+  <data name="Account for app fees." xml:space="preserve"><value>Account for app fees.</value></data>
+  <data name="Choose a decision to continue." xml:space="preserve"><value>Choose a decision to continue.</value></data>
 </root>

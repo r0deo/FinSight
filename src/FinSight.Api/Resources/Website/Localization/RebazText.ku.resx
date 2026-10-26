@@ -729,4 +729,20 @@
   <data name="Left after product and decision costs" xml:space="preserve"><value>پارەیێ پشتی تێچوونا بەرهەمی و بریارێ دمینیت</value></data>
   <data name="This is a product contribution threshold, not a whole-business break-even point." xml:space="preserve"><value>ئەڤە سنوورێ پاراستنا پشکا بەرهەمییە، نە خاڵا یەکسانبوونا داهات و تێچوونا هەمی کاری.</value></data>
   <data name="Use your Google account to access Rebaz." xml:space="preserve"><value>ب هەژمارا خۆ یا Google بچۆ ژوورێ Rebaz.</value></data>
+  <data name="Try decisions" xml:space="preserve"><value>بڕیاران تاقی بکە</value></data>
+  <data name="Saved simulations" xml:space="preserve"><value>شبیه‌سازییێن هاتینە هەلگرتن</value></data>
+  <data name="Step 1: Choose a product" xml:space="preserve"><value>هەنگاڤ ١: بەرهەمەکێ هەلبژێرە</value></data>
+  <data name="Step 2: Choose a decision" xml:space="preserve"><value>هەنگاڤ ٢: بڕیارەکێ هەلبژێرە</value></data>
+  <data name="Step 3: Enter assumptions and view the result" xml:space="preserve"><value>هەنگاڤ ٣: گریمانان بنڤیسە و ئەنجامی ببینە</value></data>
+  <data name="Choose a product to start. Then select Price, Discount, or Delivery app." xml:space="preserve"><value>بۆ دەستپێکرنێ بەرهەمەکێ هەلبژێرە. پاشی نرخ، داشکاندن یان ئەپی گەهاندنێ هەلبژێرە.</value></data>
+  <data name="Choose this product" xml:space="preserve"><value>ڤی بەرهەمی هەلبژێرە</value></data>
+  <data name="Selected product" xml:space="preserve"><value>بەرهەمێ هەلبژارتی</value></data>
+  <data name="Saved product" xml:space="preserve"><value>بەرهەمێ هاتیە هەلگرتن</value></data>
+  <data name="Price" xml:space="preserve"><value>نرخ</value></data>
+  <data name="Discount" xml:space="preserve"><value>داشکاندن</value></data>
+  <data name="Delivery app" xml:space="preserve"><value>ئەپی گەهاندن</value></data>
+  <data name="Compare selling prices." xml:space="preserve"><value>نرخێن فرۆتنێ بەراورد بکە.</value></data>
+  <data name="Explore a lower price." xml:space="preserve"><value>نرخەکێ کێمتر تاقی بکە.</value></data>
+  <data name="Account for app fees." xml:space="preserve"><value>کرێیێن ئەپی بژمێرە.</value></data>
+  <data name="Choose a decision to continue." xml:space="preserve"><value>بۆ بەردەوامبوونێ بڕیارەکێ هەلبژێرە.</value></data>
 </root>
