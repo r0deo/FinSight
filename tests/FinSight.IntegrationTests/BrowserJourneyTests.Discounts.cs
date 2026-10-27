@@ -53,12 +53,16 @@ public sealed partial class BrowserJourneyTests
         await page.GotoAsync("/simulations");
         await Expect(page.Locator("header a[href='/simulations/discount']")).ToHaveCountAsync(0);
         await page.Locator("main .simulation-destination[href='/simulations/preview']").ClickAsync();
-        await page.Locator("main a[href='/simulations/discount']").ClickAsync();
-        await page.Locator($"a[href='/simulations/discount?productId={productId}']").ClickAsync();
+        await Expect(page.Locator("[data-start-simulation]")).ToBeDisabledAsync();
+        await page.Locator($"input[name=productId][value='{productId}']").CheckAsync();
+        await page.Locator("input[name=decision][value=discount]").CheckAsync();
+        await page.Locator("[data-start-simulation]").ClickAsync();
+        await page.WaitForURLAsync($"**/simulations/discount?productId={productId}");
         await Layout(page, culture, width, "discount-inputs");
         await page.Locator("#DiscountPercentage").FillAsync("0");
         await page.Locator("#CurrentSalesQuantity").FillAsync(culture == "en" ? "100" : "١٠٠");
         await page.Locator("#ExpectedSalesQuantity").FillAsync("140");
+        await page.Locator("[data-optional-inputs] > summary").ClickAsync();
         await page.Locator("#CampaignCost").FillAsync("0");
         await page.Locator("[data-discount-form] button[type=submit]").ClickAsync();
         await Expect(page.Locator("#DiscountPercentage")).ToBeFocusedAsync();

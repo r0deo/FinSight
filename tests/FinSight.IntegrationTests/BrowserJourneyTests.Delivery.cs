@@ -113,6 +113,7 @@ public sealed partial class BrowserJourneyTests
         await InspectResultModal(page, "delivery-result", "[data-delivery-form]", "[data-delivery-form] button[type=submit]", culture, width);
         using (var scope = factory.Services.CreateScope())
             Assert.False(await scope.ServiceProvider.GetRequiredService<FinSightDbContext>().PricingSimulations.AnyAsync(x => x.BusinessId == tenant));
+        await page.Locator("[data-optional-inputs] > summary").ClickAsync();
         await page.Locator("#FixedPeriodCost").FillAsync("20000");
         await Expect(page.Locator("[data-result-open='delivery-result']")).ToBeHiddenAsync();
         var comparison = page.Locator(".delivery-comparison");

@@ -11,8 +11,6 @@
 }
 <section class="decision-results" aria-label="@T["Calculation result"]" role="status">
     <h2>@(Model.IsHistorical ? T["Saved result"] : T["Preview result"])</h2>
-    <p>@T["Additional decision cost for this period (optional)"]: @if (d.AdditionalDecisionCost is { } extra) { <bdi dir="ltr" data-decision-cost>@extra.ToString("N2") @Model.Currency</bdi> } else { @T["Additional decision costs are unknown or excluded."] }</p>
-    @if (d.AdditionalDecisionCost.HasValue) { <p>@T["Scenario contributions and minimum-sales thresholds include this additional cost once; it does not reduce the current contribution."]</p> }
     <div class="decision-answer">
         <p class="eyebrow">@T["Minimum units sold to maintain your current contribution"]</p>
         @if (d.ThresholdStatus == MaintenanceThresholdStatus.Available)
@@ -50,17 +48,21 @@
     { <div class="notice notice-warning" role="alert">@T["Warning: the proposed price is below unit cost."] @T["Every unit sold at this price contributes negatively before other expenses."]</div> }
     @if (d.ExpectedScenario is { } expected)
     {
-        <p class="decision-summary">
-            @if (expected.Difference > 0 && Model.Period.HasValue) { @T["At the {0} units sold you entered, contribution is higher by {1} {2} per {3}.", expected.Quantity.ToString("N0"), expected.Difference.ToString("N2"), Model.Currency, period] }
-            else if (expected.Difference < 0 && Model.Period.HasValue) { @T["At the {0} units sold you entered, contribution is lower by {1} {2} per {3}.", expected.Quantity.ToString("N0"), (-expected.Difference).ToString("N2"), Model.Currency, period] }
-            else if (expected.Difference > 0) { @T["At the {0} units sold you entered, contribution is higher by {1} {2}. The period was not saved.", expected.Quantity.ToString("N0"), expected.Difference.ToString("N2"), Model.Currency] }
-            else if (expected.Difference < 0) { @T["At the {0} units sold you entered, contribution is lower by {1} {2}. The period was not saved.", expected.Quantity.ToString("N0"), (-expected.Difference).ToString("N2"), Model.Currency] }
-            else { @T["At the {0} units sold you entered, contribution is unchanged.", expected.Quantity.ToString("N0")] }
-        </p>
+        <p>@T["Your expected sales"]: <bdi>@expected.Quantity.ToString("N0")</bdi></p>
+        <partial name="_PeriodImpact" model="@((expected.Difference, Model.Currency, Model.Period.HasValue ? period : (string?)null))" />
         @if (Model.CurrentPrice == Model.ProposedPrice && d.AdditionalDecisionCost is null or 0)
         { <p>@T["The price is unchanged; any difference comes from the sales quantity you assumed."]</p> }
     }
-    else { <p class="decision-summary">@T["No expected sales were entered, so there is no personal forecast or overall recommendation."]</p> }
+    else
+    {
+        <p>@T["No expected sales were entered, so there is no personal forecast or overall recommendation."]</p>
+        <p>@T["If sales stay the same"]</p>
+        <partial name="_PeriodImpact" model="@((d.Scenarios.First(x => x.Kind == PricingScenarioKind.SameSales).Difference, Model.Currency, Model.Period.HasValue ? period : (string?)null))" />
+    }
+    <p class="form-guidance">@T["Contribution means the amount left after the costs entered in this comparison. It helps cover other business expenses; it is not net profit."]</p>
+    <details class="result-details" data-result-details><summary>@T["See details"]</summary>
+    <p>@T["Additional decision cost for this period (optional)"]: @if (d.AdditionalDecisionCost is { } extra) { <bdi dir="ltr" data-decision-cost>@extra.ToString("N2") @Model.Currency</bdi> } else { @T["Additional decision costs are unknown or excluded."] }</p>
+    @if (d.AdditionalDecisionCost.HasValue) { <p>@T["Scenario contributions and minimum-sales thresholds include this additional cost once; it does not reduce the current contribution."]</p> }
     <h3>@T["Scenario comparison"]</h3>
     @if (Model.Period.HasValue) { <p>@T["All scenario amounts are per {0}.", period]</p> }
         <p>@T["The decline scenario is an illustration, not a demand prediction. Fractional units are rounded down."]</p>
@@ -99,4 +101,5 @@
         { <p>@T["This older record did not save a comparison period. Its prices, unit cost, and quantities are historical snapshots."]</p> }
         <p>@T["This is a product contribution threshold, not a whole-business break-even point."]</p>
     </div>
+    </details>
 </section>

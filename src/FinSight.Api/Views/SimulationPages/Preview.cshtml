@@ -13,21 +13,25 @@
         <div><dt>@T["Business currency"]</dt><dd><bdi dir="ltr">@Model.Currency</bdi></dd></div>
     </dl>
     <form method="post" asp-action="Preview" data-decision-form data-has-draft="@((Context.Request.Method == "POST").ToString().ToLowerInvariant())">
+        <partial name="_SimulationInputHelp" model="Model.Currency" />
         <div asp-validation-summary="All" role="alert"></div>
         <input asp-for="ProductId" type="hidden" />
         <div class="field-grid">
             <div class="field"><label asp-for="ProposedPrice"></label><input asp-for="ProposedPrice" type="text" inputmode="decimal" dir="ltr" required /><span asp-validation-for="ProposedPrice"></span></div>
-            <div class="field"><label for="CurrentSalesQuantity">@T["Current units sold"]</label><input asp-for="CurrentSalesQuantity" type="text" inputmode="numeric" dir="ltr" required /><span asp-validation-for="CurrentSalesQuantity"></span><small>@T["Example: 33 units sold in one selected period."]</small></div>
+            <div class="field"><label for="CurrentSalesQuantity">@T["Current units sold"]</label><input asp-for="CurrentSalesQuantity" type="text" inputmode="numeric" dir="ltr" required /><span asp-validation-for="CurrentSalesQuantity"></span></div>
             <div class="field"><label asp-for="ComparisonPeriod"></label><select asp-for="ComparisonPeriod">
                 <option value="Day">@T["day"]</option><option value="Week">@T["week"]</option><option value="Month">@T["month"]</option>
             </select><span asp-validation-for="ComparisonPeriod"></span></div>
-            <div class="field"><label asp-for="DeclinePercentage"></label><input asp-for="DeclinePercentage" type="text" inputmode="numeric" dir="ltr" required /><span asp-validation-for="DeclinePercentage"></span><small>@T["10% is illustrative, not a prediction."]</small></div>
         </div>
         <div class="field"><label class="checkbox-label"><input asp-for="UnknownExpectedSales" type="checkbox" /> @T["I don't know expected sales"]</label></div>
         <div class="field" data-expected-field hidden="@Model.UnknownExpectedSales"><label for="ExpectedSalesQuantity">@T["Expected units sold"]</label><input asp-for="ExpectedSalesQuantity" type="text" inputmode="numeric" dir="ltr" disabled="@Model.UnknownExpectedSales" required="@(!Model.UnknownExpectedSales)" /><span asp-validation-for="ExpectedSalesQuantity"></span><small>@T["Optional when you do not know. If entered, this is your assumption, not a forecast."]</small></div>
         <p class="form-guidance">@T["All quantities refer to the selected period. Unit cost is assumed unchanged."]</p>
+        <details class="optional-inputs" data-optional-inputs open="@(!ViewData.ModelState.IsValid || Model.AdditionalDecisionCost.HasValue || Model.LinkCosts)">
+        <summary>@T["Optional assumptions and costs"]</summary>
+<div class="field"><label asp-for="DeclinePercentage"></label><input asp-for="DeclinePercentage" type="text" inputmode="numeric" dir="ltr" required /><span asp-validation-for="DeclinePercentage"></span><small>@T["10% is illustrative, not a prediction."]</small></div>
         <div class="field"><label asp-for="AdditionalDecisionCost"></label><input asp-for="AdditionalDecisionCost" type="text" inputmode="decimal" dir="ltr" /><span asp-validation-for="AdditionalDecisionCost"></span><small>@T["Only extra expenses caused by this decision for the selected period. Do not repeat existing bills or unit costs. Blank excludes unknown costs; 0 confirms none."]</small></div>
         <partial name="_CostLinkForm" model="Model" />
+        </details>
         <button class="button" type="submit">@T["Calculate preview"]</button>
     </form>
     @if (ViewData.ModelState.IsValid && Model.Result is { } decision)

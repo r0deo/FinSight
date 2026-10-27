@@ -1,0 +1,12 @@
+@model string
+<span hidden data-input-examples
+      data-unit-price="@T["Example: 5,000 {0} per unit.", Model]"
+      data-unit-cost="@T["Example: 2,000 {0} per unit.", Model]"
+      data-order-cost="@T["Example: 200 {0} per order; enter 0 if none.", Model]"
+      data-period-cost="@T["Example: 10,000 {0} for the selected {{period}}.", Model]"
+      data-quantity="@T["Example: 100 units per {period}."]"
+      data-orders="@T["Example: 20 orders per {period}."]"
+      data-units="@T["Example: 2 units in each order."]"
+      data-percent="@T["Example: 10% — enter your own assumption."]"
+      data-period="@T["Choose day, week or month; use the same period for both alternatives."]"
+      data-month="@T["Example: choose the month your cost entries belong to."]"></span>

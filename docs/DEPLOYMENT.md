@@ -52,6 +52,13 @@ pooling. Schema migrations use a direct connection.
 
 ## 2. Explicit migrations BEFORE launch
 
+For a saved-history HTTP 500 after the optional Business Costs release, see
+[the local reproduction and recovery guide](SAVED_HISTORY_500.md). It documents
+the verified `42703` missing-column failure on the previous schema and the existing
+`20261019153847_AddOptionalSimulationBusinessCosts` migration. Confirm the actual
+Render exception and database target first; do not assume every history error has
+this cause. Pushing migration files does not apply them to Neon.
+
 ### If Neon provides `DATABASE_URL` / `DATABASE_URL_POOLED`
 
 Use the direct `DATABASE_URL` with the local masked helper. Run these commands in

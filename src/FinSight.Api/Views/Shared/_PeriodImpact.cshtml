@@ -1,0 +1,15 @@
+@model (decimal Difference, string Currency, string? Period)
+<p class="decision-summary" data-period-impact>
+@if (Model.Period is null)
+{
+    @if (Model.Difference > 0) { @T["Under your assumption, {0} {1} more remains after the entered costs. The comparison period was not saved.", Model.Difference.ToString("N2"), Model.Currency] }
+    else if (Model.Difference < 0) { @T["Under your assumption, {0} {1} less remains after the entered costs. The comparison period was not saved.", (-Model.Difference).ToString("N2"), Model.Currency] }
+    else { @T["The amount remaining is unchanged. The comparison period was not saved."] }
+}
+else
+{
+    @if (Model.Difference > 0) { @T["Under your assumption, {0} {1} more remains after the entered costs per {2}.", Model.Difference.ToString("N2"), Model.Currency, Model.Period] }
+    else if (Model.Difference < 0) { @T["Under your assumption, {0} {1} less remains after the entered costs per {2}.", (-Model.Difference).ToString("N2"), Model.Currency, Model.Period] }
+    else { @T["Under your assumption, the amount remaining after the entered costs is unchanged per {0}.", Model.Period] }
+}
+</p>

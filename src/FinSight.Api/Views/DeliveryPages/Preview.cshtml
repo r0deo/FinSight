@@ -14,6 +14,7 @@
         <div><dt>@T["Unit cost"]</dt><dd><bdi dir="ltr">@Model.UnitCost.ToString("N2") @Model.Currency</bdi></dd></div>
     </dl>
     <form method="post" action="@formUrl" asp-antiforgery="true" data-delivery-form data-has-draft="@((Context.Request.Method == "POST").ToString().ToLowerInvariant())">
+        <partial name="_SimulationInputHelp" model="Model.Currency" />
         <div asp-validation-summary="All" role="alert"></div>
         <input asp-for="ProductId" type="hidden" /><input asp-for="Version" type="hidden" />
         <div class="field-grid">
@@ -23,7 +24,6 @@
             <div class="field"><label asp-for="PackagingPerOrder"></label><input asp-for="PackagingPerOrder" type="text" inputmode="decimal" dir="ltr" required /><span asp-validation-for="PackagingPerOrder"></span><small>@T["Enter only extra packaging not already in unit cost. Enter 0 if none."]</small></div>
             <div class="field"><label asp-for="OtherChargesPerOrder"></label><input asp-for="OtherChargesPerOrder" type="text" inputmode="decimal" dir="ltr" required /><span asp-validation-for="OtherChargesPerOrder"></span><small>@T["Do not repeat fees included in commission. Enter 0 if none."]</small></div>
             <div class="field"><label asp-for="ComparisonPeriod"></label><select asp-for="ComparisonPeriod"><option value="Day">@T["day"]</option><option value="Week">@T["week"]</option><option value="Month">@T["month"]</option></select><span asp-validation-for="ComparisonPeriod"></span></div>
-            <div class="field"><label asp-for="FixedPeriodCost"></label><input asp-for="FixedPeriodCost" type="text" inputmode="decimal" dir="ltr" /><span asp-validation-for="FixedPeriodCost"></span><small>@T["Only extra fixed costs caused by this decision, not existing rent or salaries. Blank means unknown/excluded; 0 confirms none."]</small></div>
         </div>
         <details class="delivery-comparison" open="@(Model.CurrentDirectOrders.HasValue || Model.ExpectedDeliveryOrders.HasValue || Model.TransferredOrders.HasValue || !ViewData.ModelState.IsValid)">
             <summary>@T["Compare the total impact (optional)"]</summary>
@@ -35,7 +35,11 @@
             </div>
             <p>@T["This comparison assumes direct demand is otherwise unchanged. Order counts are your assumptions, not predictions."]</p>
         </details>
+        <details class="optional-inputs" data-optional-inputs open="@(!ViewData.ModelState.IsValid || Model.FixedPeriodCost.HasValue || Model.LinkCosts)">
+        <summary>@T["Optional assumptions and costs"]</summary>
+<div class="field"><label asp-for="FixedPeriodCost"></label><input asp-for="FixedPeriodCost" type="text" inputmode="decimal" dir="ltr" /><span asp-validation-for="FixedPeriodCost"></span><small>@T["Only extra fixed costs caused by this decision, not existing rent or salaries. Blank means unknown/excluded; 0 confirms none."]</small></div>
         <partial name="_CostLinkForm" model="Model" />
+        </details>
         <button class="button" type="submit">@T["Calculate preview"]</button>
     </form>
     @if (ViewData.ModelState.IsValid && Model.Result is { } snapshot)

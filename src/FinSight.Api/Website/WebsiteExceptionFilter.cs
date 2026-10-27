@@ -36,7 +36,12 @@ public sealed class WebsiteExceptionFilter(
             };
             if (model.StatusCode == 500)
             {
-                logger.LogError(context.Exception, "A website request failed.");
+                // Correlate server-only exceptions with the failing route. Deliberately omit
+                // query strings, request bodies, cookies and authorization headers.
+                logger.LogError(context.Exception,
+                    "A website request failed. {RequestMethod} {RequestPath} TraceId {TraceId}",
+                    context.HttpContext.Request.Method, context.HttpContext.Request.Path.Value,
+                    context.HttpContext.TraceIdentifier);
             }
             context.Result = new ViewResult
             {

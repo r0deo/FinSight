@@ -64,6 +64,7 @@ public sealed partial class BrowserJourneyTests
         await page.Locator($".simulation-destination[href='/what-if?productId={productId}']").ClickAsync();
         Assert.True(sawPrompt); await Expect(page.Locator("#ProposedPrice")).ToHaveValueAsync("11000");
         page.Dialog-=dismiss;
+        await page.Locator("[data-optional-inputs] > summary").ClickAsync();
         await page.Locator("#LinkCosts").CheckAsync();
         await Expect(page.Locator("#AllocateCosts")).Not.ToBeCheckedAsync();
         await page.Locator("#CostMonth").FillAsync("2026-10");
@@ -85,6 +86,8 @@ public sealed partial class BrowserJourneyTests
         await Expect(page.Locator("[data-result-open='pricing-result']")).ToBeHiddenAsync();
         await Expect(page.Locator("#AdditionalDecisionCost")).ToHaveValueAsync("50000");
         await page.Locator("[data-decision-form] button[type=submit]").ClickAsync();
+        await Expect(page.Locator("[data-costs-excluded]")).ToBeHiddenAsync();
+        await page.Locator("[data-linked-cost-result] > summary").ClickAsync();
         await Expect(page.Locator("[data-costs-excluded]")).ToBeVisibleAsync();
         await Expect(page.Locator("[data-allocation-amount]")).ToHaveCountAsync(0);
         await Expect(page.Locator("[data-decision-results]")).ToContainTextAsync(Money(550000));
@@ -95,6 +98,7 @@ public sealed partial class BrowserJourneyTests
         await page.Locator("[data-decision-form] button[type=submit]").ClickAsync();
         await page.Locator("[data-decision-save] button").ClickAsync();
         await page.WaitForURLAsync(url=>!url.Contains("preview"));
+        var savedLocation = new Uri(page.Url).AbsolutePath;
         await Expect(page.Locator("[data-allocation-amount]")).ToContainTextAsync(Money(300000));
         await Layout(page,culture,width,"optional-costs-saved");
         await page.Locator("[data-linked-cost-result]").ScreenshotAsync(new() {
@@ -102,17 +106,22 @@ public sealed partial class BrowserJourneyTests
         await page.Locator(".simulation-destination[href='/simulations']").ClickAsync();
         await Expect(page.Locator(".decision-card")).ToHaveCountAsync(0);
         await Expect(page.Locator(".simulation-destination[aria-current='page']")).ToHaveAttributeAsync("href","/simulations");
+        await page.Locator($".saved-simulation-card a[href='{savedLocation}']").ClickAsync();
+        await page.WaitForURLAsync(url => new Uri(url).AbsolutePath == savedLocation);
+        await Expect(page.Locator("[data-allocation-amount]")).ToContainTextAsync(Money(300000));
+        await page.Locator(".simulation-destination[href='/simulations']").ClickAsync();
+        await page.WaitForURLAsync(url => new Uri(url).AbsolutePath == "/simulations");
         await page.Locator(".simulation-destination[href='/what-if']").ClickAsync();
         await page.Locator($"a[href='/what-if?productId={productId}']").ClickAsync();
         await Expect(page.Locator("#LinkCosts")).Not.ToBeCheckedAsync();
         await page.Locator("#CurrentQuantity").FillAsync("100");
         page.Dialog+=dismiss; sawPrompt=false;
-        await page.Locator($".simulation-destination[href='/simulations/preview?productId={productId}']").ClickAsync();
+        await page.Locator(".simulation-destination[href='/simulations/preview']").ClickAsync();
         Assert.True(sawPrompt); await Expect(page.Locator("#CurrentQuantity")).ToHaveValueAsync("100");
         page.Dialog-=dismiss;
         EventHandler<IDialog> accept=async(_,dialog)=>await dialog.AcceptAsync();
         page.Dialog+=accept;
-        await page.Locator($".simulation-destination[href='/simulations/preview?productId={productId}']").ClickAsync();
+        await page.Locator(".simulation-destination[href='/simulations/preview']").ClickAsync();
         await page.WaitForURLAsync(url=>url.Contains("simulations/preview"));
         page.Dialog-=accept;
         Assert.Empty(errors);

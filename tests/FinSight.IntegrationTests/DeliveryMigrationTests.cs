@@ -7,7 +7,7 @@ using FinSight.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Testcontainers.PostgreSql;
+using FinSight.IntegrationTests.Infrastructure;
 
 namespace FinSight.IntegrationTests;
 
@@ -16,7 +16,7 @@ public sealed class DeliveryMigrationTests
     [Fact]
     public async Task UpgradeFromDiscountSchema_PreservesDiscountSnapshot_AndAddsNullableDeliverySnapshot()
     {
-        await using var container = new PostgreSqlBuilder("postgres:17-alpine").Build();
+        await using var container = new TestPostgresDatabase();
         await container.StartAsync();
         var options = new DbContextOptionsBuilder<FinSightDbContext>().UseNpgsql(container.GetConnectionString()).Options;
         var businessId = Guid.NewGuid(); var productId = Guid.NewGuid(); var userId = Guid.NewGuid(); var id = Guid.NewGuid();

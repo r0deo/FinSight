@@ -16,6 +16,7 @@
         <div><dt>@T["Business currency"]</dt><dd><bdi dir="ltr">@Model.Currency</bdi></dd></div>
     </dl>
     <form method="post" action="/what-if/preview" asp-antiforgery="true" data-what-if-form data-has-draft="@((Context.Request.Method == "POST").ToString().ToLowerInvariant())">
+        <partial name="_SimulationInputHelp" model="Model.Currency" />
         <div asp-validation-summary="All" role="alert"></div>
         <input asp-for="ProductId" type="hidden" />
         <h2>@T["1. Choose your concern"]</h2>
@@ -59,7 +60,9 @@
             <small data-supplier-note>@T["Enter the complete alternative unit cost. The original increase is not added again; quality and reliability are not evaluated."]</small>
         </fieldset>
         }
+        <details class="optional-inputs" data-optional-inputs open="@(!ViewData.ModelState.IsValid || Model.LinkCosts)"><summary>@T["Optional assumptions and costs"]</summary>
         <partial name="_CostLinkForm" model="Model" />
+        </details>
         <button class="button" type="submit">@T[Model.Result is null ? "Show impact" : "Compare responses"]</button>
     </form>
     <p data-what-if-stale hidden class="notice" role="status">@T["Assumptions changed. Calculate again before saving."]</p>

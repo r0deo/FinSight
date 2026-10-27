@@ -3,21 +3,25 @@ using FinSight.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Testcontainers.PostgreSql;
 
 namespace FinSight.IntegrationTests.Infrastructure;
 
 public class FinSightApiFactory : WebApplicationFactory<Program>, IAsyncLifetime
 {
-    private readonly PostgreSqlContainer _database = new PostgreSqlBuilder("postgres:17-alpine")
-        .Build();
+    private readonly TestPostgresDatabase _database = new();
 
     public FakeEmailSender EmailSender { get; } = new();
 
     public MutableTimeProvider TimeProvider { get; } = new();
+
+    // Compatibility tests can start a fresh disposable database at a deployed schema.
+    // Never downgrade a populated database to simulate a missing migration.
+    protected virtual string? InitialMigration => null;
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
@@ -57,7 +61,7 @@ public class FinSightApiFactory : WebApplicationFactory<Program>, IAsyncLifetime
 
         using var scope = Services.CreateScope();
         var dbContext = scope.ServiceProvider.GetRequiredService<FinSightDbContext>();
-        await dbContext.Database.MigrateAsync();
+        await dbContext.GetService<IMigrator>().MigrateAsync(InitialMigration);
     }
 
     public new async Task DisposeAsync()

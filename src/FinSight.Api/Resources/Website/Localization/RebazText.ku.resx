@@ -756,4 +756,32 @@
   <data name="Cost details" xml:space="preserve"><value>وردەکارییێن تێچوونێ</value></data>
   <data name="Month review" xml:space="preserve"><value>پێداچوونا هەیڤێ</value></data>
   <data name="Category breakdown and accounting notes" xml:space="preserve"><value>وردەکاری ب گۆرەی جۆری و تێبینییێن ژمێریاریێ</value></data>
+  <data name="See details" xml:space="preserve"><value>وردەکاریان ببینە</value></data>
+  <data name="See details: shared business costs" xml:space="preserve"><value>وردەکاری: تێچوونێن هاوبەش یێن کاری</value></data>
+  <data name="Optional assumptions and costs" xml:space="preserve"><value>گریمانە و تێچوونێن ئارەزوومەندانە</value></data>
+  <data name="Under your assumption, {0} {1} more remains after the entered costs per {2}." xml:space="preserve"><value>ب گۆرەی گریمانا تە، پشتی تێچوونێن نڤیسی {0} {1} زێدەتر دمینیت ل هەر {2}.</value></data>
+  <data name="Under your assumption, {0} {1} less remains after the entered costs per {2}." xml:space="preserve"><value>ب گۆرەی گریمانا تە، پشتی تێچوونێن نڤیسی {0} {1} کێمتر دمینیت ل هەر {2}.</value></data>
+  <data name="Under your assumption, the amount remaining after the entered costs is unchanged per {0}." xml:space="preserve"><value>ب گۆرەی گریمانا تە، بڕێ مایی پشتی تێچوونێن نڤیسی ل هەر {0} ناگوهۆڕیت.</value></data>
+  <data name="Under your assumption, {0} {1} more remains after the entered costs. The comparison period was not saved." xml:space="preserve"><value>ب گۆرەی گریمانا تە، پشتی تێچوونێن نڤیسی {0} {1} زێدەتر دمینیت. ماوەیا بەراوردکرنێ نەهاتیە هەلگرتن.</value></data>
+  <data name="Under your assumption, {0} {1} less remains after the entered costs. The comparison period was not saved." xml:space="preserve"><value>ب گۆرەی گریمانا تە، پشتی تێچوونێن نڤیسی {0} {1} کێمتر دمینیت. ماوەیا بەراوردکرنێ نەهاتیە هەلگرتن.</value></data>
+  <data name="The amount remaining is unchanged. The comparison period was not saved." xml:space="preserve"><value>بڕێ مایی نەگوهۆڕیە. ماوەیا بەراوردکرنێ نەهاتیە هەلگرتن.</value></data>
+  <data name="Contribution means the amount left after the costs entered in this comparison. It helps cover other business expenses; it is not net profit." xml:space="preserve"><value>بەشداری ئەو بڕەیە یێ پشتی تێچوونێن نڤیسی د ڤێ بەراوردکرنێ دا دمینیت. هاریکارە بۆ داپۆشینا خەرجیێن دی یێن کاری؛ نە قازانجێ سافی یە.</value></data>
+  <data name="{0} extra units per {1} to avoid a lower result." xml:space="preserve"><value>{0} یەکەیێن زێدە ل هەر {1} پێدڤی نە بۆ ئەنجام کێمتر نەبیت.</value></data>
+  <data name="This is the minimum to match today, not a guarantee that the discount will attract more customers." xml:space="preserve"><value>ئەڤە کێمترین بڕە بۆ یەکسانبوون دگەل ڤەروژ؛ نە گەرەنتییە کو داشکاندن دێ کڕیارێن زێدەتر ئینیت.</value></data>
+  <data name="{0} {1} remains per delivery order after entered costs." xml:space="preserve"><value>{0} {1} ل هەر داخوازییا گەهاندنێ دمینیت پشتی تێچوونێن نڤیسی.</value></data>
+  <data name="Only the per-order impact is known. There is not enough information to judge the full {0}." xml:space="preserve"><value>بتنێ کاریگەرییا هەر داخوازییەکێ دیارە. پێزانین بەس نینە بۆ هەلسەنگاندنا تەڤایا {0}.</value></data>
+  <data name="If this expense is already part of each product’s unit cost, choose Yes so it is not counted twice." xml:space="preserve"><value>ئەگەر ئەڤ خەرجییە بەرێ د تێچوونا هەر یەکەیا بەرهەمی دا هاتبیتە حسابکرن، بەلێ هەلبژێرە دا دوو جاران نەهێتە حسابکرن.</value></data>
+  <data name="Example: 5,000 {0} per unit." xml:space="preserve"><value>نموونە: 5,000 {0} بۆ هەر یەکەیەکێ.</value></data>
+  <data name="Example: 2,000 {0} per unit." xml:space="preserve"><value>نموونە: 2,000 {0} بۆ هەر یەکەیەکێ.</value></data>
+  <data name="Example: 200 {0} per order; enter 0 if none." xml:space="preserve"><value>نموونە: 200 {0} بۆ هەر داخوازییەکێ؛ ئەگەر نینە 0 بنڤیسە.</value></data>
+  <data name="Example: 10,000 {0} for the selected {{period}}." xml:space="preserve"><value>نموونە: 10,000 {0} بۆ {{period}} هەلبژارتی.</value></data>
+  <data name="Example: 100 units per {period}." xml:space="preserve"><value>نموونە: 100 یەکە ل هەر {period}.</value></data>
+  <data name="Example: 20 orders per {period}." xml:space="preserve"><value>نموونە: 20 داخوازی ل هەر {period}.</value></data>
+  <data name="Example: 2 units in each order." xml:space="preserve"><value>نموونە: 2 یەکە د هەر داخوازییەکێ دا.</value></data>
+  <data name="Example: 10% — enter your own assumption." xml:space="preserve"><value>نموونە: 10% — گریمانا خۆ بنڤیسە.</value></data>
+  <data name="Choose day, week or month; use the same period for both alternatives." xml:space="preserve"><value>ڕۆژ، حەفتی یان هەیڤ هەلبژێرە؛ هەمان ماوە بۆ هەردوو هەلبژاردنان بکار بینە.</value></data>
+  <data name="Example: choose the month your cost entries belong to." xml:space="preserve"><value>نموونە: هەیڤا تێچوونێن تۆمارکری هەلبژێرە.</value></data>
+  <data name="{0} {1} less remains per delivery order than an equivalent direct order." xml:space="preserve"><value>ل هەر داخوازییا گەهاندنێ {0} {1} کێمتر دمینیت ژ داخوازییەکا ڕاستەوخۆ یا وەک هەڤ.</value></data>
+  <data name="{0} {1} more remains per delivery order than an equivalent direct order." xml:space="preserve"><value>ل هەر داخوازییا گەهاندنێ {0} {1} زێدەتر دمینیت ژ داخوازییەکا ڕاستەوخۆ یا وەک هەڤ.</value></data>
+  <data name="The same amount remains per delivery and equivalent direct order." xml:space="preserve"><value>هەمان بڕ ژ داخوازییا گەهاندنێ و داخوازییا ڕاستەوخۆ یا وەک هەڤ دمینیت.</value></data>
 </root>

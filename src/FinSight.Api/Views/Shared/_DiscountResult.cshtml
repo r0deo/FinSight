@@ -4,6 +4,25 @@
    var period = Model.Period switch { SalesPeriod.Day => "day", SalesPeriod.Week => "week", _ => "month" }; }
 <div data-discount-results>
     <p>@T["Comparison period"]: @T[period] · @T["Discount percentage (%)"]: <bdi dir="ltr">@input.DiscountPercentage.ToString("0.####")%</bdi></p>
+    @if (result.IsBelowCost) { <div class="notice notice-warning" role="alert">@T["The discounted price is below the recorded unit cost. Each additional unit reduces contribution before campaign costs."]</div> }
+    @if (result.ContributionPerUnit == 0) { <p class="notice notice-warning">@T["Each discounted unit contributes zero before campaign costs."]</p> }
+    @if (result.ThresholdStatus == MaintenanceThresholdStatus.Available)
+    {
+        <div class="decision-answer"><h2>@T["{0} extra units per {1} to avoid a lower result.", result.AdditionalUnits!.Value.ToString("N0"), T[period].Value]</h2>
+        <p data-discount-threshold>@T["You need to sell at least {0} units during the same period to maintain the current amount remaining after recorded product costs.", result.MinimumUnits!]</p>
+        <p>@T["Additional units required"]: <bdi dir="ltr">@result.AdditionalUnits</bdi> · @T["Required sales increase"]: <bdi dir="ltr">@result.RequiredIncreasePercentage?.ToString("N2")%</bdi></p>
+        <p>@T["This is the minimum to match today, not a guarantee that the discount will attract more customers."]</p></div>
+    }
+    else if (result.ThresholdStatus == MaintenanceThresholdStatus.NoPositiveBaseline)
+    { <p>@T["The current contribution is zero or negative. A normal maintenance threshold is not meaningful."]</p> }
+    else if (result.ThresholdStatus == MaintenanceThresholdStatus.ImpossibleAtPrice)
+    { <p>@T["No sales quantity at this discounted margin can maintain the positive current contribution."]</p> }
+    else { <p>@T["The required quantity exceeds the supported whole-number range."]</p> }
+    @if (result.Difference is { } difference)
+    { <partial name="_PeriodImpact" model="@((difference, Model.Currency, (string?)T[period].Value))" /> }
+    else { <p>@T["No expected sales were entered. Scenario totals and a recommendation are not calculated."]</p> }
+    <p class="form-guidance">@T["Contribution means the amount left after the costs entered in this comparison. It helps cover other business expenses; it is not net profit."]</p>
+    <details class="result-details" data-result-details><summary>@T["See details"]</summary>
     <dl class="simulation-product-facts">
         <div><dt>@T["Current selling price"]</dt><dd><bdi dir="ltr">@input.CurrentPrice.ToString("N2") @Model.Currency</bdi></dd></div>
         <div><dt>@T["Discounted selling price"]</dt><dd data-discount-price><bdi dir="ltr">@result.DiscountedPrice.ToString("N2") @Model.Currency</bdi></dd></div>
@@ -13,18 +32,6 @@
         <div><dt>@T["Discounted contribution per unit"]</dt><dd><bdi dir="ltr">@result.ContributionPerUnit.ToString("N2") @Model.Currency</bdi></dd></div>
         <div><dt>@T["Additional campaign cost (optional)"]</dt><dd>@if (input.CampaignCost is { } cost) { <bdi dir="ltr">@cost.ToString("N2") @Model.Currency</bdi> } else { @T["Campaign cost not included."] }</dd></div>
     </dl>
-    @if (result.IsBelowCost) { <div class="notice notice-warning" role="alert">@T["The discounted price is below the recorded unit cost. Each additional unit reduces contribution before campaign costs."]</div> }
-    @if (result.ContributionPerUnit == 0) { <p class="notice notice-warning">@T["Each discounted unit contributes zero before campaign costs."]</p> }
-    @if (result.ThresholdStatus == MaintenanceThresholdStatus.Available)
-    {
-        <p data-discount-threshold>@T["You need to sell at least {0} units during the same period to maintain the current amount remaining after recorded product costs.", result.MinimumUnits!]</p>
-        <p>@T["Additional units required"]: <bdi dir="ltr">@result.AdditionalUnits</bdi> · @T["Required sales increase"]: <bdi dir="ltr">@result.RequiredIncreasePercentage?.ToString("N2")%</bdi></p>
-    }
-    else if (result.ThresholdStatus == MaintenanceThresholdStatus.NoPositiveBaseline)
-    { <p>@T["The current contribution is zero or negative. A normal maintenance threshold is not meaningful."]</p> }
-    else if (result.ThresholdStatus == MaintenanceThresholdStatus.ImpossibleAtPrice)
-    { <p>@T["No sales quantity at this discounted margin can maintain the positive current contribution."]</p> }
-    else { <p>@T["The required quantity exceeds the supported whole-number range."]</p> }
     @if (result.ScenarioContribution is { } scenario)
     {
         <dl class="simulation-product-facts">
@@ -37,4 +44,5 @@
     else { <p>@T["No expected sales were entered. Scenario totals and a recommendation are not calculated."]</p> }
     <p class="form-guidance">@T["Contribution is not net profit. Rent, monthly salaries and other unentered costs are excluded. Do not count expenses already included in unit costs again."]</p>
     <p>@T["Discounted prices are rounded to two decimals before calculating contribution and the required sales quantity."]</p>
+    </details>
 </div>

@@ -46,14 +46,22 @@ public partial class WebsiteTests
         finally { await isolated.DisposeAsync(); }
     }
 
-    private sealed class ExceptionLog : ILoggerProvider, ILogger
+    private sealed class ExceptionLog(string? category = null) : ILoggerProvider, ILogger
     {
         public ConcurrentQueue<Exception> Exceptions { get; } = new();
-        public ILogger CreateLogger(string categoryName) => this;
+        public ConcurrentQueue<string> Messages { get; } = new();
+        public ILogger CreateLogger(string categoryName) => category is null || categoryName == category
+            ? this : Microsoft.Extensions.Logging.Abstractions.NullLogger.Instance;
         public bool IsEnabled(LogLevel logLevel) => true;
         public IDisposable? BeginScope<TState>(TState state) where TState : notnull => null;
         public void Log<TState>(LogLevel level, EventId id, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
-        { if (exception is not null) Exceptions.Enqueue(exception); }
+        {
+            if (exception is not null)
+            {
+                Exceptions.Enqueue(exception);
+                Messages.Enqueue(formatter(state, exception));
+            }
+        }
         public void Dispose() { }
     }
 }

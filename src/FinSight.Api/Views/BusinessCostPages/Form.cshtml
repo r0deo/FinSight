@@ -18,7 +18,7 @@
 </div>
 <div class="field"><label for="Inclusion">@T["Already included in product unit costs?"]</label>
 <select asp-for="Inclusion"><option value="Yes">@T["Yes"]</option><option value="No">@T["No"]</option><option value="Unsure">@T["Unsure"]</option></select>
-<small>@T["For example, if delivery is part of each product's unit cost, choose Yes for that same delivery cost. Wages and electricity may also be included. Choose Unsure if you need to check."]</small></div>
+<small>@T["If this expense is already part of each product’s unit cost, choose Yes so it is not counted twice."]</small></div>
 <div class="field"><label for="Note">@T["Note (optional)"]</label><textarea asp-for="Note" maxlength="500"></textarea><span asp-validation-for="Note"></span></div>
 <button class="button" type="submit">@T["Save cost entry"]</button>
 <a class="button button-quiet" href="/business-costs?month=@Model.Month">@T["Cancel"]</a>

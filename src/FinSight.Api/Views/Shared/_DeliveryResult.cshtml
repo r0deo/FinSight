@@ -3,6 +3,25 @@
 @{ var input = Model.Snapshot.Inputs; var result = Model.Snapshot.Result;
    var period = input.ComparisonPeriod switch { SalesPeriod.Day => "day", SalesPeriod.Week => "week", _ => "month" }; }
 <div data-delivery-results>
+    <div class="decision-answer" data-result-answer>
+        @if (result.Difference is { } difference)
+        { <partial name="_PeriodImpact" model="@((difference, Model.Currency, (string?)T[period].Value))" /> }
+        else
+        {
+            <h2>@T["{0} {1} remains per delivery order after entered costs.", result.DeliveryContributionPerOrder.ToString("N2"), Model.Currency]</h2>
+            <p>@T["Only the per-order impact is known. There is not enough information to judge the full {0}.", T[period].Value]</p>
+            <p>@T["Amount remaining per equivalent direct order"]: <bdi dir="ltr">@result.DirectContributionPerOrder.ToString("N2") @Model.Currency</bdi></p>
+        }
+    </div>
+    @{ var orderDifference = result.DeliveryContributionPerOrder - result.DirectContributionPerOrder; }
+    @if (orderDifference < 0)
+    { <p>@T["{0} {1} less remains per delivery order than an equivalent direct order.", (-orderDifference).ToString("N2"), Model.Currency]</p> }
+    else if (orderDifference > 0)
+    { <p>@T["{0} {1} more remains per delivery order than an equivalent direct order.", orderDifference.ToString("N2"), Model.Currency]</p> }
+    else { <p>@T["The same amount remains per delivery and equivalent direct order."]</p> }
+    @if (result.DeliveryContributionPerOrder < 0) { <p class="notice notice-warning">@T["Each modeled delivery order loses money before excluded overhead."]</p> }
+    <p class="form-guidance">@T["Contribution means the amount left after the costs entered in this comparison. It helps cover other business expenses; it is not net profit."]</p>
+    <details class="result-details" data-result-details><summary>@T["See details"]</summary>
     <p>@T["Comparison period"]: @T[period] · @T["Units of this product per order"]: <bdi dir="ltr">@input.UnitsPerOrder</bdi></p>
     <dl class="simulation-product-facts">
         <div><dt>@T["Delivery product subtotal"]</dt><dd><bdi dir="ltr">@result.ProductSubtotal.ToString("N2") @Model.Currency</bdi></dd></div>
@@ -41,5 +60,6 @@
             <li>@T["Taxes, refunds, promotions, and charges not entered are excluded. No demand or capacity is predicted."]</li>
             <li>@T["Only transferred orders reduce direct orders. Remaining direct orders are not charged delivery commission or packaging."]</li>
         </ul>
+    </details>
     </details>
 </div>

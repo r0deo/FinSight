@@ -8,7 +8,7 @@
         BusinessCostCategory.Energy => "Electricity / fuel", BusinessCostCategory.WaterInternet => "Utilities", BusinessCostCategory.Transport => "Transport",
         BusinessCostCategory.Maintenance => "Maintenance", BusinessCostCategory.Inventory => "Inventory / raw-material purchases", _ => "Other" };
 }
-<section class="linked-cost-result" data-linked-cost-result>
+<details class="linked-cost-result result-details" data-linked-cost-result><summary>@T["See details: shared business costs"]</summary>
 @if (Model.Context is not { } context)
 {
     <p>@T["Business-cost context was not captured with this older simulation. This does not mean costs were zero."]</p>
@@ -56,4 +56,4 @@ else
     <p>@T["An allocation is an assumption, not net profit. Costs may be missing or overlap; Rebaz cannot automatically verify manual records or allocations across products."]</p>
     <p><a href="/business-costs?month=@context.Settings.Month?.ToString("yyyy-MM")" target="_blank" rel="noopener">@T["Manage recorded business costs (opens a new tab)"]</a></p>
 }
-</section>
+</details>
