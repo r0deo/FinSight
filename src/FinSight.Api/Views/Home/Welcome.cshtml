@@ -1,17 +1,46 @@
 @model FinSight.Application.Features.Products.Queries.GetProducts.GetProductsResponse
 @{ ViewData["Title"] = T["Home"].Value; }
-<section class="hero">
+<link rel="stylesheet" href="~/css/home-path.css" asp-append-version="true" />
+<section class="hero home-welcome">
     <div>
         <p class="eyebrow">@T["YOUR BUSINESS WORKSPACE"]</p><h1>@T["Welcome to"] <span class="accent">Rebaz.</span></h1>
         @if (Model.TotalCount == 0)
         {
             <p class="lead">@T["Start with one product, record its price and cost, then explore your financial decisions."]</p>
-            <div class="actions"><a class="button" href="/products/create">@T["Add your first product"]</a></div>
         }
         else
         {
             <p class="lead">@T["Keep your menu up to date and explore your next financial decision."]</p>
-            <div class="actions"><a class="button" href="/products">@T["Manage products"]</a><a class="button button-secondary" href="/simulations/preview">@T["Simulate your financial decisions"]</a></div>
         }
     </div>
 </section>
+<section class="home-path" aria-label="@T["Your path forward"]" data-home-path>
+    <svg class="home-path-art" aria-hidden="true" focusable="false">
+        <path class="home-path-line" fill="none" />
+        <circle class="home-path-point" r="4" />
+    </svg>
+    <ol class="home-steps">
+        <li class="home-step @(Model.TotalCount == 0 ? "home-step-active" : "")">
+            <span class="home-step-number" data-path-stop aria-hidden="true">1</span>
+            <h2><a href="/products/create">@T["Add your product"]</a></h2>
+            <p>@T["Enter its selling price and unit cost."]</p>
+        </li>
+        <li class="home-step @(Model.TotalCount > 0 ? "home-step-active" : "")">
+            <span class="home-step-number" data-path-stop aria-hidden="true">2</span>
+            <h2><a href="/simulations/preview">@T["Try a decision"]</a></h2>
+            <p>@T["See what could happen if you change its price, offer a discount, or sell through a delivery app."]</p>
+        </li>
+    </ol>
+    <div class="home-next">
+        @if (Model.TotalCount == 0)
+        {
+            <a class="button home-primary" href="/products/create" data-path-action>@T["Add your first product"] <span class="directional-icon" aria-hidden="true">→</span></a>
+        }
+        else
+        {
+            <a class="button home-primary" href="/simulations/preview" data-path-action>@T["Try a decision"] <span class="directional-icon" aria-hidden="true">→</span></a>
+            <a class="button button-secondary" href="/products">@T["Manage products"]</a>
+        }
+    </div>
+</section>
+<script src="~/js/home-path.js" asp-append-version="true" defer></script>

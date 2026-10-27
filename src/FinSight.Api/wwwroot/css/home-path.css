@@ -1,0 +1,36 @@
+/* A decorative path only: content and navigation work before JS loads. */
+.home-welcome { padding-block: 10px 0; }
+.home-welcome h1 { margin-block: 12px; }
+.home-welcome .lead { max-width: 650px; margin: 16px auto 28px; }
+.home-path { position: relative; max-width: 950px; margin-inline: auto; padding: 24px; }
+.home-path-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; visibility: hidden; }
+.home-path-art.is-ready { visibility: visible; }
+.home-path-line { stroke: var(--accent); stroke-width: 1.5; opacity: .65; }
+.home-path-point { fill: var(--accent); }
+.home-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; list-style: none; padding: 0; margin: 0; }
+.home-step { position: relative; padding: 38px 28px 26px; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; text-align: start; }
+.home-step-number { position: absolute; inset-block-start: -18px; inset-inline-start: calc(50% - 18px); display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--background); border: 1px solid var(--accent); color: var(--accent); font-size: 14px; font-weight: 700; }
+.home-step h2 { font-size: clamp(20px, 2.1vw, 26px); margin-block: 0 10px; }
+.home-step h2 a { color: var(--text); text-decoration: none; }
+.home-step p { color: var(--text-secondary); margin: 0; max-width: 38ch; }
+.home-step-active { border-color: var(--control-border); }
+.home-step-active:hover, .home-step:focus-within { border-color: var(--accent); background: var(--surface-hover); }
+.home-step h2 a:hover { color: var(--accent); }
+.home-next { position: relative; display: flex; flex-direction: column; align-items: center; gap: 12px; margin-block-start: 52px; }
+.home-primary { min-width: 235px; gap: 18px; justify-content: center; }
+.home-next .button-secondary { padding-block: 9px; }
+@media (max-width: 650px) {
+    .home-welcome h1 { font-size: 38px; }
+    .home-welcome .lead { margin-block-end: 12px; font-size: 16px; }
+    .home-path { padding: 20px 24px; }
+    .home-steps { grid-template-columns: 1fr; gap: 24px; }
+    .home-step { padding: 22px 20px; padding-inline-start: 28px; }
+    .home-step-number { inset-inline-start: -18px; inset-block-start: 24px; }
+    .home-step h2 { font-size: 20px; }
+    .home-step p { font-size: 14px; }
+    .home-next { margin-block-start: 40px; }
+    .home-primary { min-width: 0; width: 100%; }
+}
+@media (prefers-reduced-motion: no-preference) {
+    .home-step { transition: border-color .18s ease, background .18s ease; }
+}

@@ -784,4 +784,9 @@
   <data name="{0} {1} less remains per delivery order than an equivalent direct order." xml:space="preserve"><value>{0} {1} less remains per delivery order than an equivalent direct order.</value></data>
   <data name="{0} {1} more remains per delivery order than an equivalent direct order." xml:space="preserve"><value>{0} {1} more remains per delivery order than an equivalent direct order.</value></data>
   <data name="The same amount remains per delivery and equivalent direct order." xml:space="preserve"><value>The same amount remains per delivery and equivalent direct order.</value></data>
+  <data name="Your path forward" xml:space="preserve"><value>Your path forward</value></data>
+  <data name="Add your product" xml:space="preserve"><value>Add your product</value></data>
+  <data name="Enter its selling price and unit cost." xml:space="preserve"><value>Enter its selling price and unit cost.</value></data>
+  <data name="Try a decision" xml:space="preserve"><value>Try a decision</value></data>
+  <data name="See what could happen if you change its price, offer a discount, or sell through a delivery app." xml:space="preserve"><value>See what could happen if you change its price, offer a discount, or sell through a delivery app.</value></data>
 </root>
